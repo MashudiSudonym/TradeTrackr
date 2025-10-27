@@ -31,12 +31,23 @@ git clone https://github.com/yourusername/trade_trackr.git
 cd trade_trackr
 ```
 
-2. Install dependencies:
+2. Create environment configuration files:
+```bash
+# Create .env file for development
+mkdir -p assets/dev
+touch assets/dev/.env
+
+# Create .env file for production
+mkdir -p assets/prod
+touch assets/prod/.env
+```
+
+3. Install dependencies:
 ```bash
 flutter pub get
 ```
 
-3. Run the app:
+4. Run the app:
 ```bash
 flutter run
 ```
