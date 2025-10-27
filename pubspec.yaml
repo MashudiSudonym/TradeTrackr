@@ -25,6 +25,8 @@ dependencies:
   flutter_dotenv: ^6.0.0
   logger: ^2.6.1
   shadcn_ui: ^0.31.8
+  drift: ^2.29.0
+  drift_flutter: ^0.2.7
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +40,7 @@ dev_dependencies:
   json_serializable: ^6.11.1
   freezed: ^3.2.3
   mockito: ^5.1.0
+  drift_dev: ^2.29.0
 
 flutter:
 
