@@ -23,7 +23,7 @@ Dokumen ini menjelaskan struktur data yang diharapkan untuk jurnal trading di ap
 | entryReason      | String    | Yes      | Alasan atau strategi masuk trade               | "Breakout from resistance" |
 | additionalNotes  | String    | No       | Catatan tambahan (psikologi, emosi, kondisi)   | "Market looks bullish"    |
 | profitLoss       | Double    | Yes      | Nilai keuntungan atau kerugian (nominal)       | 500.00                    |
-| profitLossPct    | Double    | Yes      | Persentase keuntungan atau kerugian            | 0.92                      |
+| profitLossPct    | Double    | No       | Persentase keuntungan atau kerugian            | 0.92                      |
 | createdAt        | DateTime  | Yes      | Timestamp saat data dibuat di database         | 2025-10-27 15:05:00       |
 | updatedAt        | DateTime  | No       | Timestamp saat data terakhir diupdate          | 2025-10-27 15:10:00       |
 
