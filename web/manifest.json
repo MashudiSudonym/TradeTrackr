@@ -1,0 +1,35 @@
+{
+    "name": "trade_trackr",
+    "short_name": "trade_trackr",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "TradeTrackr is an offline trading journal app that helps traders easily record and manage their trades. It stores all data locally on the device, letting users track performance, analyze results, and export data manually or automatically as backups. With a clean and user-friendly design, TradeTrackr is a practical tool for traders who want a simple, reliable, and private way to keep a trading diary",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
