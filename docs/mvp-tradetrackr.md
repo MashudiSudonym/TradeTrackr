@@ -17,7 +17,7 @@ Pengalaman pertama user saat membuka aplikasi untuk kali pertama.
   - Email (wajib)
 - Preferensi format tanggal dan waktu
 - Timezone mengikuti pengaturan perangkat secara otomatis
-- Data user disimpan di database lokal (SQLite/Hive)
+- Data user disimpan di database lokal (SQLite/Drift)
 - Halaman selamat datang dengan pengenalan singkat fitur utama aplikasi
 
 **Tujuan:**
