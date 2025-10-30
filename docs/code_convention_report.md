@@ -1,6 +1,6 @@
 # Code Convention Report
 
-Berdasarkan hasil unit test yang berhasil (9/9 pass) dan analisis kode, berikut evaluasi konvensi kode sesuai guidelines proyek TradeTrackr.
+Berdasarkan hasil unit test yang berhasil (15/15 pass) dan analisis kode, berikut evaluasi konvensi kode sesuai guidelines proyek TradeTrackr.
 
 ## Yang Mengikuti Konvensi
 
@@ -21,7 +21,9 @@ Berdasarkan hasil unit test yang berhasil (9/9 pass) dan analisis kode, berikut 
 ## Hasil Test
 
 - **UserEntity**: 3/3 pass (fromJson, toJson, nulls).
+- **PreferencesEntity**: 3/3 pass (fromJson, toJson, default values).
 - **UserRepositoryImpl**: 4/4 pass (getUser/saveUser scenarios).
+- **PreferencesRepositoryImpl**: 3/3 pass (getPreferences/savePreferences scenarios).
 - **UserOnboardingUseCase**: 2/2 pass (success/failure scenarios).
 - **Overall**: Kode bersih, test murni menguji logika tanpa side effects.
 

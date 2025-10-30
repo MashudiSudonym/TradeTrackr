@@ -47,24 +47,7 @@ class UserRepositoryImpl implements UserRepository {
             ),
           );
 
-      final userRow = await (_db.select(
-        _db.userTable,
-      )..where((tbl) => tbl.id.equals(userEntity.id))).getSingleOrNull();
-
-      if (userRow != null) {
-        return Result.success(
-          UserEntity(
-            id: userRow.id,
-            firstName: userRow.firstName,
-            lastName: userRow.lastName,
-            email: userRow.email,
-            createdAt: userRow.createdAt,
-            updatedAt: userRow.updatedAt,
-          ),
-        );
-      } else {
-        return Result.failed('Error failed to save data!');
-      }
+      return Result.success(userEntity);
     } catch (e) {
       return Result.failed(e.toString());
     }
