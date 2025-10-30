@@ -8,7 +8,7 @@ import 'package:trade_trackr/domain/repository/user_repository.dart';
 class UserRepositoryImpl implements UserRepository {
   final AppDatabase _db;
 
-  UserRepositoryImpl(this._db);
+  UserRepositoryImpl({required AppDatabase db}) : _db = db;
 
   /// Since the user is offline and this method always returns a single user data,
   /// there is no need to include a user ID as a query parameter for getUser.
