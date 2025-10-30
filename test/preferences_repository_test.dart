@@ -11,7 +11,7 @@ void main() {
 
   setUp(() {
     db = AppDatabase(NativeDatabase.memory());
-    repository = PreferencesRepositoryImpl(db);
+    repository = PreferencesRepositoryImpl(db: db);
   });
 
   tearDown(() async {
