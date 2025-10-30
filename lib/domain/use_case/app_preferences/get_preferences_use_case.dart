@@ -3,10 +3,11 @@ import 'package:trade_trackr/core/utils/use_case.dart';
 import 'package:trade_trackr/domain/entity/preferences_entity.dart';
 import 'package:trade_trackr/domain/repository/preferences_repository.dart';
 
-class GetPrefrencesUseCase implements UseCase<Result<PreferencesEntity>, void> {
+class GetPreferencesUseCase
+    implements UseCase<Result<PreferencesEntity>, void> {
   final PreferencesRepository _preferencesRepository;
 
-  GetPrefrencesUseCase({required PreferencesRepository preferencesRepository})
+  GetPreferencesUseCase({required PreferencesRepository preferencesRepository})
     : _preferencesRepository = preferencesRepository;
 
   @override
