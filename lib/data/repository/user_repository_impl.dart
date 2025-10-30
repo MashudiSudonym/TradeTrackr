@@ -5,13 +5,15 @@ import 'package:trade_trackr/domain/entity/user_entity.dart';
 import 'package:trade_trackr/domain/repository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  final AppDatabase db;
+  final AppDatabase _db;
 
-  UserRepositoryImpl(this.db);
+  UserRepositoryImpl(this._db);
 
+  /// Since the user is offline and this method always returns a single user data,
+  /// there is no need to include a user ID as a query parameter for getUser.
   @override
   Future<Result<UserEntity>> getUser() async {
-    final userRow = await db.select(db.userTable).getSingleOrNull();
+    final userRow = await _db.select(_db.userTable).getSingleOrNull();
 
     if (userRow != null) {
       return Result.success(
@@ -19,7 +21,7 @@ class UserRepositoryImpl implements UserRepository {
           id: userRow.id,
           firstName: userRow.firstName,
           lastName: userRow.lastName,
-           email: userRow.email,
+          email: userRow.email,
           createdAt: userRow.createdAt,
           updatedAt: userRow.updatedAt,
         ),
@@ -32,21 +34,21 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future<Result<UserEntity>> saveUser({required UserEntity userEntity}) async {
     try {
-      await db
-          .into(db.userTable)
+      await _db
+          .into(_db.userTable)
           .insertOnConflictUpdate(
             UserTableCompanion(
               id: Value(userEntity.id),
               firstName: Value(userEntity.firstName),
               lastName: Value(userEntity.lastName),
-               email: Value(userEntity.email),
+              email: Value(userEntity.email),
               createdAt: Value(userEntity.createdAt),
               updatedAt: Value(userEntity.updatedAt),
             ),
           );
 
-      final userRow = await (db.select(
-        db.userTable,
+      final userRow = await (_db.select(
+        _db.userTable,
       )..where((tbl) => tbl.id.equals(userEntity.id))).getSingleOrNull();
 
       if (userRow != null) {
