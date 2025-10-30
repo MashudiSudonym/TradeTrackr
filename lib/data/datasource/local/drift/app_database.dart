@@ -14,7 +14,7 @@ class AppDatabase extends _$AppDatabase {
 
   static QueryExecutor _openConnection() {
     return driftDatabase(
-      name: 'track_trackr_db',
+      name: 'trade_trackr_db',
       native: const DriftNativeOptions(),
     );
   }

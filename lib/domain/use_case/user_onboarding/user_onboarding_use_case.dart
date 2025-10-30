@@ -27,15 +27,7 @@ class UserOnboardingUseCase
     );
 
     if (saveUser.isSuccess) {
-      return Result.success(
-        saveUser.resultValue ??
-            UserEntity(
-              id: '',
-              firstName: '',
-              lastName: '',
-              createdAt: DateTime.now(),
-            ),
-      );
+      return Result.success(saveUser.resultValue!);
     } else {
       return Result.failed(saveUser.errorMessage ?? 'failed to process!');
     }

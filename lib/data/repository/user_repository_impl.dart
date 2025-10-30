@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:trade_trackr/core/constants/constants.dart';
 import 'package:trade_trackr/core/utils/result.dart';
 import 'package:trade_trackr/data/datasource/local/drift/app_database.dart';
 import 'package:trade_trackr/domain/entity/user_entity.dart';
@@ -13,21 +14,29 @@ class UserRepositoryImpl implements UserRepository {
   /// there is no need to include a user ID as a query parameter for getUser.
   @override
   Future<Result<UserEntity>> getUser() async {
-    final userRow = await _db.select(_db.userTable).getSingleOrNull();
+    try {
+      final userRow = await _db.select(_db.userTable).getSingleOrNull();
 
-    if (userRow != null) {
-      return Result.success(
-        UserEntity(
-          id: userRow.id,
-          firstName: userRow.firstName,
-          lastName: userRow.lastName,
-          email: userRow.email,
-          createdAt: userRow.createdAt,
-          updatedAt: userRow.updatedAt,
-        ),
-      );
-    } else {
-      return Result.failed('User not found!');
+      if (userRow != null) {
+        Constants.logger.d('success');
+
+        return Result.success(
+          UserEntity(
+            id: userRow.id,
+            firstName: userRow.firstName,
+            lastName: userRow.lastName,
+            email: userRow.email,
+            createdAt: userRow.createdAt,
+            updatedAt: userRow.updatedAt,
+          ),
+        );
+      } else {
+        Constants.logger.e('User not found!');
+        return Result.failed('User not found!');
+      }
+    } catch (e) {
+      Constants.logger.e('Failed to get user: $e');
+      return Result.failed('Failed to retrieve user data!');
     }
   }
 
@@ -47,8 +56,11 @@ class UserRepositoryImpl implements UserRepository {
             ),
           );
 
+      Constants.logger.d('success');
+
       return Result.success(userEntity);
     } catch (e) {
+      Constants.logger.e('Failed to save user: $e');
       return Result.failed(e.toString());
     }
   }
