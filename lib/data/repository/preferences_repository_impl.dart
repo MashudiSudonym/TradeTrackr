@@ -8,7 +8,7 @@ import 'package:trade_trackr/domain/repository/preferences_repository.dart';
 class PreferencesRepositoryImpl implements PreferencesRepository {
   final AppDatabase _db;
 
-  PreferencesRepositoryImpl({required AppDatabase db}) : _db = db;
+  PreferencesRepositoryImpl({AppDatabase? db}) : _db = db ?? AppDatabase();
 
   @override
   Future<Result<PreferencesEntity>> getPreferences() async {
