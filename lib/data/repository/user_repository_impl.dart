@@ -41,7 +41,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Result<UserEntity>> saveUser({required UserEntity userEntity}) async {
+  Future<Result<void>> saveUser({required UserEntity userEntity}) async {
     try {
       await _db
           .into(_db.userTable)
@@ -58,7 +58,7 @@ class UserRepositoryImpl implements UserRepository {
 
       Constants.logger.d('success');
 
-      return Result.success(userEntity);
+      return Result.success(null);
     } catch (e) {
       Constants.logger.e('Failed to save user: $e');
       return Result.failed(e.toString());

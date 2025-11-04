@@ -6,7 +6,7 @@ import 'package:trade_trackr/domain/use_case/user_onboarding/user_onboarding_par
 import 'package:uuid/uuid.dart';
 
 class UserOnboardingUseCase
-    implements UseCase<Result<UserEntity>, UserOnboardingParams> {
+    implements UseCase<Result<void>, UserOnboardingParams> {
   final UserRepository _userRepository;
   final Uuid _uuid = Uuid();
 
@@ -14,8 +14,8 @@ class UserOnboardingUseCase
     : _userRepository = userRepository;
 
   @override
-  Future<Result<UserEntity>> call(UserOnboardingParams params) async {
-    final saveUser = await _userRepository.saveUser(
+  Future<Result<void>> call(UserOnboardingParams params) async {
+    return await _userRepository.saveUser(
       userEntity: UserEntity(
         id: _uuid.v4(),
         firstName: params.firstName,
@@ -25,11 +25,5 @@ class UserOnboardingUseCase
         updatedAt: DateTime.now(),
       ),
     );
-
-    if (saveUser.isSuccess) {
-      return Result.success(saveUser.resultValue!);
-    } else {
-      return Result.failed(saveUser.errorMessage ?? 'failed to process!');
-    }
   }
 }
