@@ -46,8 +46,19 @@ flutter:
 
   uses-material-design: true
   assets:
+    - assets/images/
     - assets/dev/.env
     - assets/prod/.env
 
+  fonts:
+    - family: DMSerifDisplay
+      fonts:
+        - asset: fonts/DMSerifDisplay-Regular.ttf
+    - family: MarcellusSC
+      fonts:
+        - asset: fonts/MarcellusSC-Regular.ttf
+    - family: Lexend
+      fonts:
+        - asset: fonts/Lexend-Regular.ttf
 
 
