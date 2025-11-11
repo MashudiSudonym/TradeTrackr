@@ -2,7 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:trade_trackr/result.dart';
-import 'package:trade_trackr/domain/entity/user_entity.dart';
 import 'package:trade_trackr/domain/repository/user_repository.dart';
 import 'package:trade_trackr/domain/use_case/user_onboarding/user_onboarding_params.dart';
 import 'package:trade_trackr/domain/use_case/user_onboarding/user_onboarding_use_case.dart';
