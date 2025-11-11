@@ -1,4 +1,4 @@
-import 'package:trade_trackr/core/constants/constants.dart';
+import 'package:trade_trackr/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final class AppObserver extends ProviderObserver {

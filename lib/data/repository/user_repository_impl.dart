@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:trade_trackr/core/constants/constants.dart';
-import 'package:trade_trackr/core/utils/result.dart';
+import 'package:trade_trackr/constants.dart';
+import 'package:trade_trackr/result.dart';
 import 'package:trade_trackr/data/datasource/local/drift/app_database.dart';
 import 'package:trade_trackr/domain/entity/user_entity.dart';
 import 'package:trade_trackr/domain/repository/user_repository.dart';

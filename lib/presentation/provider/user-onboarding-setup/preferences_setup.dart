@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:trade_trackr/core/utils/result.dart';
+import 'package:trade_trackr/result.dart';
 import 'package:trade_trackr/domain/use_case/app_preferences/save_preferences_params.dart';
 import 'package:trade_trackr/domain/use_case/app_preferences/save_preferences_use_case.dart';
 import 'package:trade_trackr/presentation/provider/use_case/save_preferences_use_case_provider.dart';

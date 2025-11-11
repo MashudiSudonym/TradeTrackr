@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:trade_trackr/core/utils/result.dart';
+import 'package:trade_trackr/result.dart';
 import 'package:trade_trackr/domain/entity/user_entity.dart';
 import 'package:trade_trackr/domain/repository/user_repository.dart';
 import 'package:trade_trackr/domain/use_case/user_profile/get_user_profile_use_case.dart';
@@ -31,8 +31,9 @@ void main() {
         createdAt: DateTime(2023, 1, 1),
         updatedAt: DateTime(2023, 1, 2),
       );
-      when(mockUserRepository.getUser())
-          .thenAnswer((_) async => Result.success(expectedUser));
+      when(
+        mockUserRepository.getUser(),
+      ).thenAnswer((_) async => Result.success(expectedUser));
 
       // Act
       final result = await useCase(null);
@@ -50,8 +51,9 @@ void main() {
 
     test('should return failed when getUser fails', () async {
       // Arrange
-      when(mockUserRepository.getUser())
-          .thenAnswer((_) async => Result.failed('User not found'));
+      when(
+        mockUserRepository.getUser(),
+      ).thenAnswer((_) async => Result.failed('User not found'));
 
       // Act
       final result = await useCase(null);

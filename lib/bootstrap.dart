@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:trade_trackr/core/constants/constants.dart';
-import 'package:trade_trackr/core/utils/app_observer.dart';
+import 'package:trade_trackr/constants.dart';
+import 'package:trade_trackr/app_observer.dart';
 
 enum Flavors { dev, prod }
 
