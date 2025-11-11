@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:trade_trackr/presentation/page/main_page/main_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:trade_trackr/presentation/page/onboarding/onboarding_page.dart';
 
 part 'router_provider.g.dart';
 
@@ -13,6 +14,12 @@ Raw<GoRouter> router(Ref ref) => GoRouter(
       name: 'main',
       builder: (BuildContext context, GoRouterState state) => const MainPage(),
     ),
+    GoRoute(
+      path: '/onboarding',
+      name: 'onboarding',
+      builder: (BuildContext context, GoRouterState state) =>
+          const OnboardingPage(),
+    ),
   ],
-  initialLocation: '/main',
+  initialLocation: '/onboarding',
 );
