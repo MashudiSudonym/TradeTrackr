@@ -660,7 +660,7 @@ fvm use 3.35.5
 ```bash
 # Clean and rebuild generated code
 dart run build_runner clean
-dart run build_runner build
+dart run build_runner build -d
 
 # Check for build errors
 flutter analyze
