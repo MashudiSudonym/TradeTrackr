@@ -421,18 +421,18 @@ This project includes optimized VSCode configurations for easy development and d
 
 ### Launch Configurations
 
-The project includes several launch configurations for different environments and platforms:
+The project includes a `.vscode/launch.json` file with optimized launch configurations for debugging across all supported platforms:
 
 #### Android Configurations
-- **"TradeTrackr - Development"**: Debug mode for Android development environment
-- **"TradeTrackr - Production"**: Debug mode for Android production environment
+- **"Flutter Dev"**: Debug mode for Android development flavor (`lib/main_dev.dart`)
+- **"Flutter Prod"**: Debug mode for Android production flavor (`lib/main_prod.dart`)
 
 #### Linux Configurations
-- **"TradeTrackr - Linux"**: Debug mode for Linux platform
+- **"Flutter Linux"**: Debug mode for Linux platform (`lib/main.dart`)
 
 #### Web Configurations
-- **"TradeTrackr - Web Development"**: Debug mode for web development environment
-- **"TradeTrackr - Web Production"**: Debug mode for web production environment
+- **"Flutter Web Dev"**: Debug mode for web development flavor (`lib/main_dev.dart`)
+- **"Flutter Web Prod"**: Debug mode for web production flavor (`lib/main_prod.dart`)
 
 ### Build Tasks
 
@@ -455,7 +455,7 @@ The project includes automated build tasks for different platforms:
 #### Method 1: Using Run Panel (Recommended)
 1. Open the project in VSCode
 2. Click the **Run** icon in the sidebar (play button with bug)
-3. Select desired configuration from the dropdown (e.g., "TradeTrackr - Development")
+3. Select desired configuration from the dropdown (e.g., "Flutter Dev")
 4. Click the green **Play** button or press `F5`
 
 #### Method 2: Using Command Palette
@@ -476,7 +476,7 @@ The project includes automated build tasks for different platforms:
 #### Running on Android
 ```bash
 # Using VSCode launch configuration
-# Select "TradeTrackr - Development" or "TradeTrackr - Production"
+# Select "Flutter Dev" or "Flutter Prod"
 
 # Using terminal
 flutter run --flavor dev --target lib/main_dev.dart -d <device_id>
@@ -485,7 +485,7 @@ flutter run --flavor dev --target lib/main_dev.dart -d <device_id>
 #### Running on Linux
 ```bash
 # Using VSCode launch configuration
-# Select "TradeTrackr - Linux"
+# Select "Flutter Linux"
 
 # Using terminal
 flutter run -d linux --target lib/main.dart
@@ -494,7 +494,7 @@ flutter run -d linux --target lib/main.dart
 #### Running on Web
 ```bash
 # Using VSCode launch configuration
-# Select "TradeTrackr - Web Development" or "TradeTrackr - Web Production"
+# Select "Flutter Web Dev" or "Flutter Web Prod"
 
 # Using terminal
 flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d chrome
