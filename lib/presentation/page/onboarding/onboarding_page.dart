@@ -17,24 +17,22 @@ class _OnboardingPageState extends State<OnboardingPage> {
         children: [
           FluidCard(
             color: 'Red',
-            altColor: Color(0xFF4259B2),
-            title: "Start Your Day \nwith Peaceful Mornings",
+            altColor: Color(0xFF904E93),
+            title: "Plan Your Trades \nLike This Board",
             subtitle:
-                "Wake up refreshed with calming nature-inspired sounds designed to ease you into the day.",
+                "clear, structured, and calm. Discipline today builds freedom tomorrow.",
           ),
           FluidCard(
             color: 'Yellow',
-            altColor: Color(0xFF904E93),
-            title: "Refresh Your Mind \nwith Guided Breathing",
-            subtitle:
-                "Reduce stress and boost focus with science-backed breathing techniques at your fingertips.",
+            altColor: Color(0xFF4259B2),
+            title: "Study The Charts\nNot Your Emotions.",
+            subtitle: "Data guides you; discipline keeps you winning.",
           ),
           FluidCard(
             color: 'Blue',
             altColor: Color(0xFFFFB138),
-            title: "Sleep Soundly \nwith Soothing Stories",
-            subtitle:
-                "Drift into deep sleep with a collection of relaxing bedtime stories and mindfulness exercises.",
+            title: "Trade with Patience\nSave with Purpose",
+            subtitle: "profits mean nothing without control.",
           ),
         ],
       ),
