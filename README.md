@@ -302,7 +302,7 @@ dart run build_runner watch
 
 # Clean and rebuild all generated code
 dart run build_runner clean
-dart run build_runner build
+dart run build_runner build -d
 ```
 
 ## 🏃‍♂️ Building & Running
