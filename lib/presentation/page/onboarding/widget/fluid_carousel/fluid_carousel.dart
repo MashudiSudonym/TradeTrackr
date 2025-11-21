@@ -5,8 +5,13 @@ import 'fluid_edge.dart';
 
 class FluidCarousel extends StatefulWidget {
   final List<Widget> children;
+  final ValueChanged<int>? onChange;
 
-  const FluidCarousel({super.key, required this.children});
+  const FluidCarousel({
+    super.key,
+    required this.children,
+    this.onChange,
+  });
 
   @override
   FluidCarouselState createState() => FluidCarouselState();
@@ -73,6 +78,7 @@ class FluidCarouselState extends State<FluidCarousel>
   void _handlePanDown(DragDownDetails details, Size size) {
     if (_dragIndex != null && _dragCompleted) {
       _index = _dragIndex!;
+      widget.onChange?.call(_index % widget.children.length);
     }
     _dragIndex = null;
     _dragOffset = details.localPosition;

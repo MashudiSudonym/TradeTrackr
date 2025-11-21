@@ -134,19 +134,6 @@ class _FluidCardState extends State<FluidCard> {
             color: Colors.white.withValues(alpha: 0.7),
           ),
         ),
-        TextButton(
-          child: Text(
-            'Skip to dashboard',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 12.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Lexend',
-              color: Colors.blueAccent,
-            ),
-          ),
-          onPressed: () {},
-        ),
       ],
     );
   }
