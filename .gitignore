@@ -55,3 +55,4 @@ app.*.map.json
 # env profile
 assets/dev/.env
 assets/prod/.env
+lib/presentation/provider/router/router_provider.g.dart
