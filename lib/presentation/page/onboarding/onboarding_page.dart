@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:trade_trackr/presentation/page/onboarding/widget/fluid_carousel/fluid_card.dart';
 import 'package:trade_trackr/presentation/page/onboarding/widget/fluid_carousel/fluid_carousel.dart';
-import 'package:trade_trackr/presentation/page/main_page/main_page.dart';
 import 'package:trade_trackr/presentation/provider/onboarding/onboarding_index_provider.dart';
+import 'package:trade_trackr/presentation/provider/router/router_provider.dart';
 
 class OnboardingPage extends ConsumerWidget {
   const OnboardingPage({super.key});
@@ -60,9 +60,7 @@ class OnboardingPage extends ConsumerWidget {
                 },
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const MainPage()),
-                    );
+                    ref.read(routerProvider).goNamed('register');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
