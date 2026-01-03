@@ -113,7 +113,6 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - **JSON Serializable** 6.11.1 - JSON serialization
 - **UUID** 4.1.0 - Unique identifier generation
 - **Intl** 0.20.2 - Internationalization and date formatting
-- **Flutter Dotenv** 6.0.0 - Environment variable management
 - **Logger** 2.6.1 - Logging utility
 
 ### Development Tools
@@ -226,32 +225,38 @@ dart run build_runner build
 ``` bash
 trade_trackr/
 ├── android/                    # Android platform-specific code
-├── linux/                      # Linux platform-specific code
-├── web/                        # Web platform-specific code
+├── assets/                     # Application assets (images, etc)
 ├── docs/                       # Documentation
 │   ├── data-schema.md         # Data schema specification
 │   └── mvp-tradetrackr.md     # MVP feature specification
+├── fonts/                      # Custom application fonts
 ├── lib/                       # Main application code
-│   ├── core/                  # Core utilities and constants
-│   │   ├── constants/         # App constants
-│   │   └── utils/             # Utility classes
-│   ├── data/                  # Data layer
+│   ├── data/                  # Data layer (Repositories & Datasources)
+│   │   ├── datasource/        # Data source abstractions
+│   │   │   └── local/         # Local persistence (Drift/SQLite)
 │   │   └── repository/        # Repository implementations
 │   ├── domain/               # Domain layer (Business Logic)
-│   │   ├── entity/           # Data models (Freezed)
+│   │   ├── entity/           # Immutable models & entities
 │   │   ├── repository/       # Repository interfaces
 │   │   └── use_case/         # Business use cases
+│   ├── gen/                  # Generated code/assets
 │   ├── presentation/         # Presentation layer (UI)
 │   │   ├── page/            # Screen widgets
 │   │   └── provider/        # State management (Riverpod)
-│   ├── app.dart             # Main app widget
-│   ├── bootstrap.dart      # App initialization
-│   ├── main.dart            # Application entry point
-├── test/                     # Test files
-├── pubspec.yaml            # Flutter dependencies
-├── analysis_options.yaml   # Code analysis configuration
-├── mise.toml               # Version management configuration
-└── README.md              # This file
+│   ├── app.dart             # Application configuration
+│   ├── app_observer.dart    # Provider state observation
+│   ├── bootstrap.dart      # App bootstrap logic
+│   ├── constants.dart      # App-wide constants
+│   ├── main.dart            # Main entry point
+│   ├── result.dart          # Functional error handling
+│   └── use_case.dart        # Use case base classes
+├── linux/                      # Linux platform-specific code
+├── test/                     # Test suite
+├── web/                        # Web platform-specific code
+├── analysis_options.yaml   # Linting and analysis rules
+├── mise.toml               # Version control settings
+├── pubspec.yaml            # Dependencies management
+└── README.md              # Project overview
 ```
 
 ## 🏗️ Architecture
@@ -682,25 +687,25 @@ Ctrl+Shift+P → "Developer: Reload Window"
 
 ### MVP Features Status
 
-- 🔄 **User Onboarding & Setup Awal**: First-time user setup and personalization
-- 🔄 **Input Trade Baru**: Form for recording new trading transactions
-- 🔄 **Daftar Jurnal Trading**: Interactive trade history table with filtering
-- 🔄 **Detail Trade**: Comprehensive trade information display
-- 🔄 **Export Data Manual ke CSV**: Manual data export to CSV format
-- 🔄 **Backup Otomatis Terjadwal**: Scheduled automatic backup system
-- 🔄 **Import Data CSV**: Data import from CSV files
-- 🔄 **Pengaturan Dasar**: User preferences and application settings
-- 🔄 **UI Responsif & Minimalis**: Clean and responsive user interface
+- ✅ **User Onboarding & Setup Awal**: First-time user setup (Register flow implemented)
+- 🔄 **Input Trade Baru**: Form for recording new trading transactions (Planned)
+- 🔄 **Daftar Jurnal Trading**: Interactive trade history table (Planned)
+- 🔄 **Detail Trade**: Comprehensive trade information display (Planned)
+- 🔄 **Export Data Manual ke CSV**: Manual data export to CSV format (Planned)
+- 🔄 **Backup Otomatis Terjadwal**: Scheduled automatic backup system (Planned)
+- 🔄 **Import Data CSV**: Data import from CSV files (Planned)
+- ✅ **Pengaturan Dasar**: User preferences and application settings (Implemented)
+- 🔄 **UI Responsif & Minimalis**: Shadcn UI integration (In Progress)
 
 ### Technical Status
 
-- ✅ **Architecture**: Clean Architecture setup (planned)
-- 🔄 **Database**: SQLite with Drift ORM implementation (planned)
-- 🔄 **State Management**: Riverpod implementation (planned)
-- 🔄 **Cross-Platform**: Android, Linux, and Web support (planned)
-- 🔄 **Offline Storage**: Local data persistence (planned)
-- 🔄 **Testing**: Unit tests for core functionality (planned)
-- 🔄 **Code Generation**: Freezed and Riverpod generators setup (planned)
+- ✅ **Architecture**: Clean Architecture setup
+- ✅ **Database**: SQLite with Drift ORM implementation
+- ✅ **State Management**: Riverpod implementation
+- ✅ **Cross-Platform**: Android, Linux, and Web support
+- ✅ **Offline Storage**: Local data persistence
+- ✅ **Testing**: Unit tests for core functionality
+- ✅ **Code Generation**: Freezed and Riverpod generators setup
 
 ## 📄 License
 
