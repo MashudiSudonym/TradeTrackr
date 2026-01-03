@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:trade_trackr/presentation/provider/register/register_controller.dart';
-
 import 'package:trade_trackr/presentation/provider/router/router_provider.dart';
-import 'register_colors.dart';
 import 'widgets/register_button.dart';
 import 'widgets/register_checkbox.dart';
-
 import 'widgets/register_text_field.dart';
 
 class RegisterPage extends ConsumerStatefulWidget {
@@ -21,6 +19,53 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   bool _use24HourFormat = false;
+  bool _showErrors = false;
+
+  bool get _isEmailValid {
+    final email = _emailController.text.trim();
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  }
+
+  bool get _isFormValid =>
+      _firstNameController.text.trim().isNotEmpty &&
+      _lastNameController.text.trim().isNotEmpty &&
+      _isEmailValid;
+
+  String? get _firstNameError {
+    if (!_showErrors) return null;
+    if (_firstNameController.text.trim().isEmpty) {
+      return 'First name is required';
+    }
+    return null;
+  }
+
+  String? get _lastNameError {
+    if (!_showErrors) return null;
+    if (_lastNameController.text.trim().isEmpty) {
+      return 'Last name is required';
+    }
+    return null;
+  }
+
+  String? get _emailError {
+    if (!_showErrors) return null;
+    final email = _emailController.text.trim();
+    if (email.isEmpty) return 'Email is required';
+    if (!_isEmailValid) return 'Invalid email format';
+    return null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _firstNameController.addListener(_onTextChanged);
+    _lastNameController.addListener(_onTextChanged);
+    _emailController.addListener(_onTextChanged);
+  }
+
+  void _onTextChanged() {
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -31,23 +76,16 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   void _onRegister() {
-    final firstName = _firstNameController.text.trim();
-    final lastName = _lastNameController.text.trim();
-    final email = _emailController.text.trim();
+    setState(() => _showErrors = true);
 
-    if (firstName.isEmpty || lastName.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in required fields')),
-      );
-      return;
-    }
+    if (!_isFormValid) return;
 
     ref
         .read(registerControllerProvider.notifier)
         .register(
-          firstName: firstName,
-          lastName: lastName,
-          email: email.isEmpty ? null : email,
+          firstName: _firstNameController.text.trim(),
+          lastName: _lastNameController.text.trim(),
+          email: _emailController.text.trim(),
           is24HourFormat: _use24HourFormat,
         );
   }
@@ -74,12 +112,15 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         ref.read(routerProvider).goNamed('onboarding');
       },
       child: Scaffold(
-        backgroundColor: RegisterColors.backgroundColor,
+        backgroundColor: ShadTheme.of(context).colorScheme.background,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            icon: Icon(
+              LucideIcons.arrowLeft,
+              color: ShadTheme.of(context).colorScheme.foreground,
+            ),
             onPressed: () {
               ref.read(routerProvider).goNamed('onboarding');
             },
@@ -92,63 +133,66 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                const Text(
+                Text(
                   'Hey',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: -0.5,
+                  style: ShadTheme.of(context).textTheme.h1.copyWith(
+                    color: ShadTheme.of(context).colorScheme.foreground,
+                    fontSize: 40,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
+                Text(
                   'Nice to meet you',
-                  style: TextStyle(
-                    color: RegisterColors.textGrey,
-                    fontSize: 16,
-                  ),
+                  style: ShadTheme.of(
+                    context,
+                  ).textTheme.muted.copyWith(fontSize: 18),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 48),
 
                 // First Name
                 RegisterTextField(
                   label: 'First Name',
                   controller: _firstNameController,
                   hintText: 'Jane',
+                  errorText: _firstNameError,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 24),
 
                 // Last Name
                 RegisterTextField(
                   label: 'Last Name',
                   controller: _lastNameController,
                   hintText: 'Doe',
+                  errorText: _lastNameError,
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 24),
 
-                // Email
                 RegisterTextField(
                   label: 'Email',
                   controller: _emailController,
                   hintText: 'jane@example.com',
-                  suffixIcon: Container(
-                    margin: const EdgeInsets.all(12),
-                    decoration: const BoxDecoration(
-                      color: RegisterColors.primaryGreen,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.check,
-                      color: Colors.black,
-                      size: 16,
-                    ),
-                  ),
+                  errorText: _emailError,
+                  suffixIcon: _isEmailValid
+                      ? Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: ShadTheme.of(context).colorScheme.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            LucideIcons.check,
+                            color: ShadTheme.of(
+                              context,
+                            ).colorScheme.primaryForeground,
+                            size: 14,
+                          ),
+                        )
+                      : null,
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
 
                 // Checkbox option
                 RegisterCheckbox(
@@ -160,15 +204,14 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   },
                 ),
 
-                const SizedBox(height: 40),
+                const SizedBox(height: 48),
 
-                // Register Button
                 RegisterButton(
                   isLoading: isLoading,
                   onPressed: isLoading ? null : _onRegister,
                 ),
 
-                const SizedBox(height: 24),
+                const SizedBox(height: 32),
               ],
             ),
           ),

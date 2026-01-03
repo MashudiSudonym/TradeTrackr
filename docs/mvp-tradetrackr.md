@@ -1,6 +1,7 @@
 # TradeTrackr - MVP Feature Specification
 
 ## Deskripsi Aplikasi
+
 TradeTrackr adalah aplikasi jurnal trading offline yang membantu trader mencatat, mengelola, dan menganalisis aktivitas trading mereka. Aplikasi ini dirancang untuk bekerja sepenuhnya offline dengan fitur backup data otomatis dan manual.
 
 ---
@@ -8,9 +9,11 @@ TradeTrackr adalah aplikasi jurnal trading offline yang membantu trader mencatat
 ## Fitur Utama MVP
 
 ### 1. User Onboarding & Setup Awal
+
 Pengalaman pertama user saat membuka aplikasi untuk kali pertama.
 
 **Detail Fitur:**
+
 - Form pengisian data user:
   - First Name (wajib)
   - Last Name (wajib)
@@ -26,9 +29,11 @@ Personalisasi aplikasi tanpa memerlukan sistem autentikasi atau koneksi internet
 ---
 
 ### 2. Input Trade Baru
+
 Form untuk mencatat setiap transaksi trading yang dilakukan.
 
 **Detail Fitur:**
+
 - Field input:
   - Tanggal & Waktu transaksi
   - Instrumen/Aset (contoh: BTC/USDT, NDX100, EURUSD)
@@ -50,9 +55,11 @@ Memudahkan user mencatat semua detail trading dengan cepat dan akurat.
 ---
 
 ### 3. Daftar Jurnal Trading
+
 Tampilan tabel riwayat semua transaksi trading yang telah dicatat.
 
 **Detail Fitur:**
+
 - Tabel interaktif dengan kolom:
   - Tanggal/Waktu
   - Instrumen
@@ -73,9 +80,11 @@ Memberikan overview cepat terhadap semua aktivitas trading dan memudahkan analis
 ---
 
 ### 4. Detail Trade
+
 Halaman detail lengkap dari sebuah transaksi trading.
 
 **Detail Fitur:**
+
 - Menampilkan semua informasi trade secara lengkap
 - Informasi performa:
   - Profit/Loss (nominal dan persentase)
@@ -91,9 +100,11 @@ Memberikan analisis mendalam terhadap setiap transaksi untuk evaluasi dan pembel
 ---
 
 ### 5. Export Data Manual ke CSV
+
 Fitur untuk mengekspor seluruh data trading ke format CSV.
 
 **Detail Fitur:**
+
 - Tombol "Export to CSV" di halaman jurnal atau pengaturan
 - Export semua data trading dalam satu file CSV
 - File tersimpan di penyimpanan perangkat (folder Downloads atau pilihan user)
@@ -106,9 +117,11 @@ Memberikan kontrol penuh kepada user untuk backup dan analisis data di luar apli
 ---
 
 ### 6. Backup Otomatis Terjadwal
+
 Mekanisme backup data secara otomatis dan berkala.
 
 **Detail Fitur:**
+
 - Background scheduler untuk export data CSV secara otomatis
 - Pengaturan jadwal backup:
   - Harian (setiap 24 jam)
@@ -125,9 +138,11 @@ Melindungi data user dari kehilangan dengan backup otomatis yang tidak menggangg
 ---
 
 ### 7. Import Data CSV
+
 Fitur untuk mengimpor data trading dari file CSV.
 
 **Detail Fitur:**
+
 - Tombol "Import from CSV" di pengaturan
 - File picker untuk memilih file CSV dari penyimpanan perangkat
 - Validasi format file CSV sebelum import
@@ -143,9 +158,11 @@ Memudahkan restore data atau migrasi data dari perangkat lain.
 ---
 
 ### 8. Pengaturan Dasar
+
 Halaman pengaturan untuk kustomisasi aplikasi.
 
 **Detail Fitur:**
+
 - **Profil User:**
   - Edit First Name, Last Name, Email
 - **Backup Settings:**
@@ -171,9 +188,11 @@ Memberikan kontrol penuh kepada user untuk menyesuaikan aplikasi sesuai preferen
 ---
 
 ### 9. UI Responsif & Minimalis
+
 Desain antarmuka yang sederhana dan user-friendly.
 
 **Detail Fitur:**
+
 - Desain clean dengan hierarki visual yang jelas
 - Navigasi mudah dengan bottom navigation bar atau drawer
 - Responsive design untuk berbagai ukuran layar
@@ -189,6 +208,7 @@ Memberikan pengalaman pengguna yang nyaman dan intuitif tanpa perlu pembelajaran
 ## Teknologi & Implementasi
 
 ### Database
+
 - **SQLite** atau **Hive** untuk penyimpanan data lokal
 - Schema database mencakup:
   - User profile
@@ -197,13 +217,16 @@ Memberikan pengalaman pengguna yang nyaman dan intuitif tanpa perlu pembelajaran
   - Backup history
 
 ### File Management
+
 - CSV export/import menggunakan `csv` package
 - File system access menggunakan `path_provider` atau `file_picker`
 
 ### Background Tasks
+
 - Scheduled backup menggunakan `workmanager` atau `flutter_local_notifications`
 
 ### State Management
+
 - Provider, Riverpod, atau Bloc untuk manajemen state aplikasi
 
 ---

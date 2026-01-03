@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../register_colors.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class RegisterButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -13,44 +13,21 @@ class RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return ShadButton(
       width: double.infinity,
       height: 56,
-      child: ElevatedButton(
-        onPressed: isLoading ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: RegisterColors.primaryGreen,
-          foregroundColor: Colors.black,
-          disabledBackgroundColor: RegisterColors.primaryGreen.withValues(
-            alpha: 0.5,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          elevation: 0,
-          shadowColor: RegisterColors.primaryGreen.withValues(alpha: 0.4),
-        ),
-        child: isLoading
-            ? const SizedBox(
-                width: 24,
-                height: 24,
-                child: CircularProgressIndicator(
-                  color: Colors.black,
-                  strokeWidth: 2,
-                ),
-              )
-            : const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Register',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(Icons.arrow_forward, size: 20),
-                ],
+      onPressed: isLoading ? null : onPressed,
+      trailing: isLoading
+          ? const SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                color: Colors.black,
               ),
-      ),
+            )
+          : const Icon(LucideIcons.arrowRight, size: 20),
+      child: const Text('Register'),
     );
   }
 }

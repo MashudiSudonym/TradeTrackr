@@ -3,6 +3,7 @@
 A comprehensive Flutter application for traders to record, analyze, and manage their trading activities offline with complete privacy and data control.
 
 ## 📋 Table of Contents
+
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -21,6 +22,7 @@ A comprehensive Flutter application for traders to record, analyze, and manage t
 ## 🎯 Overview
 
 TradeTrackr is a mobile and desktop application built with Flutter that serves as a comprehensive trading journal for traders. The app allows users to:
+
 - Record and track all trading activities with detailed trade entries
 - Analyze performance with profit/loss calculations and statistics
 - Export/import data in CSV format for backup and migration
@@ -33,12 +35,14 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 ## ✨ Features
 
 ### 👤 User Onboarding & Setup
+
 - First-time user setup with personal information
 - Date/time format preferences
 - Automatic timezone detection
 - Welcome screens with feature introduction
 
 ### 📊 Trade Management
+
 - Record buy/sell trades with comprehensive details:
   - Entry/exit dates and times
   - Instrument/asset names
@@ -49,18 +53,21 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - Trade validation and data integrity
 
 ### 📋 Journal & History
+
 - Interactive trade history table
 - Advanced filtering by date, instrument, and results
 - Search functionality
 - Sorting capabilities (ascending/descending)
 
 ### 📄 Trade Details
+
 - Comprehensive trade information display
 - Performance metrics (P/L, risk/reward ratio, holding duration)
 - Edit and delete trade functionality
 - Psychological notes and market conditions
 
 ### 💾 Data Management
+
 - Complete offline functionality
 - CSV export/import for backup and migration
 - Local SQLite database with Drift ORM
@@ -68,12 +75,14 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - Data integrity and security
 
 ### ⚙️ Settings & Preferences
+
 - User profile management
 - Backup settings (automatic/manual scheduling)
 - Display preferences (date/time formats, themes)
 - Notification settings
 
 ### 🎨 User Experience
+
 - Clean and intuitive interface using Shadcn UI
 - Cross-platform compatibility (Android, Linux, Web)
 - Responsive design for all screen sizes
@@ -82,6 +91,7 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Flutter** 3.35.5 - Cross-platform framework
 - **Dart** 3.35.5 - Programming language
 - **Riverpod** 3.0.0 - State management
@@ -89,6 +99,7 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - **Shadcn UI** 0.31.8 - Modern UI component library
 
 ### Backend & Storage
+
 - **SQLite** - Local database
 - **Drift** 2.29.0 - Type-safe SQL query builder and ORM
 - **Drift Flutter** 0.2.7 - Flutter integration for Drift
@@ -97,6 +108,7 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - **Permission Handler** 11.3.1 - Platform permissions
 
 ### Utilities & Tools
+
 - **Freezed** 3.2.3 - Code generation for immutable models
 - **JSON Serializable** 6.11.1 - JSON serialization
 - **UUID** 4.1.0 - Unique identifier generation
@@ -105,6 +117,7 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - **Logger** 2.6.1 - Logging utility
 
 ### Development Tools
+
 - **Riverpod Generator** 3.0.0 - State management code generation
 - **Build Runner** 2.7.1 - Code generation runner
 - **Custom Lint** 0.8.0 - Custom linting rules
@@ -112,25 +125,30 @@ TradeTrackr is a mobile and desktop application built with Flutter that serves a
 - **Drift Dev** 2.29.0 - Drift development tools
 
 ### Testing
+
 - **flutter_test** - Unit and widget testing
 - **Mockito** 5.1.0 - Mocking framework
 
 ## 📋 Prerequisites
 
 ### System Requirements
+
 - **Operating System**: Android, Linux, Windows, macOS, or Web
 - **RAM**: Minimum 4GB (8GB recommended)
 - **Storage**: 500MB free space
 - **Display**: 1280x720 or higher resolution
 
 ### Software Requirements
+
 - **Flutter SDK**: Version 3.35.5 (exactly this version)
 - **Dart SDK**: Compatible with Flutter 3.35.5
 - **VS Code** (recommended) or **Android Studio** with Flutter extensions
 - **Git**: Version control system
 
 ### Recommended VSCode Extensions
+
 When using VSCode, install these recommended extensions for optimal development experience:
+
 - **Dart-Code.dart-code**: Official Dart extension
 - **Dart-Code.flutter**: Official Flutter extension
 - **ms-vscode.vscode-json**: JSON language support
@@ -141,22 +159,27 @@ When using VSCode, install these recommended extensions for optimal development 
 > 💡 **Tip**: VSCode will automatically recommend these extensions when you open the project
 
 ### Version Management Tools
+
 Choose one of the following to manage Flutter versions:
+
 - **[mise](https://mise.jdx.dev/)** (recommended) - Modern version manager
 - **[fvm](https://fvm.app/)** - Flutter Version Management
 
 ## 🚀 Installation & Setup
 
 ### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd trade_trackr
 ```
 
 ### 2. Install Flutter Version Manager
+
 Choose one option:
 
 **Option A: Using mise (Recommended)**
+
 ```bash
 # Install mise if not already installed
 curl https://mise.jdx.dev/install.sh | sh
@@ -167,6 +190,7 @@ mise use flutter@3.35.5
 ```
 
 **Option B: Using fvm**
+
 ```bash
 # Install fvm globally
 flutter pub global activate fvm
@@ -177,41 +201,29 @@ fvm use 3.35.5
 ```
 
 ### 3. Verify Flutter Installation
+
 ```bash
 flutter --version
 # Should show: Flutter 3.35.5 • channel stable
 ```
 
 ### 4. Install Dependencies
+
 ```bash
 flutter pub get
 ```
 
-### 5. Generate Code
+### 6. Code Generation
+
+Generate the necessary code for Riverpod, Freezed, and Drift using the following command:
+
 ```bash
-# Generate Freezed, JSON Serializable, and Riverpod code
 dart run build_runner build
-```
-
-### 6. Environment Configuration
-Create environment files for each flavor:
-
-```bash
-# Create .env files for different environments
-touch assets/dev/.env
-touch assets/prod/.env
-```
-
-**Environment Variables (if needed):**
-```env
-# Add any required environment variables here
-# APP_NAME=TradeTrackr
-# DATABASE_PATH=trade_trackr.db
 ```
 
 ## 📁 Project Structure
 
-```
+``` bash
 trade_trackr/
 ├── android/                    # Android platform-specific code
 ├── linux/                      # Linux platform-specific code
@@ -234,7 +246,7 @@ trade_trackr/
 │   │   └── provider/        # State management (Riverpod)
 │   ├── app.dart             # Main app widget
 │   ├── bootstrap.dart      # App initialization
-│   └── main_*.dart         # Flavor-specific entry points
+│   ├── main.dart            # Application entry point
 ├── test/                     # Test files
 ├── pubspec.yaml            # Flutter dependencies
 ├── analysis_options.yaml   # Code analysis configuration
@@ -273,6 +285,7 @@ This project follows **Clean Architecture** principles with clear separation of 
 ## 🔄 Development Workflow
 
 ### 1. Feature Development
+
 ```bash
 # Create a new feature branch
 git checkout -b feature/your-feature-name
@@ -296,6 +309,7 @@ git commit -m "feat: add your feature description"
 ```
 
 ### 2. Code Generation
+
 ```bash
 # Watch mode for continuous code generation during development
 dart run build_runner watch
@@ -307,107 +321,62 @@ dart run build_runner build -d
 
 ## 🏃‍♂️ Building & Running
 
-### Android Development
-```bash
-# Run development flavor
-flutter run --flavor dev --target lib/main_dev.dart
+### 📱 Android
 
-# Run production flavor
-flutter run --flavor prod --target lib/main_prod.dart
+```bash
+# Run application
+flutter run
+
+# Build APK
+flutter build apk
 ```
 
-### Android Build APK/AAB
+### 💻 Linux
+
 ```bash
-# Build development APK
-flutter build apk --flavor dev --target lib/main_dev.dart
+# Run application
+flutter run -d linux
 
-# Build production APK
-flutter build apk --flavor prod --target lib/main_prod.dart
-
-# Build production AAB for Play Store
-flutter build appbundle --flavor prod --target lib/main_prod.dart
-```
-
-### Linux Development
-```bash
-# Linux does not support flavors, use main.dart
-flutter run -d linux --target lib/main.dart
-```
-
-> **Note**: Linux platform does not support Flutter flavors. Always use `lib/main.dart` as the target.
-
-### Linux Build
-```bash
-# Build Linux application
-flutter build linux --target lib/main.dart
-
+# Build application
+flutter build linux
 # The built application will be in build/linux/x64/release/bundle/
 ```
 
-### Web Development
+### 🌐 Web
+
 ```bash
-# Run development flavor with HTML renderer
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d chrome
+# Run application
+flutter run -d chrome
 
-# Run production flavor with HTML renderer
-flutter run -t lib/main_prod.dart --web-renderer html --dart-define=flavor=prod -d chrome
-
-# Or run without flavors if not supported
-flutter run -d chrome --target lib/main.dart
-```
-
-### Web Build
-```bash
-# Build development web app with HTML renderer
-flutter build web --dart-define=flavor=dev --target lib/main_dev.dart --web-renderer html
-
-# Build production web app with HTML renderer
-flutter build web --dart-define=flavor=prod --target lib/main_prod.dart --web-renderer html
-
-# Or build without flavors if not supported
-flutter build web --target lib/main.dart
-
+# Build application
+flutter build web
 # The built web app will be in build/web/
 ```
 
 ### Build Output Locations
-```bash
-# Android APK files
-build/app/outputs/flutter-apk/
-├── app-development-release.apk    # Development APK
-├── app-production-release.apk     # Production APK
 
-# Android AAB files
-build/app/outputs/bundle/productionRelease/
-└── app-production-release.aab     # Production AAB for Play Store
+```bash
+# Android APK
+build/app/outputs/flutter-apk/app-release.apk
 
 # Linux application
-build/linux/x64/release/bundle/
-└── trade_trackr                    # Linux executable
+build/linux/x64/release/bundle/trade_trackr
 
 # Web application
 build/web/
-├── index.html                     # Main HTML file
-├── main.dart.js                   # Compiled JavaScript
-└── assets/                        # Static assets
 ```
 
 ### Running on Specific Platforms
+
 ```bash
 # Run on Android device/emulator
-flutter run --flavor dev --target lib/main_dev.dart -d <android_device_id>
+flutter run -d <android_device_id>
 
 # Run on Linux
-flutter run -d linux --target lib/main.dart
+flutter run -d linux
 
 # Run on Web (Chrome)
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d chrome
-
-# Run on Web (Firefox)
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d firefox
-
-# Run on Web (Edge)
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d edge
+flutter run -d chrome
 ```
 
 ## 💻 Running with VSCode
@@ -415,6 +384,7 @@ flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d
 This project includes optimized VSCode configurations for easy development and debugging across all supported platforms.
 
 ### Prerequisites
+
 1. **Install VSCode** with Flutter and Dart extensions
 2. **Install recommended extensions** (see extensions recommendations above)
 3. **Configure Flutter SDK path** in VSCode settings for your version manager (mise/fvm)
@@ -423,29 +393,23 @@ This project includes optimized VSCode configurations for easy development and d
 
 The project includes a `.vscode/launch.json` file with optimized launch configurations for debugging across all supported platforms:
 
-#### Android Configurations
-- **"Flutter Dev"**: Debug mode for Android development flavor (`lib/main_dev.dart`)
-- **"Flutter Prod"**: Debug mode for Android production flavor (`lib/main_prod.dart`)
+#### Platform Configurations
 
-#### Linux Configurations
-- **"Flutter Linux"**: Debug mode for Linux platform (`lib/main.dart`)
-
-#### Web Configurations
-- **"Flutter Web Dev"**: Debug mode for web development flavor (`lib/main_dev.dart`)
-- **"Flutter Web Prod"**: Debug mode for web production flavor (`lib/main_prod.dart`)
+- **"TradeTrackr"**: Standard debug mode for the application
+- **"TradeTrackr Linux"**: Debug mode for Linux platform
+- **"TradeTrackr Web"**: Debug mode for web platform
 
 ### Build Tasks
 
 The project includes automated build tasks for different platforms:
 
-- **Flutter: Build Development APK**: Build APK for Android development
-- **Flutter: Build Production APK**: Build APK for Android production
-- **Flutter: Build Production AAB**: Build AAB bundle for Google Play Store
+- **Flutter: Build APK**: Build APK for Android
+- **Flutter: Build AppBundle**: Build AAB bundle for Google Play Store
 - **Flutter: Build Linux App**: Build application for Linux
-- **Flutter: Build Web Development**: Build web app for development
-- **Flutter: Build Web Production**: Build web app for production
+- **Flutter: Build Web**: Build web app
 
 #### How to Use Build Tasks
+
 1. Open VSCode Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 2. Type "Tasks: Run Task"
 3. Select your desired build task from the list
@@ -453,79 +417,73 @@ The project includes automated build tasks for different platforms:
 ### How to Run
 
 #### Method 1: Using Run Panel (Recommended)
+
 1. Open the project in VSCode
 2. Click the **Run** icon in the sidebar (play button with bug)
-3. Select desired configuration from the dropdown (e.g., "Flutter Dev")
+3. Select **"TradeTrackr"** from the dropdown
 4. Click the green **Play** button or press `F5`
 
 #### Method 2: Using Command Palette
+
 1. Open Command Palette: `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS)
 2. Type: "Debug: Select and Start Debugging"
 3. Select your desired configuration
 4. Press Enter
 
 #### Method 3: Using Terminal
-1. Open integrated terminal in VSCode: `Ctrl+Shift+``
-2. Run the appropriate command for your platform:
-   - Android: `flutter run --flavor dev --target lib/main_dev.dart`
-   - Linux: `flutter run -d linux --target lib/main.dart`
-   - Web: `flutter run --flavor dev --target lib/main_dev.dart -d chrome`
+
+1. Open integrated terminal in VSCode: `Ctrl+Shift+`
+2. Run: `flutter run`
 
 ### Platform-Specific Running
 
 #### Running on Android
-```bash
-# Using VSCode launch configuration
-# Select "Flutter Dev" or "Flutter Prod"
 
-# Using terminal
-flutter run --flavor dev --target lib/main_dev.dart -d <device_id>
+```bash
+flutter run -d <device_id>
 ```
 
 #### Running on Linux
-```bash
-# Using VSCode launch configuration
-# Select "Flutter Linux"
 
-# Using terminal
-flutter run -d linux --target lib/main.dart
+```bash
+flutter run -d linux
 ```
 
 #### Running on Web
-```bash
-# Using VSCode launch configuration
-# Select "Flutter Web Dev" or "Flutter Web Prod"
 
-# Using terminal
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d chrome
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d firefox
+```bash
+flutter run -d chrome
 ```
 
 ### Keyboard Shortcuts
+
 - `F5`: Start debugging with selected configuration
 - `Ctrl+Shift+P` / `Cmd+Shift+P`: Open Command Palette
 - `Ctrl+Shift+B` / `Cmd+Shift+B`: Run build task
 - `Ctrl+S` / `Cmd+S`: Save and auto-format
 
 ### Hot Reload & Hot Restart
+
 When running the app:
+
 - Press `r` in terminal for **Hot Reload**
 - Press `R` (Shift+r) for **Hot Restart**
 - Press `Shift+F5` to **Stop debugging**
 
 ### Running on Specific Device
+
 ```bash
 # List available devices
 flutter devices
 
 # Run on specific Android device
-flutter run --flavor dev --target lib/main_dev.dart -d <android_device_id>
+flutter run -d <android_device_id>
 
 # Run on Linux
-flutter run -d linux --target lib/main.dart
+flutter run -d linux
 
 # Run on Web browser
-flutter run -t lib/main_dev.dart --web-renderer html --dart-define=flavor=dev -d chrome
+flutter run -d chrome
 ```
 
 ### VSCode Tasks
@@ -539,14 +497,13 @@ The project includes several useful tasks accessible via Command Palette:
 - **Flutter: Analyze**: Run static analysis
 - **Flutter: Run Tests**: Execute unit tests
 - **Flutter: Run Tests with Coverage**: Run tests with coverage report
-- **Flutter: Build Development APK**: Build APK for development
-- **Flutter: Build Production APK**: Build APK for production
-- **Flutter: Build Production AAB**: Build AAB for Play Store
+- **Flutter: Build APK**: Build APK for production
+- **Flutter: Build AppBundle**: Build AAB for Play Store
 - **Flutter: Build Linux App**: Build for Linux platform
-- **Flutter: Build Web Development**: Build web app for development
-- **Flutter: Build Web Production**: Build web app for production
+- **Flutter: Build Web**: Build web app for production
 
 #### How to Use Tasks
+
 1. Open Command Palette: `Ctrl+Shift+P`
 2. Type: "Tasks: Run Task"
 3. Select desired task from the list
@@ -554,30 +511,35 @@ The project includes several useful tasks accessible via Command Palette:
 ### Troubleshooting VSCode
 
 #### Flutter SDK Not Found
+
 1. Check VSCode settings for correct Flutter SDK path
 2. Ensure mise/fvm is properly configured
 3. Restart VSCode
 
 #### Launch Configuration Not Working
-1. Verify environment files exist in `assets/*/`
-2. Check device/emulator/browser is connected
-3. Ensure all dependencies are installed: `flutter pub get`
+
+1. Ensure device/emulator/browser is connected
+2. Ensure all dependencies are installed: `flutter pub get`
 
 #### Platform-Specific Issues
 
 **Android:**
+
 - Ensure Android SDK is installed and configured
 - Check device is connected and authorized
 
 **Linux:**
+
 - Ensure Linux development dependencies are installed
 - Check for any missing system libraries
 
 **Web:**
+
 - Ensure Chrome/Firefox is installed
 - Check for any web-specific dependency issues
 
 #### Extensions Not Working
+
 1. Open Extensions panel: `Ctrl+Shift+X`
 2. Install missing extensions manually
 3. Reload VSCode window: `Ctrl+Shift+P` → "Developer: Reload Window"
@@ -601,7 +563,8 @@ flutter test -v
 ```
 
 ### Test Structure
-```
+
+``` bash
 test/
 ├── domain/
 │   ├── entity/          # Entity unit tests
@@ -616,6 +579,7 @@ test/
 ## 🤝 Contributing
 
 ### Code Style Guidelines
+
 - Follow the existing code style and conventions
 - Use meaningful variable and function names
 - Add comments for complex business logic
@@ -623,6 +587,7 @@ test/
 - Follow the established architectural patterns
 
 ### Pull Request Process
+
 1. Create a feature branch from `main`
 2. Make your changes following the architecture
 3. Write or update tests for your changes
@@ -631,7 +596,8 @@ test/
 6. Create a pull request with a clear description
 
 ### Commit Message Convention
-```
+
+``` bash
 feat: add new trade recording feature
 fix: resolve profit calculation bug
 docs: update README installation guide
@@ -645,6 +611,7 @@ test: add unit tests for trade validation
 ### Common Issues
 
 **1. Flutter Version Issues**
+
 ```bash
 # Ensure correct Flutter version
 flutter --version
@@ -657,6 +624,7 @@ fvm use 3.35.5
 ```
 
 **2. Code Generation Issues**
+
 ```bash
 # Clean and rebuild generated code
 dart run build_runner clean
@@ -667,6 +635,7 @@ flutter analyze
 ```
 
 **3. Dependency Issues**
+
 ```bash
 # Clean dependencies
 flutter clean
@@ -677,6 +646,7 @@ flutter pub upgrade
 ```
 
 **4. Android Build Issues**
+
 ```bash
 # Clean Android build
 cd android
@@ -688,6 +658,7 @@ flutter doctor --android-licenses
 ```
 
 **5. VSCode Issues**
+
 ```bash
 # Reload VSCode window
 Ctrl+Shift+P → "Developer: Reload Window"
@@ -700,6 +671,7 @@ Ctrl+Shift+P → "Developer: Reload Window"
 ```
 
 ### Getting Help
+
 - Check the [Issues](../../issues) page for known problems
 - Review the [MVP Specification](./docs/mvp-tradetrackr.md) for feature details
 - See the [Data Schema](./docs/data-schema.md) for data structure information
@@ -709,6 +681,7 @@ Ctrl+Shift+P → "Developer: Reload Window"
 🚧 Currently in MVP development phase
 
 ### MVP Features Status
+
 - 🔄 **User Onboarding & Setup Awal**: First-time user setup and personalization
 - 🔄 **Input Trade Baru**: Form for recording new trading transactions
 - 🔄 **Daftar Jurnal Trading**: Interactive trade history table with filtering
@@ -720,6 +693,7 @@ Ctrl+Shift+P → "Developer: Reload Window"
 - 🔄 **UI Responsif & Minimalis**: Clean and responsive user interface
 
 ### Technical Status
+
 - ✅ **Architecture**: Clean Architecture setup (planned)
 - 🔄 **Database**: SQLite with Drift ORM implementation (planned)
 - 🔄 **State Management**: Riverpod implementation (planned)

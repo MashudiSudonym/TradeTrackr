@@ -4,14 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 class Constants {
-  // App Flavors
-  static const String? appFlavor =
-      String.fromEnvironment('FLUTTER_APP_FLAVOR') != ''
-      ? String.fromEnvironment('FLUTTER_APP_FLAVOR')
-      : null;
-  static const dev = 'dev';
-  static const prod = 'prod';
-
   // logger
   static final logger = Logger(level: _getLogLevel());
 

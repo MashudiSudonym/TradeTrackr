@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../register_colors.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class RegisterTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final String hintText;
   final Widget? suffixIcon;
+  final String? errorText;
 
   const RegisterTextField({
     super.key,
@@ -13,45 +14,55 @@ class RegisterTextField extends StatelessWidget {
     required this.controller,
     required this.hintText,
     this.suffixIcon,
+    this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = ShadTheme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
-          style: const TextStyle(
+          style: theme.textTheme.p.copyWith(
             color: Colors.white,
-            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),
         const SizedBox(height: 8),
-        Container(
-          decoration: BoxDecoration(
-            color: RegisterColors.inputFillColor,
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(color: RegisterColors.inputBorderColor),
+        ShadInput(
+          controller: controller,
+          placeholder: Text(hintText),
+          trailing: suffixIcon,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: ShadDecoration(
+            border: ShadBorder.all(
+              color: errorText != null
+                  ? theme.colorScheme.destructive
+                  : Colors.white.withValues(alpha: 0.1),
+              width: 1,
+            ),
+            focusedBorder: ShadBorder.all(
+              color: errorText != null
+                  ? theme.colorScheme.destructive
+                  : theme.colorScheme.primary,
+              width: 1,
+            ),
+            color: Colors.white.withValues(alpha: 0.05),
           ),
-          child: TextField(
-            controller: controller,
-            style: const TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: TextStyle(
-                color: RegisterColors.textGrey.withValues(alpha: 0.5),
-              ),
-              border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 16,
-              ),
-              suffixIcon: suffixIcon,
+          style: const TextStyle(color: Colors.white),
+        ),
+        if (errorText != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            errorText!,
+            style: theme.textTheme.muted.copyWith(
+              color: theme.colorScheme.destructive,
+              fontSize: 12,
             ),
           ),
-        ),
+        ],
       ],
     );
   }
