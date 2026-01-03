@@ -15,56 +15,17 @@ class RegisterPage extends ConsumerStatefulWidget {
 }
 
 class _RegisterPageState extends ConsumerState<RegisterPage> {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _emailController = TextEditingController();
-  bool _use24HourFormat = false;
-  bool _showErrors = false;
-
-  bool get _isEmailValid {
-    final email = _emailController.text.trim();
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
-  }
-
-  bool get _isFormValid =>
-      _firstNameController.text.trim().isNotEmpty &&
-      _lastNameController.text.trim().isNotEmpty &&
-      _isEmailValid;
-
-  String? get _firstNameError {
-    if (!_showErrors) return null;
-    if (_firstNameController.text.trim().isEmpty) {
-      return 'First name is required';
-    }
-    return null;
-  }
-
-  String? get _lastNameError {
-    if (!_showErrors) return null;
-    if (_lastNameController.text.trim().isEmpty) {
-      return 'Last name is required';
-    }
-    return null;
-  }
-
-  String? get _emailError {
-    if (!_showErrors) return null;
-    final email = _emailController.text.trim();
-    if (email.isEmpty) return 'Email is required';
-    if (!_isEmailValid) return 'Invalid email format';
-    return null;
-  }
+  late final TextEditingController _firstNameController;
+  late final TextEditingController _lastNameController;
+  late final TextEditingController _emailController;
 
   @override
   void initState() {
     super.initState();
-    _firstNameController.addListener(_onTextChanged);
-    _lastNameController.addListener(_onTextChanged);
-    _emailController.addListener(_onTextChanged);
-  }
-
-  void _onTextChanged() {
-    setState(() {});
+    final initialState = ref.read(registerControllerProvider);
+    _firstNameController = TextEditingController(text: initialState.firstName);
+    _lastNameController = TextEditingController(text: initialState.lastName);
+    _emailController = TextEditingController(text: initialState.email);
   }
 
   @override
@@ -76,24 +37,16 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   void _onRegister() {
-    setState(() => _showErrors = true);
-
-    if (!_isFormValid) return;
-
-    ref
-        .read(registerControllerProvider.notifier)
-        .register(
-          firstName: _firstNameController.text.trim(),
-          lastName: _lastNameController.text.trim(),
-          email: _emailController.text.trim(),
-          is24HourFormat: _use24HourFormat,
-        );
+    ref.read(registerControllerProvider.notifier).register();
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.listen(registerControllerProvider, (previous, next) {
-      if (next is AsyncData) {
+    ref.listen(registerControllerProvider.select((s) => s.registrationStatus), (
+      previous,
+      next,
+    ) {
+      if (next is AsyncData && next.value == null && previous is AsyncLoading) {
         ref.read(routerProvider).goNamed('main');
       } else if (next is AsyncError) {
         ScaffoldMessenger.of(
@@ -102,8 +55,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       }
     });
 
-    final registerState = ref.watch(registerControllerProvider);
-    final isLoading = registerState.isLoading;
+    final state = ref.watch(registerControllerProvider);
+    final isLoading = state.registrationStatus.isLoading;
 
     return PopScope(
       canPop: false,
@@ -154,7 +107,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   label: 'First Name',
                   controller: _firstNameController,
                   hintText: 'Jane',
-                  errorText: _firstNameError,
+                  errorText: state.firstNameError,
+                  onChanged: (val) => ref
+                      .read(registerControllerProvider.notifier)
+                      .updateFirstName(val),
                 ),
 
                 const SizedBox(height: 24),
@@ -164,7 +120,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   label: 'Last Name',
                   controller: _lastNameController,
                   hintText: 'Doe',
-                  errorText: _lastNameError,
+                  errorText: state.lastNameError,
+                  onChanged: (val) => ref
+                      .read(registerControllerProvider.notifier)
+                      .updateLastName(val),
                 ),
 
                 const SizedBox(height: 24),
@@ -173,8 +132,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   label: 'Email',
                   controller: _emailController,
                   hintText: 'jane@example.com',
-                  errorText: _emailError,
-                  suffixIcon: _isEmailValid
+                  errorText: state.emailError,
+                  onChanged: (val) => ref
+                      .read(registerControllerProvider.notifier)
+                      .updateEmail(val),
+                  suffixIcon: state.isEmailValid
                       ? Container(
                           padding: const EdgeInsets.all(4),
                           decoration: BoxDecoration(
@@ -196,11 +158,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
                 // Checkbox option
                 RegisterCheckbox(
-                  value: _use24HourFormat,
+                  value: state.use24HourFormat,
                   onChanged: (value) {
-                    setState(() {
-                      _use24HourFormat = value;
-                    });
+                    ref
+                        .read(registerControllerProvider.notifier)
+                        .set24HourFormat(value);
                   },
                 ),
 

@@ -7,6 +7,7 @@ class RegisterTextField extends StatelessWidget {
   final String hintText;
   final Widget? suffixIcon;
   final String? errorText;
+  final ValueChanged<String>? onChanged;
 
   const RegisterTextField({
     super.key,
@@ -15,6 +16,7 @@ class RegisterTextField extends StatelessWidget {
     required this.hintText,
     this.suffixIcon,
     this.errorText,
+    this.onChanged,
   });
 
   @override
@@ -35,6 +37,7 @@ class RegisterTextField extends StatelessWidget {
           controller: controller,
           placeholder: Text(hintText),
           trailing: suffixIcon,
+          onChanged: onChanged,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           decoration: ShadDecoration(
             border: ShadBorder.all(

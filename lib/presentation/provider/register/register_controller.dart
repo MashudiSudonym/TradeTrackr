@@ -5,35 +5,48 @@ import 'package:trade_trackr/presentation/provider/preferences/preferences_provi
 import 'package:trade_trackr/presentation/provider/use_case/save_preferences_use_case_provider.dart';
 import 'package:trade_trackr/presentation/provider/use_case/user_onboarding_use_case_provider.dart';
 import 'package:trade_trackr/result.dart';
+import 'register_state.dart';
 
 part 'register_controller.g.dart';
 
 @riverpod
 class RegisterController extends _$RegisterController {
   @override
-  FutureOr<void> build() {
-    // Initial state is null (idle)
-    return null;
+  RegisterState build() => const RegisterState();
+
+  void updateFirstName(String value) {
+    state = state.copyWith(firstName: value);
   }
 
-  Future<void> register({
-    required String firstName,
-    required String lastName,
-    String? email,
-    required bool is24HourFormat,
-  }) async {
-    state = const AsyncLoading();
+  void updateLastName(String value) {
+    state = state.copyWith(lastName: value);
+  }
 
-    state = await AsyncValue.guard(() async {
+  void updateEmail(String value) {
+    state = state.copyWith(email: value);
+  }
+
+  void set24HourFormat(bool value) {
+    state = state.copyWith(use24HourFormat: value);
+  }
+
+  Future<void> register() async {
+    state = state.copyWith(showErrors: true);
+
+    if (!state.isFormValid) return;
+
+    state = state.copyWith(registrationStatus: const AsyncLoading());
+
+    final registrationResult = await AsyncValue.guard(() async {
       final userOnboardingUseCase = ref.read(userOnboardingUseCaseProvider);
       final savePreferencesUseCase = ref.read(savePreferencesUseCaseProvider);
 
       // Save User Data
       final userResult = await userOnboardingUseCase(
         UserOnboardingParams(
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
+          firstName: state.firstName.trim(),
+          lastName: state.lastName.trim(),
+          email: state.email.trim(),
         ),
       );
 
@@ -44,7 +57,7 @@ class RegisterController extends _$RegisterController {
       // Save Preferences
       final prefResult = await savePreferencesUseCase(
         SavePreferencesParams(
-          is24HourFormat: is24HourFormat,
+          is24HourFormat: state.use24HourFormat,
           isRegistered: true,
         ),
       );
@@ -56,5 +69,7 @@ class RegisterController extends _$RegisterController {
       // Invalidate preferences so router can redirect
       ref.invalidate(preferencesProvider);
     });
+
+    state = state.copyWith(registrationStatus: registrationResult);
   }
 }
