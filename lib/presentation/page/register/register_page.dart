@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:trade_trackr/presentation/provider/register/register_controller.dart';
 
 import 'package:trade_trackr/presentation/provider/router/router_provider.dart';
 import 'register_colors.dart';
@@ -29,8 +30,43 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     super.dispose();
   }
 
+  void _onRegister() {
+    final firstName = _firstNameController.text.trim();
+    final lastName = _lastNameController.text.trim();
+    final email = _emailController.text.trim();
+
+    if (firstName.isEmpty || lastName.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in required fields')),
+      );
+      return;
+    }
+
+    ref
+        .read(registerControllerProvider.notifier)
+        .register(
+          firstName: firstName,
+          lastName: lastName,
+          email: email.isEmpty ? null : email,
+          is24HourFormat: _use24HourFormat,
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+    ref.listen(registerControllerProvider, (previous, next) {
+      if (next is AsyncData) {
+        ref.read(routerProvider).goNamed('main');
+      } else if (next is AsyncError) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(next.error.toString())));
+      }
+    });
+
+    final registerState = ref.watch(registerControllerProvider);
+    final isLoading = registerState.isLoading;
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -128,9 +164,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
                 // Register Button
                 RegisterButton(
-                  onPressed: () {
-                    // Handle registration
-                  },
+                  isLoading: isLoading,
+                  onPressed: isLoading ? null : _onRegister,
                 ),
 
                 const SizedBox(height: 24),

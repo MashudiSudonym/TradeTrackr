@@ -16,6 +16,7 @@ class SavePreferencesUseCase
     return await _preferencesRepository.savePreferences(
       preferencesEntity: PreferencesEntity(
         is24HourFormat: params.is24HourFormat,
+        isRegistered: params.isRegistered,
       ),
     );
   }

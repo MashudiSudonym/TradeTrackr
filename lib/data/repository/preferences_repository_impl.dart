@@ -8,7 +8,7 @@ import 'package:trade_trackr/domain/repository/preferences_repository.dart';
 class PreferencesRepositoryImpl implements PreferencesRepository {
   final AppDatabase _db;
 
-  PreferencesRepositoryImpl({AppDatabase? db}) : _db = db ?? AppDatabase();
+  PreferencesRepositoryImpl({required AppDatabase db}) : _db = db;
 
   @override
   Future<Result<PreferencesEntity>> getPreferences() async {
@@ -20,11 +20,16 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
       if (prefRow != null) {
         Constants.logger.d('success');
         return Result.success(
-          PreferencesEntity(is24HourFormat: prefRow.is24HourFormat),
+          PreferencesEntity(
+            is24HourFormat: prefRow.is24HourFormat,
+            isRegistered: prefRow.isRegistered,
+          ),
         );
       } else {
         Constants.logger.e('Failed!');
-        return Result.success(PreferencesEntity(is24HourFormat: false));
+        return Result.success(
+          PreferencesEntity(is24HourFormat: false, isRegistered: false),
+        );
       }
     } catch (e) {
       Constants.logger.e('Failed to get preferences: $e');
@@ -41,8 +46,9 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
           .into(_db.preferencesTable)
           .insertOnConflictUpdate(
             PreferencesTableCompanion(
-              id: Value('default'),
+              id: const Value('default'),
               is24HourFormat: Value(preferencesEntity.is24HourFormat),
+              isRegistered: Value(preferencesEntity.isRegistered),
             ),
           );
 

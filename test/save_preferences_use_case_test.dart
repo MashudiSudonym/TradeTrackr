@@ -25,7 +25,10 @@ void main() {
   group('SavePreferencesUseCase', () {
     test('should return success when savePreferences succeeds', () async {
       // Arrange
-      final params = SavePreferencesParams(is24HourFormat: true);
+      final params = SavePreferencesParams(
+        is24HourFormat: true,
+        isRegistered: true,
+      );
       when(
         mockPreferencesRepository.savePreferences(
           preferencesEntity: anyNamed('preferencesEntity'),
@@ -46,7 +49,10 @@ void main() {
 
     test('should return failed when savePreferences fails', () async {
       // Arrange
-      final params = SavePreferencesParams(is24HourFormat: false);
+      final params = SavePreferencesParams(
+        is24HourFormat: false,
+        isRegistered: false,
+      );
       when(
         mockPreferencesRepository.savePreferences(
           preferencesEntity: anyNamed('preferencesEntity'),
