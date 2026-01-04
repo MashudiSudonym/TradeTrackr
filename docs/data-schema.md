@@ -1,6 +1,6 @@
 # TradeTrackr - Data Schema Specification
 
-Dokumen ini menjelaskan struktur data yang diharapkan untuk jurnal trading di aplikasi TradeTrackr. Struktur ini akan menjadi dasar pembuatan entity, model, dan database schema.
+Dokumen ini menjelaskan struktur data yang diharapkan untuk jurnal trading di aplikasi TradeTrackr. Struktur ini disesuaikan dengan format data yang ditemukan pada laporan trade (seperti pada `example_data.html`) dan akan menjadi dasar pembuatan entity, model, dan database schema.
 
 ---
 
@@ -8,33 +8,49 @@ Dokumen ini menjelaskan struktur data yang diharapkan untuk jurnal trading di ap
 
 ### Field Definitions
 
-| Field Name       | Data Type | Required | Description                                    | Sample Value              |
-|------------------|-----------|----------|------------------------------------------------|---------------------------|
-| id               | String    | Yes      | Unique identifier untuk setiap trade entry     | "uuid-1234-5678"          |
-| dateTimeEntry    | DateTime  | Yes      | Tanggal dan waktu masuk posisi trading         | 2025-10-27 13:45:00       |
-| dateTimeExit     | DateTime  | Yes      | Tanggal dan waktu keluar dari posisi trading   | 2025-10-27 15:00:00       |
-| instrument       | String    | Yes      | Nama instrumen atau aset yang diperdagangkan   | "BTC/USDT"                |
-| transactionType  | String    | Yes      | Jenis transaksi (Buy/Sell atau Long/Short)     | "Buy"                     |
-| positionSize     | Double    | Yes      | Ukuran posisi dalam lot atau kontrak           | 0.5                       |
-| entryPrice       | Double    | Yes      | Harga saat masuk posisi                        | 54000.00                  |
-| exitPrice        | Double    | Yes      | Harga saat keluar dari posisi                  | 54500.00                  |
-| stopLoss         | Double    | Yes      | Level stop loss yang ditetapkan                | 53500.00                  |
-| takeProfit       | Double    | Yes      | Level take profit yang ditetapkan              | 55000.00                  |
-| entryReason      | String    | Yes      | Alasan atau strategi masuk trade               | "Breakout from resistance" |
-| additionalNotes  | String    | No       | Catatan tambahan (psikologi, emosi, kondisi)   | "Market looks bullish"    |
-| profitLoss       | Double    | Yes      | Nilai keuntungan atau kerugian (nominal)       | 500.00                    |
-| profitLossPct    | Double    | No       | Persentase keuntungan atau kerugian            | 0.92                      |
-| createdAt        | DateTime  | Yes      | Timestamp saat data dibuat di database         | 2025-10-27 15:05:00       |
-| updatedAt        | DateTime  | No       | Timestamp saat data terakhir diupdate          | 2025-10-27 15:10:00       |
+| Field Name     | Data Type | Required | Description                                   | Sample Value             |
+|----------------|-----------|----------|-----------------------------------------------|--------------------------|
+| id             | String    | Yes      | Unique identifier (ID dari platform/UUID)     | "W5508780760662777"      |
+| symbol         | String    | Yes      | Nama instrumen atau aset (Symbol)             | "NDX100"                 |
+| openTime       | DateTime  | Yes      | Tanggal dan waktu masuk posisi (Open Time)    | 2026-01-02 15:46:53      |
+| closeTime      | DateTime  | Yes      | Tanggal dan waktu keluar posisi (Close Time)  | 2026-01-02 15:52:00      |
+| volume         | Double    | Yes      | Ukuran posisi atau lot (Volume)               | 0.01                     |
+| side           | String    | Yes      | Jenis transaksi (BUY/SELL)                    | "SELL"                   |
+| tradeStatus    | String    | Yes      | Status posisi (Open/Close)                    | "Close"                  |
+| openPrice      | Double    | Yes      | Harga saat masuk posisi (Open Price)          | 25376.74                 |
+| closePrice     | Double    | Yes      | Harga saat keluar posisi (Close Price)        | 25275.78                 |
+| stopLoss       | Double    | Yes      | Level stop loss yang ditetapkan               | 25416.92                 |
+| takeProfit     | Double    | Yes      | Level take profit yang ditetapkan             | 25276.55                 |
+| swap           | Double    | No       | Biaya inap (Swap)                             | 0.00                     |
+| commission     | Double    | No       | Biaya komisi transaksi                        | 0.00                     |
+| profit         | Double    | Yes      | Total keuntungan/kerugian bersih (Profit)     | 20.19                    |
+| profitPercent  | Double    | No       | Persentase keuntungan atau kerugian           | 0.40                     |
+| exitReason     | String    | Yes      | Alasan posisi ditutup (TP, SL, User, dll)     | "TP"                     |
+| entryReason    | String    | No       | Strategi atau alasan masuk trade (Journaling) | "Breakout Structure"     |
+| notes          | String    | No       | Catatan tambahan (psikologi, emosi, kondisi)  | "Good trade execution"   |
+| createdAt      | DateTime  | Yes      | Timestamp saat data dibuat di database        | 2026-01-04 15:05:00      |
+| updatedAt      | DateTime  | No       | Timestamp saat data terakhir diupdate         | 2026-01-04 15:10:00      |
 
 ---
 
-## Transaction Type Enum
+## Enums
 
-Untuk memastikan konsistensi data, field `transactionType` menggunakan nilai enum:
+### Side (Transaction Type)
 
-- **Buy** - Membuka posisi long atau membeli aset
-- **Sell** - Membuka posisi short atau menjual aset
+- **BUY** - Membuka posisi long
+- **SELL** - Membuka posisi short
+
+### Trade Status
+
+- **Open** - Posisi masih berjalan / belum ditutup
+- **Close** - Posisi sudah selesai / sudah ditutup
+
+### Exit Reason
+
+- **TP** - Take Profit hit
+- **SL** - Stop Loss hit
+- **User** - Manual close by user
+- **Other** - Alasan lainnya (seperti Margin Call, Expired, dll)
 
 ---
 
@@ -44,22 +60,26 @@ Berikut adalah contoh lengkap satu entry data jurnal trading:
 
 ```json
 {
-  "id": "a1b2c3d4-e5f6-7890-abcd-1234567890ab",
-  "dateTimeEntry": "2025-10-27T13:45:00Z",
-  "dateTimeExit": "2025-10-27T15:00:00Z",
-  "instrument": "BTC/USDT",
-  "transactionType": "Buy",
-  "positionSize": 0.5,
-  "entryPrice": 54000.00,
-  "exitPrice": 54500.00,
-  "stopLoss": 53500.00,
-  "takeProfit": 55000.00,
-  "entryReason": "Breakout from resistance level at 53800",
-  "additionalNotes": "Market looks bullish. Good momentum and volume.",
-  "profitLoss": 500.00,
-  "profitLossPct": 0.92,
-  "createdAt": "2025-10-27T15:05:00Z",
-  "updatedAt": "2025-10-27T15:10:00Z"
+  "id": "W5508780760662777",
+  "symbol": "NDX100",
+  "openTime": "2026-01-02T15:46:53Z",
+  "closeTime": "2026-01-02T15:52:00Z",
+  "volume": 0.01,
+  "side": "SELL",
+  "tradeStatus": "Close",
+  "openPrice": 25376.74,
+  "closePrice": 25275.78,
+  "stopLoss": 25416.92,
+  "takeProfit": 25276.55,
+  "swap": 0.00,
+  "commission": 0.00,
+  "profit": 20.19,
+  "profitPercent": 0.40,
+  "exitReason": "TP",
+  "entryReason": "Strategy A",
+  "notes": "Fast TP",
+  "createdAt": "2026-01-04T07:11:31Z",
+  "updatedAt": "2026-01-04T07:11:31Z"
 }
 ```
 
@@ -67,24 +87,26 @@ Berikut adalah contoh lengkap satu entry data jurnal trading:
 
 ## Database Table Schema (SQL Equivalent)
 
-Untuk referensi, berikut adalah representasi schema dalam SQL (akan digunakan dalam Drift):
-
 ```sql
 CREATE TABLE trades (
   id TEXT PRIMARY KEY NOT NULL,
-  date_time_entry INTEGER NOT NULL,
-  date_time_exit INTEGER NOT NULL,
-  instrument TEXT NOT NULL,
-  transaction_type TEXT NOT NULL,
-  position_size REAL NOT NULL,
-  entry_price REAL NOT NULL,
-  exit_price REAL NOT NULL,
+  symbol TEXT NOT NULL,
+  open_time INTEGER NOT NULL,
+  close_time INTEGER NOT NULL,
+  volume REAL NOT NULL,
+  side TEXT NOT NULL,
+  trade_status TEXT NOT NULL,
+  open_price REAL NOT NULL,
+  close_price REAL NOT NULL,
   stop_loss REAL NOT NULL,
   take_profit REAL NOT NULL,
-  entry_reason TEXT NOT NULL,
-  additional_notes TEXT,
-  profit_loss REAL NOT NULL,
-  profit_loss_pct REAL NOT NULL,
+  swap REAL NOT NULL DEFAULT 0.0,
+  commission REAL NOT NULL DEFAULT 0.0,
+  profit REAL NOT NULL,
+  profit_percent REAL,
+  exit_reason TEXT NOT NULL,
+  entry_reason TEXT,
+  notes TEXT,
   created_at INTEGER NOT NULL,
   updated_at INTEGER
 );
@@ -94,40 +116,28 @@ CREATE TABLE trades (
 
 ## Validations
 
-Berikut adalah aturan validasi untuk setiap field:
-
-- **id**: Harus unique, generated menggunakan UUID
-- **dateTimeEntry**: Tidak boleh di masa depan
-- **dateTimeExit**: Harus lebih besar dari dateTimeEntry
-- **instrument**: Minimal 3 karakter, tidak boleh kosong
-- **transactionType**: Hanya menerima nilai "Buy" atau "Sell"
-- **positionSize**: Harus lebih besar dari 0
-- **entryPrice**: Harus lebih besar dari 0
-- **exitPrice**: Harus lebih besar dari 0
-- **stopLoss**: Harus lebih besar dari 0
-- **takeProfit**: Harus lebih besar dari 0
-- **entryReason**: Minimal 10 karakter
-- **profitLoss**: Bisa positif (profit) atau negatif (loss)
-- **profitLossPct**: Dihitung otomatis dari (exitPrice - entryPrice) / entryPrice * 100
+- **id**: Harus ada, bisa berupa ID platform atau UUID
+- **openTime**: Tidak boleh di masa depan
+- **closeTime**: Harus lebih besar atau sama dengan openTime
+- **symbol**: Tidak boleh kosong
+- **side**: Harus "BUY" atau "SELL"
+- **tradeStatus**: Harus "Open" atau "Close"
+- **volume**: Harus lebih besar dari 0
+- **openPrice**: Harus lebih besar dari 0
+- **closePrice**: Harus lebih besar dari 0
 
 ---
 
-## Calculated Fields
+## Calculated Fields (Optional)
 
-Field berikut dihitung secara otomatis:
-
-- **profitLoss**: (exitPrice - entryPrice) * positionSize
-- **profitLossPct**: ((exitPrice - entryPrice) / entryPrice) * 100
+- **profit**: Biasanya didapat langsung dari data, namun rumusnya: `((closePrice - openPrice) * volume * contractSize) + swap + commission` (tergantung instrumen).
+- **profitPercent**: `((closePrice - openPrice) / openPrice) * 100` (untuk Buy) atau sebaliknya untuk Sell.
 
 ---
 
 ## Notes
 
-- Semua field DateTime disimpan sebagai epoch timestamp (integer) di database
-- Conversion dari/ke DateTime dilakukan di layer domain/entity
-- Field `additionalNotes` bersifat opsional untuk fleksibilitas user
-- Field `createdAt` dan `updatedAt` dikelola secara otomatis oleh database layer
-
----
-
-**Dokumen ini akan menjadi acuan dalam pembuatan Entity, Model, dan Database Schema di layer Domain dan Data.**
+- Semua field DateTime disimpan sebagai epoch timestamp (integer) di database.
+- Conversion dari/ke DateTime dilakukan di layer domain/entity.
+- Field `entryReason` dan `notes` diisi manual oleh user untuk keperluan jurnal.
+- Data dari `example_data.html` dapat di-import langsung ke schema ini.
