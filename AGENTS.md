@@ -71,13 +71,10 @@ Each layer only depends on layers below it. Presentation → Domain → Data. Ne
 2. Package imports (package:*) - sorted alphabetically
 3. Relative imports (package:trade_trackr/*) - sorted alphabetically
 
-Example:
 ```dart
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'package:trade_trackr/domain/entity/user_entity.dart';
 import 'package:trade_trackr/result.dart';
 ```
