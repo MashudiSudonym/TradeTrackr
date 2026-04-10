@@ -266,48 +266,99 @@ The project uses build_runner for code generation:
 
 ## 5. Architecture
 
-### 5.1 Clean Architecture with Layer Structure
+### 5.1 Clean Architecture — Layer-First Structure
 
-The project follows **Clean Architecture** with a strict layer separation. Each feature is organized as a self-contained module.
+The project follows **Clean Architecture** with a **layer-first** directory organization. Top-level directories represent architectural layers; features are organized as files within each layer. This ensures strict dependency enforcement at the folder level and makes the layer boundaries immediately visible.
 
 ```
 lib/
-├── app/                          # Application shell
-│   ├── app.dart                  # MaterialApp with GoRouter
-│   ├── router.dart               # GoRouter configuration
-│   └── theme/                    # Light and dark theme definitions
+├── app/                              # Application shell
+│   ├── app.dart                      # MaterialApp with GoRouter
+│   ├── router.dart                   # GoRouter configuration
+│   └── theme/                        # Light and dark theme definitions
 │
-├── core/                         # Shared infrastructure
-│   ├── constants/                # App-wide constants
-│   ├── errors/                   # Failure and exception classes
-│   ├── extensions/               # Dart extension methods
-│   ├── logger/                   # Logger configuration
-│   ├── network/                  # Connectivity checker
-│   ├── sync/                     # Offline-first sync engine
-│   └── utils/                    # Utility functions (date parsing, CSV, etc.)
+├── core/                             # Shared infrastructure
+│   ├── constants/                    # App-wide constants
+│   ├── errors/                       # Failure and exception classes
+│   ├── extensions/                   # Dart extension methods
+│   ├── logger/                       # Logger configuration
+│   ├── network/                      # Connectivity checker
+│   ├── sync/                         # Offline-first sync engine
+│   └── utils/                        # Utility functions (date parsing, CSV, etc.)
 │
-├── features/                     # Feature modules
-│   ├── auth/
-│   │   ├── data/
-│   │   │   ├── datasources/      # Supabase auth remote data source
-│   │   │   ├── models/           # Data transfer objects (Freezed)
-│   │   │   └── repositories/     # Repository implementations
-│   │   ├── domain/
-│   │   │   ├── entities/         # Domain entities
-│   │   │   ├── repositories/     # Repository interfaces (abstract)
-│   │   │   └── usecases/         # Single-responsibility use cases
-│   │   └── presentation/
-│   │       ├── pages/            # Screens
-│   │       ├── widgets/          # Feature-specific widgets
-│   │       └── providers/        # Riverpod providers
-│   │
-│   ├── dashboard/
-│   ├── trade/
-│   ├── import_export/
-│   ├── recommendation/
-│   └── profile/
+├── domain/                           # Domain layer (pure Dart, zero external deps)
+│   ├── entities/                     # Domain entities
+│   │   ├── user.dart
+│   │   └── trade_position.dart
+│   ├── repositories/                 # Repository interfaces (abstract)
+│   │   ├── trade_query_repository.dart
+│   │   ├── trade_command_repository.dart
+│   │   ├── trade_import_repository.dart
+│   │   ├── trade_export_repository.dart
+│   │   ├── auth_repository.dart
+│   │   └── user_profile_repository.dart
+│   ├── usecases/                     # Single-responsibility use cases
+│   │   ├── get_trade_analytics.dart
+│   │   ├── add_trade.dart
+│   │   ├── update_trade.dart
+│   │   ├── delete_trade.dart
+│   │   ├── import_trades.dart
+│   │   ├── export_trades.dart
+│   │   ├── get_recommendations.dart
+│   │   ├── sign_in.dart
+│   │   ├── sign_up.dart
+│   │   ├── sign_out.dart
+│   │   └── update_profile.dart
+│   └── enums/                        # Domain enums
+│       ├── trade_side.dart
+│       └── close_reason.dart
 │
-└── main.dart                     # Entry point
+├── data/                             # Data layer (implements domain interfaces)
+│   ├── datasources/                  # Data sources (local + remote)
+│   │   ├── trade_local_data_source.dart    # Drift (SQLite)
+│   │   ├── trade_remote_data_source.dart   # Supabase
+│   │   ├── auth_remote_data_source.dart    # Supabase Auth
+│   │   └── user_remote_data_source.dart    # Supabase
+│   ├── models/                       # Data transfer objects (Freezed)
+│   │   ├── trade_position_dto.dart
+│   │   ├── trade_analytics_dto.dart
+│   │   ├── recommendation_dto.dart
+│   │   └── user_dto.dart
+│   └── repositories/                 # Repository implementations
+│       ├── trade_query_repository_impl.dart
+│       ├── trade_command_repository_impl.dart
+│       ├── trade_import_repository_impl.dart
+│       ├── trade_export_repository_impl.dart
+│       ├── auth_repository_impl.dart
+│       └── user_profile_repository_impl.dart
+│
+├── presentation/                     # Presentation layer (UI + state)
+│   ├── pages/                        # Full screens
+│   │   ├── login_page.dart
+│   │   ├── register_page.dart
+│   │   ├── dashboard_page.dart
+│   │   ├── trade_list_page.dart
+│   │   ├── trade_detail_page.dart
+│   │   ├── add_trade_page.dart
+│   │   ├── import_export_page.dart
+│   │   ├── recommendations_page.dart
+│   │   ├── profile_page.dart
+│   │   └── settings_page.dart
+│   ├── widgets/                      # Shared/reusable widgets
+│   │   ├── trade_card.dart
+│   │   ├── analytics_chart.dart
+│   │   ├── recommendation_card.dart
+│   │   └── filter_bar.dart
+│   └── providers/                    # Riverpod providers
+│       ├── auth_provider.dart
+│       ├── trade_provider.dart
+│       ├── analytics_provider.dart
+│       ├── recommendation_provider.dart
+│       ├── import_export_provider.dart
+│       ├── profile_provider.dart
+│       └── theme_provider.dart
+│
+└── main.dart                         # Entry point
 ```
 
 ### 5.2 Layer Rules
@@ -332,7 +383,9 @@ Dependency direction: **Presentation → Domain ← Data**. The domain layer has
 
 ### 5.4 Repository Segregation Pattern
 
-Repositories are split by **operation type**, not by entity. This ensures each use case depends only on the operations it needs.
+Repositories are split by **operation type**, not by entity. This ensures each use case depends only on the operations it needs. Interface definitions live in `domain/repositories/`; implementations live in `data/repositories/`.
+
+**Interfaces** (`domain/repositories/`):
 
 ```
 domain/repositories/
@@ -344,12 +397,24 @@ domain/repositories/
 └── user_profile_repository.dart       # User profile CRUD
 ```
 
+**Implementations** (`data/repositories/`):
+
+```
+data/repositories/
+├── trade_query_repository_impl.dart
+├── trade_command_repository_impl.dart
+├── trade_import_repository_impl.dart
+├── trade_export_repository_impl.dart
+├── auth_repository_impl.dart
+└── user_profile_repository_impl.dart
+```
+
 Each use case injects only the repository interface it requires:
 
 ```
-GetTradeAnalyticsUseCase → depends on TradeQueryRepository
-AddTradeUseCase → depends on TradeCommandRepository
-ImportTradesUseCase → depends on TradeImportRepository
+GetTradeAnalyticsUseCase → depends on TradeQueryRepository (domain interface)
+AddTradeUseCase → depends on TradeCommandRepository (domain interface)
+ImportTradesUseCase → depends on TradeImportRepository (domain interface)
 ```
 
 ### 5.5 Offline-First Strategy
