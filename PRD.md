@@ -60,7 +60,12 @@ Simple email and password authentication powered by Supabase Auth.
 
 ### 2.3 Trade Position Input Form
 
-A form to manually input a closed trade position. Fields are derived from `example_trade_report.csv`.
+Forms to manually input trade positions. The app supports two position states derived from the CSV reference files:
+
+- **Closed Position** — based on `CLOSED_POSITIONS_*.csv`
+- **Open Position** — based on `OPEN_POSITIONS_*.csv`
+
+#### Closed Position Fields
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
@@ -79,20 +84,46 @@ A form to manually input a closed trade position. Fields are derived from `examp
 | Profit | `double` | Auto-calculated | Gross profit/loss (close price − open price, adjusted for side and volume) |
 | Reason | `enum (TP, SL, User, Manual)` | Yes | Reason for closing the position |
 
+#### Open Position Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| ID | `String` | Auto-generated | Unique trade identifier (UUID) |
+| Symbol | `String` | Yes | Traded instrument ticker |
+| Open Time | `DateTime` | Yes | Timestamp when the position was opened |
+| Volume | `double` | Yes | Position size / lot size |
+| Side | `enum (BUY, SELL)` | Yes | Trade direction |
+| Open Price | `double` | Yes | Entry price |
+| Current Price | `double` | No | Latest market price (manual input or last known) |
+| Stop Loss | `double` | No | Stop loss price level |
+| Take Profit | `double` | No | Take profit price level |
+| Swap | `double` | No (default 0.0) | Overnight swap fee |
+| Commission | `double` | No (default 0.0) | Broker commission |
+| Profit | `double` | Auto-calculated | Floating profit/loss based on current price |
+
 **Business rules:**
 - `Close Time` must be equal to or after `Open Time`.
-- `Profit` is auto-calculated from open price, close price, side, and volume. The user may override the value.
+- `Profit` is auto-calculated from open price, close/current price, side, and volume. The user may override the value.
+- An open position can be converted to a closed position by adding a close time, close price, and reason.
 - On successful submission, the trade is saved to the local Drift database and synced to Supabase.
 
 ### 2.4 CSV Import
 
-Import trade positions from a `.csv` file matching the format of `example_trade_report.csv`.
+Import data from `.csv` files. The app supports three CSV formats derived from the reference files.
+
+**Supported formats:**
+
+| File Type | Reference File | Header |
+|-----------|---------------|--------|
+| Closed Positions | `CLOSED_POSITIONS_*.csv` | `ID,Symbol,Open Time,Volume,Side,Close Time,Open Price,Close Price,Stop Loss,Take Profit,Swap,Commission,Profit,Reason` |
+| Open Positions | `OPEN_POSITIONS_*.csv` | `ID,Symbol,Open Time,Volume,Side,Open Price,Current Price,Stop Loss,Take Profit,Swap,Commission,Profit` |
+| Finance Records | `FINANCE_*.csv` | `Type,Time,Amount,Status,Payment gateway,Details` |
 
 | Requirement | Detail |
 |-------------|--------|
-| File Picker | System file picker filtered to `.csv` files |
-| Format | Must match: `ID,Symbol,Open Time,Volume,Side,Close Time,Open Price,Close Price,Stop Loss,Take Profit,Swap,Commission,Profit,Reason` |
-| Validation | Reject rows with missing required fields, invalid types, or unrecognized Side/Reason values |
+| File Picker | System file picker filtered to `.csv` files; supports multi-file selection |
+| Format Detection | Auto-detect format based on header row columns |
+| Validation | Reject rows with missing required fields, invalid types, or unrecognized enum values |
 | Duplicate Handling | Skip rows whose ID already exists in the database; report count of skipped duplicates |
 | Summary Report | After import, show: total rows processed, rows imported, rows skipped, rows with errors |
 | Date Parsing | Support `dd/MM/yyyy HH:mm:ss` format from the CSV; auto-detect other common formats |
@@ -100,13 +131,14 @@ Import trade positions from a `.csv` file matching the format of `example_trade_
 
 ### 2.5 CSV Export
 
-Export stored trade positions to a `.csv` file.
+Export stored data to `.csv` files. Each data type exports in the same column format as its corresponding import template.
 
 | Requirement | Detail |
 |-------------|--------|
-| Export Scope | All trades, or a filtered subset (by date range, symbol, side, or reason) |
-| File Naming | `tradetrackr_export_YYYYMMDD_HHmmss.csv` |
-| Columns | Same columns as import format, in the same order |
+| Export Types | Closed Positions, Open Positions, Finance Records (user selects which to export) |
+| Export Scope | All records, or a filtered subset (by date range, symbol, side, reason, or finance type) |
+| File Naming | `tradetrackr_{type}_YYYYMMDD_HHmmss.csv` where `{type}` is `closed`, `open`, or `finance` |
+| Columns | Same columns as the corresponding import format, in the same order |
 | Platform Handling | Save to Downloads (Android), share sheet (iOS), file dialog (Desktop), download folder (Web) |
 
 ### 2.6 Analytics Dashboard
@@ -118,6 +150,7 @@ The central screen that displays computed analytics from the user's trade histor
 | Metric | Description |
 |--------|-------------|
 | Total Trades | Count of all closed positions |
+| Open Positions | Count of currently open positions |
 | Win Rate | Percentage of trades with profit > 0 |
 | Total Profit/Loss | Sum of all trade profits (net of swap and commission) |
 | Average Profit per Trade | Mean profit across all trades |
@@ -126,6 +159,9 @@ The central screen that displays computed analytics from the user's trade histor
 | Profit Factor | Sum of gross profits / Sum of gross losses |
 | Average Risk-Reward Ratio | Average (take profit − open price) / (open price − stop loss) for trades with both SL and TP set |
 | Average Holding Duration | Mean time between open and close timestamps |
+| Account Balance | Starting balance + sum of all deposits/withdrawals + sum of all closed trade profits |
+| Total Deposits | Sum of all deposit amounts from finance records |
+| Total Withdrawals | Sum of all withdrawal amounts from finance records |
 
 **Charts and Visualizations:**
 
@@ -241,7 +277,7 @@ The application follows a **clean, minimal, and highly legible** design language
 | created_at | `DateTime` | Account creation timestamp |
 | updated_at | `DateTime` | Last profile update timestamp |
 
-#### TradePosition
+#### ClosedPosition
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -264,10 +300,50 @@ The application follows a **clean, minimal, and highly legible** design language
 | updated_at | `DateTime` | Record last update timestamp |
 | is_synced | `bool` | Whether the record has been synced to Supabase |
 
+#### OpenPosition
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | `String` | Primary key (UUID or imported ID) |
+| user_id | `UUID` | Foreign key to User |
+| symbol | `String` | Traded instrument |
+| open_time | `DateTime` | Position open timestamp (UTC) |
+| volume | `double` | Position size |
+| side | `enum` | BUY or SELL |
+| open_price | `double` | Entry price |
+| current_price | `double?` | Latest known market price (nullable) |
+| stop_loss | `double?` | Stop loss price (nullable) |
+| take_profit | `double?` | Take profit price (nullable) |
+| swap | `double` | Swap fee |
+| commission | `double` | Broker commission |
+| profit | `double` | Floating profit/loss based on current price |
+| created_at | `DateTime` | Record creation timestamp |
+| updated_at | `DateTime` | Record last update timestamp |
+| is_synced | `bool` | Whether the record has been synced to Supabase |
+
+#### FinanceRecord
+
+| Field | Type | Description |
+|-------|------|-------------|
+| id | `String` | Primary key (UUID, auto-generated) |
+| user_id | `UUID` | Foreign key to User |
+| type | `enum` | Transaction type: Deposit, Withdrawal |
+| time | `DateTime` | Transaction timestamp (UTC) |
+| amount | `double` | Transaction amount |
+| status | `String` | Transaction status (e.g., Done, Pending, Failed) |
+| payment_gateway | `String` | Payment method (e.g., Manual, Bank Transfer) |
+| details | `String` | Additional transaction details |
+| created_at | `DateTime` | Record creation timestamp |
+| updated_at | `DateTime` | Record last update timestamp |
+| is_synced | `bool` | Whether the record has been synced to Supabase |
+
 ### 3.2 Relationships
 
-- **User → TradePosition**: One-to-many. Each trade position belongs to one user.
-- All queries on trade positions are scoped to the authenticated user.
+- **User → ClosedPosition**: One-to-many. Each closed position belongs to one user.
+- **User → OpenPosition**: One-to-many. Each open position belongs to one user.
+- **User → FinanceRecord**: One-to-many. Each finance record belongs to one user.
+- **OpenPosition → ClosedPosition**: An open position can be converted to a closed position by adding close time, close price, and reason. The original open position is removed and a new closed position is created.
+- All queries are scoped to the authenticated user.
 
 ### 3.3 Sync Strategy (Offline-First)
 
@@ -564,12 +640,16 @@ Login ──▶ Register
   │
   ▼
 Dashboard (Home)
-  ├── Trade List (view all positions, filter, sort)
-  │     └── Trade Detail (view single position)
-  ├── Add Trade (input form)
+  ├── Closed Positions List (view, filter, sort)
+  │     └── Position Detail
+  ├── Open Positions List (view, filter, sort)
+  │     └── Position Detail
+  │     └── Close Position (convert to closed)
+  ├── Finance History (deposits, withdrawals)
+  ├── Add Position (input form — open or closed)
   ├── Import/Export
-  │     ├── Import CSV
-  │     └── Export CSV
+  │     ├── Import CSV (closed positions, open positions, finance)
+  │     └── Export CSV (closed positions, open positions, finance)
   └── Settings
         ├── Theme Toggle
         ├── Profile
@@ -615,7 +695,9 @@ The following features are explicitly excluded from v1 and deferred to future ve
 
 | Resource | Purpose |
 |----------|---------|
-| `example_trade_report.csv` | Source of truth for trade position field definitions and CSV format |
+| `CLOSED_POSITIONS_*.csv` | Source of truth for closed position field definitions and CSV import format |
+| `OPEN_POSITIONS_*.csv` | Source of truth for open position field definitions and CSV import format |
+| `FINANCE_*.csv` | Source of truth for finance record field definitions and CSV import format |
 | Supabase Docs | Auth, database, and API reference |
 | Drift Docs | Local database setup and queries |
 | Riverpod Docs | State management patterns |
