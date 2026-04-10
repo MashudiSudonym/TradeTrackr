@@ -1,553 +1,496 @@
-# TradeTrackr - Product Requirements Document v1.0
+# Product Requirements Document — TradeTrackr
 
-## 1. Product Overview
+**Version**: 1.0.0
+**Date**: 2026-04-11
+**Status**: Draft
+
+---
+
+## 1. Overview
 
 ### 1.1 Product Vision
-A comprehensive trading journal application designed for disciplined traders who meticulously record their trading positions to gain deep insights into their trading performance.
 
-### 1.2 Product Mission
-Empower traders to make data-driven decisions by providing tools to log, analyze, and receive recommendations based on their historical trading data.
+TradeTrackr is a cross-platform trading journal application that enables traders to record, analyze, and improve their trading performance. By providing structured trade logging, visual analytics, and actionable recommendations, TradeTrackr transforms raw trade data into measurable insight.
 
-### 1.3 Target Audience
-**Primary**: Disciplined retail traders who:
-- Actively maintain trading journals
-- Trade indices (NDX100, SPX500), stocks, forex, or crypto
-- Want to understand their performance patterns
-- Seek data-driven insights to improve their strategies
-- Value detailed analysis of their trading history
+### 1.2 Problem Statement
 
----
+Traders who rely on memory or scattered spreadsheets lack a systematic way to evaluate their performance. Without structured records, it is difficult to identify recurring mistakes, measure win/loss ratios, or optimize strategies. Existing solutions are often bloated, subscription-heavy, or platform-locked.
 
-## 2. Problem Statement
+### 1.3 Solution
 
-Traders who diligently journal their positions face several challenges:
+TradeTrackr provides a lightweight, offline-first trading journal that runs on every major platform. Traders log each position manually or via CSV import, then review their performance through an interactive dashboard. A built-in recommendation engine surfaces patterns from historical data to help traders refine their approach.
 
-| Problem | Impact |
-|---------|--------|
-| Scattered records across spreadsheets/notebooks | Difficult to analyze trends and patterns |
-| Manual calculations for win rate, P&L, etc. | Time-consuming and error-prone |
-| No visual representation of performance | Hard to identify strengths/weaknesses |
-| Cannot easily identify profitable patterns | Missed opportunities for optimization |
-| Data siloed in manual formats | Cannot get AI-powered insights |
+### 1.4 Target User
+
+A disciplined individual trader who:
+- Actively trades financial instruments (indices, forex, crypto, stocks, etc.)
+- Records every opened and closed position to maintain a journal
+- Wants to measure and improve trading performance over time
+- Prefers a self-hosted or privacy-respecting tool over cloud-only SaaS
+
+### 1.5 Language
+
+The application UI, documentation, and all user-facing content for v1 are in **English only**.
 
 ---
 
-## 3. Solution
+## 2. MVP Features (v1)
 
-TradeTrackr is a cross-platform trading journal that:
-- Centralizes all trading records in one place
-- Provides visual analytics dashboard
-- Enables CSV import/export for data portability
-- Delivers intelligent recommendations based on historical data
-- Works offline with automatic cloud synchronization
+### 2.1 Authentication
 
----
+Simple email and password authentication powered by Supabase Auth.
 
-## 4. MVP Features v1.0
+| Requirement | Detail |
+|-------------|--------|
+| Sign Up | Email + password registration with email verification |
+| Sign In | Email + password login |
+| Sign Out | Clear local session and navigate to login screen |
+| Password Reset | Send password reset email via Supabase |
+| Session Persistence | Remain signed in across app restarts using stored JWT |
+| Route Guard | Unauthenticated users are redirected to the login screen |
 
-### 4.1 Analytics Dashboard
+### 2.2 User Profile
 
-#### 4.1.1 Performance Overview
-Display key metrics at a glance:
+| Requirement | Detail |
+|-------------|--------|
+| View Profile | Display name, email, account creation date |
+| Edit Profile | Update display name |
+| Change Password | Form to update password (requires current password) |
+| Delete Account | Request account deletion which removes all user data |
+
+### 2.3 Trade Position Input Form
+
+A form to manually input a closed trade position. Fields are derived from `example_trade_report.csv`.
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| ID | `String` | Auto-generated | Unique trade identifier (UUID) |
+| Symbol | `String` | Yes | Traded instrument ticker (e.g., NDX100, EURUSD, BTCUSD) |
+| Open Time | `DateTime` | Yes | Timestamp when the position was opened |
+| Close Time | `DateTime` | Yes | Timestamp when the position was closed |
+| Volume | `double` | Yes | Position size / lot size |
+| Side | `enum (BUY, SELL)` | Yes | Trade direction |
+| Open Price | `double` | Yes | Entry price |
+| Close Price | `double` | Yes | Exit price |
+| Stop Loss | `double` | No | Stop loss price level |
+| Take Profit | `double` | No | Take profit price level |
+| Swap | `double` | No (default 0.0) | Overnight swap fee |
+| Commission | `double` | No (default 0.0) | Broker commission |
+| Profit | `double` | Auto-calculated | Gross profit/loss (close price − open price, adjusted for side and volume) |
+| Reason | `enum (TP, SL, User, Manual)` | Yes | Reason for closing the position |
+
+**Business rules:**
+- `Close Time` must be equal to or after `Open Time`.
+- `Profit` is auto-calculated from open price, close price, side, and volume. The user may override the value.
+- On successful submission, the trade is saved to the local Drift database and synced to Supabase.
+
+### 2.4 CSV Import
+
+Import trade positions from a `.csv` file matching the format of `example_trade_report.csv`.
+
+| Requirement | Detail |
+|-------------|--------|
+| File Picker | System file picker filtered to `.csv` files |
+| Format | Must match: `ID,Symbol,Open Time,Volume,Side,Close Time,Open Price,Close Price,Stop Loss,Take Profit,Swap,Commission,Profit,Reason` |
+| Validation | Reject rows with missing required fields, invalid types, or unrecognized Side/Reason values |
+| Duplicate Handling | Skip rows whose ID already exists in the database; report count of skipped duplicates |
+| Summary Report | After import, show: total rows processed, rows imported, rows skipped, rows with errors |
+| Date Parsing | Support `dd/MM/yyyy HH:mm:ss` format from the CSV; auto-detect other common formats |
+| Header Row | First row is treated as header; the `Total` summary row at the end is ignored |
+
+### 2.5 CSV Export
+
+Export stored trade positions to a `.csv` file.
+
+| Requirement | Detail |
+|-------------|--------|
+| Export Scope | All trades, or a filtered subset (by date range, symbol, side, or reason) |
+| File Naming | `tradetrackr_export_YYYYMMDD_HHmmss.csv` |
+| Columns | Same columns as import format, in the same order |
+| Platform Handling | Save to Downloads (Android), share sheet (iOS), file dialog (Desktop), download folder (Web) |
+
+### 2.6 Analytics Dashboard
+
+The central screen that displays computed analytics from the user's trade history.
+
+**Summary Metrics:**
 
 | Metric | Description |
 |--------|-------------|
-| Total P&L | Net profit/loss across all trades |
-| Win Rate | Percentage of profitable trades |
-| Total Trades | Total number of closed positions |
-| Average Win | Mean profit on winning trades |
-| Average Loss | Mean loss on losing trades |
-| Profit Factor | Gross Profit / Gross Loss |
-| Max Drawdown | Largest peak-to-trough decline |
-| Best Trade | Highest single profit |
-| Worst Trade | Largest single loss |
+| Total Trades | Count of all closed positions |
+| Win Rate | Percentage of trades with profit > 0 |
+| Total Profit/Loss | Sum of all trade profits (net of swap and commission) |
+| Average Profit per Trade | Mean profit across all trades |
+| Largest Win | Highest single-trade profit |
+| Largest Loss | Lowest single-trade profit |
+| Profit Factor | Sum of gross profits / Sum of gross losses |
+| Average Risk-Reward Ratio | Average (take profit − open price) / (open price − stop loss) for trades with both SL and TP set |
+| Average Holding Duration | Mean time between open and close timestamps |
 
-#### 4.1.2 Visual Charts
-- **Equity Curve**: Line chart showing cumulative P&L over time
-- **Win/Loss Distribution**: Pie chart showing win vs loss count
-- **Performance by Symbol**: Bar chart comparing P&L per trading instrument
-- **Performance by Time Period**: Daily, weekly, monthly view filters
+**Charts and Visualizations:**
 
-#### 4.1.3 Detailed Statistics Panel
-- Breakdown by BUY vs SELL positions
-- Average holding time per trade
-- Success rate by close reason (TP, SL, Manual)
-- Most traded symbols ranking
+| Chart | Description |
+|-------|-------------|
+| Equity Curve | Line chart of cumulative profit over time |
+| Profit/Loss Distribution | Bar chart or histogram of trade profits |
+| Win/Loss by Symbol | Grouped bar chart showing wins vs losses per symbol |
+| Win/Loss by Reason | Pie or donut chart showing distribution of close reasons (TP, SL, User, Manual) |
+| Profit by Day of Week | Bar chart of average profit grouped by weekday |
+| Profit by Session | Bar chart of average profit grouped by time-of-day session (e.g., Asian, London, New York) |
 
-### 4.2 Trading Position Input Form
+**Filters:**
 
-Form fields matching the CSV structure:
+| Filter | Type |
+|--------|------|
+| Date Range | Date picker (from — to) |
+| Symbol | Multi-select dropdown |
+| Side | Toggle (BUY / SELL / All) |
+| Reason | Multi-select dropdown |
 
-| Field | Type | Required | Validation |
-|-------|------|----------|------------|
-| Symbol | Text | Yes | Must not be empty |
-| Open Time | DateTime | Yes | Must be valid datetime |
-| Volume | Decimal | Yes | Must be > 0 |
-| Side | Dropdown | Yes | BUY or SELL |
-| Close Time | DateTime | No | Must be > Open Time if provided |
-| Open Price | Decimal | Yes | Must be > 0 |
-| Close Price | Decimal | No | Must be > 0 if provided |
-| Stop Loss | Decimal | No | Must be > 0 if provided |
-| Take Profit | Decimal | No | Must be > 0 if provided |
-| Swap | Decimal | No | Default: 0 |
-| Commission | Decimal | No | Default: 0 |
-| Profit | Decimal | Auto | Calculated automatically |
-| Close Reason | Dropdown | No | TP, SL, User, Partial, Expired |
-| Notes | Text | No | Optional notes |
+### 2.7 Recommendation Engine
 
-**Automatic Calculations**:
-- Profit for BUY: `(Close Price - Open Price) × Volume - Commission - Swap`
-- Profit for SELL: `(Open Price - Close Price) × Volume - Commission - Swap`
+A feature that analyzes stored trade data and surfaces actionable insights.
 
-### 4.3 CSV Import
+| Recommendation | Logic |
+|----------------|-------|
+| Best Performing Symbol | Identify the symbol with highest total net profit (minimum 5 trades) |
+| Worst Performing Symbol | Identify the symbol with lowest total net profit (minimum 5 trades) |
+| Best Day to Trade | Day of week with highest average profit (minimum 5 trades on that day) |
+| Worst Day to Trade | Day of week with lowest average profit (minimum 5 trades on that day) |
+| Best Session | Time-of-day session with highest average profit (minimum 5 trades) |
+| Avg Win vs Avg Loss | Compare average winning trade vs average losing trade; flag if avg loss > avg win |
+| Consecutive Losses | Alert if currently on a streak of 3+ consecutive losses |
+| Risk-Reward Alert | Flag if average risk-reward ratio falls below 1:1 |
+| Win Rate Trend | Compare win rate of last 10 trades vs overall; flag if declining by >15% |
+| Overtrading Alert | Flag if more than X trades are logged in a single day (configurable threshold) |
 
-**Supported Format**: Matches `example_trade_report.csv`
+**Presentation:** Recommendations are displayed as a card list on the dashboard, each with a title, short description, and severity indicator (info, warning, critical).
 
-```
-ID,Symbol,Open Time,Volume,Side,Close Time,Open Price,Close Price,Stop Loss,Take Profit,Swap,Commission,Profit,Reason
-```
+### 2.8 Dark Theme
 
-**Features**:
-- File selection from device storage
-- Preview before import (show first 10 rows)
-- Validation with error highlighting
-- Skip/Update/Duplicate options for conflicts
-- Progress indicator for large files
-- Success/failure summary after import
+| Requirement | Detail |
+|-------------|--------|
+| Theme Toggle | Switch in settings or app bar to toggle between light and dark mode |
+| Default | System preference (follows OS dark/light setting) |
+| Persistence | User's choice is stored locally and persists across sessions |
+| Full Coverage | All screens, charts, and components support both themes |
 
-### 4.4 CSV Export
+---
 
-**Features**:
-- Export all trades or apply filters:
-  - Date range selector
-  - Symbol filter
-  - Side filter (BUY/SELL)
-  - Close reason filter
-- Format matching import structure for round-trip compatibility
-- Shareable file (email, cloud storage, etc.)
+## 3. Data Model
 
-### 4.5 AI-Powered Recommendations
+### 3.1 Entities
 
-Generate insights from stored trading data:
+#### User
 
-#### 4.5.1 Performance Patterns
-- "Your most profitable trading hour: 14:00-16:00"
-- "Best day of week for you: Wednesday"
-- "Top performing symbol: NDX100 (+$XXX)"
-
-#### 4.5.2 Risk Analysis
-- Recommended position sizing based on historical drawdowns
-- Suggested stop-loss distance based on volatility patterns
-- Warning when approaching maximum drawdown threshold
-
-#### 4.5.3 Strategy Insights
-- Win rate comparison: BUY vs SELL
-- Average holding time: Winning trades vs Losing trades
-- Impact of overnight holding on profitability
-- Close reason analysis (TP vs SL vs Manual)
-
-### 4.6 Authentication
-
-**Simple Email/Password Authentication**:
-- Registration with email and password
-- Email validation (optional for v1)
-- Login form with email/password
-- Password reset via email link
-- Remember me functionality
-- Session persistence
-
-### 4.7 User Profile
-
-**Editable Fields**:
 | Field | Type | Description |
 |-------|------|-------------|
-| Display Name | Text | User's preferred name |
-| Email | Text | Read-only (change via separate flow) |
-| Trading Experience | Dropdown | Beginner, Intermediate, Advanced, Professional |
-| Risk Tolerance | Dropdown | Conservative, Moderate, Aggressive |
-| Preferred Symbols | Multi-select | Quick filter selection |
+| id | `UUID` | Primary key (Supabase Auth user ID) |
+| email | `String` | User email address |
+| display_name | `String` | Display name |
+| created_at | `DateTime` | Account creation timestamp |
+| updated_at | `DateTime` | Last profile update timestamp |
 
-**Account Actions**:
-- Change password
-- Logout
-- Delete account (with confirmation dialog)
+#### TradePosition
 
-### 4.8 Dark Theme Support
+| Field | Type | Description |
+|-------|------|-------------|
+| id | `String` | Primary key (UUID or imported ID) |
+| user_id | `UUID` | Foreign key to User |
+| symbol | `String` | Traded instrument |
+| open_time | `DateTime` | Position open timestamp (UTC) |
+| close_time | `DateTime` | Position close timestamp (UTC) |
+| volume | `double` | Position size |
+| side | `enum` | BUY or SELL |
+| open_price | `double` | Entry price |
+| close_price | `double` | Exit price |
+| stop_loss | `double?` | Stop loss price (nullable) |
+| take_profit | `double?` | Take profit price (nullable) |
+| swap | `double` | Swap fee |
+| commission | `double` | Broker commission |
+| profit | `double` | Profit or loss amount |
+| reason | `enum` | Close reason: TP, SL, User, Manual |
+| created_at | `DateTime` | Record creation timestamp |
+| updated_at | `DateTime` | Record last update timestamp |
+| is_synced | `bool` | Whether the record has been synced to Supabase |
 
-- System theme detection (auto)
-- Manual Light/Dark toggle
-- Persisted user preference
-- All screens theme-compliant
+### 3.2 Relationships
 
----
+- **User → TradePosition**: One-to-many. Each trade position belongs to one user.
+- All queries on trade positions are scoped to the authenticated user.
 
-## 5. Information Architecture
+### 3.3 Sync Strategy (Offline-First)
 
-### 5.1 Navigation Structure
-
-```
-/                          → Redirect (auth check)
-├── /auth
-│   ├── /login            → Login page
-│   ├── /register         → Registration page
-│   └── /forgot-password  → Password reset
-├── /dashboard            → Analytics dashboard (home)
-├── /trades
-│   ├── /                 → Trades list with filters
-│   ├── /new              → Create new trade
-│   ├── /:id              → Trade detail/edit
-│   └── /import           → CSV import page
-├── /recommendations      → AI insights page
-├── /profile              → User profile
-└── /settings             → App settings
-```
-
-### 5.2 Screen Hierarchy
-
-```
-Level 1 (Tabs): Dashboard, Trades, Recommendations, Profile
-Level 2: Detail pages, forms, modals
-Level 3: Settings sub-pages, confirmation dialogs
-```
+| Aspect | Strategy |
+|--------|----------|
+| Local Store | Drift (SQLite) is the primary data source |
+| Remote Store | Supabase PostgreSQL is the secondary/truth source when online |
+| Writes | All writes go to Drift first, then sync to Supabase when connectivity is available |
+| Reads | Always read from Drift for instant response |
+| Conflict Resolution | Last-write-wins based on `updated_at` timestamp |
+| Sync Queue | Unsynced records (`is_synced = false`) are pushed to Supabase on connectivity restore |
+| Initial Sync | On first login, pull all user's trade data from Supabase into Drift |
 
 ---
 
-## 6. Technical Requirements
+## 4. Tech Stack
 
-### 6.1 Technology Stack
+All packages must use the **latest stable versions** as of the project start date.
 
-| Component | Technology | Version |
-|-----------|-----------|---------|
-| UI Framework | Flutter | 3.27+ |
-| State Management | Riverpod | 2.6+ |
-| Navigation | GoRouter | 14.0+ |
-| Code Generation | Freezed | 2.5+ |
-| Logging | Logger | 2.4+ |
-| Local Database | Drift | 2.18+ |
-| Backend | Supabase | - |
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| UI Framework | **Flutter** (SDK 3.x, latest stable) | Cross-platform UI toolkit |
+| State Management | **Riverpod** (flutter_riverpod) | Reactive state management with code-gen support |
+| Routing | **GoRouter** | Declarative routing with deep link support |
+| Backend / Auth | **Supabase** (supabase_flutter) | Authentication, remote database, and API |
+| Local Database | **Drift** (drift + drift_flutter) | Offline-first SQLite ORM |
+| Data Classes | **Freezed** (freezed + freezed_annotation) | Immutable data classes with union types |
+| Logging | **Logger** | Structured logging for debugging |
+| CSV Parsing | **csv** | Parse and serialize CSV files |
+| Charts | **fl_chart** | Rendering dashboard charts and graphs |
+| File Picking | **file_picker** | Cross-platform file selection for CSV import |
+| DateTime | **intl** | Date formatting and localization utilities |
+| UUID | **uuid** | Generate unique trade identifiers |
+| Connectivity | **connectivity_plus** | Detect network status for sync logic |
+| Path | **path_provider** | Locate filesystem directories for export |
+| Sharing | **share_plus** | Share exported CSV files (mobile) |
 
-### 6.2 Architecture Pattern
+### Code Generation
 
-#### Clean Architecture with Layer Structure
+The project uses build_runner for code generation:
+- `freezed` — generates immutable data classes, copyWith, equality
+- `drift` — generates database code
+- `riverpod_generator` — generates providers (optional, if using code-gen Riverpod)
+
+---
+
+## 5. Architecture
+
+### 5.1 Clean Architecture with Layer Structure
+
+The project follows **Clean Architecture** with a strict layer separation. Each feature is organized as a self-contained module.
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   PRESENTATION LAYER                │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────┐  │
-│  │    Pages    │  │   Widgets   │  │ Providers  │  │
-│  │  (Screens)  │  │  (Components)│ │  (State)   │  │
-│  └─────────────┘  └─────────────┘  └────────────┘  │
-└─────────────────────────────────────────────────────┘
-                         ↓ depends on
-┌─────────────────────────────────────────────────────┐
-│                    DOMAIN LAYER                     │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────┐  │
-│  │  Entities   │  │  Use Cases  │  │Repositories│  │
-│  │  (Models)   │  │ (Interactors)│ │ (Interfaces)│  │
-│  └─────────────┘  └─────────────┘  └────────────┘  │
-└─────────────────────────────────────────────────────┘
-                         ↓ depends on
-┌─────────────────────────────────────────────────────┐
-│                      DATA LAYER                     │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────┐  │
-│  │  Datasources│  │   Models    │  │  Mappers   │  │
-│  │ (Supabase,  │  │ (DTOs, Adapters)│            │  │
-│  │  Drift)     │  │             │  │            │  │
-│  └─────────────┘  └─────────────┘  └────────────┘  │
-└─────────────────────────────────────────────────────┘
+lib/
+├── app/                          # Application shell
+│   ├── app.dart                  # MaterialApp with GoRouter
+│   ├── router.dart               # GoRouter configuration
+│   └── theme/                    # Light and dark theme definitions
+│
+├── core/                         # Shared infrastructure
+│   ├── constants/                # App-wide constants
+│   ├── errors/                   # Failure and exception classes
+│   ├── extensions/               # Dart extension methods
+│   ├── logger/                   # Logger configuration
+│   ├── network/                  # Connectivity checker
+│   ├── sync/                     # Offline-first sync engine
+│   └── utils/                    # Utility functions (date parsing, CSV, etc.)
+│
+├── features/                     # Feature modules
+│   ├── auth/
+│   │   ├── data/
+│   │   │   ├── datasources/      # Supabase auth remote data source
+│   │   │   ├── models/           # Data transfer objects (Freezed)
+│   │   │   └── repositories/     # Repository implementations
+│   │   ├── domain/
+│   │   │   ├── entities/         # Domain entities
+│   │   │   ├── repositories/     # Repository interfaces (abstract)
+│   │   │   └── usecases/         # Single-responsibility use cases
+│   │   └── presentation/
+│   │       ├── pages/            # Screens
+│   │       ├── widgets/          # Feature-specific widgets
+│   │       └── providers/        # Riverpod providers
+│   │
+│   ├── dashboard/
+│   ├── trade/
+│   ├── import_export/
+│   ├── recommendation/
+│   └── profile/
+│
+└── main.dart                     # Entry point
 ```
 
-#### SOLID Principles Implementation
+### 5.2 Layer Rules
 
-**Single Responsibility Principle**
-- Each class has one reason to change
-- Clear separation: UI, business logic, data access
+| Layer | Depends On | Description |
+|-------|-----------|-------------|
+| **Presentation** | Domain | UI, widgets, Riverpod providers. No direct data layer access. |
+| **Domain** | Nothing | Pure Dart: entities, repository interfaces, use cases. No framework imports. |
+| **Data** | Domain | Repository implementations, data sources, DTOs. Implements domain interfaces. |
 
-**Open/Closed Principle**
-- Interfaces for extensibility
-- Strategy pattern for recommendation engines
+Dependency direction: **Presentation → Domain ← Data**. The domain layer has zero external dependencies.
 
-**Liskov Substitution Principle**
-- Implementations properly substitute interfaces
+### 5.3 SOLID Principles (Strict Enforcement)
 
-**Interface Segregation Principle**
-- Small, focused interfaces per domain
+| Principle | Application |
+|-----------|-------------|
+| **S** — Single Responsibility | Each class has exactly one reason to change. Use cases encapsulate single actions. Widgets are decomposed into small, focused components. |
+| **O** — Open/Closed | Entities and use cases are extended via new implementations, not modified. Repository interfaces allow swapping data sources without touching domain logic. |
+| **L** — Liskov Substitution | All repository implementations are fully substitutable for their interfaces. Mock repositories pass the same contract tests as real ones. |
+| **I** — Interface Segregation | Repository interfaces are split per feature (e.g., `TradeQueryRepository`, `TradeCommandRepository`) rather than one monolithic `TradeRepository`. |
+| **D** — Dependency Inversion | Domain defines repository interfaces; data layer provides implementations. Use cases receive repository interfaces via constructor injection, not concrete classes. |
 
-**Dependency Inversion Principle**
-- Depend on abstractions via Riverpod providers
+### 5.4 Repository Segregation Pattern
 
-#### Repository Segregation Pattern
+Repositories are split by **operation type**, not by entity. This ensures each use case depends only on the operations it needs.
 
 ```
 domain/repositories/
-├── auth_repository.dart         # Authentication operations
-├── trade_repository.dart        # Trade CRUD + queries
-├── analytics_repository.dart    # Performance metrics
-├── recommendation_repository.dart # AI insights
-├── user_repository.dart         # Profile management
-└── sync_repository.dart         # Offline sync orchestration
+├── trade_query_repository.dart        # Read operations (getTrades, getTradeById, getAnalytics)
+├── trade_command_repository.dart      # Write operations (addTrade, updateTrade, deleteTrade)
+├── trade_import_repository.dart       # Bulk import operations (importFromCsv)
+├── trade_export_repository.dart       # Export operations (exportToCsv)
+├── auth_repository.dart               # Authentication operations
+└── user_profile_repository.dart       # User profile CRUD
 ```
 
-Each repository:
-- Defines interface in domain layer
-- Has implementation in data layer
-- Supports both local (Drift) and remote (Supabase) sources
-
-### 6.3 Offline-First Strategy
+Each use case injects only the repository interface it requires:
 
 ```
-┌──────────────┐     ┌──────────────┐
-│   User/UI    │────▶│ Local (Drift)│
-└──────────────┘     └──────────────┘
-                            │
-                            ▼
-                      ┌──────────────┐
-                      │ Sync Queue   │
-                      └──────────────┘
-                            │
-                            ▼
-                      ┌──────────────┐
-                      │ Supabase     │
-                      │ (Background) │
-                      └──────────────┘
+GetTradeAnalyticsUseCase → depends on TradeQueryRepository
+AddTradeUseCase → depends on TradeCommandRepository
+ImportTradesUseCase → depends on TradeImportRepository
 ```
 
-**Sync Strategy**:
-1. All writes immediately saved to local Drift DB
-2. UI updates instantly (optimistic)
-3. Background sync to Supabase when online
-4. Conflict resolution: Last-write-wins with timestamps
-5. Connectivity awareness: Pause/resume sync
+### 5.5 Offline-First Strategy
+
+```
+┌─────────────┐       ┌─────────────┐       ┌─────────────┐
+│  Presentation│──────▶│   Domain    │◀──────│    Data     │
+│  (Riverpod)  │       │  (Use Cases)│       │ (Drift +    │
+│              │       │             │       │  Supabase)  │
+└─────────────┘       └─────────────┘       └──────┬──────┘
+                                                     │
+                                              ┌──────▼──────┐
+                                              │  Sync Engine │
+                                              │ (background) │
+                                              └─────────────┘
+```
+
+1. **All writes** go to Drift (local SQLite) immediately.
+2. A background sync engine monitors connectivity and pushes unsynced records to Supabase.
+3. **All reads** come from Drift for instant, offline-capable responses.
+4. On login, a full pull from Supabase seeds the local database.
+5. Sync status is surfaced in the UI (synced / pending / offline).
 
 ---
 
-## 7. Data Model
+## 6. Platform Support
 
-### 7.1 Core Entities
+| Platform | Minimum Version | Notes |
+|----------|----------------|-------|
+| Android | API 21+ (Android 5.0) | Primary target |
+| iOS | 12.0+ | Primary target |
+| macOS | 10.14+ (Mojave) | Supported |
+| Windows | Windows 10+ | Supported |
+| Linux | Any modern distro | Supported |
+| Web | Latest Chrome, Firefox, Edge, Safari | Supported (no Drift — Supabase-only fallback) |
 
-#### User Profile
-```dart
-class UserProfile {
-  String id;
-  String displayName;
-  String email;
-  TradingExperience experienceLevel;
-  RiskTolerance riskTolerance;
-  List<String> preferredSymbols;
-  ThemePreference themePreference;
-  DateTime createdAt;
-  DateTime updatedAt;
-}
-```
-
-#### Trade
-```dart
-class Trade {
-  String id;
-  String userId;
-  String symbol;
-  DateTime openTime;
-  DateTime? closeTime;
-  double volume;
-  TradeSide side;  // BUY | SELL
-  double openPrice;
-  double? closePrice;
-  double? stopLoss;
-  double? takeProfit;
-  double swap;
-  double commission;
-  double profit;
-  CloseReason? closeReason;  // TP | SL | User | Partial | Expired
-  String? notes;
-  bool isDeleted;
-  DateTime createdAt;
-  DateTime updatedAt;
-  DateTime? syncedAt;
-}
-```
-
-### 7.2 Database Schema (Conceptual)
-
-**user_profiles**
-| Column | Type | Constraints |
-|--------|------|-------------|
-| id | UUID | PK, FK → auth.users |
-| display_name | VARCHAR(100) | NOT NULL |
-| trading_experience_level | VARCHAR(20) | beginner/intermediate/advanced/professional |
-| risk_tolerance | VARCHAR(20) | conservative/moderate/aggressive |
-| preferred_symbols | TEXT[] | - |
-| theme_preference | VARCHAR(10) | light/dark/system |
-| created_at | TIMESTAMPTZ | DEFAULT NOW() |
-| updated_at | TIMESTAMPTZ | DEFAULT NOW() |
-
-**trades**
-| Column | Type | Constraints |
-|--------|------|-------------|
-| id | UUID | PK, DEFAULT gen_random_uuid() |
-| user_id | UUID | FK → auth.users, NOT NULL |
-| symbol | VARCHAR(50) | NOT NULL |
-| open_time | TIMESTAMPTZ | NOT NULL |
-| close_time | TIMESTAMPTZ | - |
-| volume | DECIMAL(10,4) | NOT NULL, CHECK > 0 |
-| side | VARCHAR(10) | CHECK IN ('BUY', 'SELL') |
-| open_price | DECIMAL(20,8) | NOT NULL, CHECK > 0 |
-| close_price | DECIMAL(20,8) | CHECK > 0 OR NULL |
-| stop_loss | DECIMAL(20,8) | - |
-| take_profit | DECIMAL(20,8) | - |
-| swap | DECIMAL(20,8) | DEFAULT 0 |
-| commission | DECIMAL(20,8) | DEFAULT 0 |
-| profit | DECIMAL(20,8) | DEFAULT 0 |
-| close_reason | VARCHAR(20) | CHECK IN ('TP', 'SL', 'User', 'Partial', 'Expired') |
-| notes | TEXT | - |
-| is_deleted | BOOLEAN | DEFAULT FALSE |
-| created_at | TIMESTAMPTZ | DEFAULT NOW() |
-| updated_at | TIMESTAMPTZ | DEFAULT NOW() |
-| synced_at | TIMESTAMPTZ | - |
-
-**Indexes**:
-- `idx_trades_user_id` on (user_id)
-- `idx_trades_symbol` on (symbol)
-- `idx_trades_open_time` on (open_time DESC)
-- `idx_trades_close_time` on (close_time DESC)
-
-**Row Level Security (RLS)**:
-- Users can only access their own data
-- Separate policies for SELECT, INSERT, UPDATE, DELETE
+**Web caveat:** Drift supports Web via `sql.js` or `wa` (WASM). If full offline is required on Web, use Drift's Web support; otherwise, fall back to Supabase-only mode.
 
 ---
 
-## 8. Platform Support
+## 7. Non-Functional Requirements
 
-### 8.1 Target Platforms
+### 7.1 Performance
 
-| Platform | Min Version | Notes |
-|----------|-------------|-------|
-| Android | API 21 (Lollipop) | 99%+ coverage |
-| iOS | 12.0 | iPhone 5s+ |
-| Web | Modern browsers | Chrome, Firefox, Safari, Edge |
-| Windows | Windows 10+ | - |
-| macOS | 10.14+ | - |
-| Linux | All distributions | - |
+| Requirement | Target |
+|-------------|--------|
+| Dashboard load time | < 500ms for up to 10,000 trades |
+| CSV import (1,000 rows) | < 3 seconds |
+| CSV export (10,000 rows) | < 2 seconds |
+| Screen transition | 60fps, no jank |
+| Local query response | < 50ms |
 
-### 8.2 Responsive Design Breakpoints
+### 7.2 Security
 
-| Size | Platform | Layout |
-|------|----------|--------|
-| < 600px | Mobile (Portrait) | Single column, bottom nav |
-| 600-900px | Mobile (Landscape)/Tablet | Two columns, adapted spacing |
-| 900-1200px | Tablet/Desktop | Three columns, side nav possible |
-| > 1200px | Desktop | Maximum content width, centered |
+| Requirement | Detail |
+|-------------|--------|
+| Authentication | Handled by Supabase Auth; JWT tokens stored securely |
+| Data Isolation | Row-Level Security (RLS) on Supabase ensures users can only access their own data |
+| Local Encryption | Drift database is not encrypted in v1 (deferred to v2) |
+| Input Validation | All form fields validated before persistence |
+| CSV Sanitization | Imported CSV data is sanitized and validated before storage |
+
+### 7.3 Reliability
+
+| Requirement | Detail |
+|-------------|--------|
+| Offline Operation | Full read/write capability without internet |
+| Data Integrity | No data loss during sync; failed syncs are retried automatically |
+| Crash Recovery | Unsynced local data persists across app crashes |
+
+### 7.4 Usability
+
+| Requirement | Detail |
+|-------------|--------|
+| Responsive Layout | Adapts to phone, tablet, and desktop form factors |
+| Accessibility | Minimum contrast ratios, semantic labels for screen readers |
+| Onboarding | Brief walkthrough on first launch explaining core features |
 
 ---
 
-## 9. Non-Functional Requirements
+## 8. Screen Map
 
-### 9.1 Performance
+```
+Login ──▶ Register
+  │
+  ▼
+Dashboard (Home)
+  ├── Trade List (view all positions, filter, sort)
+  │     └── Trade Detail (view single position)
+  ├── Add Trade (input form)
+  ├── Import/Export
+  │     ├── Import CSV
+  │     └── Export CSV
+  └── Settings
+        ├── Theme Toggle
+        ├── Profile
+        ├── Change Password
+        └── Sign Out
+```
+
+---
+
+## 9. Out of Scope (v1)
+
+The following features are explicitly excluded from v1 and deferred to future versions:
+
+| Feature | Reason |
+|---------|--------|
+| Real-time trade sync / push notifications | Requires WebSocket infrastructure |
+| Multi-language / i18n | v1 is English only |
+| Social features (sharing, following) | Not core to journaling |
+| Broker API integration / auto-import | Requires per-broker integration work |
+| Strategy backtesting | Complex feature, deferred |
+| Multi-account support | Adds data model complexity |
+| Tags / custom labels on trades | Can be added in minor release |
+| Chart annotations and notes | Deferred to v2 |
+| Local database encryption | Deferred to v2 |
+| Push notifications for sync status | Deferred to v2 |
+| Widget support (Android/iOS home screen) | Deferred to v2 |
+
+---
+
+## 10. Success Metrics (v1)
+
 | Metric | Target |
 |--------|--------|
-| Dashboard load time | < 2 seconds (1000 trades) |
-| Form submission | < 500ms local, < 2s with sync |
-| CSV import | 100 rows/second |
-| Search/filter response | < 1 second |
-| Animation smoothness | 60 FPS |
-
-### 9.2 Security
-| Aspect | Implementation |
-|--------|----------------|
-| Data at rest | Encrypted (Supabase) |
-| Data in transit | HTTPS/TLS |
-| Authentication | JWT tokens via Supabase Auth |
-| Local storage | flutter_secure_storage |
-| Input validation | All fields validated pre-submission |
-
-### 9.3 Reliability
-- Offline mode: Full functionality without network
-- Sync reliability: Automatic retry with exponential backoff
-- Data integrity: Conflict resolution on sync
-- Crash recovery: Local state persistence
-
-### 9.4 Usability
-- **Accessibility**: WCAG 2.1 AA compliance
-  - Minimum contrast ratio 4.5:1
-  - Screen reader support
-  - Scalable text (200%)
-  - Keyboard navigation (web/desktop)
+| User can log a trade in under 30 seconds | Manual input form is fast and validated |
+| Dashboard renders analytics with 10,000+ trades | Smooth performance at scale |
+| CSV import handles 1,000+ rows without crash | Robust parsing and validation |
+| Full offline functionality | All core features work without internet |
+| Cross-platform parity | Identical feature set on Android, iOS, Desktop, Web |
 
 ---
 
-## 10. Localization
+## 11. References
 
-### v1.0 Scope
-- **Primary Language**: English (US)
-- All UI text in English
-- Date/time formats: ISO 8601, localized display
-- Number formats: Locale-aware decimals
-- Future versions to support multi-language
-
----
-
-## 11. Success Metrics (v1.0)
-
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| User engagement | 70% DAU/MAU | Session tracking |
-| Data entry | Avg 5 trades/week/user | Trade creation analytics |
-| Feature usage | 80% use dashboard | Screen navigation tracking |
-| App stability | < 1% crash rate | Crashlytics |
-| Performance | 95th percentile < 3s | APM monitoring |
-| User satisfaction | 4.0+ star rating | App store reviews |
-
----
-
-## 12. Future Roadmap (Post v1.0)
-
-### v1.1 - Enhanced Analytics
-- Additional chart types (candlestick, heatmap)
-- Custom date range analytics
-- Performance comparison by strategy
-- Export analytics as PDF reports
-
-### v1.2 - Collaboration
-- Share performance reports
-- Trading community features
-- Leaderboards (anonymous)
-- Follow top performers
-
-### v1.3 - Automation
-- Trading platform API integration
-- Auto-import from brokers
-- Price alerts and notifications
-- Position size calculator
-
-### v2.0 - Advanced Features
-- Strategy backtesting
-- AI coach with personalized tips
-- Multi-currency support
-- Tax report generation
-- Advanced risk metrics (Sharpe, Sortino, Calmar)
-
----
-
-## 13. Constraints & Assumptions
-
-### Constraints
-- Development timeline: v1.0 in X weeks
-- Budget considerations: Self-funded/bootstrapped
-- Team size: Solo developer or small team
-- API limitations: Supabase free tier initially
-
-### Assumptions
-- Users have basic trading knowledge
-- Users primarily trade single assets (not complex spreads)
-- Internet connectivity available periodically for sync
-- Users comfortable with CSV format for data exchange
-
----
-
-## 14. References
-
-- Example CSV: `example_trade_report.csv`
-- Supabase Docs: https://supabase.com/docs
-- Flutter Docs: https://flutter.dev/docs
-- Riverpod Docs: https://riverpod.dev
-- GoRouter Docs: https://gorouter.dev
+| Resource | Purpose |
+|----------|---------|
+| `example_trade_report.csv` | Source of truth for trade position field definitions and CSV format |
+| Supabase Docs | Auth, database, and API reference |
+| Drift Docs | Local database setup and queries |
+| Riverpod Docs | State management patterns |
+| GoRouter Docs | Navigation and deep linking |
+| Freezed Docs | Immutable data class generation |
