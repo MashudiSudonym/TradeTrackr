@@ -175,6 +175,56 @@ A feature that analyzes stored trade data and surfaces actionable insights.
 | Persistence | User's choice is stored locally and persists across sessions |
 | Full Coverage | All screens, charts, and components support both themes |
 
+### 2.9 UI Design Style
+
+The application follows a **clean, minimal, and highly legible** design language inspired by Airbnb's design system. The goal is to present financial data without visual clutter so traders can scan and interpret their performance at a glance.
+
+**Design Principles:**
+
+| Principle | Application |
+|-----------|-------------|
+| Clarity over decoration | Every element serves a purpose. No ornamental graphics, gradients, or visual noise. Data speaks for itself. |
+| Generous whitespace | Content breathes. Screens use ample spacing between sections, cards, and data rows. |
+| Content-first layout | Numbers, charts, and trade details are the focal point. Chrome and navigation recede. |
+| Typographic hierarchy | Clear distinction between headings, body text, labels, and numeric data through size, weight, and color contrast. |
+
+**Visual Tokens:**
+
+| Token | Light Theme | Dark Theme |
+|-------|-------------|------------|
+| Background | `#FFFFFF` | `#121212` |
+| Surface / Card | `#F7F7F7` | `#1E1E1E` |
+| Primary | `#FF385C` | `#FF385C` |
+| Primary Text | `#222222` | `#F5F5F5` |
+| Secondary Text | `#717171` | `#A0A0A0` |
+| Border / Divider | `#DDDDDD` | `#333333` |
+| Success (Profit) | `#008A09` | `#34C759` |
+| Danger (Loss) | `#BD1313` | `#FF453A` |
+
+**Typography:**
+
+| Role | Weight | Size |
+|------|--------|------|
+| Screen Title | Bold | 24px |
+| Section Heading | Semi-bold | 18px |
+| Card Title / Metric Label | Medium | 16px |
+| Body Text | Regular | 14px |
+| Caption / Hint | Regular | 12px |
+| Numeric Data (Profit, Price) | Semi-bold / Tabular | 16px |
+
+**Component Style:**
+
+| Component | Style |
+|-----------|-------|
+| Cards | Flat with subtle 1px border, 12px corner radius, no drop shadow |
+| Buttons (Primary) | Filled with primary color, 8px corner radius, bold label |
+| Buttons (Secondary) | Transparent with 1px border, 8px corner radius |
+| Input Fields | Underlined or filled with light surface background, no heavy borders |
+| Charts | Flat colors, no 3D effects, consistent with token palette |
+| Icons | Outlined style (e.g., Material Symbols — outlined variant) |
+| Bottom Navigation | Minimal, icon + label, no background color fill on active tab |
+| App Bar | Clean, no elevation, flat background matching screen |
+
 ---
 
 ## 3. Data Model
