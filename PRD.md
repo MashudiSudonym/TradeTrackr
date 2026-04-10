@@ -262,6 +262,18 @@ The project uses build_runner for code generation:
 - `drift` — generates database code
 - `riverpod_generator` — generates providers (optional, if using code-gen Riverpod)
 
+### Documentation Reference Rule
+
+**MCP Context7 is the primary and mandatory reference** for all tech stack documentation during development. Before using any API, package, or framework pattern, developers must consult Context7 to ensure accuracy with the latest versions.
+
+| Rule | Detail |
+|------|--------|
+| Primary Source | Always query MCP Context7 first when looking up documentation for any package or framework listed in the tech stack |
+| Coverage | Applies to all technologies: Flutter, Riverpod, GoRouter, Supabase, Drift, Freezed, and all supporting packages |
+| Purpose | Ensures code uses current APIs and avoids deprecated patterns from outdated training data |
+| When to Use | Before writing any implementation involving a package API, configuration, migration guide, or setup pattern |
+| Workflow | Resolve the library ID via Context7, then query the specific documentation needed — do not rely on memory or assumed knowledge |
+
 ---
 
 ## 5. Architecture
