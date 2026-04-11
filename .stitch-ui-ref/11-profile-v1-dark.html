@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+                  "on-primary": "#fff6f5",
+                  "error-container": "#fe8b70",
+                  "on-secondary-fixed": "#403f3f",
+                  "on-secondary-container": "#525151",
+                  "tertiary-container": "#7aee68",
+                  "on-tertiary-fixed-variant": "#006104",
+                  "primary": "#be0038",
+                  "tertiary": "#006f05",
+                  "surface-variant": "#dde4e5",
+                  "surface-container-lowest": "#ffffff",
+                  "on-secondary-fixed-variant": "#5c5b5b",
+                  "secondary": "#605f5f",
+                  "on-primary-fixed-variant": "#b90036",
+                  "primary-fixed": "#ffdada",
+                  "primary-container": "#ffdada",
+                  "on-error-container": "#742410",
+                  "tertiary-fixed": "#7aee68",
+                  "surface-bright": "#f9f9f9",
+                  "tertiary-fixed-dim": "#6cdf5c",
+                  "surface-container-highest": "#dde4e5",
+                  "on-surface": "#2d3435",
+                  "on-primary-fixed": "#840024",
+                  "on-tertiary-container": "#005603",
+                  "inverse-on-surface": "#9c9d9d",
+                  "surface-container": "#ebeeef",
+                  "surface": "#f9f9f9",
+                  "background": "#f9f9f9",
+                  "secondary-dim": "#535353",
+                  "secondary-fixed-dim": "#d6d4d3",
+                  "outline-variant": "#adb3b4",
+                  "on-tertiary": "#ebffe0",
+                  "inverse-surface": "#0c0f0f",
+                  "primary-dim": "#a80030",
+                  "on-secondary": "#fbf8f8",
+                  "primary-fixed-dim": "#ffc6c8",
+                  "on-error": "#fff7f6",
+                  "outline": "#757c7d",
+                  "on-surface-variant": "#5a6061",
+                  "secondary-container": "#e5e2e1",
+                  "inverse-primary": "#ff5169",
+                  "error": "#9e422c",
+                  "surface-tint": "#be0038",
+                  "surface-dim": "#d4dbdd",
+                  "on-primary-container": "#a60030",
+                  "surface-container-low": "#f2f4f4",
+                  "error-dim": "#5c1202",
+                  "on-background": "#2d3435",
+                  "tertiary-dim": "#006104",
+                  "secondary-fixed": "#e5e2e1",
+                  "surface-container-high": "#e4e9ea",
+                  "on-tertiary-fixed": "#004002"
+          },
+          "borderRadius": {
+                  "DEFAULT": "0.25rem",
+                  "lg": "0.5rem",
+                  "xl": "0.75rem",
+                  "full": "9999px"
+          },
+          "fontFamily": {
+                  "headline": ["Manrope"],
+                  "body": ["Inter"],
+                  "label": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #0c0f0f;
+      color: #f9f9f9;
+    }
+    .glass-effect {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body selection:bg-primary/30">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-[#f9f9f9] dark:bg-gray-900">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#be0038] dark:text-[#ff385c]" data-icon="monitoring">monitoring</span>
+<h1 class="font-['Manrope'] font-bold text-xl tracking-tight text-[#be0038] dark:text-[#ff385c]">TradeTrackr</h1>
+</div>
+<button class="active:scale-95 duration-150 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-[#5a6061] dark:text-gray-400" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-6 py-12 pb-32">
+<!-- Profile Hero: Asymmetric Layout -->
+<section class="flex flex-col md:flex-row items-center md:items-end gap-8 mb-16">
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden bg-surface-container shadow-[0_12px_32px_rgba(190,0,56,0.1)]">
+<img alt="Alex Rivers" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man in his 30s with a sharp haircut and stylish glasses, warm studio lighting with dark moody background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArXbSaeTOVKIK0vK2xudbTpNeo6txuS8pb-Ll0Fl0lT5z8OHCQa4tNtvmJh17q8c3ae4WMXHLWIKFPxqh5Pi0OO-OQLvk3remx3mT345IgKlbagSmhDzAagEbJR7OBpNF70txuafnOTrkfzq-3vgDoiL209tv5wtgqfCAAwnb9AH1ePYwLnodmrDDTkuRFcMS5DsjBrfZLZ-OFDKA0vXd-3HFBgQDW0WoCX4QJ0vosxW1w__XGzaUIg0raYo9Bgpn9rgYhdBsDYHs"/>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-primary px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-on-primary uppercase border-2 border-inverse-surface">
+          PRO PLAN
+        </div>
+</div>
+<div class="flex flex-col text-center md:text-left gap-1">
+<span class="font-label text-label-md uppercase tracking-[0.1em] text-on-surface-variant/60">Portfolio Owner</span>
+<h2 class="font-headline font-extrabold text-4xl md:text-5xl text-on-surface tracking-tight">Alex Rivers</h2>
+<div class="flex items-center justify-center md:justify-start gap-4 mt-2">
+<div class="flex flex-col">
+<span class="font-headline font-bold text-2xl text-tertiary">154</span>
+<span class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant">Total Trades</span>
+</div>
+<div class="w-[1px] h-8 bg-outline-variant/20"></div>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-2xl text-on-surface">68%</span>
+<span class="font-label text-[10px] uppercase tracking-wider text-on-surface-variant">Win Rate</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Settings Menu: Left Column -->
+<div class="md:col-span-7 flex flex-col gap-6">
+<div class="bg-gray-800/40 p-1 rounded-xl">
+<div class="bg-gray-800 p-8 rounded-lg flex flex-col gap-8">
+<h3 class="font-headline font-bold text-lg text-on-surface-variant tracking-tight uppercase">Security &amp; Account</h3>
+<div class="flex flex-col gap-2">
+<button class="group flex items-center justify-between p-4 rounded-lg bg-surface-container-low/5 hover:bg-surface-container-low/10 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="person_edit">person_edit</span>
+</div>
+<span class="font-body font-semibold text-on-surface">Profile Settings</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="group flex items-center justify-between p-4 rounded-lg bg-surface-container-low/5 hover:bg-surface-container-low/10 transition-all duration-300">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="lock">lock</span>
+</div>
+<span class="font-body font-semibold text-on-surface">Change Password</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Theme & Action: Right Column -->
+<div class="md:col-span-5 flex flex-col gap-6">
+<!-- Theme Toggle Section -->
+<div class="bg-gray-800 p-8 rounded-lg flex flex-col gap-6 h-full">
+<h3 class="font-headline font-bold text-lg text-on-surface-variant tracking-tight uppercase">Interface</h3>
+<div class="bg-gray-900/50 p-1.5 rounded-full flex">
+<button class="flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 font-label text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="light_mode">light_mode</span>
+              Light
+            </button>
+<button class="flex-1 py-3 px-4 rounded-full flex items-center justify-center gap-2 font-label text-sm bg-primary text-on-primary shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-lg" data-icon="dark_mode" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dark_mode</span>
+              Dark
+            </button>
+</div>
+<div class="mt-auto pt-6 flex flex-col gap-4">
+<p class="text-xs text-on-surface-variant/60 leading-relaxed italic">
+              Dark mode is optimized for night-time trading sessions to reduce eye fatigue and prioritize critical data visualization.
+            </p>
+<button class="w-full mt-4 py-4 rounded-full bg-error/10 hover:bg-error/20 text-error border border-error/20 font-bold tracking-wide transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+              Sign Out
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Tonal Card for Pro Benefits -->
+<div class="mt-12 p-8 rounded-xl bg-gradient-to-br from-primary/5 to-transparent border border-primary/10">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" data-icon="workspace_premium">workspace_premium</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface">Pro Subscription Active</h4>
+<p class="text-sm text-on-surface-variant">Next billing date: October 24, 2024</p>
+</div>
+</div>
+<button class="px-8 py-3 rounded-full bg-surface-container-high text-on-surface font-semibold text-sm hover:bg-surface-container-highest transition-colors">
+          Manage Plan
+        </button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-[#f9f9f9]/80 dark:bg-gray-900/80 backdrop-blur-xl border-t border-[#adb3b4]/15 shadow-[0_-4px_20px_rgba(190,0,56,0.05)] md:hidden rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-[#5a6061] dark:text-gray-500 p-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#5a6061] dark:text-gray-500 p-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Trades</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#5a6061] dark:text-gray-500 p-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Finance</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#be0038] dark:text-[#ff385c] p-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-wider mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

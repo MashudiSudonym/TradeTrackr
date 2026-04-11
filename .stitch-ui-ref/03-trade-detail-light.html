@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TradeTrackr | Trade Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f9",
+                        "on-surface": "#2d3435",
+                        "inverse-primary": "#ff5169",
+                        "primary-container": "#ffdada",
+                        "on-secondary-container": "#525151",
+                        "tertiary-dim": "#006104",
+                        "on-tertiary-fixed": "#004002",
+                        "primary-dim": "#a80030",
+                        "tertiary-container": "#7aee68",
+                        "on-secondary-fixed": "#403f3f",
+                        "inverse-surface": "#0c0f0f",
+                        "error-container": "#fe8b70",
+                        "secondary-container": "#e5e2e1",
+                        "on-error-container": "#742410",
+                        "primary-fixed": "#ffdada",
+                        "inverse-on-surface": "#9c9d9d",
+                        "surface-variant": "#dde4e5",
+                        "on-primary-fixed": "#840024",
+                        "outline-variant": "#adb3b4",
+                        "error": "#9e422c",
+                        "primary-fixed-dim": "#ffc6c8",
+                        "tertiary-fixed": "#7aee68",
+                        "on-tertiary": "#ebffe0",
+                        "on-secondary": "#fbf8f8",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#5a6061",
+                        "secondary": "#605f5f",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-tertiary-fixed-variant": "#006104",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "tertiary-fixed-dim": "#6cdf5c",
+                        "on-primary": "#fff6f5",
+                        "surface-container": "#ebeeef",
+                        "surface-dim": "#d4dbdd",
+                        "secondary-dim": "#535353",
+                        "error-dim": "#5c1202",
+                        "on-background": "#2d3435",
+                        "on-primary-container": "#a60030",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-high": "#e4e9ea",
+                        "on-error": "#fff7f6",
+                        "surface-container-highest": "#dde4e5",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#757c7d",
+                        "primary": "#be0038",
+                        "surface-bright": "#f9f9f9",
+                        "surface-tint": "#be0038",
+                        "on-tertiary-container": "#005603",
+                        "tertiary": "#006f05",
+                        "surface-container-low": "#f2f4f4",
+                        "on-primary-fixed-variant": "#b90036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; color: #2d3435; }
+        .headline-font { font-family: 'Manrope', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation -->
+<header class="w-full top-0 sticky z-50 bg-[#f2f4f4] dark:bg-gray-900">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 duration-150 p-2 hover:bg-gray-200/50 rounded-full">
+<span class="material-symbols-outlined text-[#5a6061]">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#be0038]">account_balance_wallet</span>
+<h1 class="font-['Manrope'] headline-sm text-[1.5rem] tracking-tight font-bold text-[#2d3435]">EURUSD SELL</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-150 p-2 hover:bg-gray-200/50 rounded-full">
+<span class="material-symbols-outlined text-[#5a6061]">share</span>
+</button>
+<button class="active:scale-95 duration-150 p-2 hover:bg-gray-200/50 rounded-full">
+<span class="material-symbols-outlined text-[#be0038]">settings</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 pb-32">
+<!-- Hero Metrics: Asymmetric Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+<!-- Primary Net Profit Card -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary"></div>
+<div>
+<span class="font-label text-[0.75rem] uppercase tracking-[0.05rem] text-on-surface-variant">Net Profit / Loss</span>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-headline text-[3.5rem] font-extrabold text-on-surface tracking-tighter">+$1,420.50</span>
+<span class="font-label text-tertiary font-semibold">+2.4%</span>
+</div>
+</div>
+<div class="mt-8 flex gap-8">
+<div>
+<span class="font-label text-[0.65rem] uppercase tracking-[0.05rem] text-outline">Swap</span>
+<p class="text-on-surface font-semibold">-$12.00</p>
+</div>
+<div>
+<span class="font-label text-[0.65rem] uppercase tracking-[0.05rem] text-outline">Commission</span>
+<p class="text-on-surface font-semibold">-$7.50</p>
+</div>
+<div>
+<span class="font-label text-[0.65rem] uppercase tracking-[0.05rem] text-outline">Volume</span>
+<p class="text-on-surface font-semibold">5.00 Lots</p>
+</div>
+</div>
+<div class="absolute top-4 right-6 opacity-10">
+<span class="material-symbols-outlined text-[8rem]" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+<!-- Trade Status Card -->
+<div class="md:col-span-4 bg-tertiary-container/30 rounded-xl p-8 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 bg-tertiary rounded-full flex items-center justify-center mb-4 shadow-[0_12px_32px_rgba(0,111,5,0.2)]">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<h3 class="font-headline text-xl font-bold text-on-tertiary-container">Take Profit Hit</h3>
+<p class="text-on-tertiary-container/70 text-sm mt-1">Successfully closed at target price.</p>
+<div class="mt-4 px-4 py-1 bg-tertiary/10 rounded-full">
+<span class="font-label text-[0.7rem] uppercase font-bold text-tertiary">Closed</span>
+</div>
+</div>
+</div>
+<!-- Execution Details & Chart Visual -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Execution Column -->
+<div class="lg:col-span-1 space-y-12">
+<section>
+<h2 class="font-headline text-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                        TIMELINE
+                    </h2>
+<div class="relative space-y-8 pl-4 border-l border-outline-variant/30">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-outline-variant"></div>
+<span class="font-label text-[0.65rem] uppercase tracking-widest text-on-surface-variant">Opened</span>
+<p class="font-headline font-semibold text-on-surface">Oct 24, 2023 — 09:15 AM</p>
+<p class="text-xs text-on-surface-variant">NY Session Opening</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2 h-2 rounded-full bg-primary"></div>
+<span class="font-label text-[0.65rem] uppercase tracking-widest text-on-surface-variant">Closed</span>
+<p class="font-headline font-semibold text-on-surface">Oct 25, 2023 — 02:40 PM</p>
+<p class="text-xs text-on-surface-variant">Duration: 1d 5h 25m</p>
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-headline text-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">adjust</span>
+                        PRICING
+                    </h2>
+<div class="space-y-4">
+<div class="p-4 bg-surface-container-low rounded-xl flex justify-between items-center">
+<span class="font-label text-[0.7rem] font-medium text-on-surface-variant">Entry Price</span>
+<span class="font-headline font-bold text-on-surface">1.08450</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl flex justify-between items-center">
+<span class="font-label text-[0.7rem] font-medium text-on-surface-variant">Exit Price</span>
+<span class="font-headline font-bold text-on-surface">1.07250</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl flex justify-between items-center border-l-4 border-primary">
+<span class="font-label text-[0.7rem] font-medium text-on-surface-variant">Stop Loss</span>
+<span class="font-headline font-bold text-error">1.09100</span>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl flex justify-between items-center border-l-4 border-tertiary">
+<span class="font-label text-[0.7rem] font-medium text-on-surface-variant">Take Profit</span>
+<span class="font-headline font-bold text-tertiary">1.07250</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Reason & Visual Column -->
+<div class="lg:col-span-2 space-y-12">
+<section>
+<h2 class="font-headline text-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">description</span>
+                        TRADE RATIONALE
+                    </h2>
+<div class="bg-surface-container-low p-8 rounded-xl relative">
+<span class="absolute top-6 right-8 text-[4rem] text-outline/10 material-symbols-outlined">format_quote</span>
+<p class="font-body text-on-surface-variant leading-relaxed italic">
+                            "Price rejected the 1.08500 resistance level with a bearish engulfing candle on the 4H timeframe. DXY showing strength pre-London session. Strategy: Mean Reversion to the weekly pivot. Stop loss placed above the previous swing high."
+                        </p>
+<div class="mt-6 flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface text-[0.65rem] font-bold rounded-full uppercase tracking-tighter">Resistance Bounce</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface text-[0.65rem] font-bold rounded-full uppercase tracking-tighter">4H Engulfing</span>
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface text-[0.65rem] font-bold rounded-full uppercase tracking-tighter">DXY Correlated</span>
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-headline text-sm font-bold text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">image</span>
+                        EXECUTION PROOF
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="group relative rounded-xl overflow-hidden aspect-video bg-surface-container cursor-zoom-in">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Technical analysis candlestick trading chart with red and green bars and volume indicators on a dark interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ggOFQparL2DCTsQcRs4WSX-B-YrP6CRwGkzsMvbEvm1h1W8l6XoGqj0_EbItoZ9ceiG7Z9KXA09xhQIJS3fEiMZg69DGQkHwunxpBVfrm-4YWCiWSYHt2Ke16--zwZm2AVorAQ6MNEu7cT2OyphdsKj_OHM6Xe9nEvTFQUP1cg8BBdbhMfRxfVAlhHUEEv8OZwZUSM1YUHE9gkAoxLEkOceGf9VdnTAe1Br72JOW5ICJT6URWeyIJt2VV1hL1ifFslczeFrimeg"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-black/60 backdrop-blur-md text-white text-[0.6rem] px-2 py-1 rounded-md uppercase font-bold">Entry Setup</span>
+</div>
+</div>
+<div class="group relative rounded-xl overflow-hidden aspect-video bg-surface-container cursor-zoom-in">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Digital screen showing complex financial data and stock market indexes with glowing lines and numbers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx9kTW3YZ6RiOlXlzKOlWALWsd2ZxhXfq0w7x8edQdsSlafcS7p78e3GLTEYs2BcXqrIAJ_gKTSz9gUgg1z0Akw7UH7N4JQ6QrRXcsKULUORWuwfJrDq9rjmmnf4FE5QK1UI1-m6iR3tSU9kvrnx7UOjDhI2uIwneukN-CrdVJysP7A6i2OQq3abwrTHjqozPqsVVF3E4rgKHtTLzZKArGCfGgRLb4kyFG9l-3sstegaWp3gcYwc5CzIIVe4fV5Qme2Yh8aTum2lY"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-black/60 backdrop-blur-md text-white text-[0.6rem] px-2 py-1 rounded-md uppercase font-bold">Exit Context</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Secondary Actions at bottom -->
+<footer class="mt-20 pt-8 border-t border-outline-variant/15 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex gap-4">
+<button class="px-8 py-3 bg-primary text-on-primary rounded-full font-headline font-bold text-sm shadow-[0_12px_32px_rgba(190,0,56,0.15)] active:scale-95 transition-all">
+                    Edit Trade Details
+                </button>
+<button class="px-8 py-3 bg-surface-container-high text-on-surface rounded-full font-headline font-bold text-sm active:scale-95 transition-all">
+                    Duplicate Log
+                </button>
+</div>
+<button class="text-error font-headline font-bold text-sm flex items-center gap-2 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-sm">delete</span>
+                Delete Permanent Log
+            </button>
+</footer>
+</main>
+<!-- Bottom Navigation Shell (Consistent with Shared Components) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-[#f9f9f9]/80 dark:bg-gray-950/80 backdrop-blur-md shadow-[0_-4px_20px_rgba(190,0,56,0.05)] border-t border-[#adb3b4]/15">
+<a class="flex flex-col items-center justify-center text-[#5a6061] transition-all hover:text-[#be0038] active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#be0038] bg-[#be0038]/10 rounded-full px-4 py-1 transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Trades</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5a6061] transition-all hover:text-[#be0038] active:scale-90" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5a6061] transition-all hover:text-[#be0038] active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Profile</span>
+</a>
+</nav>
+</body></html>

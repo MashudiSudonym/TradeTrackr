@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#f9f9f9",
+                        "on-surface": "#1a1d1e",
+                        "inverse-primary": "#ff5169",
+                        "primary-container": "#ffdada",
+                        "on-secondary-container": "#3d3d3d",
+                        "tertiary-dim": "#006104",
+                        "on-tertiary-fixed": "#004002",
+                        "primary-dim": "#a80030",
+                        "tertiary-container": "#7aee68",
+                        "on-secondary-fixed": "#403f3f",
+                        "inverse-surface": "#0c0f0f",
+                        "error-container": "#fe8b70",
+                        "secondary-container": "#e1dedd",
+                        "on-error-container": "#742410",
+                        "primary-fixed": "#ffdada",
+                        "inverse-on-surface": "#9c9d9d",
+                        "surface-variant": "#dde4e5",
+                        "on-primary-fixed": "#840024",
+                        "outline-variant": "#9ca3a4",
+                        "error": "#b32b1d",
+                        "primary-fixed-dim": "#ffc6c8",
+                        "tertiary-fixed": "#7aee68",
+                        "on-tertiary": "#ebffe0",
+                        "on-secondary": "#fbf8f8",
+                        "surface": "#f9f9f9",
+                        "on-surface-variant": "#444b4c",
+                        "secondary": "#525252",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-tertiary-fixed-variant": "#006104",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "tertiary-fixed-dim": "#6cdf5c",
+                        "on-primary": "#fff6f5",
+                        "surface-container": "#e4e8e9",
+                        "surface-dim": "#d4dbdd",
+                        "secondary-dim": "#535353",
+                        "error-dim": "#5c1202",
+                        "on-background": "#1a1d1e",
+                        "on-primary-container": "#a60030",
+                        "secondary-fixed": "#e5e2e1",
+                        "surface-container-high": "#dde3e5",
+                        "on-error": "#fff7f6",
+                        "surface-container-highest": "#d6dde0",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#636b6c",
+                        "primary": "#be0038",
+                        "surface-bright": "#f9f9f9",
+                        "surface-tint": "#be0038",
+                        "on-tertiary-container": "#005603",
+                        "tertiary": "#006204",
+                        "surface-container-low": "#eff1f2",
+                        "on-primary-fixed-variant": "#b90036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }</script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; }
+        .headline-font { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface antialiased pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-[#f9f9f9] dark:bg-gray-950">
+<div class="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#be0038] opacity-90" data-icon="account_balance_wallet">account_balance_wallet</span>
+<h1 class="text-xl font-bold text-[#2d3435] dark:text-gray-100 headline-font tracking-tight">TradeTrackr</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-200/50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[#5a6061] opacity-90" data-icon="search">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-gray-200/50 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[#5a6061] opacity-90" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-8 pb-12">
+<!-- Hero Header Section -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<p class="font-label text-[0.75rem] font-medium uppercase tracking-[0.05rem] mb-2 text-on-surface-variant font-medium">Portfolio Overview</p>
+<h2 class="headline-font font-extrabold text-[3.5rem] leading-none text-on-surface tracking-tight">$12,450.00</h2>
+<div class="flex items-center gap-2 mt-2 text-tertiary">
+<span class="material-symbols-outlined text-sm opacity-90" data-icon="trending_up">trending_up</span>
+<span class="font-semibold text-sm">+8.4% this month</span>
+</div>
+</div>
+<button class="bg-[#be0038] text-white px-8 py-4 rounded-full font-bold flex items-center gap-3 shadow-[0_12px_32px_rgba(190,0,56,0.15)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined opacity-90" data-icon="add">add</span>
+                    Add Trade
+                </button>
+</div>
+</section>
+<!-- Bento Grid Metrics -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+<!-- Win Rate Card -->
+<div class="bg-surface-container-high p-8 rounded-xl flex flex-col justify-between aspect-square md:aspect-auto">
+<span class="font-label text-[0.75rem] font-medium uppercase tracking-[0.05rem] text-on-surface-variant">Win Rate</span>
+<div>
+<p class="headline-font text-4xl font-bold text-on-surface">64%</p>
+<div class="w-full bg-surface-container h-1.5 mt-4 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[64%]"></div>
+</div>
+</div>
+</div>
+<!-- Total Profit Card -->
+<div class="bg-surface-container-high p-8 rounded-xl flex flex-col justify-between aspect-square md:aspect-auto">
+<span class="font-label text-[0.75rem] font-medium uppercase tracking-[0.05rem] text-on-surface-variant">Total Profit</span>
+<div>
+<p class="headline-font text-4xl font-bold text-tertiary">+$2,100</p>
+<p class="text-xs mt-2">Realized gains YTD</p>
+</div>
+</div>
+<!-- Recommendation Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/15 md:col-span-1 lg:col-span-2 relative overflow-hidden group">
+<div class="relative z-10">
+<span class="font-label text-[0.75rem] font-medium uppercase tracking-[0.05rem] text-primary">Top Performer</span>
+<h3 class="headline-font text-3xl font-extrabold text-on-surface mt-2">NDX100</h3>
+<p class="text-sm mt-2 max-w-xs">Your tech-heavy positions have a 78% win rate. Consider increasing exposure to NASDAQ index futures.</p>
+<div class="mt-6">
+<button class="text-on-surface font-bold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Strategy <span class="material-symbols-outlined text-sm opacity-90" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Abstract Design Element -->
+<div class="absolute top-0 right-0 -mr-16 -mt-16 w-48 h-48 bg-primary/5 rounded-full blur-3xl"></div>
+</div>
+</section>
+<!-- Equity Curve & Analytics -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Chart Card -->
+<div class="lg:col-span-2 bg-surface-container-low p-8 rounded-xl">
+<div class="flex justify-between items-center mb-8">
+<h4 class="headline-font text-lg font-bold">Equity Curve</h4>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-lowest rounded-full text-xs font-bold text-on-surface cursor-pointer">1W</span>
+<span class="px-3 py-1 bg-[#be0038]/10 rounded-full text-xs font-bold text-primary cursor-pointer">1M</span>
+<span class="px-3 py-1 bg-surface-container-lowest rounded-full text-xs font-bold text-on-surface cursor-pointer">ALL</span>
+</div>
+</div>
+<!-- Mockup Line Chart -->
+<div class="h-64 flex items-end gap-1 group">
+<div class="flex-1 bg-surface-container h-[40%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-surface-container h-[45%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-surface-container h-[42%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-surface-container h-[55%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-surface-container h-[65%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-surface-container h-[60%] rounded-t-sm group-hover:bg-primary/20 transition-colors"></div>
+<div class="flex-1 bg-primary/40 h-[75%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/40 h-[85%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary/40 h-[80%] rounded-t-sm"></div>
+<div class="flex-1 bg-primary h-[100%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-4 text-[0.65rem] uppercase font-bold text-on-surface-variant tracking-widest">
+<span>Oct 01</span>
+<span>Oct 15</span>
+<span>Oct 31</span>
+</div>
+</div>
+<!-- Recent Activity Tonal Bucket -->
+<div class="bg-surface-container-high p-8 rounded-xl flex flex-col">
+<h4 class="headline-font text-lg font-bold mb-6">Recent Trades</h4>
+<div class="space-y-6">
+<div class="flex items-center gap-4 group">
+<div class="w-1 h-10 bg-tertiary rounded-full"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">TSLA Long</p>
+<p class="text-xs">Closed at $242.50</p>
+</div>
+<p class="font-bold text-tertiary">+$420</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-1 h-10 bg-error rounded-full"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">BTC/USD Short</p>
+<p class="text-xs">Stopped out</p>
+</div>
+<p class="font-bold text-error">-$115</p>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-1 h-10 bg-tertiary rounded-full"></div>
+<div class="flex-1">
+<p class="font-bold text-sm">AAPL Long</p>
+<p class="text-xs">Closed at $195.00</p>
+</div>
+<p class="font-bold text-tertiary">+$280</p>
+</div>
+</div>
+<button class="mt-auto pt-6 text-[#be0038] font-bold text-xs uppercase tracking-widest text-center">View All History</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-[#f9f9f9]/80 backdrop-blur-md shadow-[0_-4px_20px_rgba(190,0,56,0.05)] border-t border-[#adb3b4]/15">
+<a class="flex flex-col items-center justify-center text-[#be0038] bg-[#be0038]/10 rounded-full px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined opacity-90" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5a6061] hover:text-[#be0038] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined opacity-90" data-icon="analytics">analytics</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Trades</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5a6061] hover:text-[#be0038] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined opacity-90" data-icon="payments">payments</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Finance</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#5a6061] hover:text-[#be0038] transition-all active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined opacity-90" data-icon="person">person</span>
+<span class="font-['Inter'] text-[0.75rem] font-medium uppercase tracking-[0.05rem]">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation (Integrated in Top Bar for high-end feel) -->
+<div class="hidden md:flex fixed left-0 top-20 h-[calc(100vh-5rem)] w-24 flex-col items-center py-8 gap-8 border-r border-outline-variant/10">
+<a class="p-3 bg-[#be0038]/10 text-[#be0038] rounded-2xl" href="#" title="Dashboard">
+<span class="material-symbols-outlined opacity-90" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+</a>
+<a class="p-3 text-[#5a6061] hover:text-[#be0038] transition-colors" href="#" title="Trades">
+<span class="material-symbols-outlined opacity-90" data-icon="analytics">analytics</span>
+</a>
+<a class="p-3 text-[#5a6061] hover:text-[#be0038] transition-colors" href="#" title="Finance">
+<span class="material-symbols-outlined opacity-90" data-icon="payments">payments</span>
+</a>
+<a class="p-3 text-[#5a6061] hover:text-[#be0038] transition-colors" href="#" title="Profile">
+<span class="material-symbols-outlined opacity-90" data-icon="person">person</span>
+</a>
+</div>
+</body></html>
