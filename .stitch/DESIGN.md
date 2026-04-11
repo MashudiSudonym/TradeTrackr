@@ -207,6 +207,10 @@ Reference screens in the Stitch project:
 
 | Screen | ID | Width | Height |
 |--------|-----|-------|--------|
+| **Login (Light Mode)** | `265c16f1397543c9aa9cfaae453117cc` | 780 | 1768 |
+| **Login Screen (Dark Mode)** | `ffa921cbbcbf4f0e8da814b091f98bf0` | 780 | 1768 |
+| **Registration** | `fc982a47dd6f471dbf13f3eba93148c5` | 780 | 2104 |
+| **Registration (Dark Mode)** | `55d07d5fb3234ba4aee67d218576d052` | 780 | 2120 |
 | Dashboard | `3ab1efbc1cae40f0addcd6c61906a3b3` | 780 | 4556 |
 | Dashboard (Dark) | `675d1f82285f44d9a43749ea9e77aadd` | 780 | 4678 |
 | Dashboard (Improved Contrast) | `8eb8bfbba7a64587aca86008bd57fee8` | 780 | 4556 |
