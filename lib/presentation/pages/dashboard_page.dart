@@ -165,7 +165,7 @@ class _HeroSection extends StatelessWidget {
             ),
           ),
           loading: () => _shimmerText(width: 240, height: 56),
-          error: (_, __) => Text(
+          error: (_, _) => Text(
             '\$0.00',
             style: GoogleFonts.manrope(
               fontSize: 56,
@@ -199,7 +199,7 @@ class _HeroSection extends StatelessWidget {
                       ),
                     ),
                     loading: () => _shimmerText(width: 60, height: 14),
-                    error: (_, __) => const SizedBox.shrink(),
+                    error: (_, _) => const SizedBox.shrink(),
                   ),
                 ],
               ),
@@ -288,9 +288,7 @@ class _BentoMetrics extends StatelessWidget {
                 cs: cs,
                 label: 'TOP PICK',
                 value: topRec?.title.split(' ').take(2).join(' ') ?? 'N/A',
-                subtitle: topRec != null
-                    ? topRec.description.split('.').first
-                    : null,
+                subtitle: topRec?.description.split('.').first,
               ),
             ),
           ],
@@ -307,7 +305,7 @@ class _BentoMetrics extends StatelessWidget {
           ),
         ),
       ),
-      error: (_, __) => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
     );
   }
 }
@@ -578,7 +576,7 @@ class _RecentTradesSection extends StatelessWidget {
               child: _shimmerCard(height: 72),
             )),
           ),
-          error: (_, __) => Center(
+          error: (_, _) => Center(
             child: Text(
               'Could not load trades',
               style: GoogleFonts.inter(fontSize: 14, color: cs.error),

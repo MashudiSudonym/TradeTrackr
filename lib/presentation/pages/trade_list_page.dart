@@ -118,7 +118,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
                 value: analyticsAsync.when(
                   data: (a) => a.formattedWinRate,
                   loading: () => '...',
-                  error: (_, __) => 'N/A',
+                  error: (_, _) => 'N/A',
                 ),
               ),
               const SizedBox(width: 12),
@@ -128,7 +128,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
                 value: analyticsAsync.when(
                   data: (a) => a.profitFactor.toStringAsFixed(2),
                   loading: () => '...',
-                  error: (_, __) => 'N/A',
+                  error: (_, _) => 'N/A',
                 ),
               ),
             ],
@@ -240,7 +240,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
               child: ListView.separated(
                 padding: const EdgeInsets.fromLTRB(20, 16, 20, 80),
                 itemCount: filtered.length,
-                separatorBuilder: (_, __) => const SizedBox(height: 16),
+                separatorBuilder: (_, _) => const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   return _TradeListCard(
                     trade: filtered[index],
@@ -267,7 +267,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
       loading: () => Center(
         child: CircularProgressIndicator(color: cs.primary),
       ),
-      error: (_, __) => Center(
+      error: (_, _) => Center(
         child: Text(
           'Could not load trades',
           style: GoogleFonts.inter(fontSize: 14, color: cs.error),

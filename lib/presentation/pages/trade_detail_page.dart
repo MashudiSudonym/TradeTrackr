@@ -39,7 +39,7 @@ class TradeDetailPage extends ConsumerWidget {
                 )
               : const SizedBox.shrink(),
           loading: () => const SizedBox.shrink(),
-          error: (_, __) => const SizedBox.shrink(),
+          error: (_, _) => const SizedBox.shrink(),
         ),
         centerTitle: false,
         actions: [
@@ -89,7 +89,7 @@ class TradeDetailPage extends ConsumerWidget {
         loading: () => Center(
           child: CircularProgressIndicator(color: cs.primary),
         ),
-        error: (_, __) => Center(
+        error: (_, _) => Center(
           child: Text(
             'Error loading trade',
             style: GoogleFonts.inter(fontSize: 14, color: cs.error),

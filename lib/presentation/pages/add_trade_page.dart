@@ -308,11 +308,12 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
           },
         );
         if (date != null) {
+          if (!mounted) return;
           final time = await showTimePicker(
             context: context,
             initialTime: TimeOfDay.fromDateTime(current),
           );
-          if (time != null) {
+          if (time != null && mounted) {
             onChanged(DateTime(
               date.year, date.month, date.day,
               time.hour, time.minute,

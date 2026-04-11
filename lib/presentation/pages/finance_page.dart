@@ -106,7 +106,7 @@ class FinancePage extends ConsumerWidget {
     return ListView.separated(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 80),
       itemCount: records.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 16),
+      separatorBuilder: (_, _) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
         final record = records[index];
         return _FinanceCard(record: record, cs: cs);

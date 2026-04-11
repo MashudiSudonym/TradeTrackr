@@ -175,7 +175,7 @@ class ProfilePage extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, __) => Center(
+        error: (_, _) => Center(
           child: Text(
             'Could not load profile',
             style: GoogleFonts.inter(fontSize: 14, color: cs.error),
@@ -320,7 +320,7 @@ class ProfilePage extends ConsumerWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
-      error: (_, __) => const SizedBox.shrink(),
+      error: (_, _) => const SizedBox.shrink(),
     );
   }
 
