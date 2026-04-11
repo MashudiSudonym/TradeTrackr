@@ -112,10 +112,6 @@ class _TopAppBar extends StatelessWidget {
               onPressed: () {},
               icon: Icon(Icons.search, color: cs.onSurfaceVariant, size: 24),
             ),
-            IconButton(
-              onPressed: () => context.push('/profile'),
-              icon: Icon(Icons.settings_outlined, color: cs.onSurfaceVariant, size: 24),
-            ),
           ],
         ),
       ),
