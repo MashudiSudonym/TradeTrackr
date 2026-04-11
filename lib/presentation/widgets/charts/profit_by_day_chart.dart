@@ -16,10 +16,8 @@ class ProfitByDayChart extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     const data = ChartMockData.profitByDay;
 
-    final maxAbsValue = data
-        .map((d) => d.profit.abs())
-        .reduce((a, b) => a > b ? a : b);
-    final yInterval = (maxAbsValue * 1.2 / 4).ceilToDouble();
+    const maxAbsValue = 285.0; // from mock data
+    const yInterval = 85.0; // ceilToDouble() of 285*1.2/4
 
     return ChartContainer(
       title: 'PROFIT BY DAY',

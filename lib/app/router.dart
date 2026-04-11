@@ -28,6 +28,17 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const RegisterPage(),
       ),
+      // Full-screen routes outside shell (accessed via context.push)
+      GoRoute(
+        path: '/import-export',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ImportExportPage(),
+      ),
+      GoRoute(
+        path: '/recommendations',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const RecommendationsPage(),
+      ),
       // Main shell with bottom navigation
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
@@ -82,6 +93,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/profile',
                 builder: (context, state) => const ProfilePage(),
+                routes: [
+                  GoRoute(
+                    path: 'settings',
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const SettingsPage(),
+                  ),
+                ],
               ),
             ],
           ),

@@ -3,11 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../domain/entities/closed_position.dart';
 import '../providers/analytics_provider.dart';
 import '../providers/recommendation_provider.dart';
 import '../providers/trade_provider.dart';
 import '../../app/theme/app_colors.dart';
+import '../widgets/widgets.dart';
 
 /// Dashboard — the home screen of TradeTrackr.
 ///
@@ -47,10 +47,10 @@ class DashboardPage extends ConsumerWidget {
 
             const SizedBox(height: 32),
 
-            // ── Equity Chart Placeholder ─────────────────────
+            // ── Charts Section ────────────────────────────────────
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _EquityChartSection(cs: cs),
+              child: _ChartsSection(cs: cs),
             ),
 
             const SizedBox(height: 32),
@@ -405,97 +405,51 @@ class _WinRateProgress extends StatelessWidget {
 }
 
 // ───────────────────────────────────────────────────────────────
-// Equity Chart Section
+// Charts Section — Analytics + Recommendations
 // ───────────────────────────────────────────────────────────────
 
-class _EquityChartSection extends StatefulWidget {
+class _ChartsSection extends StatelessWidget {
   final ColorScheme cs;
 
-  const _EquityChartSection({required this.cs});
-
-  @override
-  State<_EquityChartSection> createState() => _EquityChartSectionState();
-}
-
-class _EquityChartSectionState extends State<_EquityChartSection> {
-  int _selectedRange = 2; // default: ALL
-
-  static const _ranges = ['1W', '1M', 'ALL'];
+  const _ChartsSection({required this.cs});
 
   @override
   Widget build(BuildContext context) {
-    final cs = widget.cs;
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text(
-              'Equity Curve',
-              style: GoogleFonts.manrope(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: cs.onSurface,
-              ),
-            ),
-            const Spacer(),
-            ...List.generate(_ranges.length, (i) {
-              final selected = i == _selectedRange;
-              return Padding(
-                padding: const EdgeInsets.only(left: 8),
-                child: GestureDetector(
-                  onTap: () => setState(() => _selectedRange = i),
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: selected
-                          ? cs.primaryContainer
-                          : cs.surfaceContainerHigh,
-                      borderRadius: BorderRadius.circular(9999),
-                    ),
-                    child: Text(
-                      _ranges[i],
-                      style: GoogleFonts.inter(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                        color: selected
-                            ? cs.onPrimaryContainer
-                            : cs.onSurfaceVariant,
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            }),
-          ],
-        ),
-        const SizedBox(height: 16),
-        // Chart placeholder
-        Container(
-          height: 180,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: cs.surfaceContainerLow,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.show_chart, size: 40, color: cs.outline),
-                const SizedBox(height: 8),
-                Text(
-                  'Equity curve coming soon',
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w400,
-                    color: cs.onSurfaceVariant,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        // Analytics Filter Bar
+        AnalyticsFilterBar(),
+
+        SizedBox(height: 16),
+
+        // Equity Curve Chart
+        EquityCurveChart(),
+
+        SizedBox(height: 16),
+
+        // P/L Distribution Chart
+        PlDistributionChart(),
+
+        SizedBox(height: 16),
+
+        // Win/Loss by Symbol Chart
+        WinLossBySymbolChart(),
+
+        SizedBox(height: 16),
+
+        // Win/Loss by Reason Chart
+        WinLossByReasonChart(),
+
+        SizedBox(height: 16),
+
+        // Profit by Day Chart
+        ProfitByDayChart(),
+
+        SizedBox(height: 16),
+
+        // Profit by Session Chart
+        ProfitBySessionChart(),
       ],
     );
   }
@@ -565,7 +519,11 @@ class _RecentTradesSection extends StatelessWidget {
               children: recent.map((trade) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16),
-                  child: _TradeCard(trade: trade, cs: cs),
+                  child: TradeCard(
+                    position: trade,
+                    compact: true,
+                    onTap: () => context.push('/trades/${trade.id}'),
+                  ),
                 );
               }).toList(),
             );
@@ -589,130 +547,13 @@ class _RecentTradesSection extends StatelessWidget {
 }
 
 // ───────────────────────────────────────────────────────────────
-// Trade Card (inline)
-// ───────────────────────────────────────────────────────────────
-
-class _TradeCard extends StatelessWidget {
-  final ClosedPosition trade;
-  final ColorScheme cs;
-
-  const _TradeCard({required this.trade, required this.cs});
-
-  @override
-  Widget build(BuildContext context) {
-    final isWin = trade.isWin;
-    final accentColor = isWin ? cs.tertiary : cs.error;
-
-    return GestureDetector(
-      onTap: () => context.push('/trades/${trade.id}'),
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerLow,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            // Accent bar
-            Container(
-              width: 4,
-              height: 40,
-              decoration: BoxDecoration(
-                color: accentColor,
-                borderRadius: BorderRadius.circular(2),
-              ),
-            ),
-            const SizedBox(width: 12),
-            // Symbol + side + date
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        trade.symbol,
-                        style: GoogleFonts.manrope(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: cs.onSurface,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: trade.side.name == 'BUY'
-                              ? cs.tertiaryContainer.withValues(alpha: 0.3)
-                              : cs.errorContainer.withValues(alpha: 0.3),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          trade.side.name,
-                          style: GoogleFonts.inter(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w600,
-                            color: trade.side.name == 'BUY'
-                                ? cs.tertiary
-                                : cs.error,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${_formatDate(trade.closeTime)}  •  ${trade.volume.toStringAsFixed(1)} lots',
-                    style: GoogleFonts.inter(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: cs.onSurfaceVariant,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // P/L
-            Text(
-              trade.formattedProfit,
-              style: GoogleFonts.manrope(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: accentColor,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  String _formatDate(DateTime dt) {
-    return '${dt.day.toString().padLeft(2, '0')}/${dt.month.toString().padLeft(2, '0')}/${dt.year}';
-  }
-}
-
-// ───────────────────────────────────────────────────────────────
 // Shimmer placeholders
 // ───────────────────────────────────────────────────────────────
 
 Widget _shimmerCard({double height = 100}) {
-  return Container(
-    height: height,
-    decoration: BoxDecoration(
-      color: const Color(0xFFebeeef),
-      borderRadius: BorderRadius.circular(12),
-    ),
-  );
+  return ShimmerPlaceholder.card(height: height);
 }
 
 Widget _shimmerText({required double width, required double height}) {
-  return Container(
-    width: width,
-    height: height,
-    decoration: BoxDecoration(
-      color: const Color(0xFFebeeef),
-      borderRadius: BorderRadius.circular(4),
-    ),
-  );
+  return ShimmerPlaceholder.text(width: width, height: height);
 }

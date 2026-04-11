@@ -17,10 +17,8 @@ class ProfitBySessionChart extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     const data = ChartMockData.profitBySession;
 
-    final maxAbsValue = data
-        .map((s) => s.profit.abs())
-        .reduce((a, b) => a > b ? a : b);
-    final yInterval = (maxAbsValue * 1.2 / 4).ceilToDouble();
+    const maxAbsValue = 320.0; // from mock data
+    const yInterval = 96.0; // ceilToDouble() of 320*1.2/4
 
     return ChartContainer(
       title: 'PROFIT BY SESSION',

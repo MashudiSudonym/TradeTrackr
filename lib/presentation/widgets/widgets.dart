@@ -7,6 +7,13 @@
 
 export 'analytics_filter_bar.dart';
 export 'app_text_form_field.dart';
+export 'charts/chart_container.dart';
+export 'charts/equity_curve_chart.dart';
+export 'charts/pl_distribution_chart.dart';
+export 'charts/profit_by_day_chart.dart';
+export 'charts/profit_by_session_chart.dart';
+export 'charts/win_loss_by_reason_chart.dart';
+export 'charts/win_loss_by_symbol_chart.dart';
 export 'close_position_sheet.dart';
 export 'date_range_picker.dart';
 export 'filter_bar.dart';

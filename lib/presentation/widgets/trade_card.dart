@@ -16,10 +16,15 @@ class TradeCard extends StatefulWidget {
     super.key,
     required this.position,
     this.onTap,
+    this.compact = false,
   });
 
   final ClosedPosition position;
   final VoidCallback? onTap;
+
+  /// When true, shows a shorter card variant suitable for dashboard lists.
+  /// Hides the percentage and reduces padding.
+  final bool compact;
 
   @override
   State<TradeCard> createState() => _TradeCardState();
@@ -90,17 +95,19 @@ class _TradeCardState extends State<TradeCard>
                 ),
                 // Icon in circle
                 Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: widget.compact
+                      ? const EdgeInsets.all(12)
+                      : const EdgeInsets.all(16),
                   child: Container(
-                    width: 40,
-                    height: 40,
+                    width: widget.compact ? 32 : 40,
+                    height: widget.compact ? 32 : 40,
                     decoration: BoxDecoration(
                       color: colorScheme.surfaceContainerHigh,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       Icons.show_chart,
-                      size: 20,
+                      size: widget.compact ? 16 : 20,
                       color: colorScheme.onSurfaceVariant,
                     ),
                   ),
@@ -138,18 +145,23 @@ class _TradeCardState extends State<TradeCard>
                     children: [
                       Text(
                         pos.formattedProfit,
-                        style: textTheme.headlineSmall?.copyWith(
+                        style: (widget.compact
+                                ? textTheme.bodyLarge
+                                : textTheme.headlineSmall)
+                            ?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: profitColor,
                         ),
                       ),
-                      const SizedBox(height: 2),
-                      Text(
-                        _formatPercentage(pos),
-                        style: textTheme.labelSmall?.copyWith(
-                          color: colorScheme.outlineVariant,
+                      if (!widget.compact) ...[
+                        const SizedBox(height: 2),
+                        Text(
+                          _formatPercentage(pos),
+                          style: textTheme.labelSmall?.copyWith(
+                            color: colorScheme.outlineVariant,
+                          ),
                         ),
-                      ),
+                      ],
                     ],
                   ),
                 ),
