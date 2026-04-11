@@ -98,10 +98,6 @@ class ProfilePage extends ConsumerWidget {
               ),
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.settings_outlined, color: cs.onSurfaceVariant, size: 24),
-            ),
           ],
         ),
       ),
