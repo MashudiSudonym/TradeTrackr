@@ -22,7 +22,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       // Check authentication status
       final isAuthenticated = ref.read(authStateProvider) != null;
       final isLoggingIn = state.matchedLocation == '/login' ||
-          state.matchedLocation == '/register';
+          state.matchedLocation == '/register' ||
+          state.matchedLocation == '/forgot-password';
 
       // If not authenticated and not on login/register page, redirect to login
       if (!isAuthenticated && !isLoggingIn) {
@@ -48,6 +49,11 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         path: '/register',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const RegisterPage(),
+      ),
+      GoRoute(
+        path: '/forgot-password',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ForgotPasswordPage(),
       ),
       // Full-screen routes outside shell (accessed via context.push)
       GoRoute(

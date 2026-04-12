@@ -237,9 +237,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     child: TextButton(
                       onPressed: _isLoading
                           ? null
-                          : () {
-                              // TODO: Navigate to forgot password
-                            },
+                          : () => context.go('/forgot-password'),
                       child: Text(
                         'Forgot Password?',
                         style: GoogleFonts.inter(

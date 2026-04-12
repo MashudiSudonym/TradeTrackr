@@ -48,6 +48,18 @@ class AuthNotifier extends _$AuthNotifier {
   void logout() {
     state = null;
   }
+
+  /// Reset password with email.
+  ///
+  /// Mock implementation - always succeeds.
+  /// In production, this would call Supabase auth password reset.
+  Future<void> resetPassword(String email) async {
+    // Simulate network delay for UX
+    await Future.delayed(const Duration(milliseconds: 800));
+
+    // Mock success - in production would send email via Supabase
+    // No state change needed for password reset
+  }
 }
 
 /// Provides the current authenticated user.

@@ -1,6 +1,7 @@
 export 'add_trade_page.dart';
 export 'dashboard_page.dart';
 export 'finance_page.dart';
+export 'forgot_password_page.dart';
 export 'import_export_page.dart';
 export 'login_page.dart';
 export 'profile_page.dart';
