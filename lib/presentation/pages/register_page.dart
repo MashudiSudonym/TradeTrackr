@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../providers/auth_provider.dart';
 
 /// Register page — full screen, no bottom navigation.
 ///
 /// Centered layout with display name, email, password, confirm password,
 /// sign up button, and navigation link to login.
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends ConsumerStatefulWidget {
   const RegisterPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  ConsumerState<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _RegisterPageState extends ConsumerState<RegisterPage> {
   final _displayNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -106,6 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _displayNameController,
                     hintText: 'Alex Rivers',
                     cs: cs,
+                    enabled: !_isLoading,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Display name is required';
@@ -122,6 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _emailController,
                     hintText: 'alex@example.com',
                     cs: cs,
+                    enabled: !_isLoading,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -142,6 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _passwordController,
                     hintText: 'Min. 6 characters',
                     cs: cs,
+                    enabled: !_isLoading,
                     obscureText: _obscurePassword,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -153,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                     suffixIcon: GestureDetector(
-                      onTap: () => setState(() => _obscurePassword = !_obscurePassword),
+                      onTap: _isLoading ? null : () => setState(() => _obscurePassword = !_obscurePassword),
                       child: Icon(
                         _obscurePassword ? Icons.visibility_off : Icons.visibility,
                         color: cs.onSurfaceVariant,
@@ -170,6 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _confirmPasswordController,
                     hintText: 'Re-enter your password',
                     cs: cs,
+                    enabled: !_isLoading,
                     obscureText: _obscureConfirm,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -181,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       return null;
                     },
                     suffixIcon: GestureDetector(
-                      onTap: () => setState(() => _obscureConfirm = !_obscureConfirm),
+                      onTap: _isLoading ? null : () => setState(() => _obscureConfirm = !_obscureConfirm),
                       child: Icon(
                         _obscureConfirm ? Icons.visibility_off : Icons.visibility,
                         color: cs.onSurfaceVariant,
@@ -193,29 +200,41 @@ class _RegisterPageState extends State<RegisterPage> {
 
                   // ── Sign Up Button ─────────────────────────
                   GestureDetector(
-                    onTap: _handleSignUp,
+                    onTap: _isLoading ? null : _handleRegister,
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.primary, AppColors.primaryDim],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: [0.0, 1.0],
-                          transform: GradientRotation(135 * 3.14159 / 180),
-                        ),
+                        gradient: _isLoading
+                            ? null
+                            : const LinearGradient(
+                                colors: [AppColors.primary, AppColors.primaryDim],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                stops: [0.0, 1.0],
+                                transform: GradientRotation(135 * 3.14159 / 180),
+                              ),
+                        color: _isLoading ? cs.surfaceContainerLow : null,
                         borderRadius: BorderRadius.circular(9999),
                       ),
                       child: Center(
-                        child: Text(
-                          'Sign Up',
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: cs.onPrimary,
-                          ),
-                        ),
+                        child: _isLoading
+                            ? SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(cs.primary),
+                                ),
+                              )
+                            : Text(
+                                'Sign Up',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: cs.onPrimary,
+                                ),
+                              ),
                       ),
                     ),
                   ),
@@ -234,13 +253,13 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => context.go('/login'),
+                        onTap: _isLoading ? null : () => context.go('/login'),
                         child: Text(
                           'Sign In',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: cs.primary,
+                            color: _isLoading ? cs.onSurfaceVariant.withValues(alpha: 0.5) : cs.primary,
                           ),
                         ),
                       ),
@@ -255,12 +274,46 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _handleSignUp() {
+  Future<void> _handleRegister() async {
     if (_formKey.currentState!.validate()) {
-      // TODO: Implement sign up via auth provider
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registration coming soon')),
-      );
+      setState(() => _isLoading = true);
+
+      try {
+        final displayName = _displayNameController.text.trim();
+        final email = _emailController.text.trim();
+        final password = _passwordController.text;
+
+        await ref.read(authProvider.notifier).register(displayName, email, password);
+
+        if (mounted) {
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Registration successful!'),
+              backgroundColor: AppColors.success,
+              duration: Duration(seconds: 2),
+            ),
+          );
+
+          // Navigate to dashboard
+          context.go('/');
+        }
+      } catch (e) {
+        if (mounted) {
+          // Show error message
+          final theme = Theme.of(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Registration failed: ${e.toString()}'),
+              backgroundColor: theme.colorScheme.error,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() => _isLoading = false);
+        }
+      }
     }
   }
 }
@@ -295,6 +348,7 @@ class _TextFormField extends StatelessWidget {
   final ColorScheme cs;
   final String? Function(String?)? validator;
   final bool obscureText;
+  final bool enabled;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
 
@@ -304,6 +358,7 @@ class _TextFormField extends StatelessWidget {
     required this.cs,
     this.validator,
     this.obscureText = false,
+    this.enabled = true,
     this.keyboardType,
     this.suffixIcon,
   });
@@ -314,6 +369,7 @@ class _TextFormField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: keyboardType,
+      enabled: enabled,
       validator: validator,
       style: GoogleFonts.inter(fontSize: 14, color: cs.onSurface),
       decoration: InputDecoration(

@@ -4,9 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/theme_provider.dart';
+import '../providers/auth_provider.dart';
 import '../widgets/theme_toggle.dart';
 
-/// Settings page with theme toggle, navigation cards, and sign out.
+/// Settings page with theme toggle, navigation cards, and logout.
 ///
 /// Follows the "Curated Ledger" design system:
 /// - Surface backgrounds with tonal layering
@@ -50,7 +51,7 @@ class SettingsPage extends ConsumerWidget {
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSignOutButton(cs),
+              child: _buildLogoutButton(cs, ref, context),
             ),
 
             const SizedBox(height: 32),
@@ -211,11 +212,9 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildSignOutButton(ColorScheme cs) {
+  Widget _buildLogoutButton(ColorScheme cs, WidgetRef ref, BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // TODO: Implement sign out via auth provider
-      },
+      onTap: () => _handleLogout(ref, context, cs),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -225,7 +224,7 @@ class SettingsPage extends ConsumerWidget {
         ),
         child: Center(
           child: Text(
-            'Sign Out',
+            'Logout',
             style: GoogleFonts.inter(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -233,6 +232,69 @@ class SettingsPage extends ConsumerWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _handleLogout(WidgetRef ref, BuildContext context, ColorScheme cs) {
+    // Show confirmation dialog
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Logout',
+          style: GoogleFonts.manrope(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: cs.onSurface,
+          ),
+        ),
+        content: Text(
+          'Are you sure you want to logout?',
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: cs.onSurface,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => dialogContext.pop(),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.primary,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              dialogContext.pop();
+              // Perform logout
+              ref.read(authProvider.notifier).logout();
+
+              // Show confirmation and navigate to login
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Logged out successfully'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+                context.go('/login');
+              }
+            },
+            child: Text(
+              'Logout',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.error,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

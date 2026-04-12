@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../providers/auth_provider.dart';
 
 /// Login page — full screen, no bottom navigation.
 ///
 /// Centered layout with logo, email/password fields, sign in button,
 /// and navigation links to register and forgot password.
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _isLoading = false;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -108,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
+                    enabled: !_isLoading,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email is required';
@@ -166,6 +170,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextFormField(
                     controller: _passwordController,
                     obscureText: _obscurePassword,
+                    enabled: !_isLoading,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Password is required';
@@ -222,15 +227,17 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {
-                        // TODO: Navigate to forgot password
-                      },
+                      onPressed: _isLoading
+                          ? null
+                          : () {
+                              // TODO: Navigate to forgot password
+                            },
                       child: Text(
                         'Forgot Password?',
                         style: GoogleFonts.inter(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color: cs.primary,
+                          color: _isLoading ? cs.onSurfaceVariant.withValues(alpha: 0.5) : cs.primary,
                         ),
                       ),
                     ),
@@ -239,29 +246,41 @@ class _LoginPageState extends State<LoginPage> {
 
                   // ── Sign In Button ─────────────────────────
                   GestureDetector(
-                    onTap: _handleSignIn,
+                    onTap: _isLoading ? null : _handleLogin,
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [AppColors.primary, AppColors.primaryDim],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          stops: [0.0, 1.0],
-                          transform: GradientRotation(135 * 3.14159 / 180),
-                        ),
+                        gradient: _isLoading
+                            ? null
+                            : const LinearGradient(
+                                colors: [AppColors.primary, AppColors.primaryDim],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                stops: [0.0, 1.0],
+                                transform: GradientRotation(135 * 3.14159 / 180),
+                              ),
+                        color: _isLoading ? cs.surfaceContainerLow : null,
                         borderRadius: BorderRadius.circular(9999),
                       ),
                       child: Center(
-                        child: Text(
-                          'Sign In',
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: cs.onPrimary,
-                          ),
-                        ),
+                        child: _isLoading
+                            ? SizedBox(
+                                width: 20,
+                                height: 20,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(cs.primary),
+                                ),
+                              )
+                            : Text(
+                                'Sign In',
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: cs.onPrimary,
+                                ),
+                              ),
                       ),
                     ),
                   ),
@@ -280,13 +299,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () => context.go('/register'),
+                        onTap: _isLoading ? null : () => context.go('/register'),
                         child: Text(
                           'Register',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: cs.primary,
+                            color: _isLoading ? cs.onSurfaceVariant.withValues(alpha: 0.5) : cs.primary,
                           ),
                         ),
                       ),
@@ -301,12 +320,45 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _handleSignIn() {
+  Future<void> _handleLogin() async {
     if (_formKey.currentState!.validate()) {
-      // TODO: Implement sign in via auth provider
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Sign in coming soon')),
-      );
+      setState(() => _isLoading = true);
+
+      try {
+        final email = _emailController.text.trim();
+        final password = _passwordController.text;
+
+        await ref.read(authProvider.notifier).login(email, password);
+
+        if (mounted) {
+          // Show success message
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Login successful!'),
+              backgroundColor: AppColors.success,
+              duration: Duration(seconds: 2),
+            ),
+          );
+
+          // Navigate to dashboard
+          context.go('/');
+        }
+      } catch (e) {
+        if (mounted) {
+          // Show error message
+          final theme = Theme.of(context);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Login failed: ${e.toString()}'),
+              backgroundColor: theme.colorScheme.error,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() => _isLoading = false);
+        }
+      }
     }
   }
 }

@@ -3,19 +3,40 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../presentation/pages/pages.dart';
+import '../presentation/providers/auth_provider.dart';
 import 'main_shell.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 /// GoRouter provider — keepAlive because the router must persist.
 ///
-/// Auth redirect is currently disabled (presentation-first development).
-/// TODO: Integrate with authStateProvider when auth is implemented.
+/// Auth redirect checks authentication status and redirects:
+/// - Unauthenticated users trying to access protected routes → /login
+/// - Authenticated users trying to access /login or /register → /
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/',
     debugLogDiagnostics: true,
+    redirect: (context, state) {
+      // Check authentication status
+      final isAuthenticated = ref.read(authStateProvider) != null;
+      final isLoggingIn = state.matchedLocation == '/login' ||
+          state.matchedLocation == '/register';
+
+      // If not authenticated and not on login/register page, redirect to login
+      if (!isAuthenticated && !isLoggingIn) {
+        return '/login';
+      }
+
+      // If authenticated and on login/register page, redirect to home
+      if (isAuthenticated && isLoggingIn) {
+        return '/';
+      }
+
+      // No redirect needed
+      return null;
+    },
     routes: [
       // Auth routes — outside the shell (no bottom nav)
       GoRoute(
@@ -106,10 +127,5 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         ],
       ),
     ],
-    // Auth redirect — currently disabled for presentation-first development
-    redirect: (context, state) {
-      // TODO: Enable when auth is implemented
-      return null;
-    },
   );
 });
