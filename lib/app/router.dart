@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../presentation/pages/pages.dart';
 import '../presentation/providers/auth_provider.dart';
+import '../presentation/providers/onboarding_provider.dart';
 import 'main_shell.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -11,6 +12,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 /// GoRouter provider — keepAlive because the router must persist.
 ///
 /// Auth redirect checks authentication status and redirects:
+/// - First-time users → /onboarding
 /// - Unauthenticated users trying to access protected routes → /login
 /// - Authenticated users trying to access /login or /register → /
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -19,14 +21,21 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     initialLocation: '/',
     debugLogDiagnostics: true,
     redirect: (context, state) {
-      // Check authentication status
+      // Check authentication and onboarding status
       final isAuthenticated = ref.read(authStateProvider) != null;
+      final hasCompletedOnboarding = ref.read(hasCompletedOnboardingProvider);
+      final isOnboarding = state.matchedLocation == '/onboarding';
       final isLoggingIn = state.matchedLocation == '/login' ||
           state.matchedLocation == '/register' ||
           state.matchedLocation == '/forgot-password';
 
-      // If not authenticated and not on login/register page, redirect to login
-      if (!isAuthenticated && !isLoggingIn) {
+      // If not completed onboarding and not on onboarding page, redirect to onboarding
+      if (!hasCompletedOnboarding && !isOnboarding) {
+        return '/onboarding';
+      }
+
+      // If not authenticated and not on login/register/forgot-password page, redirect to login
+      if (!isAuthenticated && !isOnboarding && !isLoggingIn) {
         return '/login';
       }
 
@@ -39,6 +48,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      // Onboarding route — outside the shell (no bottom nav)
+      GoRoute(
+        path: '/onboarding',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const OnboardingWrapperPage(),
+      ),
       // Auth routes — outside the shell (no bottom nav)
       GoRoute(
         path: '/login',
