@@ -42,54 +42,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
         // Exit app when back button is pressed on login screen
-        final shouldExit = await showDialog<bool>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'Exit App',
-              style: GoogleFonts.manrope(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                color: cs.onSurface,
-              ),
-            ),
-            content: Text(
-              'Do you want to exit the app?',
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                color: cs.onSurface,
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(false),
-                child: Text(
-                  'Cancel',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: cs.primary,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(true),
-                child: Text(
-                  'Exit',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: cs.error,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-
-        if (shouldExit == true && context.mounted) {
-          SystemNavigator.pop();
-        }
+        SystemNavigator.pop();
       },
       child: Scaffold(
         backgroundColor: cs.surface,
