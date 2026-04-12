@@ -231,11 +231,11 @@ class _Onboarding2Painter extends CustomPainter {
     // Bar chart (left side)
     const barWidth = 18.0;
     final bars = [
-      {'x': 55, 'h': 35, 'color': AppColors.success},
-      {'x': 82, 'h': 55, 'color': AppColors.success},
-      {'x': 109, 'h': 40, 'color': AppColors.error},
-      {'x': 136, 'h': 70, 'color': AppColors.success},
-      {'x': 163, 'h': 50, 'color': AppColors.success},
+      {'x': 55.0, 'h': 35.0, 'color': AppColors.success},
+      {'x': 82.0, 'h': 55.0, 'color': AppColors.success},
+      {'x': 109.0, 'h': 40.0, 'color': AppColors.error},
+      {'x': 136.0, 'h': 70.0, 'color': AppColors.success},
+      {'x': 163.0, 'h': 50.0, 'color': AppColors.success},
     ];
 
     for (var bar in bars) {
