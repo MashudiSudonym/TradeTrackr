@@ -57,7 +57,7 @@ class ProfilePage extends ConsumerWidget {
 
             const SizedBox(height: 32),
 
-            // ── Sign Out ─────────────────────────────────────
+            // ── Log Out ─────────────────────────────────────
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: _buildSignOutButton(cs),
@@ -334,7 +334,7 @@ class ProfilePage extends ConsumerWidget {
         ),
         child: Center(
           child: Text(
-            'Sign Out',
+            'Log Out',
             style: GoogleFonts.inter(
               fontSize: 14,
               fontWeight: FontWeight.w600,

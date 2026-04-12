@@ -198,7 +198,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   ),
                   const SizedBox(height: 32),
 
-                  // ── Sign Up Button ─────────────────────────
+                  // ── Registration Button ─────────────────────────
                   GestureDetector(
                     onTap: _isLoading ? null : _handleRegister,
                     child: Container(
@@ -228,7 +228,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                                 ),
                               )
                             : Text(
-                                'Sign Up',
+                                'Registration',
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -255,7 +255,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       GestureDetector(
                         onTap: _isLoading ? null : () => context.go('/login'),
                         child: Text(
-                          'Sign In',
+                          'Log In',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

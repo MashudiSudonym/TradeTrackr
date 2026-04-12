@@ -87,7 +87,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Sign in to continue tracking your trades',
+                    'Log in to continue tracking your trades',
                     style: GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -244,7 +244,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                   const SizedBox(height: 24),
 
-                  // ── Sign In Button ─────────────────────────
+                  // ── Log In Button ─────────────────────────
                   GestureDetector(
                     onTap: _isLoading ? null : _handleLogin,
                     child: Container(
@@ -274,7 +274,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                 ),
                               )
                             : Text(
-                                'Sign In',
+                                'Log In',
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -301,7 +301,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       GestureDetector(
                         onTap: _isLoading ? null : () => context.go('/register'),
                         child: Text(
-                          'Register',
+                          'Registration',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -334,7 +334,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           // Show success message
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Login successful!'),
+              content: Text('Log in successful!'),
               backgroundColor: AppColors.success,
               duration: Duration(seconds: 2),
             ),
@@ -349,7 +349,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           final theme = Theme.of(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Login failed: ${e.toString()}'),
+              content: Text('Log in failed: ${e.toString()}'),
               backgroundColor: theme.colorScheme.error,
             ),
           );
