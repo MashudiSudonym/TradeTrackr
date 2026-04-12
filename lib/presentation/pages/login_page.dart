@@ -301,7 +301,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       GestureDetector(
                         onTap: _isLoading ? null : () => context.go('/register'),
                         child: Text(
-                          'Registration',
+                          'Register',
                           style: GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,

@@ -198,7 +198,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   ),
                   const SizedBox(height: 32),
 
-                  // ── Registration Button ─────────────────────────
+                  // ── Register Button ─────────────────────────
                   GestureDetector(
                     onTap: _isLoading ? null : _handleRegister,
                     child: Container(
@@ -228,7 +228,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                                 ),
                               )
                             : Text(
-                                'Registration',
+                                'Register',
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
@@ -289,7 +289,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           // Show success message
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Registration successful!'),
+              content: Text('Register successful!'),
               backgroundColor: AppColors.success,
               duration: Duration(seconds: 2),
             ),
@@ -304,7 +304,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           final theme = Theme.of(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Registration failed: ${e.toString()}'),
+              content: Text('Register failed: ${e.toString()}'),
               backgroundColor: theme.colorScheme.error,
             ),
           );
