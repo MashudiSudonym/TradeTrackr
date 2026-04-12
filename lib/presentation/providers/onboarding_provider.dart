@@ -9,7 +9,9 @@ const _kOnboardingCompletedKey = 'onboarding_completed';
 /// Onboarding state notifier - manages onboarding completion status.
 ///
 /// Uses shared_preferences to persist completion state across app launches.
-@riverpod
+/// keepAlive: true because onboarding state is global app state that
+/// persists across app launches and must survive navigation transitions.
+@Riverpod(keepAlive: true)
 class OnboardingNotifier extends _$OnboardingNotifier {
   @override
   bool build() {
@@ -23,10 +25,14 @@ class OnboardingNotifier extends _$OnboardingNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       final completed = prefs.getBool(_kOnboardingCompletedKey) ?? false;
-      state = completed;
+      if (ref.mounted) {
+        state = completed;
+      }
     } catch (e) {
       // On error, default to not completed (show onboarding)
-      state = false;
+      if (ref.mounted) {
+        state = false;
+      }
     }
   }
 
@@ -37,10 +43,14 @@ class OnboardingNotifier extends _$OnboardingNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setBool(_kOnboardingCompletedKey, true);
-      state = true;
+      if (ref.mounted) {
+        state = true;
+      }
     } catch (e) {
       // On save error, still update state for current session
-      state = true;
+      if (ref.mounted) {
+        state = true;
+      }
     }
   }
 
@@ -51,10 +61,14 @@ class OnboardingNotifier extends _$OnboardingNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.remove(_kOnboardingCompletedKey);
-      state = false;
+      if (ref.mounted) {
+        state = false;
+      }
     } catch (e) {
       // On error, still update state for current session
-      state = false;
+      if (ref.mounted) {
+        state = false;
+      }
     }
   }
 }
@@ -62,7 +76,8 @@ class OnboardingNotifier extends _$OnboardingNotifier {
 /// Provides the onboarding completion status.
 ///
 /// Returns true if user has completed onboarding, false otherwise.
-@riverpod
+/// keepAlive: true to match onboardingProvider and prevent disposal.
+@Riverpod(keepAlive: true)
 bool hasCompletedOnboarding(Ref ref) {
   return ref.watch(onboardingProvider);
 }
