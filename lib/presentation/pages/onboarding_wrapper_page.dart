@@ -11,6 +11,8 @@ import '../providers/onboarding_provider.dart';
 ///
 /// Displays 3 onboarding pages with swipe navigation, dot indicators,
 /// and action buttons (Skip/Next/Get Started).
+///
+/// Responsive design: Constrained max width for desktop screens.
 class OnboardingWrapperPage extends ConsumerStatefulWidget {
   const OnboardingWrapperPage({super.key});
 
@@ -23,6 +25,7 @@ class _OnboardingWrapperPageState extends ConsumerState<OnboardingWrapperPage> {
   int _currentPage = 0;
 
   static const int _totalPages = 3;
+  static const double _maxContentWidth = 480.0;
 
   final List<_OnboardingPageData> _pages = const [
     _OnboardingPageData(
@@ -59,71 +62,76 @@ class _OnboardingWrapperPageState extends ConsumerState<OnboardingWrapperPage> {
     return Scaffold(
       backgroundColor: cs.surface,
       body: SafeArea(
-        child: Column(
-          children: [
-            // ── Skip Button ─────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: _handleSkip,
-                  child: Text(
-                    'Skip',
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.primary,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: _maxContentWidth),
+            child: Column(
+              children: [
+                // ── Skip Button ─────────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: _handleSkip,
+                      child: Text(
+                        'Skip',
+                        style: GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
 
-            // ── PageView ─────────────────────────────────────
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() => _currentPage = index);
-                },
-                itemCount: _totalPages,
-                itemBuilder: (context, index) {
-                  final page = _pages[index];
-                  return _OnboardingPageContent(
-                    illustration: page.illustration,
-                    title: page.title,
-                    subtitle: page.subtitle,
-                    quote: page.quote,
-                  );
-                },
-              ),
-            ),
-
-            // ── Bottom Area ─────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                children: [
-                  // ── Dot Indicators ───────────────────────
-                  _DotIndicators(
-                    currentIndex: _currentPage,
-                    totalPages: _totalPages,
+                // ── PageView ─────────────────────────────────────
+                Expanded(
+                  child: PageView.builder(
+                    controller: _pageController,
+                    onPageChanged: (index) {
+                      setState(() => _currentPage = index);
+                    },
+                    itemCount: _totalPages,
+                    itemBuilder: (context, index) {
+                      final page = _pages[index];
+                      return _OnboardingPageContent(
+                        illustration: page.illustration,
+                        title: page.title,
+                        subtitle: page.subtitle,
+                        quote: page.quote,
+                      );
+                    },
                   ),
-                  const SizedBox(height: 24),
+                ),
 
-                  // ── Action Button ────────────────────────
-                  _ActionButton(
-                    isLastPage: _currentPage == _totalPages - 1,
-                    onPressed: _currentPage == _totalPages - 1
-                        ? _handleGetStarted
-                        : _handleNext,
+                // ── Bottom Area ─────────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    children: [
+                      // ── Dot Indicators ───────────────────────
+                      _DotIndicators(
+                        currentIndex: _currentPage,
+                        totalPages: _totalPages,
+                      ),
+                      const SizedBox(height: 24),
+
+                      // ── Action Button ────────────────────────
+                      _ActionButton(
+                        isLastPage: _currentPage == _totalPages - 1,
+                        onPressed: _currentPage == _totalPages - 1
+                            ? _handleGetStarted
+                            : _handleNext,
+                      ),
+                      const SizedBox(height: 32),
+                    ],
                   ),
-                  const SizedBox(height: 32),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -196,57 +204,60 @@ class _OnboardingPageContent extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // ── Illustration ─────────────────────────────
-          illustration,
-          const SizedBox(height: 48),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // ── Illustration ─────────────────────────────
+            illustration,
+            const SizedBox(height: 40),
 
-          // ── Title ───────────────────────────────────
-          Text(
-            title,
-            style: GoogleFonts.manrope(
-              fontSize: 28,
-              fontWeight: FontWeight.w700,
-              color: cs.onSurface,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 12),
-
-          // ── Subtitle ─────────────────────────────────
-          Text(
-            subtitle,
-            style: GoogleFonts.inter(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: cs.onSurfaceVariant,
-              height: 1.5,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-
-          // ── Motivational Quote ───────────────────────
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            decoration: BoxDecoration(
-              color: AppColors.primaryContainer,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Text(
-              '"$quote"',
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic,
-                color: AppColors.onPrimaryContainer,
+            // ── Title ───────────────────────────────────
+            Text(
+              title,
+              style: GoogleFonts.manrope(
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: cs.onSurface,
               ),
               textAlign: TextAlign.center,
             ),
-          ),
-        ],
+            const SizedBox(height: 12),
+
+            // ── Subtitle ─────────────────────────────────
+            Text(
+              subtitle,
+              style: GoogleFonts.inter(
+                fontSize: 15,
+                fontWeight: FontWeight.w400,
+                color: cs.onSurfaceVariant,
+                height: 1.5,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 24),
+
+            // ── Motivational Quote ───────────────────────
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              decoration: BoxDecoration(
+                color: AppColors.primaryContainer,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                '"$quote"',
+                style: GoogleFonts.inter(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.italic,
+                  color: AppColors.onPrimaryContainer,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }
