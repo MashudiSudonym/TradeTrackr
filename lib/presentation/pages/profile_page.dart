@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/analytics_provider.dart';
 import '../providers/profile_provider.dart';
 import '../providers/theme_provider.dart';
+import '../providers/auth_provider.dart';
 
 /// Profile page with user info, settings cards, performance snapshot,
 /// and sign out button.
@@ -60,7 +62,7 @@ class ProfilePage extends ConsumerWidget {
             // ── Log Out ─────────────────────────────────────
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSignOutButton(cs),
+              child: _buildSignOutButton(cs, ref, context),
             ),
           ],
         ),
@@ -320,11 +322,9 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildSignOutButton(ColorScheme cs) {
+  Widget _buildSignOutButton(ColorScheme cs, WidgetRef ref, BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // TODO: Implement sign out via auth provider
-      },
+      onTap: () => _handleLogout(cs, ref, context),
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 14),
@@ -342,6 +342,69 @@ class ProfilePage extends ConsumerWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _handleLogout(ColorScheme cs, WidgetRef ref, BuildContext context) {
+    // Show confirmation dialog
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Log Out',
+          style: GoogleFonts.manrope(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: cs.onSurface,
+          ),
+        ),
+        content: Text(
+          'Are you sure you want to log out?',
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: cs.onSurface,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.primary,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+              // Perform logout
+              ref.read(authProvider.notifier).logout();
+
+              // Show confirmation and navigate to login
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Logged out successfully'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+                context.go('/login');
+              }
+            },
+            child: Text(
+              'Log Out',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.error,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
