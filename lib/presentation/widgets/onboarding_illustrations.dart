@@ -32,12 +32,6 @@ class _Onboarding1Painter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final baseUnit = size.width / 280;
 
-    // Draw background circle
-    final bgPaint = Paint()
-      ..color = AppColors.surfaceContainerLow
-      ..style = PaintingStyle.fill;
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 130 * baseUnit, bgPaint);
-
     // Book base - left page
     final bookFill = Paint()
       ..color = AppColors.surfaceContainerLowest
@@ -222,12 +216,6 @@ class _Onboarding2Painter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final baseUnit = size.width / 280;
 
-    // Background circle
-    final bgPaint = Paint()
-      ..color = AppColors.surfaceContainerLow
-      ..style = PaintingStyle.fill;
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 130 * baseUnit, bgPaint);
-
     // Bar chart (left side)
     const barWidth = 18.0;
     final bars = [
@@ -401,12 +389,6 @@ class _Onboarding3Painter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final baseUnit = size.width / 280;
-
-    // Background circle
-    final bgPaint = Paint()
-      ..color = AppColors.surfaceContainerLow
-      ..style = PaintingStyle.fill;
-    canvas.drawCircle(Offset(size.width / 2, size.height / 2), 130 * baseUnit, bgPaint);
 
     // Mountain path (stylized)
     final mountainStroke = Paint()
