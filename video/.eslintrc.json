@@ -1,0 +1,4 @@
+{
+  "extends": "@remotion/eslint-config",
+  "rules": {}
+}

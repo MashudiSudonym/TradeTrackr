@@ -1,0 +1,25 @@
+{
+  "name": "tradetrackr-onboarding-video",
+  "version": "1.0.0",
+  "description": "TradeTrackr Onboarding Walkthrough Video",
+  "scripts": {
+    "start": "npx @remotion/cli studio",
+    "build": "npx @remotion/cli render Composition out/onboarding-walkthrough.mp4",
+    "lint": "eslint src",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.226",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.226"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config": "^4.0.226",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/web": "^0.0.147",
+    "eslint": "^8.43.0",
+    "prettier": "^2.8.8"
+  }
+}
