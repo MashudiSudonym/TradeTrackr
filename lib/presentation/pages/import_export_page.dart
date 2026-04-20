@@ -101,7 +101,7 @@ class _ImportExportPageState extends ConsumerState<ImportExportPage> {
   // ── Import Tab ─────────────────────────────────────────────
 
   Widget _buildImportTab(ColorScheme cs) {
-    final importState = ref.watch(importStateProvider);
+    final importState = ref.watch(importExportProvider);
 
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 80),

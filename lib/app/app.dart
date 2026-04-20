@@ -13,7 +13,7 @@ class TradeTrackrApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final themeMode = ref.watch(themeNotifierProvider);
+    final themeMode = ref.watch(themeProvider);
     final router = ref.watch(goRouterProvider);
 
     return MaterialApp.router(

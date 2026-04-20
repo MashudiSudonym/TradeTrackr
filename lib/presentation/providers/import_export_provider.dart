@@ -1,17 +1,14 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../state/import_state.dart';
+
+part 'import_export_provider.g.dart';
 
 /// Manages import and export state for the Import/Export page.
 ///
 /// Currently uses mock behavior with Future.delayed.
 /// TODO: Replace with real CSV import/export logic when backend is integrated.
-final importStateProvider =
-    NotifierProvider<ImportStateNotifier, ImportState>(
-  ImportStateNotifier.new,
-);
-
-class ImportStateNotifier extends Notifier<ImportState> {
+@riverpod
+class ImportExport extends _$ImportExport {
   @override
   ImportState build() => const ImportState.idle();
 

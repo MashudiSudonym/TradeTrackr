@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/theme_provider.dart';
+import '../providers/theme_provider.dart' as providers;
 
 /// Pill-shaped toggle for switching between light and dark themes.
 ///
 /// Active theme = primary background with onPrimary text.
 /// Inactive = transparent background with onSurfaceVariant text.
-/// Uses [themeNotifierProvider] to read and toggle the theme.
+/// Uses [providers.themeProvider] to read and toggle the theme.
 class ThemeToggle extends ConsumerWidget {
   const ThemeToggle({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
-    final themeMode = ref.watch(themeNotifierProvider);
+    final themeMode = ref.watch(providers.themeProvider);
 
     final isLight = themeMode == ThemeMode.light ||
         (themeMode == ThemeMode.system &&
@@ -33,14 +33,14 @@ class ThemeToggle extends ConsumerWidget {
             label: 'Light',
             icon: Icons.light_mode_outlined,
             isActive: isLight,
-            onTap: () => ref.read(themeNotifierProvider.notifier).setLight(),
+            onTap: () => ref.read(providers.themeProvider.notifier).setLight(),
             colorScheme: colorScheme,
           ),
           _ToggleButton(
             label: 'Dark',
             icon: Icons.dark_mode_outlined,
             isActive: !isLight,
-            onTap: () => ref.read(themeNotifierProvider.notifier).setDark(),
+            onTap: () => ref.read(providers.themeProvider.notifier).setDark(),
             colorScheme: colorScheme,
           ),
         ],

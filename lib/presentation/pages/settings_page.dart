@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../providers/theme_provider.dart';
+import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
 import '../widgets/theme_toggle.dart';
 
@@ -132,7 +132,7 @@ class SettingsPage extends ConsumerWidget {
 
   Widget _buildSettingsCards(
       ColorScheme cs, WidgetRef ref, BuildContext context) {
-    final themeMode = ref.watch(themeNotifierProvider);
+    final themeMode = ref.watch(providers.themeProvider);
 
     return Column(
       children: [

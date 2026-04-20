@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../domain/entities/closed_position.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/trade_side.dart';
 
@@ -26,8 +27,7 @@ abstract class TradeFormState with _$TradeFormState {
   const factory TradeFormState.loading() = TradeFormLoading;
 
   const factory TradeFormState.success({
-    required String symbol,
-    required double profit,
+    required ClosedPosition position,
   }) = TradeFormSuccess;
 
   const factory TradeFormState.error(String message) = TradeFormError;

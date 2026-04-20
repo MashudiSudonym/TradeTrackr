@@ -1,6 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../domain/entities/user.dart';
 import '../mock/mock_data.dart';
 
@@ -11,7 +9,7 @@ part 'auth_provider.g.dart';
 /// Provides login, logout, and register methods with mock auth.
 /// TODO: Replace with real Supabase auth when backend is integrated.
 @riverpod
-class AuthNotifier extends _$AuthNotifier {
+class Auth extends _$Auth {
   @override
   User? build() {
     // Start unauthenticated - user must login first
@@ -65,6 +63,7 @@ class AuthNotifier extends _$AuthNotifier {
 /// Provides the current authenticated user.
 ///
 /// Null when unauthenticated, User object when logged in.
-final authStateProvider = Provider<User?>((ref) {
+@riverpod
+User? authState(Ref ref) {
   return ref.watch(authProvider);
-});
+}

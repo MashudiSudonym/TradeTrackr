@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/analytics_provider.dart';
 import '../providers/profile_provider.dart';
-import '../providers/theme_provider.dart';
+import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
 
 /// Profile page with user info, settings cards, performance snapshot,
@@ -196,7 +196,7 @@ class ProfilePage extends ConsumerWidget {
   }
 
   Widget _buildSettingsGrid(ColorScheme cs, WidgetRef ref) {
-    final themeMode = ref.watch(themeNotifierProvider);
+    final themeMode = ref.watch(providers.themeProvider);
 
     return Column(
       children: [
@@ -260,7 +260,7 @@ class ProfilePage extends ConsumerWidget {
               Switch(
                 value: themeMode == ThemeMode.dark,
                 onChanged: (isDark) {
-                  ref.read(themeNotifierProvider.notifier).setTheme(
+                  ref.read(providers.themeProvider.notifier).setTheme(
                         isDark ? ThemeMode.dark : ThemeMode.light,
                       );
                 },

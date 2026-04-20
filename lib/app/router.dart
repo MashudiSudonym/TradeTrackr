@@ -22,8 +22,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: true,
     redirect: (context, state) {
       // Check authentication and onboarding status
-      final isAuthenticated = ref.read(authStateProvider) != null;
-      final hasCompletedOnboarding = ref.read(hasCompletedOnboardingProvider);
+      final isAuthenticated = ref.watch(authStateProvider) != null;
+      final hasCompletedOnboarding = ref.watch(hasCompletedOnboardingProvider);
       final isOnboarding = state.matchedLocation == '/onboarding';
       final isLoggingIn = state.matchedLocation == '/login' ||
           state.matchedLocation == '/register' ||

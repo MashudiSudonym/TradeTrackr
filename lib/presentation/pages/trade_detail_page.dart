@@ -17,7 +17,7 @@ class TradeDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
-    final tradeAsync = ref.watch(tradeByIdProvider(tradeId));
+    final tradeAsync = ref.watch(tradeByIdProvider(id: tradeId));
 
     return Scaffold(
       backgroundColor: cs.surface,

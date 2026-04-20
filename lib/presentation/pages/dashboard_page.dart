@@ -253,7 +253,7 @@ class _BentoMetrics extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final analyticsAsync = ref.watch(analyticsProvider);
-    final recommendationsAsync = ref.watch(recommendationProvider);
+    final recommendationsAsync = ref.watch(recommendationsProvider);
 
     return analyticsAsync.when(
       data: (analytics) {

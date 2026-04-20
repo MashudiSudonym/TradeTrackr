@@ -32,7 +32,7 @@ class RecommendationsPage extends ConsumerWidget {
 
           // ── Content ──────────────────────────────────────
           Expanded(
-            child: ref.watch(recommendationProvider).when(
+            child: ref.watch(recommendationsProvider).when(
                   data: (recommendations) =>
                       _Content(cs: cs, recommendations: recommendations),
                   loading: () => const Center(

@@ -1,18 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../domain/entities/closed_position.dart';
 import '../../domain/entities/open_position.dart';
 import '../mock/mock_data.dart';
 
+part 'trade_provider.g.dart';
+
 /// Provides the list of closed positions from mock data.
 ///
 /// TODO: Replace with real repository when data layer is built.
-final tradeListProvider =
-    AsyncNotifierProvider<TradeListNotifier, List<ClosedPosition>>(
-  TradeListNotifier.new,
-);
-
-class TradeListNotifier extends AsyncNotifier<List<ClosedPosition>> {
+@riverpod
+class TradeList extends _$TradeList {
   @override
   Future<List<ClosedPosition>> build() async {
     await Future.delayed(const Duration(milliseconds: 300));
@@ -25,19 +22,15 @@ class TradeListNotifier extends AsyncNotifier<List<ClosedPosition>> {
 }
 
 /// Provides a single trade by ID.
-final tradeByIdProvider =
-    FutureProvider.family<ClosedPosition?, String>((ref, id) async {
+@riverpod
+Future<ClosedPosition?> tradeById(Ref ref, {required String id}) async {
   final trades = ref.watch(tradeListProvider).value ?? [];
   return trades.where((t) => t.id == id).firstOrNull;
-});
+}
 
 /// Provides the list of open positions from mock data.
-final openPositionsProvider =
-    AsyncNotifierProvider<OpenPositionsNotifier, List<OpenPosition>>(
-  OpenPositionsNotifier.new,
-);
-
-class OpenPositionsNotifier extends AsyncNotifier<List<OpenPosition>> {
+@riverpod
+class OpenPositions extends _$OpenPositions {
   @override
   Future<List<OpenPosition>> build() async {
     await Future.delayed(const Duration(milliseconds: 200));

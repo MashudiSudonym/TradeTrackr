@@ -16,7 +16,7 @@ class ImportProgressIndicator extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final importState = ref.watch(importStateProvider);
+    final importState = ref.watch(importExportProvider);
     final cs = Theme.of(context).colorScheme;
 
     return importState.when(
