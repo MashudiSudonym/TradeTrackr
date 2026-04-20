@@ -12,6 +12,7 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   Future<Either<Failure, ImportResult>> importFromCsv(String filePath) async {
     try {
       final file = File(filePath);
+      // ignore: avoid_slow_async_io
       if (!await file.exists()) {
         return Left(ValidationFailure('File not found: $filePath'));
       }
@@ -25,7 +26,7 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
 
       // TODO: Implement proper CSV parsing based on reference formats
       // For now, return mock result
-      return Right(const ImportResult(imported: 0));
+      return const Right(ImportResult(imported: 0));
     } catch (e) {
       return Left(CsvParseFailure('Failed to parse CSV: $e'));
     }

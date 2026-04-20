@@ -26,7 +26,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
     List<CloseReason>? reasons,
   }) async {
     try {
-      final dataMaps = await _localDataSource.queryClosedPositions(
+      await _localDataSource.queryClosedPositions(
         userId: '', // TODO: Get from auth state
         startDate: startDate,
         endDate: endDate,
@@ -37,7 +37,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
 
       // Convert maps to DTOs then to entities
       // For now, return empty list - will implement full conversion with DTOs
-      return Right(const []);
+      return const Right([]);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get closed positions: $e'));
     }
@@ -47,10 +47,10 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
   Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id) async {
     try {
       final dataMap = await _localDataSource.getClosedPositionById(id);
-      if (dataMap == null) return Right(null);
+      if (dataMap == null) return const Right(null);
 
       // TODO: Convert map to DTO then to entity
-      return Right(null);
+      return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get position: $e'));
     }
@@ -59,12 +59,12 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
   @override
   Future<Either<Failure, List<OpenPosition>>> getOpenPositions() async {
     try {
-      final dataMaps = await _localDataSource.getAllOpenPositions(
+      await _localDataSource.getAllOpenPositions(
         '', // TODO: Get from auth state
       );
 
       // TODO: Convert maps to entities
-      return Right(const []);
+      return const Right([]);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get open positions: $e'));
     }
@@ -74,10 +74,10 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
   Future<Either<Failure, OpenPosition?>> getOpenPositionById(String id) async {
     try {
       final dataMap = await _localDataSource.getOpenPositionById(id);
-      if (dataMap == null) return Right(null);
+      if (dataMap == null) return const Right(null);
 
       // TODO: Convert map to entity
-      return Right(null);
+      return const Right(null);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get open position: $e'));
     }
@@ -88,7 +88,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
     TradeFilter filter,
   ) async {
     try {
-      final dataMaps = await _localDataSource.queryClosedPositions(
+      await _localDataSource.queryClosedPositions(
         userId: '', // TODO: Get from auth state
         startDate: filter.startDate,
         endDate: filter.endDate,
@@ -99,7 +99,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
       );
 
       // TODO: Convert maps to entities and compute analytics
-      return Right(TradeAnalytics.empty);
+      return const Right(TradeAnalytics.empty);
     } catch (e) {
       return Left(DatabaseFailure('Failed to compute analytics: $e'));
     }

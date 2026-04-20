@@ -16,7 +16,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Either<Failure, User>> getProfile() async {
     try {
       // TODO: Get user ID from auth state
-      final userId = 'current-user-id';
+      const userId = 'current-user-id';
       final user = await _remoteDataSource.getProfile(userId);
       return Right(user);
     } catch (e) {
@@ -28,7 +28,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Either<Failure, User>> updateProfile({String? displayName}) async {
     try {
       // TODO: Get user ID from auth state
-      final userId = 'current-user-id';
+      const userId = 'current-user-id';
       final user = await _remoteDataSource.updateProfile(
         userId: userId,
         displayName: displayName,
@@ -46,7 +46,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   ) async {
     try {
       // TODO: Get user ID from auth state
-      final userId = 'current-user-id';
+      const userId = 'current-user-id';
       await _remoteDataSource.changePassword(
         userId: userId,
         currentPassword: currentPassword,
@@ -62,7 +62,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Either<Failure, void>> deleteAccount() async {
     try {
       // TODO: Get user ID from auth state
-      final userId = 'current-user-id';
+      const userId = 'current-user-id';
       await _remoteDataSource.deleteAccount(userId);
       return const Right(null);
     } catch (e) {
