@@ -261,10 +261,10 @@ class SettingsPage extends ConsumerWidget {
           TextButton(
             onPressed: () {
               dialogContext.pop();
-              // Perform logout
+              // Perform logout - router will auto-redirect via refreshListenable
               ref.read(authProvider.notifier).logout();
 
-              // Show confirmation and navigate to login
+              // Show confirmation
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -272,7 +272,6 @@ class SettingsPage extends ConsumerWidget {
                     duration: Duration(seconds: 2),
                   ),
                 );
-                context.go('/login');
               }
             },
             child: Text(

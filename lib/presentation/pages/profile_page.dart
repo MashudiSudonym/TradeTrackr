@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/analytics_provider.dart';
@@ -381,10 +380,10 @@ class ProfilePage extends ConsumerWidget {
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              // Perform logout
+              // Perform logout - router will auto-redirect via refreshListenable
               ref.read(authProvider.notifier).logout();
 
-              // Show confirmation and navigate to login
+              // Show confirmation
               if (context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
@@ -392,7 +391,6 @@ class ProfilePage extends ConsumerWidget {
                     duration: Duration(seconds: 2),
                   ),
                 );
-                context.go('/login');
               }
             },
             child: Text(

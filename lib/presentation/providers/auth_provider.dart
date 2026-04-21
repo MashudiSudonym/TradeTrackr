@@ -8,7 +8,10 @@ part 'auth_provider.g.dart';
 ///
 /// Provides login, logout, and register methods with mock auth.
 /// TODO: Replace with real Supabase auth when backend is integrated.
-@riverpod
+///
+/// keepAlive: true because auth state is global app state that must
+/// survive navigation transitions and page disposals.
+@Riverpod(keepAlive: true)
 class Auth extends _$Auth {
   @override
   User? build() {
@@ -63,7 +66,8 @@ class Auth extends _$Auth {
 /// Provides the current authenticated user.
 ///
 /// Null when unauthenticated, User object when logged in.
-@riverpod
+/// keepAlive: true to match authProvider and prevent disposal.
+@Riverpod(keepAlive: true)
 User? authState(Ref ref) {
   return ref.watch(authProvider);
 }

@@ -295,7 +295,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         await ref.read(authProvider.notifier).register(displayName, email, password);
 
         if (mounted) {
-          // Show success message
+          // Show success message - router will auto-redirect via refreshListenable
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Register successful!'),
@@ -303,9 +303,6 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
               duration: Duration(seconds: 2),
             ),
           );
-
-          // Navigate to dashboard
-          context.go('/');
         }
       } catch (e) {
         if (mounted) {

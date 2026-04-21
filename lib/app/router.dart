@@ -6,6 +6,7 @@ import '../presentation/pages/pages.dart';
 import '../presentation/providers/auth_provider.dart';
 import '../presentation/providers/onboarding_provider.dart';
 import 'main_shell.dart';
+import 'router_refresh_stream.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
@@ -15,9 +16,18 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 /// - First-time users → /onboarding
 /// - Unauthenticated users trying to access protected routes → /login
 /// - Authenticated users trying to access /login or /register → /
+///
+/// Uses refreshListenable to re-evaluate redirects when auth or onboarding
+/// state changes (e.g., after login, logout, or completing onboarding).
 final goRouterProvider = Provider<GoRouter>((ref) {
+  // Create refresh notifiers for auth and onboarding state changes
+  // They automatically listen to their respective providers
+  final authRefresh = AuthRefreshNotifier(ref);
+  final onboardingRefresh = OnboardingRefreshNotifier(ref);
+
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
+    refreshListenable: Listenable.merge([authRefresh, onboardingRefresh]),
     initialLocation: '/',
     debugLogDiagnostics: true,
     redirect: (context, state) {

@@ -338,7 +338,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         await ref.read(authProvider.notifier).login(email, password);
 
         if (mounted) {
-          // Show success message
+          // Show success message - router will auto-redirect via refreshListenable
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Log in successful!'),
@@ -346,9 +346,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               duration: Duration(seconds: 2),
             ),
           );
-
-          // Navigate to dashboard
-          context.go('/');
         }
       } catch (e) {
         if (mounted) {
