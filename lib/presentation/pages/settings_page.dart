@@ -180,16 +180,6 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
 
-        // Profile card
-        _SettingsNavCard(
-          cs: cs,
-          icon: Icons.person_outline,
-          title: 'Profile',
-          subtitle: 'Manage your profile',
-          onTap: () => context.push('/profile'),
-        ),
-        const SizedBox(height: 12),
-
         // Import/Export card
         _SettingsNavCard(
           cs: cs,
