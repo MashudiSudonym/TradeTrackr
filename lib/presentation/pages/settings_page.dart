@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
+import '../providers/onboarding_provider.dart';
 import '../widgets/theme_toggle.dart';
 
 /// Settings page with theme toggle, navigation cards, and logout.
@@ -180,6 +181,16 @@ class SettingsPage extends ConsumerWidget {
         ),
         const SizedBox(height: 12),
 
+        // Reset Onboarding card (dev/debug)
+        _SettingsNavCard(
+          cs: cs,
+          icon: Icons.refresh_outlined,
+          title: 'Reset Onboarding',
+          subtitle: 'Show onboarding again',
+          onTap: () => _handleResetOnboarding(ref, context, cs),
+        ),
+        const SizedBox(height: 12),
+
         // Import/Export card
         _SettingsNavCard(
           cs: cs,
@@ -280,6 +291,68 @@ class SettingsPage extends ConsumerWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: cs.error,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _handleResetOnboarding(WidgetRef ref, BuildContext context, ColorScheme cs) {
+    // Show confirmation dialog
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Reset Onboarding',
+          style: GoogleFonts.manrope(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: cs.onSurface,
+          ),
+        ),
+        content: Text(
+          'This will show the onboarding flow again. Continue?',
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: cs.onSurface,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => dialogContext.pop(),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.primary,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              dialogContext.pop();
+              // Reset onboarding
+              await ref.read(onboardingProvider.notifier).reset();
+
+              // Show confirmation - router will auto-redirect
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Onboarding reset successfully'),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              }
+            },
+            child: Text(
+              'Reset',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.primary,
               ),
             ),
           ),
