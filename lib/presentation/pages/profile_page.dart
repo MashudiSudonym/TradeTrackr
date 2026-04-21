@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../providers/analytics_provider.dart';
@@ -40,7 +41,7 @@ class ProfilePage extends ConsumerWidget {
             const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSettingsGrid(cs, ref),
+              child: _buildSettingsGrid(context, cs, ref),
             ),
 
             const SizedBox(height: 32),
@@ -194,7 +195,7 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildSettingsGrid(ColorScheme cs, WidgetRef ref) {
+  Widget _buildSettingsGrid(BuildContext context, ColorScheme cs, WidgetRef ref) {
     final themeMode = ref.watch(providers.themeProvider);
 
     return Column(
@@ -205,7 +206,7 @@ class ProfilePage extends ConsumerWidget {
           icon: Icons.person_outline,
           title: 'Profile Settings',
           subtitle: 'Name, email, avatar',
-          onTap: () {},
+          onTap: () => context.push('/profile/settings'),
         ),
         const SizedBox(height: 12),
         // Security
