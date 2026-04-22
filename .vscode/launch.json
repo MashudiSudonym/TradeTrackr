@@ -12,7 +12,9 @@
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
-            "args": ["--web-renderer", "canvaskit"],
+            "args": [
+                "canvaskit"
+            ],
             "deviceId": "chrome"
         },
         {
