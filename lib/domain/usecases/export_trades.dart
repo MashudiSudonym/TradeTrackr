@@ -1,6 +1,6 @@
 import '../repositories/trade_export_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+
+
 
 /// Use case for exporting trades to CSV.
 ///
@@ -14,7 +14,7 @@ class ExportTradesUseCase {
   ///
   /// Returns [Left] with failure if export fails.
   /// Returns [Right] with CSV content on success.
-  Future<Either<Failure, String>> executeClosedPositions({
+  Future<Result<String>> executeClosedPositions({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -30,7 +30,7 @@ class ExportTradesUseCase {
   ///
   /// Returns [Left] with failure if export fails.
   /// Returns [Right] with CSV content on success.
-  Future<Either<Failure, String>> executeOpenPositions() async {
+  Future<Result<String>> executeOpenPositions() async {
     return await _repository.exportOpenPositionsToCsv();
   }
 
@@ -38,7 +38,7 @@ class ExportTradesUseCase {
   ///
   /// Returns [Left] with failure if export fails.
   /// Returns [Right] with CSV content on success.
-  Future<Either<Failure, String>> executeFinanceRecords() async {
+  Future<Result<String>> executeFinanceRecords() async {
     return await _repository.exportFinanceRecordsToCsv();
   }
 }

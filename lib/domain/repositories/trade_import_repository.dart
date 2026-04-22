@@ -1,5 +1,4 @@
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
 
 /// Bulk import operations for trade data.
 ///
@@ -9,20 +8,20 @@ abstract class TradeImportRepository {
   /// Import trades from a CSV file.
   ///
   /// Returns [ImportResult] with counts of imported, skipped, and error rows.
-  Future<Either<Failure, ImportResult>> importFromCsv(String filePath);
+  Future<Result<ImportResult>> importFromCsv(String filePath);
 
   /// Import closed positions from CSV.
-  Future<Either<Failure, ImportResult>> importClosedPositionsFromCsv(
+  Future<Result<ImportResult>> importClosedPositionsFromCsv(
     String filePath,
   );
 
   /// Import open positions from CSV.
-  Future<Either<Failure, ImportResult>> importOpenPositionsFromCsv(
+  Future<Result<ImportResult>> importOpenPositionsFromCsv(
     String filePath,
   );
 
   /// Import finance records from CSV.
-  Future<Either<Failure, ImportResult>> importFinanceRecordsFromCsv(
+  Future<Result<ImportResult>> importFinanceRecordsFromCsv(
     String filePath,
   );
 }

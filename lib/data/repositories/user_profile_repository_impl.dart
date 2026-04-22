@@ -2,7 +2,7 @@ import '../../domain/entities/user.dart';
 import '../../domain/repositories/user_profile_repository.dart';
 import '../../core/errors/failures.dart';
 import '../datasources/user_remote_data_source.dart';
-import 'package:fpdart/fpdart.dart';
+import '../../domain/core/result.dart';
 
 /// Implementation of UserProfileRepository.
 ///
@@ -23,64 +23,64 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   }
 
   @override
-  Future<Either<Failure, User>> getProfile() async {
+  Future<Result<User>> getProfile() async {
     try {
       if (_currentUserId == null) {
-        return const Left(AuthFailure('User not authenticated'));
+        return Result.failure('User not authenticated');
       }
       final user = await _remoteDataSource.getProfile(_currentUserId!);
-      return Right(user);
+      return Result.success(user);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to get profile: $e'));
+      return Result.failure('Failed to get profile: $e');
     }
   }
 
   @override
-  Future<Either<Failure, User>> updateProfile({String? displayName}) async {
+  Future<Result<User>> updateProfile({String? displayName}) async {
     try {
       if (_currentUserId == null) {
-        return const Left(AuthFailure('User not authenticated'));
+        return Result.failure('User not authenticated');
       }
       final user = await _remoteDataSource.updateProfile(
         userId: _currentUserId!,
         displayName: displayName,
       );
-      return Right(user);
+      return Result.success(user);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to update profile: $e'));
+      return Result.failure('Failed to update profile: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> changePassword(
+  Future<Result<void>> changePassword(
     String currentPassword,
     String newPassword,
   ) async {
     try {
       if (_currentUserId == null) {
-        return const Left(AuthFailure('User not authenticated'));
+        return Result.failure('User not authenticated');
       }
       await _remoteDataSource.changePassword(
         userId: _currentUserId!,
         currentPassword: currentPassword,
         newPassword: newPassword,
       );
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(AuthFailure('Failed to change password: $e'));
+      return Result.failure('Failed to change password: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteAccount() async {
+  Future<Result<void>> deleteAccount() async {
     try {
       if (_currentUserId == null) {
-        return const Left(AuthFailure('User not authenticated'));
+        return Result.failure('User not authenticated');
       }
       await _remoteDataSource.deleteAccount(_currentUserId!);
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(AuthFailure('Failed to delete account: $e'));
+      return Result.failure('Failed to delete account: $e');
     }
   }
 }

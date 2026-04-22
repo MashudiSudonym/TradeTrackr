@@ -1,6 +1,5 @@
 import '../entities/user.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
 
 /// User profile management operations.
 ///
@@ -8,17 +7,17 @@ import 'package:fpdart/fpdart.dart';
 /// This interface only contains profile management operations.
 abstract class UserProfileRepository {
   /// Get the current user's profile.
-  Future<Either<Failure, User>> getProfile();
+  Future<Result<User>> getProfile();
 
   /// Update the user's profile.
   ///
   /// [displayName] is optional - only provided fields will be updated.
-  Future<Either<Failure, User>> updateProfile({String? displayName});
+  Future<Result<User>> updateProfile({String? displayName});
 
   /// Change the user's password.
   ///
   /// Requires [currentPassword] for verification.
-  Future<Either<Failure, void>> changePassword(
+  Future<Result<void>> changePassword(
     String currentPassword,
     String newPassword,
   );
@@ -26,5 +25,5 @@ abstract class UserProfileRepository {
   /// Delete the user's account and all associated data.
   ///
   /// This is a destructive operation that cannot be undone.
-  Future<Either<Failure, void>> deleteAccount();
+  Future<Result<void>> deleteAccount();
 }

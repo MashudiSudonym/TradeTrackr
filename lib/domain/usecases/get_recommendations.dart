@@ -3,33 +3,27 @@ import '../entities/trade_analytics.dart';
 import '../entities/trade_filter.dart';
 import '../enums/severity.dart';
 import '../repositories/trade_query_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 /// Use case for generating trading recommendations.
 ///
 /// Follows SRP - only handles generating recommendations from analytics.
-class GetRecommendationsUseCase {
+class GetRecommendationsUseCase extends UseCase<List<Recommendation>, GetRecommendationsParams> {
   final TradeQueryRepository _repository;
 
   GetRecommendationsUseCase(this._repository);
 
-  /// Execute the use case.
-  ///
-  /// Returns [Left] with failure if generation fails.
-  /// Returns [Right] with list of recommendations on success.
-  Future<Either<Failure, List<Recommendation>>> execute(
-    String userId,
-    TradeFilter filter,
-  ) async {
-    final analyticsResult = await _repository.getAnalytics(userId, filter);
+  @override
+  Future<Result<List<Recommendation>>> call(GetRecommendationsParams params) async {
+    final analyticsResult = await _repository.getAnalytics(params.userId, params.filter);
 
-    return analyticsResult.fold(
-      (failure) => Left(failure),
-      (analytics) {
+    return analyticsResult.when(
+      success: (analytics) {
         final recommendations = _generateRecommendations(analytics);
-        return Right(recommendations);
+        return Result.success(recommendations);
       },
+      failure: (error) => Result.failure(error),
     );
   }
 
@@ -90,4 +84,15 @@ class GetRecommendationsUseCase {
 
     return recommendations;
   }
+}
+
+/// Parameters for get recommendations use case.
+class GetRecommendationsParams {
+  final String userId;
+  final TradeFilter filter;
+
+  const GetRecommendationsParams({
+    required this.userId,
+    required this.filter,
+  });
 }

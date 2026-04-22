@@ -5,7 +5,7 @@ import '../../domain/enums/trade_side.dart';
 import '../../domain/repositories/trade_command_repository.dart';
 import '../datasources/trade_local_data_source.dart';
 import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../../domain/core/result.dart';
 
 /// Implementation of TradeCommandRepository.
 ///
@@ -16,7 +16,7 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
   TradeCommandRepositoryImpl(this._localDataSource);
 
   @override
-  Future<Either<Failure, ClosedPosition>> addClosedPosition(
+  Future<Result<ClosedPosition>> addClosedPosition(
     ClosedPosition position,
   ) async {
     try {
@@ -43,14 +43,14 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       };
 
       await _localDataSource.insertClosedPosition(dataMap);
-      return Right(position);
+      return Result.success(position);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to add position: $e'));
+      return Result.failure('Failed to add position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ClosedPosition>> updateClosedPosition(
+  Future<Result<ClosedPosition>> updateClosedPosition(
     ClosedPosition position,
   ) async {
     try {
@@ -76,24 +76,24 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       };
 
       await _localDataSource.updateClosedPosition(dataMap);
-      return Right(position.copyWith(updatedAt: DateTime.now()));
+      return Result.success(position.copyWith(updatedAt: DateTime.now()));
     } catch (e) {
-      return Left(DatabaseFailure('Failed to update position: $e'));
+      return Result.failure('Failed to update position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteClosedPosition(String id) async {
+  Future<Result<void>> deleteClosedPosition(String id) async {
     try {
       await _localDataSource.deleteClosedPosition(id);
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to delete position: $e'));
+      return Result.failure('Failed to delete position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, OpenPosition>> addOpenPosition(
+  Future<Result<OpenPosition>> addOpenPosition(
     OpenPosition position,
   ) async {
     try {
@@ -117,14 +117,14 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       };
 
       await _localDataSource.insertOpenPosition(dataMap);
-      return Right(position);
+      return Result.success(position);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to add open position: $e'));
+      return Result.failure('Failed to add open position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, OpenPosition>> updateOpenPosition(
+  Future<Result<OpenPosition>> updateOpenPosition(
     OpenPosition position,
   ) async {
     try {
@@ -148,24 +148,24 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       };
 
       await _localDataSource.updateOpenPosition(dataMap);
-      return Right(position.copyWith(updatedAt: DateTime.now()));
+      return Result.success(position.copyWith(updatedAt: DateTime.now()));
     } catch (e) {
-      return Left(DatabaseFailure('Failed to update open position: $e'));
+      return Result.failure('Failed to update open position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteOpenPosition(String id) async {
+  Future<Result<void>> deleteOpenPosition(String id) async {
     try {
       await _localDataSource.deleteOpenPosition(id);
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to delete open position: $e'));
+      return Result.failure('Failed to delete open position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ClosedPosition>> closePosition({
+  Future<Result<ClosedPosition>> closePosition({
     required String openPositionId,
     required double closePrice,
     required DateTime closeTime,
@@ -175,7 +175,7 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       // 1. Fetch open position
       final openDataMap = await _localDataSource.getOpenPositionById(openPositionId);
       if (openDataMap == null) {
-        return const Left(ValidationFailure('Open position not found'));
+        return Result.failure('Open position not found');
       }
 
       // TODO: Convert map to OpenPosition entity via DTO
@@ -252,9 +252,9 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       };
       await _localDataSource.insertClosedPosition(closedDataMap);
 
-      return Right(closedPosition);
+      return Result.success(closedPosition);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to close position: $e'));
+      return Result.failure('Failed to close position: $e');
     }
   }
 }

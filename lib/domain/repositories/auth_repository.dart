@@ -1,6 +1,5 @@
 import '../entities/user.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
 
 /// Authentication operations.
 ///
@@ -8,16 +7,16 @@ import 'package:fpdart/fpdart.dart';
 /// This interface only contains authentication operations.
 abstract class AuthRepository {
   /// Sign in with email and password.
-  Future<Either<Failure, User>> signIn(String email, String password);
+  Future<Result<User>> signIn(String email, String password);
 
   /// Sign up with email and password.
-  Future<Either<Failure, User>> signUp(String email, String password);
+  Future<Result<User>> signUp(String email, String password);
 
   /// Sign out the current user.
-  Future<Either<Failure, void>> signOut();
+  Future<Result<void>> signOut();
 
   /// Send password reset email.
-  Future<Either<Failure, void>> resetPassword(String email);
+  Future<Result<void>> resetPassword(String email);
 
   /// Stream of auth state changes.
   ///

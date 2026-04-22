@@ -6,7 +6,7 @@ import '../../domain/enums/trade_side.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/finance_type.dart';
 import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../../domain/core/result.dart';
 import 'package:csv/csv.dart';
 import 'dart:io';
 
@@ -19,42 +19,42 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   static final _csvDateFormat = RegExp(r'^(\d{2})/(\d{2})/(\d{4}) (\d{2}):(\d{2}):(\d{2})$');
 
   @override
-  Future<Either<Failure, ImportResult>> importFromCsv(String filePath) async {
+  Future<Result<ImportResult>> importFromCsv(String filePath) async {
     try {
       final file = File(filePath);
       if (!await file.exists()) {
-        return Left(ValidationFailure('File not found: $filePath'));
+        return Result.failure('File not found: $filePath');
       }
 
       final input = await file.readAsString();
       final fields = const CsvToListConverter(eol: '\n').convert(input);
 
       if (fields.isEmpty) {
-        return const Left(CsvParseFailure('CSV file is empty'));
+        return Result.failure('CSV file is empty');
       }
 
       // TODO: Detect file type and route to appropriate import
-      return const Right(ImportResult(imported: 0));
+      return const Result.success(ImportResult(imported: 0));
     } catch (e) {
-      return Left(CsvParseFailure('Failed to parse CSV: $e'));
+      return Result.failure('Failed to parse CSV: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ImportResult>> importClosedPositionsFromCsv(
+  Future<Result<ImportResult>> importClosedPositionsFromCsv(
     String filePath,
   ) async {
     try {
       final file = File(filePath);
       if (!await file.exists()) {
-        return Left(ValidationFailure('File not found: $filePath'));
+        return Result.failure('File not found: $filePath');
       }
 
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return const Left(CsvParseFailure('CSV file is empty'));
+        return Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row
@@ -100,30 +100,30 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
         }
       }
 
-      return Right(ImportResult(
+      return Result.success(ImportResult(
         imported: positions.length,
         skipped: skipped,
       ));
     } catch (e) {
-      return Left(CsvParseFailure('Failed to parse closed positions CSV: $e'));
+      return Result.failure('Failed to parse closed positions CSV: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ImportResult>> importOpenPositionsFromCsv(
+  Future<Result<ImportResult>> importOpenPositionsFromCsv(
     String filePath,
   ) async {
     try {
       final file = File(filePath);
       if (!await file.exists()) {
-        return Left(ValidationFailure('File not found: $filePath'));
+        return Result.failure('File not found: $filePath');
       }
 
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return const Left(CsvParseFailure('CSV file is empty'));
+        return Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row
@@ -167,30 +167,30 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
         }
       }
 
-      return Right(ImportResult(
+      return Result.success(ImportResult(
         imported: positions.length,
         skipped: skipped,
       ));
     } catch (e) {
-      return Left(CsvParseFailure('Failed to parse open positions CSV: $e'));
+      return Result.failure('Failed to parse open positions CSV: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ImportResult>> importFinanceRecordsFromCsv(
+  Future<Result<ImportResult>> importFinanceRecordsFromCsv(
     String filePath,
   ) async {
     try {
       final file = File(filePath);
       if (!await file.exists()) {
-        return Left(ValidationFailure('File not found: $filePath'));
+        return Result.failure('File not found: $filePath');
       }
 
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return const Left(CsvParseFailure('CSV file is empty'));
+        return Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row
@@ -229,12 +229,12 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
         }
       }
 
-      return Right(ImportResult(
+      return Result.success(ImportResult(
         imported: records.length,
         skipped: skipped,
       ));
     } catch (e) {
-      return Left(CsvParseFailure('Failed to parse finance records CSV: $e'));
+      return Result.failure('Failed to parse finance records CSV: $e');
     }
   }
 

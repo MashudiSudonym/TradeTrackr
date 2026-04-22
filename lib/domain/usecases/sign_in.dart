@@ -1,36 +1,44 @@
 import '../entities/user.dart';
 import '../repositories/auth_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 /// Use case for signing in a user.
 ///
 /// Follows SRP - only handles sign in operation.
-class SignInUseCase {
+class SignInUseCase extends UseCase<User, SignInParams> {
   final AuthRepository _repository;
 
   SignInUseCase(this._repository);
 
-  /// Execute the use case.
-  ///
-  /// Returns [Left] with validation failure if input is invalid.
-  /// Returns [Right] with signed-in user on success.
-  Future<Either<Failure, User>> execute(String email, String password) async {
+  @override
+  Future<Result<User>> call(SignInParams params) async {
     // Business validation
-    if (email.isEmpty) {
-      return const Left(ValidationFailure('Email is required'));
+    if (params.email.isEmpty) {
+      return const Result.failure('Email is required');
     }
-    if (password.isEmpty) {
-      return const Left(ValidationFailure('Password is required'));
+    if (params.password.isEmpty) {
+      return const Result.failure('Password is required');
     }
-    if (!_isValidEmail(email)) {
-      return const Left(ValidationFailure('Invalid email format'));
+    if (!_isValidEmail(params.email)) {
+      return const Result.failure('Invalid email format');
     }
 
-    return await _repository.signIn(email, password);
+    return await _repository.signIn(params.email, params.password);
   }
 
   bool _isValidEmail(String email) {
     return email.contains('@') && email.contains('.');
   }
+}
+
+/// Parameters for sign in use case.
+class SignInParams {
+  final String email;
+  final String password;
+
+  const SignInParams({
+    required this.email,
+    required this.password,
+  });
 }

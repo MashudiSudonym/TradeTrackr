@@ -2,7 +2,7 @@ import '../../domain/entities/user.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../../core/errors/failures.dart';
 import '../datasources/auth_remote_data_source.dart';
-import 'package:fpdart/fpdart.dart';
+import '../../domain/core/result.dart';
 
 /// Implementation of AuthRepository.
 ///
@@ -13,42 +13,42 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this._remoteDataSource);
 
   @override
-  Future<Either<Failure, User>> signIn(String email, String password) async {
+  Future<Result<User>> signIn(String email, String password) async {
     try {
       final user = await _remoteDataSource.signIn(email, password);
-      return Right(user);
+      return Result.success(user);
     } catch (e) {
-      return Left(AuthFailure('Sign in failed: $e'));
+      return Result.failure('Sign in failed: $e');
     }
   }
 
   @override
-  Future<Either<Failure, User>> signUp(String email, String password) async {
+  Future<Result<User>> signUp(String email, String password) async {
     try {
       final user = await _remoteDataSource.signUp(email, password);
-      return Right(user);
+      return Result.success(user);
     } catch (e) {
-      return Left(AuthFailure('Sign up failed: $e'));
+      return Result.failure('Sign up failed: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> signOut() async {
+  Future<Result<void>> signOut() async {
     try {
       await _remoteDataSource.signOut();
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(AuthFailure('Sign out failed: $e'));
+      return Result.failure('Sign out failed: $e');
     }
   }
 
   @override
-  Future<Either<Failure, void>> resetPassword(String email) async {
+  Future<Result<void>> resetPassword(String email) async {
     try {
       await _remoteDataSource.resetPassword(email);
-      return const Right(null);
+      return const Result.success(null);
     } catch (e) {
-      return Left(AuthFailure('Password reset failed: $e'));
+      return Result.failure('Password reset failed: $e');
     }
   }
 

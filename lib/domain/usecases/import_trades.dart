@@ -1,6 +1,6 @@
 import '../repositories/trade_import_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+
+
 
 /// Use case for importing trades from CSV.
 ///
@@ -14,10 +14,10 @@ class ImportTradesUseCase {
   ///
   /// Returns [Left] with validation failure if file path is invalid.
   /// Returns [Right] with import result on success.
-  Future<Either<Failure, ImportResult>> execute(String filePath) async {
+  Future<Result<ImportResult>> execute(String filePath) async {
     // Business validation
     if (filePath.isEmpty) {
-      return const Left(ValidationFailure('File path cannot be empty'));
+      return const Result.failure(''File path cannot be empty'));
     }
 
     return await _repository.importFromCsv(filePath);

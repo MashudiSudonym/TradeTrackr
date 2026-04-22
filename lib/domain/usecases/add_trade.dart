@@ -1,40 +1,44 @@
 import '../entities/closed_position.dart';
 import '../repositories/trade_command_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 /// Use case for adding a new closed trade position.
 ///
 /// Follows SRP - only handles adding a single closed position.
-class AddTradeUseCase {
+class AddTradeUseCase extends UseCase<ClosedPosition, AddTradeParams> {
   final TradeCommandRepository _repository;
 
   AddTradeUseCase(this._repository);
 
-  /// Execute the use case.
-  ///
-  /// Returns [Left] with validation failure if input is invalid.
-  /// Returns [Right] with the created position on success.
-  Future<Either<Failure, ClosedPosition>> execute(
-    ClosedPosition position,
-  ) async {
+  @override
+  Future<Result<ClosedPosition>> call(AddTradeParams params) async {
     // Business validation
-    if (position.closeTime.isBefore(position.openTime)) {
-      return const Left(ValidationFailure('Close time must be after open time'));
+    if (params.position.closeTime.isBefore(params.position.openTime)) {
+      return const Result.failure('Close time must be after open time');
     }
-    if (position.volume <= 0) {
-      return const Left(ValidationFailure('Volume must be greater than 0'));
+    if (params.position.volume <= 0) {
+      return const Result.failure('Volume must be greater than 0');
     }
-    if (position.symbol.isEmpty) {
-      return const Left(ValidationFailure('Symbol is required'));
+    if (params.position.symbol.isEmpty) {
+      return const Result.failure('Symbol is required');
     }
-    if (position.openPrice <= 0) {
-      return const Left(ValidationFailure('Open price must be greater than 0'));
+    if (params.position.openPrice <= 0) {
+      return const Result.failure('Open price must be greater than 0');
     }
-    if (position.closePrice <= 0) {
-      return const Left(ValidationFailure('Close price must be greater than 0'));
+    if (params.position.closePrice <= 0) {
+      return const Result.failure('Close price must be greater than 0');
     }
 
-    return await _repository.addClosedPosition(position);
+    return await _repository.addClosedPosition(params.position);
   }
+}
+
+/// Parameters for add trade use case.
+class AddTradeParams {
+  final ClosedPosition position;
+
+  const AddTradeParams({
+    required this.position,
+  });
 }

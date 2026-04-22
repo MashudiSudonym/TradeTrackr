@@ -1,6 +1,5 @@
 import '../../domain/repositories/trade_export_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../../domain/core/result.dart';
 import 'package:csv/csv.dart';
 
 /// Implementation of TradeExportRepository.
@@ -8,7 +7,7 @@ import 'package:csv/csv.dart';
 /// Handles CSV export operations for trade data.
 class TradeExportRepositoryImpl implements TradeExportRepository {
   @override
-  Future<Either<Failure, String>> exportClosedPositionsToCsv({
+  Future<Result<String>> exportClosedPositionsToCsv({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -34,14 +33,14 @@ class TradeExportRepositoryImpl implements TradeExportRepository {
       ];
 
       final csv = const ListToCsvConverter().convert([header]);
-      return Right(csv);
+      return Result.success(csv);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to export closed positions: $e'));
+      return Result.failure('Failed to export closed positions: $e');
     }
   }
 
   @override
-  Future<Either<Failure, String>> exportOpenPositionsToCsv() async {
+  Future<Result<String>> exportOpenPositionsToCsv() async {
     try {
       // TODO: Query actual data from data source
       const header = [
@@ -60,14 +59,14 @@ class TradeExportRepositoryImpl implements TradeExportRepository {
       ];
 
       final csv = const ListToCsvConverter().convert([header]);
-      return Right(csv);
+      return Result.success(csv);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to export open positions: $e'));
+      return Result.failure('Failed to export open positions: $e');
     }
   }
 
   @override
-  Future<Either<Failure, String>> exportFinanceRecordsToCsv() async {
+  Future<Result<String>> exportFinanceRecordsToCsv() async {
     try {
       // TODO: Query actual data from data source
       const header = [
@@ -80,14 +79,14 @@ class TradeExportRepositoryImpl implements TradeExportRepository {
       ];
 
       final csv = const ListToCsvConverter().convert([header]);
-      return Right(csv);
+      return Result.success(csv);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to export finance records: $e'));
+      return Result.failure('Failed to export finance records: $e');
     }
   }
 
   @override
-  Future<Either<Failure, Map<String, String>>> exportAllToCsv({
+  Future<Result<Map<String, String>>> exportAllToCsv({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -99,32 +98,29 @@ class TradeExportRepositoryImpl implements TradeExportRepository {
         symbols: symbols,
       );
 
+      if (closedResult.isFailure) {
+        return Result.failure(closedResult.error!);
+      }
+
       final openResult = await exportOpenPositionsToCsv();
+
+      if (openResult.isFailure) {
+        return Result.failure(openResult.error!);
+      }
 
       final financeResult = await exportFinanceRecordsToCsv();
 
-      return closedResult.fold(
-        (failure) => Left(failure),
-        (closedCsv) {
-          return openResult.fold(
-            (failure) => Left(failure),
-            (openCsv) {
-              return financeResult.fold(
-                (failure) => Left(failure),
-                (financeCsv) {
-                  return Right({
-                    'closed_positions': closedCsv,
-                    'open_positions': openCsv,
-                    'finance_records': financeCsv,
-                  });
-                },
-              );
-            },
-          );
-        },
-      );
+      if (financeResult.isFailure) {
+        return Result.failure(financeResult.error!);
+      }
+
+      return Result.success({
+        'closed_positions': closedResult.value!,
+        'open_positions': openResult.value!,
+        'finance_records': financeResult.value!,
+      });
     } catch (e) {
-      return Left(DatabaseFailure('Failed to export all data: $e'));
+      return Result.failure('Failed to export all data: $e');
     }
   }
 }

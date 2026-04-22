@@ -5,10 +5,9 @@ import '../../domain/entities/trade_filter.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/repositories/trade_query_repository.dart';
+import '../../domain/core/result.dart';
 import '../datasources/trade_local_data_source.dart';
 import '../models/trade_position_dto.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
 
 /// Implementation of TradeQueryRepository.
 ///
@@ -19,7 +18,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
   TradeQueryRepositoryImpl(this._localDataSource);
 
   @override
-  Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+  Future<Result<List<ClosedPosition>>> getClosedPositions({
     required String userId,
     DateTime? startDate,
     DateTime? endDate,
@@ -41,30 +40,30 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
           .map((map) => ClosedPositionDto.fromJson(map))
           .toList();
       final entities = dtos.map((dto) => dto.toEntity()).toList();
-      return Right(entities);
+      return Result.success(entities);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to get closed positions: $e'));
+      return Result.failure('Failed to get closed positions: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(
+  Future<Result<ClosedPosition?>> getClosedPositionById(
     String id,
     String userId,
   ) async {
     try {
       final dataMap = await _localDataSource.getClosedPositionById(id);
-      if (dataMap == null) return const Right(null);
+      if (dataMap == null) return const Result.success(null);
 
       final dto = ClosedPositionDto.fromJson(dataMap);
-      return Right(dto.toEntity());
+      return Result.success(dto.toEntity());
     } catch (e) {
-      return Left(DatabaseFailure('Failed to get position: $e'));
+      return Result.failure('Failed to get position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions(
+  Future<Result<List<OpenPosition>>> getOpenPositions(
     String userId,
   ) async {
     try {
@@ -74,30 +73,30 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
           .map((map) => OpenPositionDto.fromJson(map))
           .toList();
       final entities = dtos.map((dto) => dto.toEntity()).toList();
-      return Right(entities);
+      return Result.success(entities);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to get open positions: $e'));
+      return Result.failure('Failed to get open positions: $e');
     }
   }
 
   @override
-  Future<Either<Failure, OpenPosition?>> getOpenPositionById(
+  Future<Result<OpenPosition?>> getOpenPositionById(
     String id,
     String userId,
   ) async {
     try {
       final dataMap = await _localDataSource.getOpenPositionById(id);
-      if (dataMap == null) return const Right(null);
+      if (dataMap == null) return const Result.success(null);
 
       final dto = OpenPositionDto.fromJson(dataMap);
-      return Right(dto.toEntity());
+      return Result.success(dto.toEntity());
     } catch (e) {
-      return Left(DatabaseFailure('Failed to get open position: $e'));
+      return Result.failure('Failed to get open position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(
+  Future<Result<TradeAnalytics>> getAnalytics(
     String userId,
     TradeFilter filter,
   ) async {
@@ -119,9 +118,9 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
 
       // Compute analytics from positions
       final analytics = _computeAnalytics(positions);
-      return Right(analytics);
+      return Result.success(analytics);
     } catch (e) {
-      return Left(DatabaseFailure('Failed to compute analytics: $e'));
+      return Result.failure('Failed to compute analytics: $e');
     }
   }
 

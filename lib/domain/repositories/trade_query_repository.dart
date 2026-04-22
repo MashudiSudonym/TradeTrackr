@@ -4,8 +4,7 @@ import '../entities/trade_analytics.dart';
 import '../entities/trade_filter.dart';
 import '../enums/trade_side.dart';
 import '../enums/close_reason.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+import '../core/result.dart';
 
 /// Read-only operations for trade positions.
 ///
@@ -13,7 +12,7 @@ import 'package:fpdart/fpdart.dart';
 /// This interface only contains query operations.
 abstract class TradeQueryRepository {
   /// Get all closed positions with optional filtering.
-  Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+  Future<Result<List<ClosedPosition>>> getClosedPositions({
     required String userId,
     DateTime? startDate,
     DateTime? endDate,
@@ -23,24 +22,24 @@ abstract class TradeQueryRepository {
   });
 
   /// Get a specific closed position by ID.
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(
+  Future<Result<ClosedPosition?>> getClosedPositionById(
     String id,
     String userId,
   );
 
   /// Get all open positions.
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions(
+  Future<Result<List<OpenPosition>>> getOpenPositions(
     String userId,
   );
 
   /// Get a specific open position by ID.
-  Future<Either<Failure, OpenPosition?>> getOpenPositionById(
+  Future<Result<OpenPosition?>> getOpenPositionById(
     String id,
     String userId,
   );
 
   /// Get computed analytics for the specified filter.
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(
+  Future<Result<TradeAnalytics>> getAnalytics(
     String userId,
     TradeFilter filter,
   );

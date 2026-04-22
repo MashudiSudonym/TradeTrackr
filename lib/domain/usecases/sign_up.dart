@@ -1,7 +1,7 @@
 import '../entities/user.dart';
 import '../repositories/auth_repository.dart';
-import '../../core/errors/failures.dart';
-import 'package:fpdart/fpdart.dart';
+
+
 
 /// Use case for signing up a new user.
 ///
@@ -15,22 +15,22 @@ class SignUpUseCase {
   ///
   /// Returns [Left] with validation failure if input is invalid.
   /// Returns [Right] with signed-up user on success.
-  Future<Either<Failure, User>> execute(
+  Future<Result<User>> execute(
     String email,
     String password,
   ) async {
     // Business validation
     if (email.isEmpty) {
-      return const Left(ValidationFailure('Email is required'));
+      return const Result.failure(''Email is required'));
     }
     if (password.isEmpty) {
-      return const Left(ValidationFailure('Password is required'));
+      return const Result.failure(''Password is required'));
     }
     if (!_isValidEmail(email)) {
-      return const Left(ValidationFailure('Invalid email format'));
+      return const Result.failure(''Invalid email format'));
     }
     if (password.length < 6) {
-      return const Left(
+      return const Result.failure(
         ValidationFailure('Password must be at least 6 characters'),
       );
     }
