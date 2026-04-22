@@ -1,6 +1,5 @@
 import '../../domain/entities/user.dart';
 import '../../domain/repositories/user_profile_repository.dart';
-import '../../core/errors/failures.dart';
 import '../datasources/user_remote_data_source.dart';
 import '../../domain/core/result.dart';
 

@@ -1,44 +1,44 @@
 import '../repositories/trade_export_repository.dart';
-
-
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 /// Use case for exporting trades to CSV.
 ///
 /// Follows SRP - only handles CSV export operations.
-class ExportTradesUseCase {
+class ExportTradesUseCase extends UseCase<String, ExportTradesParams> {
   final TradeExportRepository _repository;
 
   ExportTradesUseCase(this._repository);
 
-  /// Execute the use case for exporting closed positions.
-  ///
-  /// Returns [Left] with failure if export fails.
-  /// Returns [Right] with CSV content on success.
-  Future<Result<String>> executeClosedPositions({
-    DateTime? startDate,
-    DateTime? endDate,
-    List<String>? symbols,
-  }) async {
+  @override
+  Future<Result<String>> call(ExportTradesParams params) async {
     return await _repository.exportClosedPositionsToCsv(
-      startDate: startDate,
-      endDate: endDate,
-      symbols: symbols,
+      startDate: params.startDate,
+      endDate: params.endDate,
+      symbols: params.symbols,
     );
   }
 
-  /// Execute the use case for exporting open positions.
-  ///
-  /// Returns [Left] with failure if export fails.
-  /// Returns [Right] with CSV content on success.
-  Future<Result<String>> executeOpenPositions() async {
+  /// Export open positions to CSV.
+  Future<Result<String>> exportOpenPositions() async {
     return await _repository.exportOpenPositionsToCsv();
   }
 
-  /// Execute the use case for exporting finance records.
-  ///
-  /// Returns [Left] with failure if export fails.
-  /// Returns [Right] with CSV content on success.
-  Future<Result<String>> executeFinanceRecords() async {
+  /// Export finance records to CSV.
+  Future<Result<String>> exportFinanceRecords() async {
     return await _repository.exportFinanceRecordsToCsv();
   }
+}
+
+/// Parameters for export trades use case.
+class ExportTradesParams {
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final List<String>? symbols;
+
+  const ExportTradesParams({
+    this.startDate,
+    this.endDate,
+    this.symbols,
+  });
 }

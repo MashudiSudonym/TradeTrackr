@@ -1,20 +1,17 @@
 import '../repositories/auth_repository.dart';
-
-
+import '../core/result.dart';
+import '../core/usecase.dart';
 
 /// Use case for signing out the current user.
 ///
 /// Follows SRP - only handles sign out operation.
-class SignOutUseCase {
+class SignOutUseCase extends UseCase<void, NoParams> {
   final AuthRepository _repository;
 
   SignOutUseCase(this._repository);
 
-  /// Execute the use case.
-  ///
-  /// Returns [Left] with failure if sign out fails.
-  /// Returns [Right] with void on success.
-  Future<Result<void>> execute() async {
+  @override
+  Future<Result<void>> call(NoParams params) async {
     return await _repository.signOut();
   }
 }

@@ -4,7 +4,6 @@ import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../domain/repositories/trade_command_repository.dart';
 import '../datasources/trade_local_data_source.dart';
-import '../../core/errors/failures.dart';
 import '../../domain/core/result.dart';
 
 /// Implementation of TradeCommandRepository.

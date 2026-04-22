@@ -5,7 +5,6 @@ import '../../domain/entities/finance_record.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/finance_type.dart';
-import '../../core/errors/failures.dart';
 import '../../domain/core/result.dart';
 import 'package:csv/csv.dart';
 import 'dart:io';
