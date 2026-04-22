@@ -1,6 +1,6 @@
 # Coding Standards - TradeTrackr
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-22
 **Project**: TradeTrackr (Flutter Trading Journal App)
 **Language**: Dart 3.x
 **Framework**: Flutter 3.x (latest stable)
@@ -242,24 +242,24 @@ Use documentation comments for public APIs:
 /// Use case for adding a new closed trade position.
 ///
 /// Validates the trade position before adding it to the database.
-/// Returns a [Failure] if validation fails or if the database
+/// Returns a [Result.failure] if validation fails or if the database
 /// operation fails.
 ///
 /// Example:
 /// ```dart
 /// final useCase = AddTradeUseCase(repository);
 /// final result = await useCase.execute(position);
-/// result.fold(
-///   (failure) => print('Error: ${failure.message}'),
-///   (success) => print('Added: ${success.symbol}'),
+/// result.when(
+///   failure: (error) => print('Error: $error'),
+///   success: (data) => print('Added: ${data.symbol}'),
 /// );
 /// ```
 class AddTradeUseCase {
   /// Executes the use case with the given [position].
   ///
-  /// Returns [Right] with the added position,
-  /// or [Left] with a [Failure] if the operation fails.
-  Future<Either<Failure, ClosedPosition>> execute(
+  /// Returns [Result.success] with the added position,
+  /// or [Result.failure] with an error message if the operation fails.
+  Future<Result<ClosedPosition>> execute(
     ClosedPosition position,
   ) async {
     // Implementation
@@ -279,10 +279,9 @@ class AddTradeUseCase {
 /// - [side]: Filter by trade direction (BUY or SELL)
 /// - [reasons]: Filter by close reason (TP, SL, User, Manual)
 ///
-/// Returns a list of matching closed positions.
-///
-/// Throws [DatabaseFailure] if the query fails.
-Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+/// Returns a [Result.success] with a list of matching closed positions,
+/// or [Result.failure] with an error message if the query fails.
+Future<Result<List<ClosedPosition>>> getClosedPositions({
   DateTime? startDate,
   DateTime? endDate,
   List<String>? symbols,
@@ -322,21 +321,21 @@ final profit = position.side.calculateProfit(
 
 ## Error Handling Patterns
 
-### Result Type (Either Pattern)
+### Result Type Pattern
 
 ```dart
-import 'package:tradetrackr/core/errors/failures.dart';
+import 'package:tradetrackr/domain/core/result.dart';
 
-// GOOD - Return Result type
-Future<Either<Failure, ClosedPosition>> addClosedPosition(
+// GOOD - Return Result<T> type
+Future<Result<ClosedPosition>> addClosedPosition(
   ClosedPosition position,
 ) async {
   try {
     final dto = ClosedPositionDto.fromEntity(position);
     await _localDataSource.insertClosedPosition(dto);
-    return Right(position);
-  } on DatabaseException catch (e) {
-    return Left(DatabaseFailure(e.toString()));
+    return Result.success(position);
+  } catch (e) {
+    return Result.failure('Failed to add position: $e');
   }
 }
 
@@ -351,6 +350,33 @@ Future<ClosedPosition> addClosedPosition(
   } catch (e) {
     throw Exception('Failed to add trade'); // Don't throw!
   }
+}
+```
+
+### Result<T> Usage Pattern
+
+```dart
+// In use cases or providers:
+final result = await repository.addClosedPosition(position);
+
+result.when(
+  failure: (error) {
+    // Handle error - error is a String
+    showSnackBar(message: error);
+  },
+  success: (data) {
+    // Handle success - data is the returned value
+    navigateToTradeDetail(data.id);
+  },
+);
+
+// Or check properties:
+if (result.isSuccess) {
+  final data = result.value!;
+  // Use data
+} else {
+  final error = result.error!;
+  // Handle error
 }
 ```
 
@@ -506,8 +532,8 @@ void main() {
       final result = await useCase.execute(position);
 
       // Assert
-      expect(result.isLeft(), true);
-      expect(result.fold((l) => l, (r) => null), isA<ValidationFailure>());
+      expect(result.isFailure, true);
+      expect(result.error, isA<String>());
     });
 
     test('should add trade successfully', () async {
@@ -516,8 +542,8 @@ void main() {
         id: 'test-id',
         userId: 'user-1',
         symbol: 'EURUSD',
-        openTime: DateTime(2026, 4, 11, 10, 0),
-        closeTime: DateTime(2026, 4, 11, 14, 0),
+        openTime: DateTime(2026, 4, 22, 10, 0),
+        closeTime: DateTime(2026, 4, 22, 14, 0),
         volume: 0.1,
         side: TradeSide.buy,
         openPrice: 1.0850,
@@ -529,18 +555,18 @@ void main() {
       );
 
       when(mockRepository.addClosedPosition(position))
-          .thenAnswer((_) async => Right(position));
+          .thenAnswer((_) async => Result.success(position));
 
       // Act
       final result = await useCase.execute(position);
 
       // Assert
-      expect(result.isRight(), true);
-      result.fold(
-        (l) => fail('Should return Right'),
-        (r) {
-          expect(r.id, 'test-id');
-          expect(r.symbol, 'EURUSD');
+      expect(result.isSuccess, true);
+      result.when(
+        failure: (_) => fail('Should return success'),
+        success: (data) {
+          expect(data.id, 'test-id');
+          expect(data.symbol, 'EURUSD');
         },
       );
       verify(mockRepository.addClosedPosition(position)).called(1);
@@ -855,6 +881,6 @@ dart format .
 
 ---
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-22
 **Dart Version**: 3.x
 **Flutter Version**: 3.x (latest stable)

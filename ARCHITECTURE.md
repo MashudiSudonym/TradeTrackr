@@ -1,6 +1,6 @@
 # Clean Architecture Guide - TradeTrackr
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-22
 **Project**: TradeTrackr (Flutter Trading Journal App)
 **Architecture**: Clean Architecture with SOLID principles and offline-first sync
 
@@ -72,9 +72,9 @@ lib/
 │   ├── router.dart             # GoRouter configuration
 │   └── theme/                  # Light and dark theme definitions
 │
-├── core/                       # Shared infrastructure
+├── core/                       # Application infrastructure
 │   ├── constants/              # App-wide constants
-│   ├── errors/                 # Failure and exception classes
+│   ├── errors/                 # Failure exception classes (thrown from data sources)
 │   ├── extensions/             # Dart extension methods
 │   ├── logger/                 # Logger configuration
 │   ├── network/                # Connectivity checker
@@ -82,6 +82,10 @@ lib/
 │   └── utils/                  # Utility functions (date parsing, CSV)
 │
 ├── domain/                     # Business logic (no external dependencies)
+│   ├── core/                    # Pure domain abstractions (zero external deps)
+│   │   ├── result.dart          # Result<T> union type for error handling
+│   │   └── usecase.dart         # UseCase<T, P> base class
+│   │
 │   ├── entities/               # Core business entities
 │   │   ├── user.dart
 │   │   └── trade_position.dart
@@ -225,11 +229,11 @@ class ClosedPosition {
 // Repository Interface (Contract)
 // lib/domain/repositories/trade_command_repository.dart
 abstract class TradeCommandRepository {
-  Future<Either<Failure, ClosedPosition>> addClosedPosition(ClosedPosition position);
-  Future<Either<Failure, ClosedPosition>> updateClosedPosition(ClosedPosition position);
-  Future<Either<Failure, void>> deleteClosedPosition(String id);
-  Future<Either<Failure, OpenPosition>> addOpenPosition(OpenPosition position);
-  Future<Either<Failure, ClosedPosition>> closePosition({
+  Future<Result<ClosedPosition>> addClosedPosition(ClosedPosition position);
+  Future<Result<ClosedPosition>> updateClosedPosition(ClosedPosition position);
+  Future<Result<void>> deleteClosedPosition(String id);
+  Future<Result<OpenPosition>> addOpenPosition(OpenPosition position);
+  Future<Result<ClosedPosition>> closePosition({
     required String openPositionId,
     required double closePrice,
     required DateTime closeTime,
@@ -239,21 +243,30 @@ abstract class TradeCommandRepository {
 
 // Use Case (Business operation)
 // lib/domain/usecases/add_trade.dart
-class AddTradeUseCase {
+class AddTradeUseCase extends UseCase<ClosedPosition, AddTradeParams> {
   final TradeCommandRepository _repository;
 
   AddTradeUseCase(this._repository);
 
-  Future<Either<Failure, ClosedPosition>> execute(ClosedPosition position) async {
+  @override
+  Future<Result<ClosedPosition>> call(AddTradeParams params) async {
+    final position = params.position;
+    
     // Business validation
     if (position.closeTime.isBefore(position.openTime)) {
-      return const Left(ValidationFailure('Close time must be after open time'));
+      return const Result.failure('Close time must be after open time');
     }
     if (position.volume <= 0) {
-      return const Left(ValidationFailure('Volume must be greater than 0'));
+      return const Result.failure('Volume must be greater than 0');
     }
     return await _repository.addClosedPosition(position);
   }
+}
+
+/// Parameters for add trade use case.
+class AddTradeParams {
+  final ClosedPosition position;
+  const AddTradeParams({required this.position});
 }
 
 // ========================================
@@ -351,20 +364,20 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
   ]);
 
   @override
-  Future<Either<Failure, ClosedPosition>> addClosedPosition(
+  Future<Result<ClosedPosition>> addClosedPosition(
     ClosedPosition position,
   ) async {
     try {
       final dto = ClosedPositionDto.fromEntity(position);
       await _localDataSource.insertClosedPosition(dto);
-      return Right(position);
+      return Result.success(position);
     } catch (e) {
-      return Left(DatabaseFailure(e.toString()));
+      return Result.failure('Failed to add position: $e');
     }
   }
 
   @override
-  Future<Either<Failure, ClosedPosition>> closePosition({
+  Future<Result<ClosedPosition>> closePosition({
     required String openPositionId,
     required double closePrice,
     required DateTime closeTime,
@@ -374,7 +387,7 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       // 1. Fetch open position from Drift
       final openDto = await _localDataSource.getOpenPositionById(openPositionId);
       if (openDto == null) {
-        return const Left(ValidationFailure('Open position not found'));
+        return const Result.failure('Open position not found');
       }
 
       // 2. Calculate profit based on side
@@ -408,9 +421,9 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       await _localDataSource.insertClosedPosition(closedDto);
       await _localDataSource.deleteOpenPosition(openPositionId);
 
-      return Right(closed);
+      return Result.success(closed);
     } catch (e) {
-      return Left(DatabaseFailure(e.toString()));
+      return Result.failure('Failed to close position: $e');
     }
   }
 }
@@ -483,28 +496,28 @@ abstract class TradeRepository {
 
 // lib/domain/repositories/trade_query_repository.dart
 abstract class TradeQueryRepository {
-  Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+  Future<Result<List<ClosedPosition>>> getClosedPositions({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
     TradeSide? side,
     List<CloseReason>? reasons,
   });
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id);
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions();
-  Future<Either<Failure, OpenPosition?>> getOpenPositionById(String id);
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(TradeFilter filter);
+  Future<Result<ClosedPosition?>> getClosedPositionById(String id);
+  Future<Result<List<OpenPosition>>> getOpenPositions();
+  Future<Result<OpenPosition?>> getOpenPositionById(String id);
+  Future<Result<TradeAnalytics>> getAnalytics(TradeFilter filter);
 }
 
 // lib/domain/repositories/trade_command_repository.dart
 abstract class TradeCommandRepository {
-  Future<Either<Failure, ClosedPosition>> addClosedPosition(ClosedPosition position);
-  Future<Either<Failure, ClosedPosition>> updateClosedPosition(ClosedPosition position);
-  Future<Either<Failure, void>> deleteClosedPosition(String id);
-  Future<Either<Failure, OpenPosition>> addOpenPosition(OpenPosition position);
-  Future<Either<Failure, OpenPosition>> updateOpenPosition(OpenPosition position);
-  Future<Either<Failure, void>> deleteOpenPosition(String id);
-  Future<Either<Failure, ClosedPosition>> closePosition({
+  Future<Result<ClosedPosition>> addClosedPosition(ClosedPosition position);
+  Future<Result<ClosedPosition>> updateClosedPosition(ClosedPosition position);
+  Future<Result<void>> deleteClosedPosition(String id);
+  Future<Result<OpenPosition>> addOpenPosition(OpenPosition position);
+  Future<Result<OpenPosition>> updateOpenPosition(OpenPosition position);
+  Future<Result<void>> deleteOpenPosition(String id);
+  Future<Result<ClosedPosition>> closePosition({
     required String openPositionId,
     required double closePrice,
     required DateTime closeTime,
@@ -514,38 +527,38 @@ abstract class TradeCommandRepository {
 
 // lib/domain/repositories/trade_import_repository.dart
 abstract class TradeImportRepository {
-  Future<Either<Failure, ImportResult>> importFromCsv(String filePath);
+  Future<Result<ImportResult>> importFromCsv(String filePath);
 }
 
 // lib/domain/repositories/trade_export_repository.dart
 abstract class TradeExportRepository {
-  Future<Either<Failure, String>> exportClosedPositionsToCsv({
+  Future<Result<String>> exportClosedPositionsToCsv({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
   });
-  Future<Either<Failure, String>> exportOpenPositionsToCsv();
-  Future<Either<Failure, String>> exportFinanceRecordsToCsv();
+  Future<Result<String>> exportOpenPositionsToCsv();
+  Future<Result<String>> exportFinanceRecordsToCsv();
 }
 
 // lib/domain/repositories/auth_repository.dart
 abstract class AuthRepository {
-  Future<Either<Failure, User>> signIn(String email, String password);
-  Future<Either<Failure, User>> signUp(String email, String password);
-  Future<Either<Failure, void>> signOut();
-  Future<Either<Failure, void>> resetPassword(String email);
+  Future<Result<User>> signIn(String email, String password);
+  Future<Result<User>> signUp(String email, String password);
+  Future<Result<void>> signOut();
+  Future<Result<void>> resetPassword(String email);
   Stream<User?> get authStateChanges;
 }
 
 // lib/domain/repositories/user_profile_repository.dart
 abstract class UserProfileRepository {
-  Future<Either<Failure, User>> getProfile();
-  Future<Either<Failure, User>> updateProfile({String? displayName});
-  Future<Either<Failure, void>> changePassword(
+  Future<Result<User>> getProfile();
+  Future<Result<User>> updateProfile({String? displayName});
+  Future<Result<void>> changePassword(
     String currentPassword,
     String newPassword,
   );
-  Future<Either<Failure, void>> deleteAccount();
+  Future<Result<void>> deleteAccount();
 }
 ```
 
@@ -567,9 +580,9 @@ class TradeListNotifier extends _$TradeListNotifier {
     // Only depends on query repository
     final queryRepo = ref.read(tradeQueryRepositoryProvider);
     final result = await queryRepo.getClosedPositions();
-    return result.fold(
-      (failure) => throw Exception(failure.message),
-      (positions) => positions,
+    return result.when(
+      failure: (error) => throw Exception(error),
+      success: (positions) => positions,
     );
   }
 }
@@ -877,43 +890,47 @@ class AddTradeUseCase {
 }
 
 // lib/domain/usecases/get_trade_analytics.dart
-class GetTradeAnalyticsUseCase {
+class GetTradeAnalyticsUseCase extends UseCase<TradeAnalytics, GetAnalyticsParams> {
   final TradeQueryRepository _repository;
 
   GetTradeAnalyticsUseCase(this._repository);
 
-  Future<Either<Failure, TradeAnalytics>> execute(TradeFilter filter) async {
-    return await _repository.getAnalytics(filter);
+  @override
+  Future<Result<TradeAnalytics>> call(GetAnalyticsParams params) async {
+    return await _repository.getAnalytics(params.filter);
   }
 }
 
 // lib/domain/usecases/import_trades.dart
-class ImportTradesUseCase {
+class ImportTradesUseCase extends UseCase<ImportResult, ImportTradesParams> {
   final TradeImportRepository _repository;
 
   ImportTradesUseCase(this._repository);
 
-  Future<Either<Failure, ImportResult>> execute(String filePath) async {
-    if (filePath.isEmpty) {
-      return const Left(ValidationFailure('File path cannot be empty'));
+  @override
+  Future<Result<ImportResult>> call(ImportTradesParams params) async {
+    if (params.filePath.isEmpty) {
+      return const Result.failure('File path cannot be empty');
     }
-    return await _repository.importFromCsv(filePath);
+    return await _repository.importFromCsv(params.filePath);
   }
 }
 
 // lib/domain/usecases/get_recommendations.dart
-class GetRecommendationsUseCase {
+class GetRecommendationsUseCase extends UseCase<List<Recommendation>, GetRecommendationsParams> {
   final TradeQueryRepository _repository;
 
   GetRecommendationsUseCase(this._repository);
 
-  Future<Either<Failure, List<Recommendation>>> execute(TradeFilter filter) async {
-    final analyticsResult = await _repository.getAnalytics(filter);
-    return analyticsResult.fold(
-      (failure) => Left(failure),
-      (analytics) {
+  @override
+  Future<Result<List<Recommendation>>> call(GetRecommendationsParams params) async {
+    final analyticsResult = await _repository.getAnalytics(params.filter);
+    
+    return analyticsResult.when(
+      failure: (error) => Result.failure(error),
+      success: (analytics) {
         final recommendations = _generateRecommendations(analytics);
-        return Right(recommendations);
+        return Result.success(recommendations);
       },
     );
   }
@@ -1084,7 +1101,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
   TradeQueryRepositoryImpl(this._localDataSource);
 
   @override
-  Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+  Future<Result<List<ClosedPosition>>> getClosedPositions({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -1099,14 +1116,14 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
         side: side,
         reasons: reasons,
       );
-      return Right(positions.map((dto) => dto.toEntity()).toList());
+      return Result.success(positions.map((dto) => dto.toEntity()).toList());
     } catch (e) {
-      return Left(DatabaseFailure(e.toString()));
+      return Result.failure('Failed to get closed positions: $e');
     }
   }
 
   @override
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(TradeFilter filter) async {
+  Future<Result<TradeAnalytics>> getAnalytics(TradeFilter filter) async {
     try {
       final positions = await _localDataSource.queryClosedPositions(
         startDate: filter.startDate,
@@ -1118,9 +1135,9 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
 
       final entities = positions.map((dto) => dto.toEntity()).toList();
       final analytics = _computeAnalytics(entities);
-      return Right(analytics);
+      return Result.success(analytics);
     } catch (e) {
-      return Left(DatabaseFailure(e.toString()));
+      return Result.failure('Failed to get analytics: $e');
     }
   }
 
@@ -1198,11 +1215,11 @@ class TradeFormNotifier extends _$TradeFormNotifier {
     final useCase = ref.read(addTradeUseCaseProvider);
     final entity = _mapStateToEntity(state);
 
-    final result = await useCase.execute(entity);
+    final result = await useCase.call(AddTradeParams(position: entity));
 
-    result.fold(
-      (failure) => state = TradeFormState.error(failure.message),
-      (success) => state = TradeFormState.success(success),
+    result.when(
+      failure: (error) => state = TradeFormState.error(error),
+      success: (success) => state = TradeFormState.success(success),
     );
   }
 }
@@ -1521,11 +1538,11 @@ void main() {
     );
 
     // Act
-    final result = await useCase.execute(position);
+    final result = await useCase.call(AddTradeParams(position: position));
 
     // Assert
-    expect(result.isLeft(), true);
-    expect(result.fold((l) => l, (r) => null), isA<ValidationFailure>());
+    expect(result.isFailure, true);
+    expect(result.error, 'Close time must be after open time');
   });
 
   test('should add trade successfully', () async {
@@ -1547,16 +1564,19 @@ void main() {
     );
 
     when(mockRepository.addClosedPosition(position))
-        .thenAnswer((_) async => Right(position));
+        .thenAnswer((_) async => Result.success(position));
 
     // Act
-    final result = await useCase.execute(position);
+    final result = await useCase.call(AddTradeParams(position: position));
 
     // Assert
-    expect(result.isRight(), true);
-    result.fold(
-      (l) => fail('Should return Right'),
-      (r) => expect(r.id, 'test-id'),
+    expect(result.isSuccess, true);
+    result.when(
+      failure: (error) => fail('Should return success'),
+      success: (r) {
+        expect(r.id, 'test-id');
+        expect(r.symbol, 'EURUSD');
+      },
     );
     verify(mockRepository.addClosedPosition(position)).called(1);
   });

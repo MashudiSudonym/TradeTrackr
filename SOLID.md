@@ -1,6 +1,6 @@
 # SOLID Principles - TradeTrackr
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-22
 **Project**: TradeTrackr (Flutter Trading Journal App)
 
 ---
@@ -66,15 +66,15 @@ class AddTradeUseCase {
   AddTradeUseCase(this._repository);
 
   /// Executes a single operation: adding a closed trade position
-  Future<Either<Failure, ClosedPosition>> execute(
+  Future<Result<ClosedPosition>> execute(
     ClosedPosition position,
   ) async {
     // Business validation
     if (position.closeTime.isBefore(position.openTime)) {
-      return const Left(ValidationFailure('Close time must be after open time'));
+      return const Result.failure('Close time must be after open time');
     }
     if (position.volume <= 0) {
-      return const Left(ValidationFailure('Volume must be greater than 0'));
+      return const Result.failure('Volume must be greater than 0');
     }
     return await _repository.addClosedPosition(position);
   }
@@ -171,7 +171,7 @@ You should be able to add new functionality without changing existing code. This
    ```dart
    // Domain layer - abstraction
    abstract class TradeQueryRepository {
-     Future<Either<Failure, List<ClosedPosition>>> getClosedPositions();
+     Future<Result<List<ClosedPosition>>> getClosedPositions();
    }
 
    // Data layer - implementations can be extended
@@ -181,12 +181,12 @@ You should be able to add new functionality without changing existing code. This
      TradeQueryRepositoryImpl(this._localDataSource);
 
      @override
-     Future<Either<Failure, List<ClosedPosition>>> getClosedPositions() async {
+     Future<Result<List<ClosedPosition>>> getClosedPositions() async {
        try {
          final dtos = await _localDataSource.getAllClosedPositions();
-         return Right(dtos.map((dto) => dto.toEntity()).toList());
+         return Result.success(dtos.map((dto) => dto.toEntity()).toList());
        } catch (e) {
-         return Left(DatabaseFailure(e.toString()));
+         return Result.failure('Database error: $e');
        }
      }
    }
@@ -296,9 +296,9 @@ If you have a parent class and a child class, then the base class and child clas
    // GOOD - Any implementation of TradeQueryRepository can be used interchangeably
    void displayTrades(TradeQueryRepository repository) {
      repository.getClosedPositions().then((result) {
-       result.fold(
-         (failure) => print('Error: ${failure.message}'),
-         (positions) => print('Trades: ${positions.length}'),
+       result.when(
+         failure: (error) => print('Error: $error'),
+         success: (positions) => print('Trades: ${positions.length}'),
        );
      });
    }
@@ -363,26 +363,26 @@ Interfaces should be small and focused. Clients shouldn't be forced to implement
    // 1. Read operations only
    // lib/domain/repositories/trade_query_repository.dart
    abstract class TradeQueryRepository {
-     Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+     Future<Result<List<ClosedPosition>>> getClosedPositions({
        DateTime? startDate,
        DateTime? endDate,
        List<String>? symbols,
        TradeSide? side,
        List<CloseReason>? reasons,
      });
-     Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id);
-     Future<Either<Failure, List<OpenPosition>>> getOpenPositions();
-     Future<Either<Failure, TradeAnalytics>> getAnalytics(TradeFilter filter);
+     Future<Result<ClosedPosition?>> getClosedPositionById(String id);
+     Future<Result<List<OpenPosition>>> getOpenPositions();
+     Future<Result<TradeAnalytics>> getAnalytics(TradeFilter filter);
    }
 
    // 2. Write operations only
    // lib/domain/repositories/trade_command_repository.dart
    abstract class TradeCommandRepository {
-     Future<Either<Failure, ClosedPosition>> addClosedPosition(ClosedPosition position);
-     Future<Either<Failure, ClosedPosition>> updateClosedPosition(ClosedPosition position);
-     Future<Either<Failure, void>> deleteClosedPosition(String id);
-     Future<Either<Failure, OpenPosition>> addOpenPosition(OpenPosition position);
-     Future<Either<Failure, ClosedPosition>> closePosition({
+     Future<Result<ClosedPosition>> addClosedPosition(ClosedPosition position);
+     Future<Result<ClosedPosition>> updateClosedPosition(ClosedPosition position);
+     Future<Result<void>> deleteClosedPosition(String id);
+     Future<Result<OpenPosition>> addOpenPosition(OpenPosition position);
+     Future<Result<ClosedPosition>> closePosition({
        required String openPositionId,
        required double closePrice,
        required DateTime closeTime,
@@ -393,41 +393,41 @@ Interfaces should be small and focused. Clients shouldn't be forced to implement
    // 3. Bulk import only
    // lib/domain/repositories/trade_import_repository.dart
    abstract class TradeImportRepository {
-     Future<Either<Failure, ImportResult>> importFromCsv(String filePath);
+     Future<Result<ImportResult>> importFromCsv(String filePath);
    }
 
    // 4. Export only
    // lib/domain/repositories/trade_export_repository.dart
    abstract class TradeExportRepository {
-     Future<Either<Failure, String>> exportClosedPositionsToCsv({
+     Future<Result<String>> exportClosedPositionsToCsv({
        DateTime? startDate,
        DateTime? endDate,
        List<String>? symbols,
      });
-     Future<Either<Failure, String>> exportOpenPositionsToCsv();
-     Future<Either<Failure, String>> exportFinanceRecordsToCsv();
+     Future<Result<String>> exportOpenPositionsToCsv();
+     Future<Result<String>> exportFinanceRecordsToCsv();
    }
 
    // 5. Authentication only
    // lib/domain/repositories/auth_repository.dart
    abstract class AuthRepository {
-     Future<Either<Failure, User>> signIn(String email, String password);
-     Future<Either<Failure, User>> signUp(String email, String password);
-     Future<Either<Failure, void>> signOut();
-     Future<Either<Failure, void>> resetPassword(String email);
+     Future<Result<User>> signIn(String email, String password);
+     Future<Result<User>> signUp(String email, String password);
+     Future<Result<void>> signOut();
+     Future<Result<void>> resetPassword(String email);
      Stream<User?> get authStateChanges;
    }
 
    // 6. Profile management only
    // lib/domain/repositories/user_profile_repository.dart
    abstract class UserProfileRepository {
-     Future<Either<Failure, User>> getProfile();
-     Future<Either<Failure, User>> updateProfile({String? displayName});
-     Future<Either<Failure, void>> changePassword(
+     Future<Result<User>> getProfile();
+     Future<Result<User>> updateProfile({String? displayName});
+     Future<Result<void>> changePassword(
        String currentPassword,
        String newPassword,
      );
-     Future<Either<Failure, void>> deleteAccount();
+     Future<Result<void>> deleteAccount();
    }
    ```
 
@@ -442,9 +442,9 @@ class TradeListNotifier extends _$TradeListNotifier {
     // Only depends on query repository
     final queryRepo = ref.read(tradeQueryRepositoryProvider);
     final result = await queryRepo.getClosedPositions();
-    return result.fold(
-      (failure) => throw Exception(failure.message),
-      (positions) => positions,
+    return result.when(
+      failure: (error) => throw Exception(error),
+      success: (positions) => positions,
     );
   }
 }
@@ -604,7 +604,7 @@ High-level modules should not depend on low-level modules. Both should depend on
 
      GetTradeAnalyticsUseCase(this._repository);
 
-     Future<Either<Failure, TradeAnalytics>> execute(TradeFilter filter) async {
+     Future<Result<TradeAnalytics>> execute(TradeFilter filter) async {
        return await _repository.getAnalytics(filter);
      }
    }
@@ -698,24 +698,24 @@ abstract class TradeRepository {
 // GOOD - 6 focused interfaces, each with single purpose
 
 abstract class TradeQueryRepository {
-  Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+  Future<Result<List<ClosedPosition>>> getClosedPositions({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
     TradeSide? side,
     List<CloseReason>? reasons,
   });
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id);
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions();
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(TradeFilter filter);
+  Future<Result<ClosedPosition?>> getClosedPositionById(String id);
+  Future<Result<List<OpenPosition>>> getOpenPositions();
+  Future<Result<TradeAnalytics>> getAnalytics(TradeFilter filter);
 }
 
 abstract class TradeCommandRepository {
-  Future<Either<Failure, ClosedPosition>> addClosedPosition(ClosedPosition position);
-  Future<Either<Failure, ClosedPosition>> updateClosedPosition(ClosedPosition position);
-  Future<Either<Failure, void>> deleteClosedPosition(String id);
-  Future<Either<Failure, OpenPosition>> addOpenPosition(OpenPosition position);
-  Future<Either<Failure, ClosedPosition>> closePosition({
+  Future<Result<ClosedPosition>> addClosedPosition(ClosedPosition position);
+  Future<Result<ClosedPosition>> updateClosedPosition(ClosedPosition position);
+  Future<Result<void>> deleteClosedPosition(String id);
+  Future<Result<OpenPosition>> addOpenPosition(OpenPosition position);
+  Future<Result<ClosedPosition>> closePosition({
     required String openPositionId,
     required double closePrice,
     required DateTime closeTime,
@@ -724,35 +724,35 @@ abstract class TradeCommandRepository {
 }
 
 abstract class TradeImportRepository {
-  Future<Either<Failure, ImportResult>> importFromCsv(String filePath);
+  Future<Result<ImportResult>> importFromCsv(String filePath);
 }
 
 abstract class TradeExportRepository {
-  Future<Either<Failure, String>> exportClosedPositionsToCsv({
+  Future<Result<String>> exportClosedPositionsToCsv({
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
   });
-  Future<Either<Failure, String>> exportOpenPositionsToCsv();
-  Future<Either<Failure, String>> exportFinanceRecordsToCsv();
+  Future<Result<String>> exportOpenPositionsToCsv();
+  Future<Result<String>> exportFinanceRecordsToCsv();
 }
 
 abstract class AuthRepository {
-  Future<Either<Failure, User>> signIn(String email, String password);
-  Future<Either<Failure, User>> signUp(String email, String password);
-  Future<Either<Failure, void>> signOut();
-  Future<Either<Failure, void>> resetPassword(String email);
+  Future<Result<User>> signIn(String email, String password);
+  Future<Result<User>> signUp(String email, String password);
+  Future<Result<void>> signOut();
+  Future<Result<void>> resetPassword(String email);
   Stream<User?> get authStateChanges;
 }
 
 abstract class UserProfileRepository {
-  Future<Either<Failure, User>> getProfile();
-  Future<Either<Failure, User>> updateProfile({String? displayName});
-  Future<Either<Failure, void>> changePassword(
+  Future<Result<User>> getProfile();
+  Future<Result<User>> updateProfile({String? displayName});
+  Future<Result<void>> changePassword(
     String currentPassword,
     String newPassword,
   );
-  Future<Either<Failure, void>> deleteAccount();
+  Future<Result<void>> deleteAccount();
 }
 ```
 
@@ -779,7 +779,7 @@ class GetTradeAnalyticsUseCase {
 
   GetTradeAnalyticsUseCase(this._repository);
 
-  Future<Either<Failure, TradeAnalytics>> execute(TradeFilter filter) async {
+  Future<Result<TradeAnalytics>> execute(TradeFilter filter) async {
     return await _repository.getAnalytics(filter);
   }
 }
@@ -801,4 +801,4 @@ class GetTradeAnalyticsUseCase {
 
 ---
 
-**Last Updated**: 2026-04-11
+**Last Updated**: 2026-04-22
