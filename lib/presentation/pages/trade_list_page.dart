@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../../domain/entities/closed_position.dart';
 import '../providers/analytics_provider.dart';
 import '../providers/trade_provider.dart';
@@ -49,10 +50,12 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
   }
 
   Widget _buildTopBar(ColorScheme cs) {
+    final padding = context.horizontalPadding;
+
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+        padding: EdgeInsets.fromLTRB(padding, 12, padding, 0),
         child: Row(
           children: [
             RichText(
@@ -93,10 +96,11 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
   }
 
   Widget _buildHero(ColorScheme cs) {
+    final padding = context.horizontalPadding;
     final analyticsAsync = ref.watch(analyticsProvider);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+      padding: EdgeInsets.fromLTRB(padding, 16, padding, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -110,7 +114,8 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
           ),
           const SizedBox(height: 12),
           // Inline metric chips
-          Row(
+          Wrap(
+            spacing: context.responsiveSpacing(),
             children: [
               _MetricChip(
                 cs: cs,
@@ -121,7 +126,6 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
                   error: (_, _) => 'N/A',
                 ),
               ),
-              const SizedBox(width: 12),
               _MetricChip(
                 cs: cs,
                 label: 'PROFIT FACTOR',
@@ -139,8 +143,11 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
   }
 
   Widget _buildFilterBar(ColorScheme cs) {
+    final padding = context.horizontalPadding;
+    final spacing = context.responsiveSpacing();
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
+      padding: EdgeInsets.fromLTRB(padding, 16, padding, 0),
       child: Row(
         children: [
           // Search input
@@ -171,7 +178,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
               ),
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: spacing),
           // Date range chip
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -195,7 +202,7 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
               ],
             ),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: spacing),
           // Export button
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
@@ -212,6 +219,9 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
 
   Widget _buildTradeList(ColorScheme cs) {
     final tradesAsync = ref.watch(tradeListProvider);
+    final columns = context.gridColumns;
+    final spacing = context.responsiveSpacing();
+    final padding = context.horizontalPadding;
 
     return tradesAsync.when(
       data: (trades) {
@@ -234,13 +244,52 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
           );
         }
 
+        // Mobile: single column list, Tablet/Desktop: grid
+        if (columns == 1) {
+          return Column(
+            children: [
+              Expanded(
+                child: ListView.separated(
+                  padding: EdgeInsets.fromLTRB(padding, 16, padding, 80),
+                  itemCount: filtered.length,
+                  separatorBuilder: (_, _) => SizedBox(height: spacing),
+                  itemBuilder: (context, index) {
+                    return _TradeListCard(
+                      trade: filtered[index],
+                      cs: cs,
+                    );
+                  },
+                ),
+              ),
+              // Hide pagination on mobile, show on larger screens
+              Padding(
+                padding: EdgeInsets.fromLTRB(padding, 8, padding, 16),
+                child: Text(
+                  'Showing 1-${filtered.length} of ${filtered.length} trades',
+                  style: GoogleFonts.inter(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: cs.onSurfaceVariant,
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
+
+        // Tablet/Desktop: grid layout
         return Column(
           children: [
             Expanded(
-              child: ListView.separated(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 80),
+              child: GridView.builder(
+                padding: EdgeInsets.fromLTRB(padding, 16, padding, 80),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: columns,
+                  mainAxisSpacing: spacing,
+                  crossAxisSpacing: spacing,
+                  childAspectRatio: 2.5,
+                ),
                 itemCount: filtered.length,
-                separatorBuilder: (_, _) => const SizedBox(height: 16),
                 itemBuilder: (context, index) {
                   return _TradeListCard(
                     trade: filtered[index],
@@ -249,9 +298,9 @@ class _TradeListPageState extends ConsumerState<TradeListPage> {
                 },
               ),
             ),
-            // Pagination text
+            // Show pagination on desktop/tablet
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              padding: EdgeInsets.fromLTRB(padding, 8, padding, 16),
               child: Text(
                 'Showing 1-${filtered.length} of ${filtered.length} trades',
                 style: GoogleFonts.inter(

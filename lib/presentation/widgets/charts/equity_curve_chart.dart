@@ -2,6 +2,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../mock/chart_mock_data.dart';
 import '../pill_toggle.dart';
 import 'chart_container.dart';
@@ -75,10 +76,13 @@ class _EquityCurveChartState extends ConsumerState<EquityCurveChart> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final isMobile = context.isMobile;
+    final chartHeight = isMobile ? 280.0 : 350.0;
+    final fontSize = context.responsiveFontSize(10);
 
     return ChartContainer(
       title: 'EQUITY CURVE',
-      height: 310,
+      height: chartHeight,
       trailing: PillToggle<EquityTimeRange>(
         options: const [
           PillOption(value: EquityTimeRange.oneWeek, label: '1W'),
@@ -116,7 +120,7 @@ class _EquityCurveChartState extends ConsumerState<EquityCurveChart> {
                 leftTitles: AxisTitles(
                   sideTitles: SideTitles(
                     showTitles: true,
-                    reservedSize: 48,
+                    reservedSize: isMobile ? 48 : 56,
                     interval: (_maxY - _minY) / 4,
                     getTitlesWidget: (value, meta) {
                       return Padding(
@@ -125,7 +129,7 @@ class _EquityCurveChartState extends ConsumerState<EquityCurveChart> {
                           _formatYValue(value),
                           style: TextStyle(
                             fontFamily: 'Inter',
-                            fontSize: 10,
+                            fontSize: fontSize,
                             fontWeight: FontWeight.w500,
                             color: cs.onSurfaceVariant,
                           ),
@@ -150,7 +154,7 @@ class _EquityCurveChartState extends ConsumerState<EquityCurveChart> {
                           _dateLabels[index],
                           style: TextStyle(
                             fontFamily: 'Inter',
-                            fontSize: 10,
+                            fontSize: fontSize,
                             fontWeight: FontWeight.w500,
                             color: cs.onSurfaceVariant,
                           ),
@@ -201,7 +205,7 @@ class _EquityCurveChartState extends ConsumerState<EquityCurveChart> {
                         '\$${spot.y.toStringAsFixed(0)}',
                         TextStyle(
                           fontFamily: 'Manrope',
-                          fontSize: 13,
+                          fontSize: context.responsiveFontSize(13),
                           fontWeight: FontWeight.w700,
                           color: cs.surfaceContainerLowest,
                         ),

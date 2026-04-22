@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../core/extensions/context_extensions.dart';
+
 /// Card displaying a single metric with label, value, and optional accent.
 ///
 /// Uses surfaceContainerHigh background with 12px corner radius.
@@ -27,9 +29,10 @@ class MetricCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final trailing = this.trailing;
     final accentColor = this.accentColor;
+    final padding = context.responsiveSpacing();
 
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(12 + padding),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHigh,
         borderRadius: BorderRadius.circular(12),
@@ -40,7 +43,7 @@ class MetricCard extends StatelessWidget {
             Container(
               width: 4,
               height: 40,
-              margin: const EdgeInsets.only(right: 12),
+              margin: EdgeInsets.only(right: padding),
               decoration: BoxDecoration(
                 color: accentColor,
                 borderRadius: BorderRadius.circular(2),
@@ -56,7 +59,7 @@ class MetricCard extends StatelessWidget {
                     color: colorScheme.onSurfaceVariant,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: padding / 2),
                 Text(
                   value,
                   style: textTheme.headlineSmall?.copyWith(

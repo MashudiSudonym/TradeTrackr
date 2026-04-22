@@ -69,4 +69,81 @@ extension ContextExtensions on BuildContext {
         tablet: 32,
         desktop: 48,
       );
+
+  /// Returns responsive padding value (same as horizontalPadding).
+  double responsivePadding() => horizontalPadding;
+
+  /// Returns responsive EdgeInsets.all based on screen size.
+  ///
+  /// Defaults: mobile=20, tablet=32, desktop=48
+  EdgeInsets responsiveEdgeInsets() => EdgeInsets.all(horizontalPadding);
+
+  /// Returns responsive spacing value based on screen size.
+  ///
+  /// Useful for consistent spacing between elements.
+  /// Defaults: mobile=8, tablet=12, desktop=16
+  double responsiveSpacing() => responsiveValue(
+        mobile: 8.0,
+        tablet: 12.0,
+        desktop: 16.0,
+      );
+
+  /// Returns responsive font size based on mobile size and current breakpoint.
+  ///
+  /// Scales the mobile font size by a factor based on screen size.
+  /// Example:
+  /// ```dart
+  /// final fontSize = context.responsiveFontSize(14); // 14 on mobile, ~15 on tablet, ~16 on desktop
+  /// ```
+  double responsiveFontSize(double mobileSize) {
+    final scale = textScaleFactor;
+    return mobileSize * scale;
+  }
+
+  /// Returns responsive width based on mobile width and current breakpoint.
+  ///
+  /// Scales the mobile width by a factor based on screen size.
+  double responsiveWidth(double mobileWidth) {
+    final scale = textScaleFactor;
+    return mobileWidth * scale;
+  }
+
+  /// Returns responsive height based on mobile height and current breakpoint.
+  ///
+  /// Scales the mobile height by a factor based on screen size.
+  double responsiveHeight(double mobileHeight) {
+    final scale = textScaleFactor;
+    return mobileHeight * scale;
+  }
+
+  /// Returns the screen size as a [Size] object.
+  Size get screenSize => MediaQuery.of(this).size;
+
+  /// True if the current orientation is portrait.
+  bool get isPortrait => MediaQuery.of(this).orientation == Orientation.portrait;
+
+  /// True if the current orientation is landscape.
+  bool get isLandscape => MediaQuery.of(this).orientation == Orientation.landscape;
+
+  /// Returns the text scale factor for the current breakpoint.
+  ///
+  /// This factor is used to scale font sizes and dimensions for larger screens.
+  /// Defaults: mobile=1.0, tablet=1.05, desktop=1.1
+  double get textScaleFactor => responsiveValue(
+        mobile: 1.0,
+        tablet: 1.05,
+        desktop: 1.1,
+      );
+
+  /// Returns the maximum width constraint for content on the current screen.
+  ///
+  /// On desktop, this returns a max-width constraint to prevent content from
+  /// becoming too wide. On mobile and tablet, returns double.infinity.
+  ///
+  /// Defaults: mobile/tablet=infinity, desktop=1200
+  double get maxContentWidth => responsiveValue(
+        mobile: double.infinity,
+        tablet: double.infinity,
+        desktop: 1200,
+      );
 }

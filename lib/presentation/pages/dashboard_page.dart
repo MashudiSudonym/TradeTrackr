@@ -3,11 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../providers/analytics_provider.dart';
 import '../providers/recommendation_provider.dart';
 import '../providers/trade_provider.dart';
 import '../../app/theme/app_colors.dart';
 import '../widgets/widgets.dart';
+import '../widgets/responsive/responsive.dart';
 
 /// Dashboard — the home screen of TradeTrackr.
 ///
@@ -20,6 +22,7 @@ class DashboardPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final spacing = context.responsiveSpacing();
 
     return Scaffold(
       backgroundColor: cs.surface,
@@ -32,32 +35,32 @@ class DashboardPage extends ConsumerWidget {
             _TopAppBar(cs: cs),
 
             // ── Hero Section ─────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            ResponsivePadding(
+              vertical: false,
               child: _HeroSection(cs: cs, ref: ref),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32 + spacing * 2),
 
             // ── Bento Metrics ────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            ResponsivePadding(
+              vertical: false,
               child: _BentoMetrics(cs: cs, ref: ref),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32 + spacing * 2),
 
             // ── Charts Section ────────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            ResponsivePadding(
+              vertical: false,
               child: _ChartsSection(cs: cs),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32 + spacing * 2),
 
             // ── Recent Trades ────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            ResponsivePadding(
+              vertical: false,
               child: _RecentTradesSection(cs: cs, ref: ref),
             ),
           ],
@@ -78,10 +81,12 @@ class _TopAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final padding = context.horizontalPadding;
+
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+        padding: EdgeInsets.fromLTRB(padding, 12, padding, 0),
         child: Row(
           children: [
             // Logo
@@ -254,51 +259,83 @@ class _BentoMetrics extends StatelessWidget {
   Widget build(BuildContext context) {
     final analyticsAsync = ref.watch(analyticsProvider);
     final recommendationsAsync = ref.watch(recommendationsProvider);
+    final columns = context.gridColumns;
+    final spacing = context.responsiveSpacing();
 
     return analyticsAsync.when(
       data: (analytics) {
         final topRec = recommendationsAsync.value?.firstOrNull;
-        return Row(
-          children: [
-            Expanded(
-              child: _MetricCard(
+
+        // Mobile: single column, Tablet: 2-column, Desktop: 4-column
+        if (columns == 1) {
+          return Column(
+            children: [
+              _MetricCard(
                 cs: cs,
                 label: 'WIN RATE',
                 value: analytics.formattedWinRate,
                 child: _WinRateProgress(cs: cs, winRate: analytics.winRate),
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _MetricCard(
+              SizedBox(height: spacing),
+              _MetricCard(
                 cs: cs,
                 label: 'TOTAL PROFIT',
                 value: analytics.formattedTotalPnL,
                 valueColor:
                     analytics.totalProfitLoss >= 0 ? cs.tertiary : cs.error,
               ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _MetricCard(
+              SizedBox(height: spacing),
+              _MetricCard(
                 cs: cs,
                 label: 'TOP PICK',
                 value: topRec?.title.split(' ').take(2).join(' ') ?? 'N/A',
                 subtitle: topRec?.description.split('.').first,
               ),
+            ],
+          );
+        }
+
+        // Tablet (2 columns) or Desktop (4 columns)
+        return GridView.count(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisCount: columns > 3 ? 3 : columns,
+          mainAxisSpacing: spacing,
+          crossAxisSpacing: spacing,
+          childAspectRatio: columns > 2 ? 1.5 : 1.2,
+          children: [
+            _MetricCard(
+              cs: cs,
+              label: 'WIN RATE',
+              value: analytics.formattedWinRate,
+              child: _WinRateProgress(cs: cs, winRate: analytics.winRate),
+            ),
+            _MetricCard(
+              cs: cs,
+              label: 'TOTAL PROFIT',
+              value: analytics.formattedTotalPnL,
+              valueColor:
+                  analytics.totalProfitLoss >= 0 ? cs.tertiary : cs.error,
+            ),
+            _MetricCard(
+              cs: cs,
+              label: 'TOP PICK',
+              value: topRec?.title.split(' ').take(2).join(' ') ?? 'N/A',
+              subtitle: topRec?.description.split('.').first,
             ),
           ],
         );
       },
-      loading: () => Row(
+      loading: () => GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: columns > 2 ? 3 : columns,
+        mainAxisSpacing: spacing,
+        crossAxisSpacing: spacing,
+        childAspectRatio: 1.2,
         children: List.generate(
           3,
-          (_) => Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: _shimmerCard(),
-            ),
-          ),
+          (_) => _shimmerCard(),
         ),
       ),
       error: (_, _) => const SizedBox.shrink(),

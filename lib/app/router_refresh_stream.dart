@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../presentation/providers/auth_provider.dart';
 import '../presentation/providers/onboarding_provider.dart';

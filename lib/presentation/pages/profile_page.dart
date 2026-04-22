@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../providers/analytics_provider.dart';
 import '../providers/profile_provider.dart';
 import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
+import '../widgets/responsive/responsive.dart';
 
 /// Profile page with user info, settings cards, performance snapshot,
 /// and sign out button.
@@ -17,54 +19,57 @@ class ProfilePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final spacing = context.responsiveSpacing();
 
     return Scaffold(
       backgroundColor: cs.surface,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 80),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // ── Top App Bar ──────────────────────────────────
-            _buildTopBar(cs),
+      body: ResponsiveCentered(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ── Top App Bar ──────────────────────────────────
+              _buildTopBar(cs),
 
-            // ── Profile Header ───────────────────────────────
-            _buildProfileHeader(cs, ref),
+              // ── Profile Header ───────────────────────────────
+              _buildProfileHeader(cs, ref),
 
-            const SizedBox(height: 32),
+              SizedBox(height: 32 + spacing),
 
-            // ── Settings Cards ───────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSectionLabel(cs, 'SETTINGS'),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSettingsGrid(context, cs, ref),
-            ),
+              // ── Settings Cards ───────────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSectionLabel(cs, 'SETTINGS'),
+              ),
+              SizedBox(height: spacing),
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSettingsGrid(context, cs, ref),
+              ),
 
-            const SizedBox(height: 32),
+              SizedBox(height: 32 + spacing),
 
-            // ── Performance Snapshot ─────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSectionLabel(cs, 'PERFORMANCE SNAPSHOT'),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildPerformanceSnapshot(cs, ref),
-            ),
+              // ── Performance Snapshot ─────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSectionLabel(cs, 'PERFORMANCE SNAPSHOT'),
+              ),
+              SizedBox(height: spacing),
+              ResponsivePadding(
+                vertical: false,
+                child: _buildPerformanceSnapshot(cs, ref),
+              ),
 
-            const SizedBox(height: 32),
+              SizedBox(height: 32 + spacing),
 
-            // ── Log Out ─────────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSignOutButton(cs, ref, context),
-            ),
-          ],
+              // ── Log Out ─────────────────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSignOutButton(cs, ref, context),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../app/theme/app_colors.dart';
+import '../widgets/responsive/responsive.dart';
 
 /// Add Trade page — form for creating a new trade position.
 ///
@@ -51,6 +53,7 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final spacing = context.responsiveSpacing();
 
     return Scaffold(
       backgroundColor: cs.surface,
@@ -70,176 +73,307 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
         ),
         centerTitle: false,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ── Position Type Toggle ──────────────────────
-              _buildPositionTypeToggle(cs),
+      body: ResponsiveCentered(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ── Position Type Toggle ──────────────────────
+                _buildPositionTypeToggle(cs),
 
-              const SizedBox(height: 24),
+                SizedBox(height: 24 + spacing),
 
-              // ── Symbol ───────────────────────────────────
-              _FieldLabel(cs: cs, label: 'SYMBOL'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _symbolController,
-                hintText: 'e.g., BTCUSD, EURUSD',
-                cs: cs,
-                validator: (v) => (v == null || v.isEmpty) ? 'Symbol is required' : null,
-              ),
-              const SizedBox(height: 20),
-
-              // ── Side Toggle ──────────────────────────────
-              _FieldLabel(cs: cs, label: 'SIDE'),
-              const SizedBox(height: 8),
-              _buildSideToggle(cs),
-              const SizedBox(height: 20),
-
-              // ── Volume ───────────────────────────────────
-              _FieldLabel(cs: cs, label: 'VOLUME (LOTS)'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _volumeController,
-                hintText: '0.0',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Volume is required';
-                  if (double.tryParse(v) == null) return 'Enter a valid number';
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-
-              // ── Open Price ───────────────────────────────
-              _FieldLabel(cs: cs, label: 'OPEN PRICE'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _openPriceController,
-                hintText: '0.00',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                validator: (v) {
-                  if (v == null || v.isEmpty) return 'Open price is required';
-                  if (double.tryParse(v) == null) return 'Enter a valid number';
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-
-              // ── Open Time ────────────────────────────────
-              _FieldLabel(cs: cs, label: 'OPEN TIME'),
-              const SizedBox(height: 8),
-              _buildDateTimePicker(cs, _openTime, (dt) => _openTime = dt),
-              const SizedBox(height: 20),
-
-              // ── Close Price & Time (if closed) ───────────
-              if (_isClosed) ...[
-                _FieldLabel(cs: cs, label: 'CLOSE PRICE'),
-                const SizedBox(height: 8),
+                // ── Symbol ───────────────────────────────────
+                _FieldLabel(cs: cs, label: 'SYMBOL'),
+                SizedBox(height: 8 + spacing / 2),
                 _FormField(
-                  controller: _closePriceController,
-                  hintText: '0.00',
+                  controller: _symbolController,
+                  hintText: 'e.g., BTCUSD, EURUSD',
                   cs: cs,
-                  keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                  validator: (v) {
-                    if (!_isClosed) return null;
-                    if (v == null || v.isEmpty) return 'Close price is required';
-                    if (double.tryParse(v) == null) return 'Enter a valid number';
-                    return null;
-                  },
+                  validator: (v) => (v == null || v.isEmpty) ? 'Symbol is required' : null,
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 20 + spacing),
 
-                _FieldLabel(cs: cs, label: 'CLOSE TIME'),
-                const SizedBox(height: 8),
-                _buildDateTimePicker(cs, _closeTime, (dt) => _closeTime = dt),
-                const SizedBox(height: 20),
+                // ── Side Toggle ──────────────────────────────
+                _FieldLabel(cs: cs, label: 'SIDE'),
+                SizedBox(height: 8 + spacing / 2),
+                _buildSideToggle(cs),
+                SizedBox(height: 20 + spacing),
 
-                // ── Reason ─────────────────────────────────
-                _FieldLabel(cs: cs, label: 'CLOSE REASON'),
-                const SizedBox(height: 8),
-                _buildReasonDropdown(cs),
-                const SizedBox(height: 20),
-              ],
-
-              // ── Stop Loss ────────────────────────────────
-              _FieldLabel(cs: cs, label: 'STOP LOSS (OPTIONAL)'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _stopLossController,
-                hintText: '0.00',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              ),
-              const SizedBox(height: 20),
-
-              // ── Take Profit ──────────────────────────────
-              _FieldLabel(cs: cs, label: 'TAKE PROFIT (OPTIONAL)'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _takeProfitController,
-                hintText: '0.00',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              ),
-              const SizedBox(height: 20),
-
-              // ── Swap ─────────────────────────────────────
-              _FieldLabel(cs: cs, label: 'SWAP'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _swapController,
-                hintText: '0.00',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              ),
-              const SizedBox(height: 20),
-
-              // ── Commission ───────────────────────────────
-              _FieldLabel(cs: cs, label: 'COMMISSION'),
-              const SizedBox(height: 8),
-              _FormField(
-                controller: _commissionController,
-                hintText: '0.00',
-                cs: cs,
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              ),
-              const SizedBox(height: 32),
-
-              // ── Save Trade Button ────────────────────────
-              GestureDetector(
-                onTap: _handleSave,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.primary, AppColors.primaryDim],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      stops: [0.0, 1.0],
-                      transform: GradientRotation(135 * 3.14159 / 180),
-                    ),
-                    borderRadius: BorderRadius.circular(9999),
+                // ── Volume & Open Price (side by side on tablet/desktop) ───────────
+                if (context.isMobile) ...[
+                  // Mobile: single column
+                  _FieldLabel(cs: cs, label: 'VOLUME (LOTS)'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _volumeController,
+                    hintText: '0.0',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    validator: (v) {
+                      if (v == null || v.isEmpty) return 'Volume is required';
+                      if (double.tryParse(v) == null) return 'Enter a valid number';
+                      return null;
+                    },
                   ),
-                  child: Center(
-                    child: Text(
-                      'Save Trade',
-                      style: GoogleFonts.inter(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: cs.onPrimary,
+                  SizedBox(height: 20 + spacing),
+
+                  _FieldLabel(cs: cs, label: 'OPEN PRICE'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _openPriceController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    validator: (v) {
+                      if (v == null || v.isEmpty) return 'Open price is required';
+                      if (double.tryParse(v) == null) return 'Enter a valid number';
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20 + spacing),
+                ] else ...[
+                  // Tablet/Desktop: two columns
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'VOLUME (LOTS)'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _volumeController,
+                              hintText: '0.0',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              validator: (v) {
+                                if (v == null || v.isEmpty) return 'Volume is required';
+                                if (double.tryParse(v) == null) return 'Enter a valid number';
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: spacing),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'OPEN PRICE'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _openPriceController,
+                              hintText: '0.00',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                              validator: (v) {
+                                if (v == null || v.isEmpty) return 'Open price is required';
+                                if (double.tryParse(v) == null) return 'Enter a valid number';
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20 + spacing),
+                ],
+
+                // ── Open Time ────────────────────────────────
+                _FieldLabel(cs: cs, label: 'OPEN TIME'),
+                SizedBox(height: 8 + spacing / 2),
+                _buildDateTimePicker(cs, _openTime, (dt) => _openTime = dt),
+                SizedBox(height: 20 + spacing),
+
+                // ── Close Price & Time (if closed) ───────────
+                if (_isClosed) ...[
+                  _FieldLabel(cs: cs, label: 'CLOSE PRICE'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _closePriceController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                    validator: (v) {
+                      if (!_isClosed) return null;
+                      if (v == null || v.isEmpty) return 'Close price is required';
+                      if (double.tryParse(v) == null) return 'Enter a valid number';
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20 + spacing),
+
+                  _FieldLabel(cs: cs, label: 'CLOSE TIME'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _buildDateTimePicker(cs, _closeTime, (dt) => _closeTime = dt),
+                  SizedBox(height: 20 + spacing),
+
+                  // ── Reason ─────────────────────────────────
+                  _FieldLabel(cs: cs, label: 'CLOSE REASON'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _buildReasonDropdown(cs),
+                  SizedBox(height: 20 + spacing),
+                ],
+
+                // ── Stop Loss & Take Profit (side by side on tablet/desktop) ─────────
+                if (context.isMobile) ...[
+                  _FieldLabel(cs: cs, label: 'STOP LOSS (OPTIONAL)'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _stopLossController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  ),
+                  SizedBox(height: 20 + spacing),
+
+                  _FieldLabel(cs: cs, label: 'TAKE PROFIT (OPTIONAL)'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _takeProfitController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  ),
+                  SizedBox(height: 20 + spacing),
+                ] else ...[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'STOP LOSS (OPTIONAL)'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _stopLossController,
+                              hintText: '0.00',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: spacing),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'TAKE PROFIT (OPTIONAL)'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _takeProfitController,
+                              hintText: '0.00',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20 + spacing),
+                ],
+
+                // ── Swap & Commission (side by side on tablet/desktop) ────────────
+                if (context.isMobile) ...[
+                  _FieldLabel(cs: cs, label: 'SWAP'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _swapController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  ),
+                  SizedBox(height: 20 + spacing),
+
+                  _FieldLabel(cs: cs, label: 'COMMISSION'),
+                  SizedBox(height: 8 + spacing / 2),
+                  _FormField(
+                    controller: _commissionController,
+                    hintText: '0.00',
+                    cs: cs,
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                  ),
+                  SizedBox(height: 32 + spacing),
+                ] else ...[
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'SWAP'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _swapController,
+                              hintText: '0.00',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: spacing),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _FieldLabel(cs: cs, label: 'COMMISSION'),
+                            SizedBox(height: 8 + spacing / 2),
+                            _FormField(
+                              controller: _commissionController,
+                              hintText: '0.00',
+                              cs: cs,
+                              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 32 + spacing),
+                ],
+
+                // ── Save Trade Button ────────────────────────
+                GestureDetector(
+                  onTap: _handleSave,
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [AppColors.primary, AppColors.primaryDim],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(135 * 3.14159 / 180),
+                      ),
+                      borderRadius: BorderRadius.circular(9999),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Save Trade',
+                        style: GoogleFonts.inter(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: cs.onPrimary,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

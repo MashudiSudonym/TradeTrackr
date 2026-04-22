@@ -4,9 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../app/theme/app_colors.dart';
+import '../core/extensions/context_extensions.dart';
+import '../presentation/widgets/navigation_drawer.dart';
+import '../presentation/widgets/navigation_rail.dart';
 
-/// Main shell widget wrapping all tabbed screens with a glassmorphism
-/// bottom navigation bar.
+/// Main shell widget wrapping all tabbed screens with adaptive navigation.
+///
+/// Navigation adapts based on screen size:
+/// - Mobile (< 600px): Glassmorphism bottom navigation bar
+/// - Tablet (600-899px): Navigation rail on the left
+/// - Desktop (>= 900px): Permanent navigation drawer
 ///
 /// Uses StatefulNavigationShell to preserve tab state when switching.
 class MainShell extends StatelessWidget {
@@ -14,22 +21,56 @@ class MainShell extends StatelessWidget {
 
   const MainShell({super.key, required this.navigationShell});
 
+  void _handleTabTap(int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
+    // Adaptive navigation based on screen size
+    if (context.isDesktop) {
+      return Scaffold(
+        body: Row(
+          children: [
+            NavigationDrawerWidget(
+              currentIndex: navigationShell.currentIndex,
+              onTap: _handleTabTap,
+              isDark: isDark,
+            ),
+            Expanded(child: navigationShell),
+          ],
+        ),
+      );
+    }
+
+    if (context.isTablet) {
+      return Scaffold(
+        body: Row(
+          children: [
+            NavigationRailWidget(
+              currentIndex: navigationShell.currentIndex,
+              onTap: _handleTabTap,
+              isDark: isDark,
+            ),
+            Expanded(child: navigationShell),
+          ],
+        ),
+      );
+    }
+
+    // Mobile: bottom navigation bar
     return Scaffold(
       body: navigationShell,
       extendBody: true,
       bottomNavigationBar: _GlassBottomNav(
         currentIndex: navigationShell.currentIndex,
-        onTap: (index) {
-          navigationShell.goBranch(
-            index,
-            initialLocation: index == navigationShell.currentIndex,
-          );
-        },
+        onTap: _handleTabTap,
         isDark: isDark,
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../mock/chart_mock_data.dart';
 import 'chart_container.dart';
 
@@ -15,12 +16,14 @@ class PlDistributionChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final isMobile = context.isMobile;
+    final chartHeight = isMobile ? 240.0 : 300.0;
     const data = ChartMockData.plDistribution;
     final maxCount = data.map((b) => b.count).reduce((a, b) => a > b ? a : b);
 
     return ChartContainer(
       title: 'P/L DISTRIBUTION',
-      height: 260,
+      height: chartHeight,
       child: LayoutBuilder(
         builder: (context, constraints) {
           final barWidth = (constraints.maxWidth - 48) / data.length * 0.6;

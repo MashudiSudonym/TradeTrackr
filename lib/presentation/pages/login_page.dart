@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../core/extensions/context_extensions.dart';
 import '../providers/auth_provider.dart';
 
 /// Login page — full screen, no bottom navigation.
@@ -49,8 +50,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Form(
+              padding: EdgeInsets.symmetric(horizontal: context.horizontalPadding),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -319,10 +322,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   ),
                 ],
               ),
+                ),
+              ),
             ),
           ),
         ),
-      ),
       ),
     );
   }

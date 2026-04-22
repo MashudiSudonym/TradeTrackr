@@ -3,10 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
 import '../providers/onboarding_provider.dart';
 import '../widgets/theme_toggle.dart';
+import '../widgets/responsive/responsive.dart';
 
 /// Settings page with theme toggle, navigation cards, and logout.
 ///
@@ -23,65 +25,68 @@ class SettingsPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: cs.surface,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 80),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // ── Top App Bar ──────────────────────────────────
-            _buildTopBar(cs, context),
+      body: ResponsiveCentered(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 80),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ── Top App Bar ──────────────────────────────────
+              _buildTopBar(cs, context),
 
-            // ── Settings Section ─────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSectionLabel(cs, 'SETTINGS'),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSettingsCards(cs, ref, context),
-            ),
+              // ── Settings Section ─────────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSectionLabel(cs, 'SETTINGS'),
+              ),
+              SizedBox(height: context.responsiveSpacing()),
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSettingsCards(cs, ref, context),
+              ),
 
-            const SizedBox(height: 32),
+              SizedBox(height: 32 + context.responsiveSpacing()),
 
-            // ── Account Section ──────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildSectionLabel(cs, 'ACCOUNT'),
-            ),
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: _buildLogoutButton(cs, ref, context),
-            ),
+              // ── Account Section ──────────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: _buildSectionLabel(cs, 'ACCOUNT'),
+              ),
+              SizedBox(height: context.responsiveSpacing()),
+              ResponsivePadding(
+                vertical: false,
+                child: _buildLogoutButton(cs, ref, context),
+              ),
 
-            const SizedBox(height: 32),
+              SizedBox(height: 32 + context.responsiveSpacing()),
 
-            // ── App Version ──────────────────────────────────
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Center(
-                child: Text(
-                  'TradeTrackr v1.0.0',
-                  style: GoogleFonts.inter(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    color: cs.onSurfaceVariant,
+              // ── App Version ──────────────────────────────────
+              ResponsivePadding(
+                vertical: false,
+                child: Center(
+                  child: Text(
+                    'TradeTrackr v1.0.0',
+                    style: GoogleFonts.inter(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                      color: cs.onSurfaceVariant,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _buildTopBar(ColorScheme cs, BuildContext context) {
+    final padding = context.horizontalPadding;
     return SafeArea(
       bottom: false,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 12, 20, 0),
+        padding: EdgeInsets.fromLTRB(padding, 12, padding, 0),
         child: Row(
           children: [
             Icon(Icons.auto_graph, size: 24, color: cs.primary),
