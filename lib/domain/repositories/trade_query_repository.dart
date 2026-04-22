@@ -14,6 +14,7 @@ import 'package:fpdart/fpdart.dart';
 abstract class TradeQueryRepository {
   /// Get all closed positions with optional filtering.
   Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+    required String userId,
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -22,14 +23,25 @@ abstract class TradeQueryRepository {
   });
 
   /// Get a specific closed position by ID.
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id);
+  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(
+    String id,
+    String userId,
+  );
 
   /// Get all open positions.
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions();
+  Future<Either<Failure, List<OpenPosition>>> getOpenPositions(
+    String userId,
+  );
 
   /// Get a specific open position by ID.
-  Future<Either<Failure, OpenPosition?>> getOpenPositionById(String id);
+  Future<Either<Failure, OpenPosition?>> getOpenPositionById(
+    String id,
+    String userId,
+  );
 
   /// Get computed analytics for the specified filter.
-  Future<Either<Failure, TradeAnalytics>> getAnalytics(TradeFilter filter);
+  Future<Either<Failure, TradeAnalytics>> getAnalytics(
+    String userId,
+    TradeFilter filter,
+  );
 }

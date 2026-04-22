@@ -6,6 +6,7 @@ import '../../domain/enums/trade_side.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/repositories/trade_query_repository.dart';
 import '../datasources/trade_local_data_source.dart';
+import '../models/trade_position_dto.dart';
 import '../../core/errors/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -19,6 +20,7 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
 
   @override
   Future<Either<Failure, List<ClosedPosition>>> getClosedPositions({
+    required String userId,
     DateTime? startDate,
     DateTime? endDate,
     List<String>? symbols,
@@ -26,8 +28,8 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
     List<CloseReason>? reasons,
   }) async {
     try {
-      await _localDataSource.queryClosedPositions(
-        userId: '', // TODO: Get from auth state
+      final dataMaps = await _localDataSource.queryClosedPositions(
+        userId: userId,
         startDate: startDate,
         endDate: endDate,
         symbols: symbols,
@@ -35,49 +37,60 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
         reasons: reasons?.map((r) => r.name.toUpperCase()).toList(),
       );
 
-      // Convert maps to DTOs then to entities
-      // For now, return empty list - will implement full conversion with DTOs
-      return const Right([]);
+      final dtos = dataMaps
+          .map((map) => ClosedPositionDto.fromJson(map))
+          .toList();
+      final entities = dtos.map((dto) => dto.toEntity()).toList();
+      return Right(entities);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get closed positions: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(String id) async {
+  Future<Either<Failure, ClosedPosition?>> getClosedPositionById(
+    String id,
+    String userId,
+  ) async {
     try {
       final dataMap = await _localDataSource.getClosedPositionById(id);
       if (dataMap == null) return const Right(null);
 
-      // TODO: Convert map to DTO then to entity
-      return const Right(null);
+      final dto = ClosedPositionDto.fromJson(dataMap);
+      return Right(dto.toEntity());
     } catch (e) {
       return Left(DatabaseFailure('Failed to get position: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, List<OpenPosition>>> getOpenPositions() async {
+  Future<Either<Failure, List<OpenPosition>>> getOpenPositions(
+    String userId,
+  ) async {
     try {
-      await _localDataSource.getAllOpenPositions(
-        '', // TODO: Get from auth state
-      );
+      final dataMaps = await _localDataSource.getAllOpenPositions(userId);
 
-      // TODO: Convert maps to entities
-      return const Right([]);
+      final dtos = dataMaps
+          .map((map) => OpenPositionDto.fromJson(map))
+          .toList();
+      final entities = dtos.map((dto) => dto.toEntity()).toList();
+      return Right(entities);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get open positions: $e'));
     }
   }
 
   @override
-  Future<Either<Failure, OpenPosition?>> getOpenPositionById(String id) async {
+  Future<Either<Failure, OpenPosition?>> getOpenPositionById(
+    String id,
+    String userId,
+  ) async {
     try {
       final dataMap = await _localDataSource.getOpenPositionById(id);
       if (dataMap == null) return const Right(null);
 
-      // TODO: Convert map to entity
-      return const Right(null);
+      final dto = OpenPositionDto.fromJson(dataMap);
+      return Right(dto.toEntity());
     } catch (e) {
       return Left(DatabaseFailure('Failed to get open position: $e'));
     }
@@ -85,11 +98,12 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
 
   @override
   Future<Either<Failure, TradeAnalytics>> getAnalytics(
+    String userId,
     TradeFilter filter,
   ) async {
     try {
-      await _localDataSource.queryClosedPositions(
-        userId: '', // TODO: Get from auth state
+      final dataMaps = await _localDataSource.queryClosedPositions(
+        userId: userId,
         startDate: filter.startDate,
         endDate: filter.endDate,
         symbols: filter.symbols.isEmpty ? null : filter.symbols,
@@ -98,10 +112,92 @@ class TradeQueryRepositoryImpl implements TradeQueryRepository {
             filter.reasons.isEmpty ? null : filter.reasons.map((r) => r.name.toUpperCase()).toList(),
       );
 
-      // TODO: Convert maps to entities and compute analytics
-      return const Right(TradeAnalytics.empty);
+      final dtos = dataMaps
+          .map((map) => ClosedPositionDto.fromJson(map))
+          .toList();
+      final positions = dtos.map((dto) => dto.toEntity()).toList();
+
+      // Compute analytics from positions
+      final analytics = _computeAnalytics(positions);
+      return Right(analytics);
     } catch (e) {
       return Left(DatabaseFailure('Failed to compute analytics: $e'));
     }
+  }
+
+  TradeAnalytics _computeAnalytics(List<ClosedPosition> positions) {
+    if (positions.isEmpty) {
+      return TradeAnalytics.empty;
+    }
+
+    final totalProfit = positions.fold<double>(
+      0.0,
+      (sum, p) => sum + p.profit,
+    );
+
+    final winCount = positions.where((p) => p.profit > 0).length;
+    final lossCount = positions.where((p) => p.profit < 0).length;
+    final winRate = winCount / positions.length;
+
+    final avgWin = positions
+        .where((p) => p.profit > 0)
+        .fold<double>(0.0, (sum, p) => sum + p.profit) /
+        (winCount > 0 ? winCount : 1);
+
+    final avgLoss = positions
+        .where((p) => p.profit < 0)
+        .fold<double>(0.0, (sum, p) => sum + p.profit.abs()) /
+        (lossCount > 0 ? lossCount : 1);
+
+    final profitFactor = avgLoss > 0 ? avgWin / avgLoss : 0.0;
+
+    // Find best and worst symbols by total profit
+    final symbolProfits = <String, double>{};
+    for (final pos in positions) {
+      symbolProfits[pos.symbol] = (symbolProfits[pos.symbol] ?? 0) + pos.profit;
+    }
+    final sortedSymbols = symbolProfits.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final bestSymbol = sortedSymbols.isNotEmpty && sortedSymbols.first.value > 0
+        ? sortedSymbols.first.key
+        : null;
+    final worstSymbol = sortedSymbols.isNotEmpty && sortedSymbols.last.value < 0
+        ? sortedSymbols.last.key
+        : null;
+
+    // Calculate consecutive losses
+    var consecutiveLosses = 0;
+    var currentStreak = 0;
+    for (final pos in positions) {
+      if (pos.profit < 0) {
+        currentStreak++;
+        consecutiveLosses = consecutiveLosses > currentStreak
+            ? consecutiveLosses
+            : currentStreak;
+      } else {
+        currentStreak = 0;
+      }
+    }
+
+    return TradeAnalytics(
+      totalTrades: positions.length,
+      openPositions: 0, // Computed separately
+      winRate: winRate * 100, // Percentage
+      totalProfitLoss: totalProfit,
+      averageProfit: totalProfit / positions.length,
+      profitFactor: profitFactor,
+      largestWin: positions
+          .map((p) => p.profit)
+          .reduce((a, b) => a > b ? a : b),
+      largestLoss: positions
+          .map((p) => p.profit)
+          .reduce((a, b) => a < b ? a : b),
+      accountBalance: 0, // Computed from finance records
+      totalDeposits: 0, // Computed from finance records
+      totalWithdrawals: 0, // Computed from finance records
+      bestSymbol: bestSymbol,
+      worstSymbol: worstSymbol,
+      consecutiveLosses: consecutiveLosses,
+    );
   }
 }

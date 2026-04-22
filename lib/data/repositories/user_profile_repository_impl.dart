@@ -7,17 +7,28 @@ import 'package:fpdart/fpdart.dart';
 /// Implementation of UserProfileRepository.
 ///
 /// Uses UserRemoteDataSource for profile operations.
+/// NOTE: userId is obtained from auth state - providers must inject it.
 class UserProfileRepositoryImpl implements UserProfileRepository {
   final UserRemoteDataSource _remoteDataSource;
 
+  /// Current authenticated user ID.
+  /// Set by the provider layer after authentication.
+  String? _currentUserId;
+
   UserProfileRepositoryImpl(this._remoteDataSource);
+
+  /// Set the current user ID (called by auth provider).
+  void setCurrentUserId(String userId) {
+    _currentUserId = userId;
+  }
 
   @override
   Future<Either<Failure, User>> getProfile() async {
     try {
-      // TODO: Get user ID from auth state
-      const userId = 'current-user-id';
-      final user = await _remoteDataSource.getProfile(userId);
+      if (_currentUserId == null) {
+        return const Left(AuthFailure('User not authenticated'));
+      }
+      final user = await _remoteDataSource.getProfile(_currentUserId!);
       return Right(user);
     } catch (e) {
       return Left(DatabaseFailure('Failed to get profile: $e'));
@@ -27,10 +38,11 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   @override
   Future<Either<Failure, User>> updateProfile({String? displayName}) async {
     try {
-      // TODO: Get user ID from auth state
-      const userId = 'current-user-id';
+      if (_currentUserId == null) {
+        return const Left(AuthFailure('User not authenticated'));
+      }
       final user = await _remoteDataSource.updateProfile(
-        userId: userId,
+        userId: _currentUserId!,
         displayName: displayName,
       );
       return Right(user);
@@ -45,10 +57,11 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
     String newPassword,
   ) async {
     try {
-      // TODO: Get user ID from auth state
-      const userId = 'current-user-id';
+      if (_currentUserId == null) {
+        return const Left(AuthFailure('User not authenticated'));
+      }
       await _remoteDataSource.changePassword(
-        userId: userId,
+        userId: _currentUserId!,
         currentPassword: currentPassword,
         newPassword: newPassword,
       );
@@ -61,9 +74,10 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   @override
   Future<Either<Failure, void>> deleteAccount() async {
     try {
-      // TODO: Get user ID from auth state
-      const userId = 'current-user-id';
-      await _remoteDataSource.deleteAccount(userId);
+      if (_currentUserId == null) {
+        return const Left(AuthFailure('User not authenticated'));
+      }
+      await _remoteDataSource.deleteAccount(_currentUserId!);
       return const Right(null);
     } catch (e) {
       return Left(AuthFailure('Failed to delete account: $e'));
