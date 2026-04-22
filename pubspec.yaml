@@ -37,6 +37,9 @@ dependencies:
   # Logging
   logger: ^2.5.0
 
+  # Environment variables
+  flutter_dotenv: ^5.2.1
+
   # File access
   file_picker: ^9.2.3
 

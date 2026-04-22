@@ -1,24 +1,34 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 /// Supabase configuration constants.
 ///
-/// TODO: Move anonKey to environment variables for production.
-/// For development, this uses the default anon key from Supabase dashboard.
+/// Loads credentials from .env file.
+/// Copy .env.example to .env and fill in your Supabase credentials.
 class SupabaseConstants {
-  /// Supabase project URL.
-  /// Generated from project ref: bheohnfxjnwdkqvftbnc
+  /// Supabase project ref
   static const String projectId = 'bheohnfxjnwdkqvftbnc';
-  static const String projectUrl = 'https://$projectId.supabase.co';
 
-  /// Supabase anon key for client-side access.
+  /// Supabase project URL
+  /// Can be overridden via .env file
+  static String get projectUrl =>
+      dotenv.get('SUPABASE_URL', fallback: 'https://$projectId.supabase.co');
+
+  /// Supabase anon/public key for client-side access.
   ///
   /// This key is safe to expose in client code as it's restricted by RLS policies.
-  /// Replace with your actual anon key from Supabase dashboard > Settings > API.
+  /// MUST be set in .env file for the app to work properly.
   ///
-  /// Get your anon key at: https://supabase.com/dashboard/project/$projectId/settings/api
-  static const String anonKey = String.fromEnvironment(
-    'SUPABASE_ANON_KEY',
-    defaultValue: 'YOUR_SUPABASE_ANON_KEY_HERE',
-  );
+  /// Get your anon key at:
+  /// https://supabase.com/dashboard/project/$projectId/settings/api
+  static String get anonKey => dotenv.get('SUPABASE_ANON_KEY');
 
   /// Check if Supabase is properly configured.
-  static bool get isConfigured => anonKey != 'YOUR_SUPABASE_ANON_KEY_HERE';
+  static bool get isConfigured => anonKey.isNotEmpty;
+
+  /// Load environment variables from .env file
+  ///
+  /// Call this in main() before Supabase.initialize()
+  static Future<void> load() async {
+    await dotenv.load(fileName: '.env');
+  }
 }

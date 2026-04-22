@@ -11,6 +11,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _setupGlobalErrorHandling();
 
+  // Load environment variables from .env file
+  await SupabaseConstants.load();
+
   // Initialize Supabase
   await Supabase.initialize(
     url: SupabaseConstants.projectUrl,
