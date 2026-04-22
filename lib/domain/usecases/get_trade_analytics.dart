@@ -17,8 +17,9 @@ class GetTradeAnalyticsUseCase {
   /// Returns [Left] with failure if computation fails.
   /// Returns [Right] with computed analytics on success.
   Future<Either<Failure, TradeAnalytics>> execute(
+    String userId,
     TradeFilter filter,
   ) async {
-    return await _repository.getAnalytics(filter);
+    return await _repository.getAnalytics(userId, filter);
   }
 }

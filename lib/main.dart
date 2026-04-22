@@ -1,14 +1,23 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'app/app.dart';
+import 'core/constants/supabase_constants.dart';
 import 'core/logger/app_logger.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _setupGlobalErrorHandling();
-  // TODO: Initialize Supabase when backend is integrated
+
+  // Initialize Supabase
+  await Supabase.initialize(
+    url: SupabaseConstants.projectUrl,
+    anonKey: SupabaseConstants.anonKey,
+    debug: true, // Enable debug logs for development
+  );
+
   runApp(
     const ProviderScope(
       child: TradeTrackrApp(),

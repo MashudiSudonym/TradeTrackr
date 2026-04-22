@@ -19,9 +19,10 @@ class GetRecommendationsUseCase {
   /// Returns [Left] with failure if generation fails.
   /// Returns [Right] with list of recommendations on success.
   Future<Either<Failure, List<Recommendation>>> execute(
+    String userId,
     TradeFilter filter,
   ) async {
-    final analyticsResult = await _repository.getAnalytics(filter);
+    final analyticsResult = await _repository.getAnalytics(userId, filter);
 
     return analyticsResult.fold(
       (failure) => Left(failure),
