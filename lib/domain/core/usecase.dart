@@ -14,7 +14,7 @@ abstract class UseCase<T, P> {
 
 /// Marker class for use cases that don't require parameters.
 ///
-/// Use this as the [P] type parameter when a use case has no parameters.
+/// Use this as the type parameter when a use case has no parameters.
 class NoParams {
   const NoParams();
 }

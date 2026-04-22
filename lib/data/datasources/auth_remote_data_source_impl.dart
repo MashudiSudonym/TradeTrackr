@@ -22,7 +22,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       if (response.user == null) {
-        throw AuthFailure('Sign in failed: No user returned');
+        throw const AuthFailure('Sign in failed: No user returned');
       }
 
       final user = response.user!;
@@ -47,7 +47,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       );
 
       if (response.user == null) {
-        throw AuthFailure('Sign up failed: No user returned');
+        throw const AuthFailure('Sign up failed: No user returned');
       }
 
       final user = response.user!;

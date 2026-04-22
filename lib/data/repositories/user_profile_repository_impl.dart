@@ -25,7 +25,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Result<User>> getProfile() async {
     try {
       if (_currentUserId == null) {
-        return Result.failure('User not authenticated');
+        return const Result.failure('User not authenticated');
       }
       final user = await _remoteDataSource.getProfile(_currentUserId!);
       return Result.success(user);
@@ -38,7 +38,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Result<User>> updateProfile({String? displayName}) async {
     try {
       if (_currentUserId == null) {
-        return Result.failure('User not authenticated');
+        return const Result.failure('User not authenticated');
       }
       final user = await _remoteDataSource.updateProfile(
         userId: _currentUserId!,
@@ -57,7 +57,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   ) async {
     try {
       if (_currentUserId == null) {
-        return Result.failure('User not authenticated');
+        return const Result.failure('User not authenticated');
       }
       await _remoteDataSource.changePassword(
         userId: _currentUserId!,
@@ -74,7 +74,7 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   Future<Result<void>> deleteAccount() async {
     try {
       if (_currentUserId == null) {
-        return Result.failure('User not authenticated');
+        return const Result.failure('User not authenticated');
       }
       await _remoteDataSource.deleteAccount(_currentUserId!);
       return const Result.success(null);

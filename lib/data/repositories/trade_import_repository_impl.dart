@@ -21,15 +21,11 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   Future<Result<ImportResult>> importFromCsv(String filePath) async {
     try {
       final file = File(filePath);
-      if (!await file.exists()) {
-        return Result.failure('File not found: $filePath');
-      }
-
       final input = await file.readAsString();
       final fields = const CsvToListConverter(eol: '\n').convert(input);
 
       if (fields.isEmpty) {
-        return Result.failure('CSV file is empty');
+        return const Result.failure('CSV file is empty');
       }
 
       // TODO: Detect file type and route to appropriate import
@@ -45,15 +41,11 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   ) async {
     try {
       final file = File(filePath);
-      if (!await file.exists()) {
-        return Result.failure('File not found: $filePath');
-      }
-
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return Result.failure('CSV file is empty');
+        return const Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row
@@ -114,15 +106,11 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   ) async {
     try {
       final file = File(filePath);
-      if (!await file.exists()) {
-        return Result.failure('File not found: $filePath');
-      }
-
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return Result.failure('CSV file is empty');
+        return const Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row
@@ -181,15 +169,11 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
   ) async {
     try {
       final file = File(filePath);
-      if (!await file.exists()) {
-        return Result.failure('File not found: $filePath');
-      }
-
       final input = await file.readAsString();
       final rows = const CsvToListConverter().convert(input);
 
       if (rows.isEmpty) {
-        return Result.failure('CSV file is empty');
+        return const Result.failure('CSV file is empty');
       }
 
       // Skip header row and total row

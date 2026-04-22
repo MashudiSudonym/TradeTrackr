@@ -174,7 +174,7 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       // 1. Fetch open position
       final openDataMap = await _localDataSource.getOpenPositionById(openPositionId);
       if (openDataMap == null) {
-        return Result.failure('Open position not found');
+        return const Result.failure('Open position not found');
       }
 
       // TODO: Convert map to OpenPosition entity via DTO

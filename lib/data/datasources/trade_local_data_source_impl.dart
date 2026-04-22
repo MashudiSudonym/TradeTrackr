@@ -160,17 +160,17 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
       case 'closed_positions':
         await (_db.update(_db.closedPositions)
               ..where((t) => t.id.equals(id)))
-            .write(ClosedPositionsCompanion(isSynced: const Value(true)));
+            .write(const ClosedPositionsCompanion(isSynced: Value(true)));
         break;
       case 'open_positions':
         await (_db.update(_db.openPositions)
               ..where((t) => t.id.equals(id)))
-            .write(OpenPositionsCompanion(isSynced: const Value(true)));
+            .write(const OpenPositionsCompanion(isSynced: Value(true)));
         break;
       case 'finance_records':
         await (_db.update(_db.financeRecords)
               ..where((t) => t.id.equals(id)))
-            .write(FinanceRecordsCompanion(isSynced: const Value(true)));
+            .write(const FinanceRecordsCompanion(isSynced: Value(true)));
         break;
     }
   }

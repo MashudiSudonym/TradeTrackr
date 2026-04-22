@@ -20,10 +20,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
           .eq('id', userId)
           .single();
 
-      if (response == null) {
-        throw DatabaseFailure('Profile not found');
-      }
-
       return domain.User(
         id: response['id'] as String,
         email: response['email'] as String? ?? '',
