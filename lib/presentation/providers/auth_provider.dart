@@ -26,6 +26,9 @@ class Auth extends _$Auth {
 
     if (result.isSuccess) {
       state = result.value;
+      // Trigger initial sync after successful login
+      // This pulls all remote data into the local database
+      ref.read(syncControllerProvider.notifier).performInitialSync();
     } else {
       throw Exception(result.error);
     }

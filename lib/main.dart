@@ -2,10 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'app/app.dart';
 import 'core/constants/supabase_constants.dart';
 import 'core/logger/app_logger.dart';
+import 'core/sync/sync_callback.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,12 @@ Future<void> main() async {
     url: SupabaseConstants.projectUrl,
     anonKey: SupabaseConstants.anonKey,
     debug: true, // Enable debug logs for development
+  );
+
+  // Initialize workmanager for background sync tasks
+  await Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: kDebugMode,
   );
 
   runApp(

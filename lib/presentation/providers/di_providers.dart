@@ -23,6 +23,9 @@ import '../../data/repositories/trade_import_repository_impl.dart';
 import '../../data/repositories/trade_query_repository_impl.dart';
 import '../../data/repositories/user_profile_repository_impl.dart';
 
+// Re-export sync providers for easy access
+export 'sync_provider.dart';
+
 part 'di_providers.g.dart';
 
 // ============================================================================
