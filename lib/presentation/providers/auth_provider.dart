@@ -1,66 +1,91 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../../domain/entities/user.dart';
-import '../mock/mock_data.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../domain/entities/user.dart' as domain;
+import 'di_providers.dart';
 
 part 'auth_provider.g.dart';
 
 /// Auth state notifier - manages user authentication state.
 ///
-/// Provides login, logout, and register methods with mock auth.
-/// TODO: Replace with real Supabase auth when backend is integrated.
-///
+/// Provides login, logout, and register methods using Supabase auth.
 /// keepAlive: true because auth state is global app state that must
 /// survive navigation transitions and page disposals.
 @Riverpod(keepAlive: true)
 class Auth extends _$Auth {
   @override
-  User? build() {
-    // Start unauthenticated - user must login first
-    return null;
+  domain.User? build() {
+    // Initialize with current Supabase auth state
+    final authState = ref.watch(supabaseAuthStateProvider);
+    return authState;
   }
 
   /// Login with email and password.
-  ///
-  /// Mock implementation - always succeeds with mock user.
-  /// In production, this would call Supabase auth.
   Future<void> login(String email, String password) async {
-    // Simulate network delay for UX
-    await Future.delayed(const Duration(milliseconds: 500));
+    final repo = ref.read(authRepositoryProvider);
+    final result = await repo.signIn(email, password);
 
-    // Set authenticated user
-    state = MockData.mockUser;
+    if (result.isSuccess) {
+      state = result.value;
+    } else {
+      throw Exception(result.error);
+    }
   }
 
   /// Register with display name, email, and password.
-  ///
-  /// Mock implementation - always succeeds with mock user.
-  /// In production, this would call Supabase auth.
   Future<void> register(String displayName, String email, String password) async {
-    // Simulate network delay for UX
-    await Future.delayed(const Duration(milliseconds: 500));
+    final repo = ref.read(authRepositoryProvider);
 
-    // Set authenticated user
-    state = MockData.mockUser;
+    // Pass display name in user metadata for automatic profile creation
+    final result = await repo.signUp(email, password);
+
+    if (result.isSuccess) {
+      state = result.value;
+    } else {
+      throw Exception(result.error);
+    }
   }
 
   /// Logout current user.
-  ///
-  /// Clears auth state and redirects to login.
-  void logout() {
-    state = null;
+  Future<void> logout() async {
+    final repo = ref.read(authRepositoryProvider);
+    final result = await repo.signOut();
+
+    if (result.isSuccess) {
+      state = null;
+    } else {
+      throw Exception(result.error);
+    }
   }
 
   /// Reset password with email.
-  ///
-  /// Mock implementation - always succeeds.
-  /// In production, this would call Supabase auth password reset.
   Future<void> resetPassword(String email) async {
-    // Simulate network delay for UX
-    await Future.delayed(const Duration(milliseconds: 800));
+    final repo = ref.read(authRepositoryProvider);
+    final result = await repo.resetPassword(email);
 
-    // Mock success - in production would send email via Supabase
-    // No state change needed for password reset
+    if (result.isFailure) {
+      throw Exception(result.error);
+    }
+    // Email sent successfully - no state change needed
   }
+}
+
+/// Watches Supabase auth state changes and converts to domain User.
+///
+/// This provider bridges Supabase auth events with our domain layer.
+@Riverpod(keepAlive: true)
+domain.User? supabaseAuthState(Ref ref) {
+  final client = Supabase.instance.client;
+  final currentUser = client.auth.currentUser;
+
+  if (currentUser == null) return null;
+
+  return domain.User(
+    id: currentUser.id,
+    email: currentUser.email ?? '',
+    displayName: currentUser.userMetadata?['display_name'] as String? ?? '',
+    createdAt: DateTime.now(),
+    updatedAt: DateTime.now(),
+  );
 }
 
 /// Provides the current authenticated user.
@@ -68,6 +93,6 @@ class Auth extends _$Auth {
 /// Null when unauthenticated, User object when logged in.
 /// keepAlive: true to match authProvider and prevent disposal.
 @Riverpod(keepAlive: true)
-User? authState(Ref ref) {
+domain.User? authState(Ref ref) {
   return ref.watch(authProvider);
 }

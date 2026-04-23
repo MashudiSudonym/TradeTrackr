@@ -3,6 +3,7 @@ import '../../data/datasources/trade_local_data_source.dart';
 import '../../data/datasources/trade_remote_data_source.dart';
 import 'dart:async';
 import 'package:logger/logger.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Sync status for offline-first sync engine.
 enum SyncStatus {
@@ -42,8 +43,20 @@ class SyncEngine {
   SyncStatus _currentStatus = SyncStatus.offline;
   SyncStatus get currentStatus => _currentStatus;
 
+  /// Get the current authenticated user ID from Supabase auth.
+  String? get _currentUserId {
+    final user = Supabase.instance.client.auth.currentUser;
+    return user?.id;
+  }
+
   /// Push all unsynced records to Supabase.
   Future<void> pushUnsyncedRecords() async {
+    final userId = _currentUserId;
+    if (userId == null) {
+      _logger.w('No authenticated user - skipping push');
+      return;
+    }
+
     if (!await _connectivity.isOnline) {
       _logger.i('Offline - skipping push');
       _syncStatusController.add(SyncStatus.offline);
@@ -55,9 +68,6 @@ class SyncEngine {
     _currentStatus = SyncStatus.pushing;
 
     try {
-      // TODO: Get current user ID from auth state
-      const userId = 'current-user-id';
-
       // Push closed positions
       final unsyncedClosed = await _localSource.getUnsyncedClosedPositions(userId);
       for (final data in unsyncedClosed) {
@@ -90,7 +100,13 @@ class SyncEngine {
   }
 
   /// Pull all user data from Supabase into Drift.
-  Future<void> pullRemoteChanges(String userId) async {
+  Future<void> pullRemoteChanges() async {
+    final userId = _currentUserId;
+    if (userId == null) {
+      _logger.w('No authenticated user - skipping pull');
+      return;
+    }
+
     if (!await _connectivity.isOnline) {
       _logger.i('Offline - skipping pull');
       return;
@@ -120,8 +136,8 @@ class SyncEngine {
 
   /// Get count of unsynced records.
   Future<int> getUnsyncedCount() async {
-    // TODO: Get current user ID from auth state
-    const userId = 'current-user-id';
+    final userId = _currentUserId;
+    if (userId == null) return 0;
 
     final closed = await _localSource.getUnsyncedClosedPositions(userId);
     final open = await _localSource.getUnsyncedOpenPositions(userId);
