@@ -34,6 +34,16 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   }
 
   @override
+  Future<void> insertClosedPositionsBatch(List<Map<String, dynamic>> data) async {
+    await _db.batch((batch) {
+      for (final item in data) {
+        final companion = _mapToClosedPositionCompanion(item);
+        batch.insert(_db.closedPositions, companion);
+      }
+    });
+  }
+
+  @override
   Future<void> updateClosedPosition(Map<String, dynamic> data) async {
     final companion = _mapToClosedPositionCompanion(data);
     await _db.update(_db.closedPositions).replace(companion);
@@ -73,6 +83,16 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   }
 
   @override
+  Future<void> insertOpenPositionsBatch(List<Map<String, dynamic>> data) async {
+    await _db.batch((batch) {
+      for (final item in data) {
+        final companion = _mapToOpenPositionCompanion(item);
+        batch.insert(_db.openPositions, companion);
+      }
+    });
+  }
+
+  @override
   Future<void> updateOpenPosition(Map<String, dynamic> data) async {
     final companion = _mapToOpenPositionCompanion(data);
     await _db.update(_db.openPositions).replace(companion);
@@ -103,6 +123,16 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   Future<void> insertFinanceRecord(Map<String, dynamic> data) async {
     final companion = _mapToFinanceRecordCompanion(data);
     await _db.into(_db.financeRecords).insert(companion);
+  }
+
+  @override
+  Future<void> insertFinanceRecordsBatch(List<Map<String, dynamic>> data) async {
+    await _db.batch((batch) {
+      for (final item in data) {
+        final companion = _mapToFinanceRecordCompanion(item);
+        batch.insert(_db.financeRecords, companion);
+      }
+    });
   }
 
   @override

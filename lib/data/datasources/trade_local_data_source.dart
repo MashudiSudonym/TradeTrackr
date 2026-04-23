@@ -7,6 +7,7 @@ abstract class TradeLocalDataSource {
   Future<List<Map<String, dynamic>>> getAllClosedPositions(String userId);
   Future<Map<String, dynamic>?> getClosedPositionById(String id);
   Future<void> insertClosedPosition(Map<String, dynamic> data);
+  Future<void> insertClosedPositionsBatch(List<Map<String, dynamic>> data);
   Future<void> updateClosedPosition(Map<String, dynamic> data);
   Future<void> deleteClosedPosition(String id);
   Future<List<Map<String, dynamic>>> getUnsyncedClosedPositions(String userId);
@@ -16,6 +17,7 @@ abstract class TradeLocalDataSource {
   Future<List<Map<String, dynamic>>> getAllOpenPositions(String userId);
   Future<Map<String, dynamic>?> getOpenPositionById(String id);
   Future<void> insertOpenPosition(Map<String, dynamic> data);
+  Future<void> insertOpenPositionsBatch(List<Map<String, dynamic>> data);
   Future<void> updateOpenPosition(Map<String, dynamic> data);
   Future<void> deleteOpenPosition(String id);
   Future<List<Map<String, dynamic>>> getUnsyncedOpenPositions(String userId);
@@ -23,6 +25,7 @@ abstract class TradeLocalDataSource {
   // Finance records
   Future<List<Map<String, dynamic>>> getAllFinanceRecords(String userId);
   Future<void> insertFinanceRecord(Map<String, dynamic> data);
+  Future<void> insertFinanceRecordsBatch(List<Map<String, dynamic>> data);
   Future<List<Map<String, dynamic>>> getUnsyncedFinanceRecords(String userId);
 
   // Query with filters

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../domain/entities/finance_record.dart';
 import '../mock/mock_data.dart';
+import 'add_finance_page.dart';
 
 /// Finance history page — lists deposits and withdrawals.
 class FinancePage extends ConsumerWidget {
@@ -20,7 +21,7 @@ class FinancePage extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Top App Bar ──────────────────────────────────
-          _buildTopBar(cs),
+          _buildTopBar(context, cs),
 
           // ── Hero Section ─────────────────────────────────
           Padding(
@@ -60,7 +61,7 @@ class FinancePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildTopBar(ColorScheme cs) {
+  Widget _buildTopBar(BuildContext context, ColorScheme cs) {
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -91,7 +92,11 @@ class FinancePage extends ConsumerWidget {
             ),
             const Spacer(),
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const AddFinancePage()),
+                );
+              },
               icon: Icon(Icons.add_circle_outline, color: cs.onSurfaceVariant, size: 24),
             ),
           ],

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../core/extensions/context_extensions.dart';
+import '../../domain/entities/closed_position.dart';
+import '../../domain/entities/open_position.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../app/theme/app_colors.dart';
 import '../widgets/responsive/responsive.dart';
+import '../providers/auth_provider.dart';
+import '../providers/di_providers.dart';
 
 /// Add Trade page — form for creating a new trade position.
 ///
@@ -516,18 +521,117 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
     );
   }
 
-  void _handleSave() {
-    if (_formKey.currentState!.validate()) {
-      // TODO: Implement save via trade command repository
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            '${_isClosed ? 'Closed' : 'Open'} position saved (${_symbolController.text} ${_side.name})',
+  Future<void> _handleSave() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    // Get current user
+    final user = ref.read(authStateProvider);
+    if (user == null) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('You must be logged in to add trades')),
+        );
+      }
+      return;
+    }
+
+    final userId = user.id;
+    const uuid = Uuid();
+    final now = DateTime.now();
+
+    try {
+      final repo = ref.read(tradeCommandRepositoryProvider);
+
+      if (_isClosed) {
+        // Create ClosedPosition
+        final position = ClosedPosition(
+          id: uuid.v4(),
+          userId: userId,
+          symbol: _symbolController.text.toUpperCase(),
+          openTime: _openTime,
+          closeTime: _closeTime,
+          volume: double.parse(_volumeController.text),
+          side: _side,
+          openPrice: double.parse(_openPriceController.text),
+          closePrice: double.parse(_closePriceController.text),
+          stopLoss: _stopLossController.text.isEmpty
+              ? null
+              : double.tryParse(_stopLossController.text),
+          takeProfit: _takeProfitController.text.isEmpty
+              ? null
+              : double.tryParse(_takeProfitController.text),
+          swap: _swapController.text.isEmpty
+              ? 0.0
+              : double.parse(_swapController.text),
+          commission: _commissionController.text.isEmpty
+              ? 0.0
+              : double.parse(_commissionController.text),
+          profit: 0.0, // Will be calculated
+          reason: _reason,
+          createdAt: now,
+          updatedAt: now,
+          isSynced: false,
+        );
+
+        final result = await repo.addClosedPosition(position);
+        if (result.isFailure && mounted) {
+          throw Exception(result.error);
+        }
+      } else {
+        // Create OpenPosition
+        final position = OpenPosition(
+          id: uuid.v4(),
+          userId: userId,
+          symbol: _symbolController.text.toUpperCase(),
+          openTime: _openTime,
+          volume: double.parse(_volumeController.text),
+          side: _side,
+          openPrice: double.parse(_openPriceController.text),
+          currentPrice: null, // Will be set by market data
+          stopLoss: _stopLossController.text.isEmpty
+              ? null
+              : double.tryParse(_stopLossController.text),
+          takeProfit: _takeProfitController.text.isEmpty
+              ? null
+              : double.tryParse(_takeProfitController.text),
+          swap: _swapController.text.isEmpty
+              ? 0.0
+              : double.parse(_swapController.text),
+          commission: _commissionController.text.isEmpty
+              ? 0.0
+              : double.parse(_commissionController.text),
+          profit: 0.0, // Will be calculated
+          createdAt: now,
+          updatedAt: now,
+          isSynced: false,
+        );
+
+        final result = await repo.addOpenPosition(position);
+        if (result.isFailure && mounted) {
+          throw Exception(result.error);
+        }
+      }
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${_isClosed ? 'Closed' : 'Open'} position saved (${_symbolController.text} ${_side.name})',
+            ),
+            backgroundColor: Theme.of(context).colorScheme.tertiary,
           ),
-          backgroundColor: Theme.of(context).colorScheme.tertiary,
-        ),
-      );
-      Navigator.of(context).pop();
+        );
+        Navigator.of(context).pop();
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error saving position: $e'),
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+        );
+      }
     }
   }
 }

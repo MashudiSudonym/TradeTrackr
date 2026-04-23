@@ -1,5 +1,6 @@
 import '../../domain/entities/closed_position.dart';
 import '../../domain/entities/open_position.dart';
+import '../../domain/entities/finance_record.dart';
 import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/trade_side.dart';
 import '../../domain/repositories/trade_command_repository.dart';
@@ -254,6 +255,32 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
       return Result.success(closedPosition);
     } catch (e) {
       return Result.failure('Failed to close position: $e');
+    }
+  }
+
+  @override
+  Future<Result<FinanceRecord>> addFinanceRecord(
+    FinanceRecord record,
+  ) async {
+    try {
+      final dataMap = {
+        'id': record.id,
+        'user_id': record.userId,
+        'type': record.type.name.toUpperCase(),
+        'time': record.time,
+        'amount': record.amount,
+        'status': record.status,
+        'payment_gateway': record.paymentGateway,
+        'details': record.details,
+        'created_at': record.createdAt,
+        'updated_at': record.updatedAt,
+        'is_synced': record.isSynced,
+      };
+
+      await _localDataSource.insertFinanceRecord(dataMap);
+      return Result.success(record);
+    } catch (e) {
+      return Result.failure('Failed to add finance record: $e');
     }
   }
 }

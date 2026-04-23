@@ -13,16 +13,19 @@ abstract class TradeImportRepository {
   /// Import closed positions from CSV.
   Future<Result<ImportResult>> importClosedPositionsFromCsv(
     String filePath,
+    String userId,
   );
 
   /// Import open positions from CSV.
   Future<Result<ImportResult>> importOpenPositionsFromCsv(
     String filePath,
+    String userId,
   );
 
   /// Import finance records from CSV.
   Future<Result<ImportResult>> importFinanceRecordsFromCsv(
     String filePath,
+    String userId,
   );
 }
 

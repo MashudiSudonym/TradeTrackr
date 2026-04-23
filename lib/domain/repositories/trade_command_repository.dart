@@ -1,5 +1,6 @@
 import '../entities/closed_position.dart';
 import '../entities/open_position.dart';
+import '../entities/finance_record.dart';
 import '../enums/close_reason.dart';
 import '../core/result.dart';
 
@@ -41,4 +42,9 @@ abstract class TradeCommandRepository {
     required DateTime closeTime,
     required CloseReason reason,
   });
+
+  /// Add a new finance record.
+  Future<Result<FinanceRecord>> addFinanceRecord(
+    FinanceRecord record,
+  );
 }

@@ -101,7 +101,8 @@ TradeCommandRepository tradeCommandRepository(Ref ref) {
 /// Provides the import repository for CSV operations.
 @riverpod
 TradeImportRepository tradeImportRepository(Ref ref) {
-  return TradeImportRepositoryImpl();
+  final localDataSource = ref.watch(tradeLocalDataSourceProvider);
+  return TradeImportRepositoryImpl(localDataSource);
 }
 
 /// Provides the export repository for CSV operations.
