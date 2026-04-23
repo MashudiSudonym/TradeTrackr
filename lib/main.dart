@@ -24,10 +24,7 @@ Future<void> main() async {
   );
 
   // Initialize workmanager for background sync tasks
-  await Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: kDebugMode,
-  );
+  await Workmanager().initialize(callbackDispatcher);
 
   runApp(
     const ProviderScope(
