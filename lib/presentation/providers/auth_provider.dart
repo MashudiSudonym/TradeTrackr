@@ -14,9 +14,11 @@ part 'auth_provider.g.dart';
 class Auth extends _$Auth {
   @override
   domain.User? build() {
-    // Initialize with current Supabase auth state
-    final authState = ref.watch(supabaseAuthStateProvider);
-    return authState;
+    // Watch reactive auth state stream
+    // This will automatically update when auth state changes
+    final authStateAsync = ref.watch(supabaseAuthStateStreamProvider);
+
+    return authStateAsync.value;
   }
 
   /// Login with email and password.
@@ -39,7 +41,7 @@ class Auth extends _$Auth {
     final repo = ref.read(authRepositoryProvider);
 
     // Pass display name in user metadata for automatic profile creation
-    final result = await repo.signUp(email, password);
+    final result = await repo.signUp(email, password, displayName: displayName);
 
     if (result.isSuccess) {
       state = result.value;
@@ -72,9 +74,20 @@ class Auth extends _$Auth {
   }
 }
 
-/// Watches Supabase auth state changes and converts to domain User.
+/// Watches Supabase auth state changes reactively via stream.
 ///
 /// This provider bridges Supabase auth events with our domain layer.
+/// It automatically updates when auth state changes (login, logout, session expiry).
+@riverpod
+Stream<domain.User?> supabaseAuthStateStream(Ref ref) {
+  final repo = ref.watch(authRepositoryProvider);
+  return repo.authStateChanges;
+}
+
+/// Gets the current Supabase auth state (one-shot read).
+///
+/// Use this when you need the current auth state without reactive updates.
+/// For reactive auth state watching, use supabaseAuthStateStreamProvider.
 @Riverpod(keepAlive: true)
 domain.User? supabaseAuthState(Ref ref) {
   final client = Supabase.instance.client;

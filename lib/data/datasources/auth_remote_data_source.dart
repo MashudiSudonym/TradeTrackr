@@ -7,8 +7,8 @@ abstract class AuthRemoteDataSource {
   /// Sign in with email and password.
   Future<User> signIn(String email, String password);
 
-  /// Sign up with email and password.
-  Future<User> signUp(String email, String password);
+  /// Sign up with email, password, and display name.
+  Future<User> signUp(String email, String password, {String? displayName});
 
   /// Sign out the current user.
   Future<void> signOut();

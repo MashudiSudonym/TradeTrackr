@@ -39,11 +39,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<domain.User> signUp(String email, String password) async {
+  Future<domain.User> signUp(String email, String password, {String? displayName}) async {
     try {
       final response = await _auth.signUp(
         email: email,
         password: password,
+        data: displayName != null ? {'display_name': displayName} : null,
       );
 
       if (response.user == null) {
@@ -54,7 +55,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       return domain.User(
         id: user.id,
         email: user.email ?? email,
-        displayName: user.userMetadata?['display_name'] as String? ?? '',
+        displayName: displayName ?? user.userMetadata?['display_name'] as String? ?? '',
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
       );
