@@ -211,7 +211,7 @@ class ProfilePage extends ConsumerWidget {
           icon: Icons.person_outline,
           title: 'Profile Settings',
           subtitle: 'Name, email, avatar',
-          onTap: () => context.push('/profile/settings'),
+          onTap: () => context.push('/profile/edit'),
         ),
         const SizedBox(height: 12),
         // Security
@@ -220,7 +220,7 @@ class ProfilePage extends ConsumerWidget {
           icon: Icons.lock_outline,
           title: 'Security',
           subtitle: 'Password, 2FA',
-          onTap: () {},
+          onTap: () => context.push('/profile/security'),
         ),
         const SizedBox(height: 12),
         // Theme Toggle

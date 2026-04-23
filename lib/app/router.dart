@@ -80,6 +80,12 @@ final goRouterProvider = Provider<GoRouter>((ref) {
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const ForgotPasswordPage(),
       ),
+      // Password reset confirmation (accessed via deep link from email)
+      GoRoute(
+        path: '/reset-password',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const ResetPasswordPage(),
+      ),
       // Full-screen routes outside shell (accessed via context.push)
       GoRoute(
         path: '/import-export',
@@ -146,6 +152,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                 path: '/profile',
                 builder: (context, state) => const ProfilePage(),
                 routes: [
+                  GoRoute(
+                    path: 'edit',
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const ProfileEditPage(),
+                  ),
+                  GoRoute(
+                    path: 'security',
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) => const ChangePasswordPage(),
+                  ),
                   GoRoute(
                     path: 'settings',
                     parentNavigatorKey: _rootNavigatorKey,

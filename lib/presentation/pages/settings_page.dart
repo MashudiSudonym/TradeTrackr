@@ -7,6 +7,7 @@ import '../../core/extensions/context_extensions.dart';
 import '../providers/theme_provider.dart' as providers;
 import '../providers/auth_provider.dart';
 import '../providers/onboarding_provider.dart';
+import '../providers/di_providers.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/responsive/responsive.dart';
 
@@ -56,6 +57,11 @@ class SettingsPage extends ConsumerWidget {
               ResponsivePadding(
                 vertical: false,
                 child: _buildLogoutButton(cs, ref, context),
+              ),
+              const SizedBox(height: 12),
+              ResponsivePadding(
+                vertical: false,
+                child: _buildDeleteAccountButton(cs, ref, context),
               ),
 
               SizedBox(height: 32 + context.responsiveSpacing()),
@@ -242,6 +248,30 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
+  Widget _buildDeleteAccountButton(ColorScheme cs, WidgetRef ref, BuildContext context) {
+    return GestureDetector(
+      onTap: () => _handleDeleteAccount(ref, context, cs),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: cs.error.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(9999),
+        ),
+        child: Center(
+          child: Text(
+            'Delete Account',
+            style: GoogleFonts.inter(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: cs.error,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   void _handleLogout(WidgetRef ref, BuildContext context, ColorScheme cs) {
     // Show confirmation dialog
     showDialog(
@@ -364,6 +394,154 @@ class SettingsPage extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  void _handleDeleteAccount(WidgetRef ref, BuildContext context, ColorScheme cs) {
+    // Show confirmation dialog with extra warning
+    showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(
+          'Delete Account',
+          style: GoogleFonts.manrope(
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: cs.error,
+          ),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'This action cannot be undone. All your data will be permanently deleted:',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: cs.onSurface,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              '• Trading history\n• Open positions\n• Finance records\n• Profile data',
+              style: GoogleFonts.inter(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: cs.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'Are you sure you want to continue?',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.error,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => dialogContext.pop(),
+            child: Text(
+              'Cancel',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.primary,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () async {
+              dialogContext.pop();
+              await _performDeleteAccount(ref, context, cs);
+            },
+            child: Text(
+              'Delete',
+              style: GoogleFonts.inter(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: cs.error,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _performDeleteAccount(WidgetRef ref, BuildContext context, ColorScheme cs) async {
+    // Show loading indicator
+    if (context.mounted) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (dialogContext) => Center(
+          child: Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: cs.surface,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const CircularProgressIndicator(),
+                const SizedBox(height: 16),
+                Text(
+                  'Deleting account...',
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: cs.onSurface,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    try {
+      final repo = ref.read(userProfileRepositoryProvider);
+
+      // Get current user ID from auth state
+      final userId = ref.read(supabaseAuthStateProvider)?.id;
+      if (userId == null) {
+        throw Exception('User not authenticated');
+      }
+
+      (repo as dynamic).setCurrentUserId(userId);
+
+      await repo.deleteAccount();
+
+      // Logout after successful deletion
+      if (context.mounted) {
+        Navigator.of(context).pop(); // Close loading dialog
+        ref.read(authProvider.notifier).logout();
+
+        // Show success message - router will auto-redirect to login
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Account deleted successfully'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.of(context).pop(); // Close loading dialog
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to delete account: ${e.toString()}'),
+            backgroundColor: cs.error,
+          ),
+        );
+      }
+    }
   }
 }
 

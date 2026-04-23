@@ -1,12 +1,15 @@
 export 'add_trade_page.dart';
+export 'change_password_page.dart';
 export 'dashboard_page.dart';
 export 'finance_page.dart';
 export 'forgot_password_page.dart';
 export 'import_export_page.dart';
 export 'login_page.dart';
 export 'onboarding_wrapper_page.dart';
+export 'profile_edit_page.dart';
 export 'profile_page.dart';
 export 'recommendations_page.dart';
+export 'reset_password_page.dart';
 export 'register_page.dart';
 export 'settings_page.dart';
 export 'trade_detail_page.dart';
