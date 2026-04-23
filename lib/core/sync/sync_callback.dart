@@ -1,5 +1,5 @@
 import 'package:workmanager/workmanager.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:tradetrackr/presentation/providers/sync_provider.dart';
 
