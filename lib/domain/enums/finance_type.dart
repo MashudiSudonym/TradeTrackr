@@ -1,7 +1,7 @@
 /// Type of financial transaction.
 enum FinanceType {
-  deposit(name: 'Deposit'),
-  withdrawal(name: 'Withdrawal');
+  deposit(name: 'DEPOSIT'),
+  withdrawal(name: 'WITHDRAWAL');
 
   final String name;
 

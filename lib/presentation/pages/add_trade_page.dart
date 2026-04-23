@@ -566,7 +566,11 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
           commission: _commissionController.text.isEmpty
               ? 0.0
               : double.parse(_commissionController.text),
-          profit: 0.0, // Will be calculated
+          profit: _side.calculateProfit(
+            double.parse(_openPriceController.text),
+            double.parse(_closePriceController.text),
+            double.parse(_volumeController.text),
+          ),
           reason: _reason,
           createdAt: now,
           updatedAt: now,
@@ -600,7 +604,7 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
           commission: _commissionController.text.isEmpty
               ? 0.0
               : double.parse(_commissionController.text),
-          profit: 0.0, // Will be calculated
+          profit: 0.0, // No floating P/L at creation
           createdAt: now,
           updatedAt: now,
           isSynced: false,

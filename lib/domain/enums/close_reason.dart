@@ -2,8 +2,8 @@
 enum CloseReason {
   tp(name: 'TP'),
   sl(name: 'SL'),
-  user(name: 'User'),
-  manual(name: 'Manual');
+  user(name: 'USER'),
+  manual(name: 'MANUAL');
 
   final String name;
 
