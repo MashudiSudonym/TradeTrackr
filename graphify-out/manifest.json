@@ -1,0 +1,706 @@
+{
+  "/home/masrobot/Projects/TradeTrackr/lib/main.dart": {
+    "mtime": 1777882343.3214247,
+    "hash": "6501997aaaf66878994ebcb589d8ae38"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/main_shell.dart": {
+    "mtime": 1777882343.3096552,
+    "hash": "659b885870b807b8b3f92aba4d1fec85"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/router_refresh_stream.dart": {
+    "mtime": 1777882343.3096552,
+    "hash": "c2f391a98dcdbbec0392c6810a2cf5e0"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/app.dart": {
+    "mtime": 1777882343.3094313,
+    "hash": "4333a554a61ef0ada49ef082a1b95d4a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/app.g.dart": {
+    "mtime": 1777882976.6292741,
+    "hash": "689e2492b16b51da7f2e73d2386008c1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/router.dart": {
+    "mtime": 1777882343.3096552,
+    "hash": "521c75f07ded6967cf706d3ab5106bfc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/theme/app_theme.dart": {
+    "mtime": 1777882343.3104787,
+    "hash": "5f6c486ea3b522d8afa738600c023c0a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/theme/app_component_themes.dart": {
+    "mtime": 1777882343.3104787,
+    "hash": "2c36d54f9e03d9545a463116bd25bfa5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/theme/app_typography.dart": {
+    "mtime": 1777882343.3104787,
+    "hash": "e004aaac26a8f249ebd8c67dfeab09d0"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/theme/app_colors.dart": {
+    "mtime": 1777882343.3096552,
+    "hash": "229be98c08606cc5fadbed82d2a0652a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/app/theme/theme.dart": {
+    "mtime": 1777882343.3104787,
+    "hash": "dfa881a474aac4958d66d27c1ee05b3f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/enums/close_reason.dart": {
+    "mtime": 1777882343.3184247,
+    "hash": "fe42e5f61db7dcb4d2000940f237debe"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/enums/finance_type.dart": {
+    "mtime": 1777882343.3187675,
+    "hash": "311c8c1ec93f763960f6577ef24dcc4b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/enums/severity.dart": {
+    "mtime": 1777882343.3187675,
+    "hash": "1db4f098c0671cc0b96ac287d8e5a9cf"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/enums/trade_side.dart": {
+    "mtime": 1777882343.3187675,
+    "hash": "c06fe94dd22dc479f62bf4311197fd2b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/trade_query_repository.dart": {
+    "mtime": 1777882343.3194246,
+    "hash": "c5824e34ef06bd8a58b2e6e1e95e61e5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/trade_export_repository.dart": {
+    "mtime": 1777882343.319228,
+    "hash": "9c580710f7122fe9f220b51d24d232ae"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/trade_import_repository.dart": {
+    "mtime": 1777882343.3194246,
+    "hash": "8d5e729d4fa4f99b03bb23c7b40e3ae5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/trade_command_repository.dart": {
+    "mtime": 1777882343.319228,
+    "hash": "3c74a4301c1ac4cf35cfac823c990de0"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/repositories.dart": {
+    "mtime": 1777882343.319228,
+    "hash": "f2bc61cb238cb622d24b1502e29d95f7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/user_profile_repository.dart": {
+    "mtime": 1777882343.3194246,
+    "hash": "1c3645ed666f5b7ec466b983b2c2a9e3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/repositories/auth_repository.dart": {
+    "mtime": 1777882343.3187675,
+    "hash": "fbe960eaf745e801c63537a00bebd60b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/update_profile.dart": {
+    "mtime": 1777882343.3214247,
+    "hash": "633003740ebed21e2f6cb4093b47b807"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/add_trade.dart": {
+    "mtime": 1777882343.3194246,
+    "hash": "f97476a3fcb84f216041243a12c9df8e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/update_trade.dart": {
+    "mtime": 1777882343.3214247,
+    "hash": "ae9f7b3a8271e2c5872813f543b32a9a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/sign_in.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "2a95a0646ff01a3122cd0400998de457"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/get_trade_analytics.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "e97a1c530aadfaffda5fe681b1f86792"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/get_recommendations.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "5342f985d3d227cda5286ff2eeb93472"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/delete_trade.dart": {
+    "mtime": 1777882343.3202631,
+    "hash": "2be2d009ce2a369c0be7a08234b60ded"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/usecases.dart": {
+    "mtime": 1777882343.3214247,
+    "hash": "90fa943d8c793326f540fea8117bcebd"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/sign_up.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "5d4e8bb2061e1f673afc5abea0cfd6b9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/export_trades.dart": {
+    "mtime": 1777882343.3202631,
+    "hash": "6ed84ea743fbea1f00712086754ffa33"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/import_trades.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "6d6a2b2af0cfe54e6228bdd2f9003b35"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/usecases/sign_out.dart": {
+    "mtime": 1777882343.3204248,
+    "hash": "5eea54d0915c44e47a1f53f08487d20e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/recommendation.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "80997ad24a16eb2c2ae57cbaabb7924c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/user.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "9221059ee13a0f367680fb5d65016143"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/finance_record.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "6e214396ab1b016389782a9d7d498b9e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/closed_position.dart": {
+    "mtime": 1777882343.3174245,
+    "hash": "0601bcd2fe4817cc9a759d935e3a8b17"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/trade_filter.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "dba2a5715ea4b7444b5d8f02a395aa65"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/trade_analytics.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "16c17e8988e31481030433a21f5f31d9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/entities/open_position.dart": {
+    "mtime": 1777882343.3178115,
+    "hash": "723c038a1897782a7771c56f75fe8e7b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/core/usecase.dart": {
+    "mtime": 1777882343.3173862,
+    "hash": "7bf758967ec7c83e94dc4a4903db64e4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/core/result.dart": {
+    "mtime": 1777882343.3172011,
+    "hash": "cc519c7b7ba9301e4d42ee4ea0638e51"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/domain/core/result.freezed.dart": {
+    "mtime": 1777882976.5783975,
+    "hash": "27ba4f1cce811c423d6042283ac454cf"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/trade_list_page.dart": {
+    "mtime": 1777882343.328425,
+    "hash": "f2e39edcd2ba2806a1867eca43960635"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/profile_page.dart": {
+    "mtime": 1777882343.327425,
+    "hash": "1a4c33ae3ee4e48c7e02a31fad6c2784"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/finance_page.dart": {
+    "mtime": 1777882343.325425,
+    "hash": "4170394a1cf504f0a6b696883fe10d94"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/settings_page.dart": {
+    "mtime": 1777882343.328425,
+    "hash": "7c6f2b0878d5c87dce2549b21c7f34fa"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/dashboard_page.dart": {
+    "mtime": 1777882343.3244247,
+    "hash": "1ac14908ae12596a0978db4cca964646"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/onboarding_wrapper_page.dart": {
+    "mtime": 1777882343.3264248,
+    "hash": "4df656c392ac361d242e8e83c8ca5419"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/register_page.dart": {
+    "mtime": 1777882343.328425,
+    "hash": "eaf316a0842f29f998b610bfe923329a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/recommendations_page.dart": {
+    "mtime": 1777882343.327425,
+    "hash": "110b9afc7f15d529389c0ac8db7d3de8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/add_finance_page.dart": {
+    "mtime": 1777882343.3224247,
+    "hash": "1bd8c9ddb0a2b36f2d7a9d679312412d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/profile_edit_page.dart": {
+    "mtime": 1777882343.3264248,
+    "hash": "6b792ac5e6e09c2464668291138abac3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/login_page.dart": {
+    "mtime": 1777882343.3264248,
+    "hash": "87e599418304c5e8a424d3452765fd23"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/trade_detail_page.dart": {
+    "mtime": 1777882343.328425,
+    "hash": "94b0b0428bf1f7ec331f4cef78b67ea7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/pages.dart": {
+    "mtime": 1777882343.3264248,
+    "hash": "77418a218f0ab69a91f7ecf055b92b55"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/import_export_page.dart": {
+    "mtime": 1777882343.3264248,
+    "hash": "bb59774e9613d5580d280dfb70a0b912"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/add_trade_page.dart": {
+    "mtime": 1777882343.3235226,
+    "hash": "663c82e4e8a5a2532177fafa271b22b5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/state/sync_status_state.freezed.dart": {
+    "mtime": 1777882976.578927,
+    "hash": "bd525588a72bc1215a05a1fe24621b0b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/state/import_state.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "1a4096cb15318751d8d97aa609d21389"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/state/import_state.freezed.dart": {
+    "mtime": 1777882976.578927,
+    "hash": "5cb11d99390f5fff55e4286fb5f78a94"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/state/sync_status_state.dart": {
+    "mtime": 1777882343.331447,
+    "hash": "8a40fd50a6f55c98486a346136e7a2c8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/profile_provider.g.dart": {
+    "mtime": 1777882976.6331894,
+    "hash": "f191a5c338c8eee2c35b82b5653a5fb7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/auth_provider.g.dart": {
+    "mtime": 1777882976.6327393,
+    "hash": "a161d8cffc4cb6d9fbff7016e9ef1fb2"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/theme_provider.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "7063694940f070b7d54a7ffb3b3a34ef"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/analytics_provider.g.dart": {
+    "mtime": 1777882976.6324892,
+    "hash": "4d4ac9c495d6bc37a44f8945f3ab2462"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/profile_provider.dart": {
+    "mtime": 1777882343.329793,
+    "hash": "58098345467d1b4eeb231dcfefadf937"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/auth_provider.dart": {
+    "mtime": 1777882343.329793,
+    "hash": "968efa903cb60b4c9331ab5cc1feca06"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/recommendation_provider.g.dart": {
+    "mtime": 1777882976.6332753,
+    "hash": "1689fd4a09fb198068bd3550474df586"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/analytics_provider.dart": {
+    "mtime": 1777882343.3294249,
+    "hash": "1e2675dee849d5cc8f46675f99fccbc9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/import_export_provider.dart": {
+    "mtime": 1777882343.329793,
+    "hash": "8e53e8a9ddff08d849f853f4024ac733"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/trade_provider.g.dart": {
+    "mtime": 1777882976.6336758,
+    "hash": "87d3e8960b32f0d7cb71dedc125692b1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/trade_provider.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "05ee3d02952d79facdd06ac9d506975c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/import_export_provider.g.dart": {
+    "mtime": 1777882976.6330166,
+    "hash": "5a07e1b776aa463a223d6086dd655a90"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/di_providers.g.dart": {
+    "mtime": 1777882976.6329103,
+    "hash": "adc72ccb51032744c64734ef69e4ce5b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/di_providers.dart": {
+    "mtime": 1777882343.329793,
+    "hash": "7abef4cf4e02f2baed49365866201451"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/onboarding_provider.dart": {
+    "mtime": 1777882343.329793,
+    "hash": "4ecd2b93e28f0a3be695a8e7555e3caa"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/onboarding_provider.g.dart": {
+    "mtime": 1777882976.633108,
+    "hash": "d6b011917949817dee47bb150db882fa"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/recommendation_provider.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "ac36080ffc2e3d0f7d4d3724da45b95e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/theme_provider.g.dart": {
+    "mtime": 1777882976.633467,
+    "hash": "e2fb81523ad47a7fb7378411cc29f7bd"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/sync_provider.g.dart": {
+    "mtime": 1777882976.633383,
+    "hash": "55792f755649f9835ffe6dba3e28962e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/providers.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "2b71f40467abc298c33f096b1ecefa3f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/sync_provider.dart": {
+    "mtime": 1777882343.330425,
+    "hash": "5e5dfa0a06888f65ca28faeaa3e6ee10"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/mock/chart_mock_data.dart": {
+    "mtime": 1777882343.3223333,
+    "hash": "dc470c9b53943dd9dc594e3cf43ec632"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/mock/mock_data.dart": {
+    "mtime": 1777882343.3224247,
+    "hash": "fcf158d4ff5ae1c9137d40f11c4974b9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/navigation_drawer.dart": {
+    "mtime": 1777882343.3344252,
+    "hash": "fdf07e0784782410c1228ecf308624c7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/trade_timeline.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "1fadfb12961b553223559160460349d8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/widgets.dart": {
+    "mtime": 1777882343.3384252,
+    "hash": "ef0c6bb878ef25ecde7c9769f4192752"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/section_label.dart": {
+    "mtime": 1777882343.3367167,
+    "hash": "8b660217d73694eecb2600a834956e0b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/open_position_card.dart": {
+    "mtime": 1777882343.3344252,
+    "hash": "2e253c94434be7755b94ed727f31769b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/form_field_label.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "edcc3cbc969135f1eaecaefcf9021efd"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/status_badge.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "37fe5191a7130e5ab0d0610d014e99ac"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/shimmer_placeholder.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "11e7da81d7350787d3971f0530b2522a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/navigation_rail.dart": {
+    "mtime": 1777882343.3344252,
+    "hash": "c826427d07ac5eec36f8adb19482edc7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/close_position_sheet.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "28565c90c9a3c5b8fc3952143cb854f4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/multi_select_chip.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "cefa6e3f41a6e7d5759582a11fcacd80"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/primary_button.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "8e87dbe42a9eb0135775c2f256150537"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/pricing_row.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "48a9097d1f1502e8e98ea03e8e83a574"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/theme_toggle.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "8afcdd9684f370f0197ade16992261b3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/metric_card.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "53855c1005736862dbd9be6b03715154"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/date_range_picker.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "aa569a1125fdbb251c980c2796bdeb25"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/pagination_bar.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "118d22c39d8b2daf8f144d84f1a1f06a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/recommendation_card.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "9d999f601609705cb764fad579a7b879"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/side_chip.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "2dfb681849887d0b07289b90f310f8fd"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/filter_bar.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "073a3be836fe2f9f8e83a51d5a5d9d92"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/trade_card.dart": {
+    "mtime": 1777882343.3374252,
+    "hash": "da9beb9d4192cb88711f9502b40cc0cb"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/import_progress_indicator.dart": {
+    "mtime": 1777882343.333425,
+    "hash": "96cec80fe50352d2dc1372f36dbda123"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/onboarding_illustrations.dart": {
+    "mtime": 1777882343.3344252,
+    "hash": "187fdf6cc1c2e4fe171c1a94afb31095"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/pill_toggle.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "2b5aaff5f5ee01bf36309649f0fd4244"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/analytics_filter_bar.dart": {
+    "mtime": 1777882343.331447,
+    "hash": "9d31ce0f10a04711ed8f0580f1457422"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/app_text_form_field.dart": {
+    "mtime": 1777882343.3318026,
+    "hash": "c95cf5c833c6a8266a03145733b011bb"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/recent_trades_list.dart": {
+    "mtime": 1777882343.3354251,
+    "hash": "10d63ead6e40baf8bb7067b84ff8da19"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/equity_curve_chart.dart": {
+    "mtime": 1777882343.3321574,
+    "hash": "3377a61bfb62e645359a299c2e8fb71d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/profit_by_day_chart.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "13c04ef16de50ea1eaea3ae3ef20f6b7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/profit_by_session_chart.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "5a9b69327c5fbfd41755ebeee31ef6f3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/chart_container.dart": {
+    "mtime": 1777882343.3318026,
+    "hash": "9a1f170b4c2ba47c229e6ef3b5eee09a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/win_loss_by_reason_chart.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "e3b074c5a32e8991a3a17aae1db65f10"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/win_loss_by_symbol_chart.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "d7e8bfab1099c9620ee5f89a13bbf117"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/charts/pl_distribution_chart.dart": {
+    "mtime": 1777882343.332425,
+    "hash": "0bde8e0a545422882a4f798116c253c3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/responsive/responsive_center.dart": {
+    "mtime": 1777882343.3367167,
+    "hash": "1d95b57419e8a65ac9eef6fce34009f6"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/responsive/responsive_grid.dart": {
+    "mtime": 1777882343.3367167,
+    "hash": "cfc97b46a6d49717e133a0cd496a222b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/responsive/responsive_padding.dart": {
+    "mtime": 1777882343.3367167,
+    "hash": "b0da7d6dfede732bebc0532c7cb21c83"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/responsive/responsive_builder.dart": {
+    "mtime": 1777882343.3367167,
+    "hash": "a1b0e1010200919f0a497283012460d3"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/presentation/widgets/responsive/responsive.dart": {
+    "mtime": 1777882343.336425,
+    "hash": "5f0fc1aacb85d6861b79c4caddc33097"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_import_repository_impl.dart": {
+    "mtime": 1777882343.3164246,
+    "hash": "8933f2571c8a5c6d337bbffdb8b7aee8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/auth_repository_impl.dart": {
+    "mtime": 1777882343.3154573,
+    "hash": "257de188a13d356980dee6e06838cefc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_command_repository_impl.dart": {
+    "mtime": 1777882343.3160918,
+    "hash": "d0ffac733a515e27ffa0dff3ab3e88ab"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/user_profile_repository_impl.dart": {
+    "mtime": 1777882343.3164246,
+    "hash": "c7e1334f328697a31bff4a82edc9ced8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_export_repository_impl.dart": {
+    "mtime": 1777882343.3164246,
+    "hash": "a7fe2c77006d1f14989616570a4de979"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_query_repository_impl.dart": {
+    "mtime": 1777882343.3164246,
+    "hash": "91867cca48ff4e7c54b3da5ac37ae51f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/user_remote_data_source_impl.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "35f7bb882c315ff054d99fa2bfbaadfa"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/trade_remote_data_source_impl.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "2b326d7a9523d55fafd0482bb0fe4726"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/user_remote_data_source.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "fcc0894b68b0bb43d8b6dc191ca818d6"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/auth_remote_data_source.dart": {
+    "mtime": 1777882343.3134253,
+    "hash": "8a9a79cfbcac0a282a111d45b9789df9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/trade_remote_data_source.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "644b20db3c2eab17cadcf498c6d14b17"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/auth_remote_data_source_impl.dart": {
+    "mtime": 1777882343.3136873,
+    "hash": "ff4af46e0fae360b4cf1f6677df17c54"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/trade_local_data_source_impl.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "2f2a0e8d5703cee86814536e90355a97"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/trade_local_data_source.dart": {
+    "mtime": 1777882343.3136873,
+    "hash": "4773bebc714f83911cf48f7863cc760f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/drift/database.g.dart": {
+    "mtime": 1777882976.6312742,
+    "hash": "487196fab39ad3f9f9371c77d27fcb3d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/datasources/drift/database.dart": {
+    "mtime": 1777882343.3136873,
+    "hash": "4885748b24753188a19edb2aae1ee071"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/finance_record_dto.freezed.dart": {
+    "mtime": 1777882976.5752726,
+    "hash": "e65ee312fbc68892ab2f994d0332a46a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/import_result_dto.dart": {
+    "mtime": 1777882343.3154573,
+    "hash": "82775d7da48f4de1f905466ddf66e2dc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/trade_position_dto.dart": {
+    "mtime": 1777882343.3154573,
+    "hash": "72b7d0343003f3777bd7843aa066cb04"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/finance_record_dto.dart": {
+    "mtime": 1777882343.3144245,
+    "hash": "df64f7a045e1de54f78b34e1da99b27c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/user_dto.freezed.dart": {
+    "mtime": 1777882976.5773711,
+    "hash": "464546c5ef19eef26c895fb9cd2809a9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/trade_position_dto.g.dart": {
+    "mtime": 1777882976.6324098,
+    "hash": "8fbfaa61192c4544a7bdf505c9104e65"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/user_dto.dart": {
+    "mtime": 1777882343.3154573,
+    "hash": "bdc4bb407f4677775a0f99196ef944c4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/trade_position_dto.freezed.dart": {
+    "mtime": 1777882976.5762725,
+    "hash": "bedc555e4521075f155a8c50e78d749d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/import_result_dto.freezed.dart": {
+    "mtime": 1777882976.5752726,
+    "hash": "0ed844b099c90de5cc9c0cde0af887ee"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/finance_record_dto.g.dart": {
+    "mtime": 1777882976.6312742,
+    "hash": "1de75ac951f398c7282a551780cc60c2"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/data/models/user_dto.g.dart": {
+    "mtime": 1777882976.6324892,
+    "hash": "48b58b9c1b56a4f69df818b0083151b4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/logger/app_logger.dart": {
+    "mtime": 1777882343.3114245,
+    "hash": "a2be8accfe29c3b01b81cf28fd72bac9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/sync/sync_callback.dart": {
+    "mtime": 1777882343.3124244,
+    "hash": "cafd897dee74b8ae18ed73bc605ea29f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/sync/sync_engine.dart": {
+    "mtime": 1777882343.3127227,
+    "hash": "6d004b56d7c816b55866964d214ebc59"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/extensions/context_extensions.dart": {
+    "mtime": 1777882343.3114245,
+    "hash": "db39413073c97b7b9d471fb528b8ab8b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/network/connectivity_checker.dart": {
+    "mtime": 1777882343.3114245,
+    "hash": "4d92cb1d03542bbaafa63dd8807f775b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/constants/responsive_constants.dart": {
+    "mtime": 1777882343.3113678,
+    "hash": "ccf9a932d4868fa9526775e8427b0c10"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/constants/supabase_constants.dart": {
+    "mtime": 1777882343.3114245,
+    "hash": "528b56f5ee7d995ea924cae05f2fd203"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/constants/app_constants.dart": {
+    "mtime": 1777882343.3111916,
+    "hash": "c461dcc68e80233a4c5fede8f916f649"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/utils/string_utils.dart": {
+    "mtime": 1777882343.3131382,
+    "hash": "951d0cdc13ced751b213eae751f5b9fe"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/utils/date_utils.dart": {
+    "mtime": 1777882343.3127227,
+    "hash": "2e3934655a5b9d0d79406061fceff7a4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/utils/utils.dart": {
+    "mtime": 1777882343.3131382,
+    "hash": "5925ab3d0ff5181ac8e4c85b91f24cb8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/lib/core/errors/failures.dart": {
+    "mtime": 1777882343.3114245,
+    "hash": "d6f90f661d9d4c9a5aeb682e2961f0c6"
+  },
+  "PRD.md": {
+    "mtime": 1777882343.295424,
+    "hash": "5f51aae5fa3e9e34b875a497383a867b"
+  },
+  "CLAUDE.md": {
+    "mtime": 1777882343.293424,
+    "hash": "2303404b87f84a08526a4b41d087b724"
+  },
+  "CSV_FORMAT_REFERENCE.md": {
+    "mtime": 1777882343.2944238,
+    "hash": "9fb1a43f917d18d63cbf79e10e3c85c4"
+  },
+  "README.md": {
+    "mtime": 1777882343.296424,
+    "hash": "3fd49540b924e612a992420071e6d9d6"
+  },
+  "ARCHITECTURE.md": {
+    "mtime": 1777882343.292424,
+    "hash": "fcffec7e599906901577c276c567e556"
+  },
+  "RESULT_PATTERN.md": {
+    "mtime": 1777882343.296424,
+    "hash": "a84893187c67e6145f931c3078c669e5"
+  },
+  "SOLID.md": {
+    "mtime": 1777882343.297424,
+    "hash": "036e08a1b161ebbe018f75cfb710b466"
+  },
+  "DESIGN.md": {
+    "mtime": 1777882343.2904239,
+    "hash": "b1db1aa54d09d47652e495a2162d13c5"
+  },
+  "CODING_STANDARDS.md": {
+    "mtime": 1777882343.293424,
+    "hash": "e7a4bc859434e6d36ac525c301331408"
+  },
+  "RIVERPOD_GUIDE.md": {
+    "mtime": 1777882343.297424,
+    "hash": "826c7c8348504c2098aa0476233341fb"
+  },
+  "AGENTS.md": {
+    "mtime": 1777884840.4770067,
+    "hash": "da121b012d4a3f404ecd48f6d5de05c5"
+  },
+  "FREEZED_GUIDE.md": {
+    "mtime": 1777882343.2944238,
+    "hash": "2f53508ef1dddb11a4c4685ce28cd24a"
+  }
+}
