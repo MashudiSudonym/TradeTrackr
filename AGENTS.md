@@ -180,3 +180,7 @@ Always query MCP Context7 first before using any package API, configuration, or 
 | `RESULT_PATTERN.md` | `Result<T>` union type usage across all layers |
 | `DESIGN.md` | Design system tokens, components, layout rules |
 | `CSV_FORMAT_REFERENCE.md` | CSV import/export column formats |
+
+## Workflow Rules
+
+- **Auto-commit**: After every code change (edit, new file, refactor), immediately commit with a descriptive message following the `type(scope): subject` convention. Do not batch changes across multiple edits — one commit per logical change.
