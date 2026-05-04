@@ -1,4 +1,132 @@
 {
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/001_create_profiles.sql": {
+    "mtime": 1777882343.3487475,
+    "hash": "216cebd5b33f9e7dc17abe5d54d911f8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/006_create_updated_at_trigger.sql": {
+    "mtime": 1777882343.348914,
+    "hash": "bff297ce9fc5bd3e3638f79c5b5ff3bc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/004_create_finance_records.sql": {
+    "mtime": 1777882343.348914,
+    "hash": "42fe4c081eeda28b5a70ad80ecc06a2f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/005_create_rls_policies.sql": {
+    "mtime": 1777882343.348914,
+    "hash": "3b569bbcd5de5acc24ad98dbb0c1eb4e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/003_create_open_positions.sql": {
+    "mtime": 1777882343.348914,
+    "hash": "ba3cc3c9fdc623d3bc5ccd19eba00f17"
+  },
+  "/home/masrobot/Projects/TradeTrackr/supabase/migrations/002_create_closed_positions.sql": {
+    "mtime": 1777882343.348914,
+    "hash": "d19a727901532af18282c33fb763603d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/flutter/generated_plugin_registrant.h": {
+    "mtime": 1777882343.3517826,
+    "hash": "0ea33875f9f8e118f9c2ded03e2e2835"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/flutter/generated_plugin_registrant.cc": {
+    "mtime": 1777882343.3517826,
+    "hash": "79b9c575e23fc1899e4011d2b00e6531"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/flutter_window.h": {
+    "mtime": 1777882343.3524256,
+    "hash": "79bea736711adda00c49419a39a4a0b4"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/utils.h": {
+    "mtime": 1777882343.3534257,
+    "hash": "c741fb9cddbf3a62f4688b6cca39ddcc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/utils.cpp": {
+    "mtime": 1777882343.3534257,
+    "hash": "9b5697b276c8ad67a02ec12ad2c09851"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/resource.h": {
+    "mtime": 1777882343.3524256,
+    "hash": "c8f809a4f8d3f2f625e358fd90f72fee"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/win32_window.h": {
+    "mtime": 1777882343.3534257,
+    "hash": "5a4cf051798d7e6931ee0405a4523c8f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/win32_window.cpp": {
+    "mtime": 1777882343.3534257,
+    "hash": "928e86a2be27eca688669dce6c9177d9"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/flutter_window.cpp": {
+    "mtime": 1777882343.3522336,
+    "hash": "9b92b95a9eecce25e3e9d356688d0cb6"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/main.cpp": {
+    "mtime": 1777882343.3524256,
+    "hash": "bb5b5a85d866bc3e3b14237a0b556b71"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/generated_plugin_registrant.h": {
+    "mtime": 1777882343.3394253,
+    "hash": "d295462c9da9f7fef22dc86c34492318"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/generated_plugin_registrant.cc": {
+    "mtime": 1777882343.3393788,
+    "hash": "f255bd691f810f69c1cf3ee50c5bb51f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/runner/my_application.h": {
+    "mtime": 1777882343.3399692,
+    "hash": "326a85d68857137fdfe8698a0c071baf"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/runner/main.cc": {
+    "mtime": 1777882343.3399692,
+    "hash": "0643b8609698e96b3abd63c210361a87"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/runner/my_application.cc": {
+    "mtime": 1777882343.3399692,
+    "hash": "73ac47faf3d514bf9843eb9427bd2aa7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/SceneDelegate.swift": {
+    "mtime": 1777882343.3084242,
+    "hash": "748d701e783e68faf618c00464257a19"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Runner-Bridging-Header.h": {
+    "mtime": 1777882343.3084242,
+    "hash": "e07862ac930ed4d8479185d52c6cc66d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/GeneratedPluginRegistrant.m": {
+    "mtime": 1777882732.5603118,
+    "hash": "2676657d4af028d2605e254b94746871"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/AppDelegate.swift": {
+    "mtime": 1777882343.3058078,
+    "hash": "2bd8469f2a4b701ff582f6574e58b13c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/GeneratedPluginRegistrant.h": {
+    "mtime": 1777882732.558404,
+    "hash": "decb9041b5e91a07e66f4664e5dac408"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Flutter/ephemeral/flutter_lldb_helper.py": {
+    "mtime": 1777882732.099193,
+    "hash": "98fc75412162af387e2e3461e4e58094"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/RunnerTests/RunnerTests.swift": {
+    "mtime": 1777882343.3084242,
+    "hash": "a225a382d14d7b16b6f602a5c1d49331"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/MainFlutterWindow.swift": {
+    "mtime": 1777882343.346945,
+    "hash": "4a747b1f256d62a2bbb79bd976891eb5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/AppDelegate.swift": {
+    "mtime": 1777882343.342088,
+    "hash": "2a7411ae3e7c6715525b94b6f8d2e80b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Flutter/GeneratedPluginRegistrant.swift": {
+    "mtime": 1777882343.340804,
+    "hash": "4f4dc0b291faf1b84bf9d3792d458cda"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/RunnerTests/RunnerTests.swift": {
+    "mtime": 1777882343.3474255,
+    "hash": "97d3a20fd20a063c192e886d1822b4a8"
+  },
   "/home/masrobot/Projects/TradeTrackr/lib/main.dart": {
     "mtime": 1777882343.3214247,
     "hash": "6501997aaaf66878994ebcb589d8ae38"
@@ -655,52 +783,252 @@
     "mtime": 1777882343.3114245,
     "hash": "d6f90f661d9d4c9a5aeb682e2961f0c6"
   },
-  "PRD.md": {
+  "/home/masrobot/Projects/TradeTrackr/android/settings.gradle.kts": {
+    "mtime": 1777882343.3025184,
+    "hash": "094e3cafe85d4dbf756dfe0bd754c6cb"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/build.gradle.kts": {
+    "mtime": 1777882343.301424,
+    "hash": "f11f360aed44d4f6871b398346af14f0"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/build.gradle.kts": {
+    "mtime": 1777882343.2990057,
+    "hash": "d3d2b06067f03856bf34da31896e2a5b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java": {
+    "mtime": 1777882732.538325,
+    "hash": "2e13ea508acc5981c505fc05980bcfbc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/kotlin/com/tradetrackr/tradetrackr/MainActivity.kt": {
+    "mtime": 1777882343.2999036,
+    "hash": "dfc3a115a42252ddb19b7ab018344853"
+  },
+  "/home/masrobot/Projects/TradeTrackr/PRD.md": {
     "mtime": 1777882343.295424,
     "hash": "5f51aae5fa3e9e34b875a497383a867b"
   },
-  "CLAUDE.md": {
+  "/home/masrobot/Projects/TradeTrackr/CLAUDE.md": {
     "mtime": 1777882343.293424,
     "hash": "2303404b87f84a08526a4b41d087b724"
   },
-  "CSV_FORMAT_REFERENCE.md": {
+  "/home/masrobot/Projects/TradeTrackr/CSV_FORMAT_REFERENCE.md": {
     "mtime": 1777882343.2944238,
     "hash": "9fb1a43f917d18d63cbf79e10e3c85c4"
   },
-  "README.md": {
+  "/home/masrobot/Projects/TradeTrackr/README.md": {
     "mtime": 1777882343.296424,
     "hash": "3fd49540b924e612a992420071e6d9d6"
   },
-  "ARCHITECTURE.md": {
+  "/home/masrobot/Projects/TradeTrackr/ARCHITECTURE.md": {
     "mtime": 1777882343.292424,
     "hash": "fcffec7e599906901577c276c567e556"
   },
-  "RESULT_PATTERN.md": {
+  "/home/masrobot/Projects/TradeTrackr/RESULT_PATTERN.md": {
     "mtime": 1777882343.296424,
     "hash": "a84893187c67e6145f931c3078c669e5"
   },
-  "SOLID.md": {
+  "/home/masrobot/Projects/TradeTrackr/SOLID.md": {
     "mtime": 1777882343.297424,
     "hash": "036e08a1b161ebbe018f75cfb710b466"
   },
-  "DESIGN.md": {
+  "/home/masrobot/Projects/TradeTrackr/DESIGN.md": {
     "mtime": 1777882343.2904239,
     "hash": "b1db1aa54d09d47652e495a2162d13c5"
   },
-  "CODING_STANDARDS.md": {
+  "/home/masrobot/Projects/TradeTrackr/CODING_STANDARDS.md": {
     "mtime": 1777882343.293424,
     "hash": "e7a4bc859434e6d36ac525c301331408"
   },
-  "RIVERPOD_GUIDE.md": {
+  "/home/masrobot/Projects/TradeTrackr/RIVERPOD_GUIDE.md": {
     "mtime": 1777882343.297424,
     "hash": "826c7c8348504c2098aa0476233341fb"
   },
-  "AGENTS.md": {
+  "/home/masrobot/Projects/TradeTrackr/pubspec.yaml": {
+    "mtime": 1777882343.3484256,
+    "hash": "dff1bcb78a1ea85e82288fefb22f2573"
+  },
+  "/home/masrobot/Projects/TradeTrackr/AGENTS.md": {
     "mtime": 1777884840.4770067,
     "hash": "da121b012d4a3f404ecd48f6d5de05c5"
   },
-  "FREEZED_GUIDE.md": {
+  "/home/masrobot/Projects/TradeTrackr/FREEZED_GUIDE.md": {
     "mtime": 1777882343.2944238,
     "hash": "2f53508ef1dddb11a4c4685ce28cd24a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/analysis_options.yaml": {
+    "mtime": 1777882343.298424,
+    "hash": "2b218c836f39630a55b2c25b2246fe2a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/CMakeLists.txt": {
+    "mtime": 1777882343.3514256,
+    "hash": "ab554321826e42b0497f502dbf02f526"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/flutter/CMakeLists.txt": {
+    "mtime": 1777882343.3514256,
+    "hash": "0c500410e3259a9a053797dc1c28070e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/windows/runner/CMakeLists.txt": {
+    "mtime": 1777882343.3517826,
+    "hash": "e99a99b5cc82a168fc557eb23b8d5a96"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/CMakeLists.txt": {
+    "mtime": 1777882343.338846,
+    "hash": "bb79c3150435249420ac1b9c117e6e0e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/CMakeLists.txt": {
+    "mtime": 1777882343.338846,
+    "hash": "46690fb8ffaf7d227d8bc4713f31140d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/runner/CMakeLists.txt": {
+    "mtime": 1777882343.3394253,
+    "hash": "6d75431dc21756981b53a7494c836311"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md": {
+    "mtime": 1777882343.3080723,
+    "hash": "e175e436acacf76c814d83532d0b662c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/index.html": {
+    "mtime": 1777882343.3504255,
+    "hash": "51402f6e36572e887d4d339727a5c175"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "1b3b1538136316263c7092951e923e9d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "a2f8558fb1d42514111fbbb19fb67314"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "2247a840b6ee72b8a069208af170e5b1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "8245359312aea1b0d2412f79a07b0ca5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "be8887071dd7ec39cb754d236aa9584f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "2b1452c4c1bda6177b4fbbb832df217f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png": {
+    "mtime": 1777882343.3074243,
+    "hash": "643842917530acf4c5159ae851b0baf2"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png": {
+    "mtime": 1777882343.3074243,
+    "hash": "36c0d7a7132bdde18898ffdfcfcdc4d2"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "e419d22a37bc40ba185aca1acb6d4ac6"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "2247a840b6ee72b8a069208af170e5b1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "043119ef4faa026ff82bd03f241e5338"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "c785f8932297af4acd5f5ccb7630f01c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "5b3c0902200ce596e9848f22e1f0fe0e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png": {
+    "mtime": 1777882343.3074243,
+    "hash": "665cb5e3c5729da6d639d26eff47a503"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png": {
+    "mtime": 1777882343.3064244,
+    "hash": "5b3c0902200ce596e9848f22e1f0fe0e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png": {
+    "mtime": 1777882343.3080723,
+    "hash": "978c1bee49d7ad5fc1a4d81099b13e18"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png": {
+    "mtime": 1777882343.3080723,
+    "hash": "978c1bee49d7ad5fc1a4d81099b13e18"
+  },
+  "/home/masrobot/Projects/TradeTrackr/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png": {
+    "mtime": 1777882343.3080723,
+    "hash": "978c1bee49d7ad5fc1a4d81099b13e18"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png": {
+    "mtime": 1777882343.3444254,
+    "hash": "8bf511604bc6ed0a6aeb380c5113fdcf"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png": {
+    "mtime": 1777882343.3444254,
+    "hash": "3ded30823804caaa5ccc944067c54a36"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png": {
+    "mtime": 1777882343.3444254,
+    "hash": "dfe2c93d1536ae02f085cc63faa3430e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png": {
+    "mtime": 1777882343.3454254,
+    "hash": "0ad44039155424738917502c69667699"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png": {
+    "mtime": 1777882343.3454254,
+    "hash": "04e7b6ef05346c70b663ca1d97de3ad5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png": {
+    "mtime": 1777882343.3444254,
+    "hash": "c9becc9105f8cabce934d20c7bfb6aac"
+  },
+  "/home/masrobot/Projects/TradeTrackr/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png": {
+    "mtime": 1777882343.3444254,
+    "hash": "8e0ae58e362a6636bdfccbc04da2c58c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/res/mipmap-hdpi/ic_launcher.png": {
+    "mtime": 1777882343.300424,
+    "hash": "13e9c72ec37fac220397aa819fa1ef2d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/res/mipmap-mdpi/ic_launcher.png": {
+    "mtime": 1777882343.300424,
+    "hash": "6270344430679711b81476e29878caa7"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png": {
+    "mtime": 1777882343.300424,
+    "hash": "afe1b655b9f32da22f9a4301bb8e6ba8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png": {
+    "mtime": 1777882343.300424,
+    "hash": "a0a8db5985280b3679d99a820ae2db79"
+  },
+  "/home/masrobot/Projects/TradeTrackr/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png": {
+    "mtime": 1777882343.301424,
+    "hash": "57838d52c318faff743130c3fcfae0c6"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/favicon.png": {
+    "mtime": 1777882343.3494256,
+    "hash": "5dcef449791fa27946b3d35ad8803796"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/icons/Icon-maskable-192.png": {
+    "mtime": 1777882343.3500137,
+    "hash": "c457ef57daa1d16f64b27b786ec2ea3c"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/icons/Icon-192.png": {
+    "mtime": 1777882343.3497794,
+    "hash": "ac9a721a12bbc803b44f645561ecb1e1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/icons/Icon-maskable-512.png": {
+    "mtime": 1777882343.3504255,
+    "hash": "301a7604d45b3e739efc881eb04896ea"
+  },
+  "/home/masrobot/Projects/TradeTrackr/web/icons/Icon-512.png": {
+    "mtime": 1777882343.3500137,
+    "hash": "96e752610906ba2a93c65f8abe1645f1"
   }
 }
