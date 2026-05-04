@@ -119,62 +119,62 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| OPEN-01 | — | Pending |
-| OPEN-02 | — | Pending |
-| OPEN-03 | — | Pending |
-| OPEN-04 | — | Pending |
-| DASH-01 | — | Pending |
-| DASH-02 | — | Pending |
-| DASH-03 | — | Pending |
-| DASH-04 | — | Pending |
-| DASH-05 | — | Pending |
-| DASH-06 | — | Pending |
-| DASH-07 | — | Pending |
-| DASH-08 | — | Pending |
-| DASH-09 | — | Pending |
-| FILT-01 | — | Pending |
-| FILT-02 | — | Pending |
-| FILT-03 | — | Pending |
-| FILT-04 | — | Pending |
-| FILT-05 | — | Pending |
-| FIN-01 | — | Pending |
-| FIN-02 | — | Pending |
-| FIN-03 | — | Pending |
-| TRAD-01 | — | Pending |
-| TRAD-02 | — | Pending |
-| TRAD-03 | — | Pending |
-| TRAD-04 | — | Pending |
-| IMPT-01 | — | Pending |
-| IMPT-02 | — | Pending |
-| IMPT-03 | — | Pending |
-| IMPT-04 | — | Pending |
-| IMPT-05 | — | Pending |
-| IMPT-06 | — | Pending |
-| IMPT-07 | — | Pending |
-| IMPT-08 | — | Pending |
-| EXPT-01 | — | Pending |
-| EXPT-02 | — | Pending |
-| EXPT-03 | — | Pending |
-| EXPT-04 | — | Pending |
-| EXPT-05 | — | Pending |
-| RECO-01 | — | Pending |
-| RECO-02 | — | Pending |
-| RECO-03 | — | Pending |
-| RECO-04 | — | Pending |
-| RECO-05 | — | Pending |
-| RECO-06 | — | Pending |
-| RECO-07 | — | Pending |
-| RECO-08 | — | Pending |
-| RECO-09 | — | Pending |
-| RECO-10 | — | Pending |
-| RECO-11 | — | Pending |
-| THEM-01 | — | Pending |
+| OPEN-01 | Phase 2 | Pending |
+| OPEN-02 | Phase 2 | Pending |
+| OPEN-03 | Phase 2 | Pending |
+| OPEN-04 | Phase 2 | Pending |
+| DASH-01 | Phase 3 | Pending |
+| DASH-02 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Pending |
+| DASH-04 | Phase 3 | Pending |
+| DASH-05 | Phase 3 | Pending |
+| DASH-06 | Phase 3 | Pending |
+| DASH-07 | Phase 3 | Pending |
+| DASH-08 | Phase 3 | Pending |
+| DASH-09 | Phase 3 | Pending |
+| FILT-01 | Phase 3 | Pending |
+| FILT-02 | Phase 3 | Pending |
+| FILT-03 | Phase 3 | Pending |
+| FILT-04 | Phase 3 | Pending |
+| FILT-05 | Phase 3 | Pending |
+| FIN-01 | Phase 3 | Pending |
+| FIN-02 | Phase 3 | Pending |
+| FIN-03 | Phase 3 | Pending |
+| TRAD-01 | Phase 1 | Pending |
+| TRAD-02 | Phase 1 | Pending |
+| TRAD-03 | Phase 1 | Pending |
+| TRAD-04 | Phase 1 | Pending |
+| IMPT-01 | Phase 4 | Pending |
+| IMPT-02 | Phase 4 | Pending |
+| IMPT-03 | Phase 4 | Pending |
+| IMPT-04 | Phase 4 | Pending |
+| IMPT-05 | Phase 4 | Pending |
+| IMPT-06 | Phase 4 | Pending |
+| IMPT-07 | Phase 4 | Pending |
+| IMPT-08 | Phase 4 | Pending |
+| EXPT-01 | Phase 4 | Pending |
+| EXPT-02 | Phase 4 | Pending |
+| EXPT-03 | Phase 4 | Pending |
+| EXPT-04 | Phase 4 | Pending |
+| EXPT-05 | Phase 4 | Pending |
+| RECO-01 | Phase 5 | Pending |
+| RECO-02 | Phase 5 | Pending |
+| RECO-03 | Phase 5 | Pending |
+| RECO-04 | Phase 5 | Pending |
+| RECO-05 | Phase 5 | Pending |
+| RECO-06 | Phase 5 | Pending |
+| RECO-07 | Phase 5 | Pending |
+| RECO-08 | Phase 5 | Pending |
+| RECO-09 | Phase 5 | Pending |
+| RECO-10 | Phase 5 | Pending |
+| RECO-11 | Phase 5 | Pending |
+| THEM-01 | Phase 1 | Pending |
 
 **Coverage:**
-- v1 requirements: 46 total
-- Mapped to phases: 0
-- Unmapped: 46
+- v1 requirements: 50 total
+- Mapped to phases: 50
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-05-04*
-*Last updated: 2026-05-04 after initial definition*
+*Last updated: 2026-05-04 after roadmap creation*
