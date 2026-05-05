@@ -28,10 +28,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. User can toggle theme between light/dark/system and the preference persists after app restart
   2. User can navigate to trade detail, tap Edit, modify fields, save, and see updated data in the trade list
   3. User can delete a trade from the detail page with a confirmation dialog and the trade disappears from the list
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md — DI wiring, serialization cleanup, and codebase housekeeping
+- [ ] 01-02-PLAN.md — Trade edit/delete wiring and theme persistence
 
 ### Phase 2: Open Positions & Close Flow
 **Goal**: Users can view, manage, and close their open positions without risk of data loss
@@ -93,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Trade Management | 0/? | Not started | - |
+| 1. Foundation & Trade Management | 0/2 | Planning complete | - |
 | 2. Open Positions & Close Flow | 0/? | Not started | - |
 | 3. Analytics Pipeline & Dashboard | 0/? | Not started | - |
 | 4. CSV Import & Export | 0/? | Not started | - |
