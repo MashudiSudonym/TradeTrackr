@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,18 +15,17 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   _setupGlobalErrorHandling();
 
-  // Load environment variables from .env file
   await SupabaseConstants.load();
 
-  // Initialize Supabase
   await Supabase.initialize(
     url: SupabaseConstants.projectUrl,
     anonKey: SupabaseConstants.anonKey,
     debug: kDebugMode,
   );
 
-  // Initialize workmanager for background sync tasks
-  await Workmanager().initialize(callbackDispatcher);
+  if (Platform.isAndroid || Platform.isIOS) {
+    await Workmanager().initialize(callbackDispatcher);
+  }
 
   runApp(
     const ProviderScope(
