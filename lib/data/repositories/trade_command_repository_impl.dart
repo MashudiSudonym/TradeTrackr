@@ -212,9 +212,19 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     }
   }
 
-  /// Converts DTO JSON map DateTime string fields to DateTime objects
-  /// for Drift compatibility. DTO toJson() produces ISO8601 strings,
-  /// but Drift expects DateTime objects in the map.
+  static const _keyMap = {
+    'userId': 'user_id',
+    'openTime': 'open_time',
+    'closeTime': 'close_time',
+    'openPrice': 'open_price',
+    'closePrice': 'close_price',
+    'stopLoss': 'stop_loss',
+    'takeProfit': 'take_profit',
+    'isSynced': 'is_synced',
+    'createdAt': 'created_at',
+    'updatedAt': 'updated_at',
+  };
+
   Map<String, dynamic> _dtoMapForDrift(
     Map<String, dynamic> dtoMap, {
     DateTime? openTime,
@@ -223,7 +233,11 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
-    final driftMap = Map<String, dynamic>.from(dtoMap);
+    final driftMap = <String, dynamic>{};
+    for (final entry in dtoMap.entries) {
+      final key = _keyMap[entry.key] ?? entry.key;
+      driftMap[key] = entry.value;
+    }
     if (openTime != null) driftMap['open_time'] = openTime;
     if (closeTime != null) driftMap['close_time'] = closeTime;
     if (time != null) driftMap['time'] = time;
