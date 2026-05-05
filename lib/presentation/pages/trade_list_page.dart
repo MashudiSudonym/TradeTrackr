@@ -414,12 +414,15 @@ class _TradeListCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        trade.symbol,
-                        style: GoogleFonts.manrope(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                          color: cs.onSurface,
+                      Flexible(
+                        child: Text(
+                          trade.symbol,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.manrope(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: cs.onSurface,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 8),
