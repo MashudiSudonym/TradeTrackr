@@ -112,9 +112,7 @@ Future<void> Function(ClosedPosition) addClosedPosition(Ref ref) {
     final useCase = ref.read(addTradeUseCaseProvider);
     final result = await useCase(AddTradeParams(position: position));
 
-    if (result.isSuccess) {
-      ref.invalidate(tradeListProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -127,9 +125,7 @@ Future<void> Function(ClosedPosition) updateClosedPosition(Ref ref) {
     final useCase = ref.read(updateTradeUseCaseProvider);
     final result = await useCase(UpdateTradeParams(position: position));
 
-    if (result.isSuccess) {
-      ref.invalidate(tradeListProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -142,9 +138,7 @@ Future<void> Function(String) deleteClosedPosition(Ref ref) {
     final useCase = ref.read(deleteTradeUseCaseProvider);
     final result = await useCase(DeleteTradeParams(id: id));
 
-    if (result.isSuccess) {
-      ref.invalidate(tradeListProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -157,9 +151,7 @@ Future<void> Function(OpenPosition) addOpenPosition(Ref ref) {
     final repo = ref.read(tradeCommandRepositoryProvider);
     final result = await repo.addOpenPosition(position);
 
-    if (result.isSuccess) {
-      ref.invalidate(openPositionsProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -172,9 +164,7 @@ Future<void> Function(OpenPosition) updateOpenPosition(Ref ref) {
     final repo = ref.read(tradeCommandRepositoryProvider);
     final result = await repo.updateOpenPosition(position);
 
-    if (result.isSuccess) {
-      ref.invalidate(openPositionsProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -202,10 +192,7 @@ Future<void> Function({
       reason: reason,
     );
 
-    if (result.isSuccess) {
-      ref.invalidate(openPositionsProvider);
-      ref.invalidate(tradeListProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };
@@ -218,9 +205,7 @@ Future<void> Function(String) deleteOpenPosition(Ref ref) {
     final repo = ref.read(tradeCommandRepositoryProvider);
     final result = await repo.deleteOpenPosition(id);
 
-    if (result.isSuccess) {
-      ref.invalidate(openPositionsProvider);
-    } else {
+    if (!result.isSuccess) {
       throw Exception(result.error);
     }
   };

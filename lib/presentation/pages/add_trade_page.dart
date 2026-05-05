@@ -606,9 +606,11 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
         if (_isEditMode) {
           final updateFn = ref.read(updateClosedPositionProvider);
           await updateFn(position);
+          ref.invalidate(tradeListProvider);
         } else {
           final addFn = ref.read(addClosedPositionProvider);
           await addFn(position);
+          ref.invalidate(tradeListProvider);
         }
       } else {
         final repo = ref.read(tradeCommandRepositoryProvider);
@@ -640,9 +642,10 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
         );
 
         final result = await repo.addOpenPosition(position);
-        if (result.isFailure && mounted) {
+        if (result.isFailure) {
           throw Exception(result.error);
         }
+        ref.invalidate(openPositionsProvider);
       }
 
       if (mounted) {

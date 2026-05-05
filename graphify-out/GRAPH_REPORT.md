@@ -1,7 +1,7 @@
 # Graph Report - TradeTrackr  (2026-05-05)
 
 ## Corpus Check
-- 227 files · ~136,479 words
+- 227 files · ~136,492 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `49ae5d71`
+- Built from commit: `e00768ce`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -204,68 +204,68 @@ Cohesion: 0.16
 Nodes (25): _, appDatabase, ClosedPositionData, ClosedPositionsCompanion, copyWith, copyWithCompanion, create, debugGetCreateSourceHash (+17 more)
 
 ### Community 18 - "Community 18"
-Cohesion: 0.19
-Nodes (13): core/constants/supabase_constants.dart, core/sync/sync_callback.dart, AuthRefreshNotifier, OnboardingRefreshNotifier, SupabaseConstants, callbackDispatcher, ProviderScope, _setupGlobalErrorHandling (+5 more)
-
-### Community 19 - "Community 19"
 Cohesion: 0.21
 Nodes (16): AppTypography, bodyLarge, bodyMedium, bodySmall, buildResponsiveTextTheme, buildTextTheme, displayLarge, displayMedium (+8 more)
 
-### Community 20 - "Community 20"
+### Community 19 - "Community 19"
 Cohesion: 0.22
 Nodes (18): class, error, identical, offline, orElse, pending, StateError, synced (+10 more)
 
-### Community 21 - "Community 21"
+### Community 20 - "Community 20"
 Cohesion: 0.22
 Nodes (18): addClosedPosition, addOpenPosition, call, closeOpenPosition, create, debugGetCreateSourceHash, deleteClosedPosition, deleteOpenPosition (+10 more)
 
-### Community 22 - "Community 22"
-Cohesion: 0.22
-Nodes (11): Analytics, formattedBalance, formattedTotalPnL, formattedWinRate, hasCompletedOnboarding, OnboardingNotifier, Recommendations, ../mock/mock_data.dart (+3 more)
-
-### Community 23 - "Community 23"
+### Community 21 - "Community 21"
 Cohesion: 0.25
 Nodes (16): class, error, identical, idle, ImportError, ImportIdle, ImportLoading, ImportSuccess (+8 more)
 
-### Community 24 - "Community 24"
+### Community 22 - "Community 22"
 Cohesion: 0.23
 Nodes (14): build, _drawCandlestick, _drawLabel, _drawSparkle, LayoutBuilder, _Onboarding1Painter, _Onboarding2Painter, _Onboarding3Painter (+6 more)
 
-### Community 25 - "Community 25"
-Cohesion: 0.21
-Nodes (12): ../../data/repositories/trade_export_repository_impl.dart, ../../data/repositories/user_profile_repository_impl.dart, ../datasources/user_remote_data_source.dart, ../../domain/core/result.dart, ../../domain/repositories/trade_export_repository.dart, TradeExportRepositoryImpl, setCurrentUserId, UserProfileRepositoryImpl (+4 more)
+### Community 23 - "Community 23"
+Cohesion: 0.25
+Nodes (11): core/constants/supabase_constants.dart, core/sync/sync_callback.dart, SupabaseConstants, callbackDispatcher, ProviderScope, _setupGlobalErrorHandling, Workmanager, package:flutter_dotenv/flutter_dotenv.dart (+3 more)
 
-### Community 26 - "Community 26"
+### Community 24 - "Community 24"
+Cohesion: 0.21
+Nodes (12): ../../data/repositories/auth_repository_impl.dart, ../../data/repositories/trade_export_repository_impl.dart, ../datasources/auth_remote_data_source.dart, ../../domain/core/result.dart, ../../domain/repositories/auth_repository.dart, ../../domain/repositories/trade_export_repository.dart, AuthRepositoryImpl, TradeExportRepositoryImpl (+4 more)
+
+### Community 25 - "Community 25"
 Cohesion: 0.19
 Nodes (7): ImportResultDto, toEntity, User, UserDto, ImportState, SyncStatusState, package:freezed_annotation/freezed_annotation.dart
 
-### Community 27 - "Community 27"
+### Community 26 - "Community 26"
 Cohesion: 0.19
-Nodes (11): ../../data/datasources/auth_remote_data_source.dart, ../../data/datasources/user_remote_data_source.dart, ../../data/repositories/auth_repository_impl.dart, ../datasources/auth_remote_data_source.dart, ../../domain/entities/user.dart, ../../domain/repositories/auth_repository.dart, AuthRemoteDataSource, UserRemoteDataSource (+3 more)
+Nodes (11): ../../data/datasources/auth_remote_data_source.dart, ../../data/datasources/user_remote_data_source.dart, ../../data/repositories/user_profile_repository_impl.dart, ../datasources/user_remote_data_source.dart, ../../domain/entities/user.dart, AuthRemoteDataSource, UserRemoteDataSource, setCurrentUserId (+3 more)
 
-### Community 28 - "Community 28"
+### Community 27 - "Community 27"
 Cohesion: 0.23
 Nodes (11): app_colors.dart, app_component_themes.dart, app_typography.dart, AppComponentThemes, BottomNavigationBarThemeData, FloatingActionButtonThemeData, AppTheme, _buildTheme (+3 more)
 
-### Community 29 - "Community 29"
+### Community 28 - "Community 28"
 Cohesion: 0.25
 Nodes (13): form_field_label.dart, build, _buildProfitDisplay, ClosePositionSheet, _ClosePositionSheetState, Container, dispose, Expanded (+5 more)
 
-### Community 30 - "Community 30"
+### Community 29 - "Community 29"
 Cohesion: 0.14
 Nodes (4): fl_register_plugins(), main(), my_application_activate(), my_application_new()
 
-### Community 31 - "Community 31"
+### Community 30 - "Community 30"
 Cohesion: 0.26
 Nodes (12): add_finance_page.dart, build, _buildFinanceList, _buildTopBar, Container, _FinanceCard, FinancePage, _formatDate (+4 more)
 
-### Community 32 - "Community 32"
-Cohesion: 0.23
-Nodes (10): ../../core/sync/sync_engine.dart, dart:async, ../../data/datasources/trade_local_data_source.dart, ../../data/datasources/trade_remote_data_source.dart, dispose, SyncEngine, TradeLocalDataSource, TradeRemoteDataSource (+2 more)
+### Community 31 - "Community 31"
+Cohesion: 0.24
+Nodes (9): ../../app/theme/app_colors.dart, AppColors, build, FormFieldLabel, Padding, build, PrimaryButton, SizedBox (+1 more)
 
-### Community 33 - "Community 33"
+### Community 32 - "Community 32"
 Cohesion: 0.26
 Nodes (10): ../../core/network/connectivity_checker.dart, ConnectivityChecker, connectivityChecker, _initializeWorkmanager, _listenToConnectivity, performPeriodicSync, SyncController, syncEngine (+2 more)
+
+### Community 33 - "Community 33"
+Cohesion: 0.23
+Nodes (10): ../../core/sync/sync_engine.dart, dart:async, ../../data/datasources/trade_local_data_source.dart, ../../data/datasources/trade_remote_data_source.dart, dispose, SyncEngine, TradeLocalDataSource, TradeRemoteDataSource (+2 more)
 
 ### Community 34 - "Community 34"
 Cohesion: 0.28
@@ -277,95 +277,95 @@ Nodes (10): build, ClipRect, GestureDetector, _GlassBottomNav, _handleTabTap, Ma
 
 ### Community 36 - "Community 36"
 Cohesion: 0.33
-Nodes (10): app/app.dart, build, didChangeAppLifecycleState, dispose, handleAppLifecycleState, initState, TradeTrackrApp, TradeTrackrAppState (+2 more)
+Nodes (10): ../../core/logger/app_logger.dart, ../errors/failures.dart, AuthFailure, CsvParseFailure, DatabaseFailure, logFailure, NetworkFailure, setLogLevel (+2 more)
 
 ### Community 37 - "Community 37"
 Cohesion: 0.33
-Nodes (10): ../../core/logger/app_logger.dart, ../errors/failures.dart, AuthFailure, CsvParseFailure, DatabaseFailure, logFailure, NetworkFailure, setLogLevel (+2 more)
+Nodes (10): app/app.dart, build, didChangeAppLifecycleState, dispose, handleAppLifecycleState, initState, TradeTrackrApp, TradeTrackrAppState (+2 more)
 
 ### Community 38 - "Community 38"
-Cohesion: 0.31
-Nodes (7): auth_provider.dart, di_providers.dart, Auth, Exception, Exception, Profile, ../presentation/providers/auth_provider.dart
+Cohesion: 0.33
+Nodes (7): Analytics, formattedBalance, formattedTotalPnL, formattedWinRate, Recommendations, ../mock/mock_data.dart, package:riverpod_annotation/riverpod_annotation.dart
 
 ### Community 39 - "Community 39"
-Cohesion: 0.36
-Nodes (9): ../../core/errors/failures.dart, AuthFailure, CsvParseFailure, DatabaseFailure, Failure, NetworkFailure, SyncFailure, toString (+1 more)
+Cohesion: 0.31
+Nodes (7): auth_provider.dart, di_providers.dart, Auth, Exception, Exception, Profile, ../presentation/providers/auth_provider.dart
 
 ### Community 40 - "Community 40"
 Cohesion: 0.31
 Nodes (8): auth_remote_data_source.dart, ../../data/datasources/auth_remote_data_source_impl.dart, ../../data/datasources/trade_remote_data_source_impl.dart, AuthFailure, AuthRemoteDataSourceImpl, TradeRemoteDataSourceImpl, package:supabase_flutter/supabase_flutter.dart, trade_remote_data_source.dart
 
 ### Community 41 - "Community 41"
+Cohesion: 0.36
+Nodes (9): ../../core/errors/failures.dart, AuthFailure, CsvParseFailure, DatabaseFailure, Failure, NetworkFailure, SyncFailure, toString (+1 more)
+
+### Community 42 - "Community 42"
 Cohesion: 0.4
 Nodes (10): _, class, Failure, identical, orElse, StateError, Success, _then (+2 more)
 
-### Community 42 - "Community 42"
+### Community 43 - "Community 43"
 Cohesion: 0.36
 Nodes (9): dart:ui, build, ClipRect, GestureDetector, NavigationRailWidget, _NavTab, _RailTabItem, SizedBox (+1 more)
 
-### Community 43 - "Community 43"
+### Community 44 - "Community 44"
 Cohesion: 0.4
 Nodes (10): _, class, _ClosedPositionDto, identical, _OpenPositionDto, orElse, StateError, _then (+2 more)
 
-### Community 44 - "Community 44"
+### Community 45 - "Community 45"
 Cohesion: 0.4
 Nodes (10): _, class, EqualUnmodifiableListView, identical, _ImportResultDto, orElse, StateError, _then (+2 more)
 
-### Community 45 - "Community 45"
+### Community 46 - "Community 46"
 Cohesion: 0.36
 Nodes (8): capitalize, formatNumber, formatPercentage, isBlank, isNotEmpty, isNullOrEmpty, StringUtils, truncate
 
-### Community 46 - "Community 46"
+### Community 47 - "Community 47"
 Cohesion: 0.22
 Nodes (3): FlutterAppDelegate, FlutterImplicitEngineDelegate, AppDelegate
 
-### Community 47 - "Community 47"
+### Community 48 - "Community 48"
 Cohesion: 0.39
 Nodes (8): build, setDark, setLight, setSystem, setTheme, Theme, toggleTheme, ../presentation/providers/theme_provider.dart
 
-### Community 48 - "Community 48"
+### Community 49 - "Community 49"
+Cohesion: 0.33
+Nodes (6): AuthRefreshNotifier, OnboardingRefreshNotifier, hasCompletedOnboarding, OnboardingNotifier, package:shared_preferences/shared_preferences.dart, ../presentation/providers/onboarding_provider.dart
+
+### Community 50 - "Community 50"
 Cohesion: 0.44
 Nodes (9): authState, create, debugGetCreateSourceHash, overrideWithValue, runBuild, supabaseAuthState, supabaseAuthStateStream, _ (+1 more)
 
-### Community 49 - "Community 49"
+### Community 51 - "Community 51"
 Cohesion: 0.44
 Nodes (9): create, debugGetCreateSourceHash, formattedBalance, formattedTotalPnL, formattedWinRate, overrideWithValue, runBuild, _ (+1 more)
 
-### Community 50 - "Community 50"
+### Community 52 - "Community 52"
 Cohesion: 0.39
 Nodes (7): ChartMockData, _DayProfit, _EquityPoint, _PLBucket, _ReasonCount, _SessionProfit, _SymbolPerf
 
-### Community 51 - "Community 51"
+### Community 53 - "Community 53"
 Cohesion: 0.39
 Nodes (7): build, dispose, FilterBar, _FilterBarState, Padding, Row, SizedBox
 
-### Community 52 - "Community 52"
-Cohesion: 0.39
-Nodes (6): ../../app/theme/app_colors.dart, AppColors, build, PrimaryButton, SizedBox, package:flutter/material.dart
-
-### Community 53 - "Community 53"
+### Community 54 - "Community 54"
 Cohesion: 0.39
 Nodes (7): build, builder, Function, LayoutBuilder, mobile, ResponsiveBreakpointBuilder, ResponsiveBuilder
 
-### Community 54 - "Community 54"
+### Community 55 - "Community 55"
 Cohesion: 0.44
 Nodes (9): _, class, _FinanceRecordDto, identical, orElse, StateError, _then, toString (+1 more)
 
-### Community 55 - "Community 55"
+### Community 56 - "Community 56"
 Cohesion: 0.44
 Nodes (9): _, class, identical, orElse, StateError, _then, toString, _UserDto (+1 more)
 
-### Community 56 - "Community 56"
+### Community 57 - "Community 57"
 Cohesion: 0.39
 Nodes (7): ResponsiveBorderRadius, ResponsiveBreakpoints, ResponsiveGridColumns, ResponsiveIconSize, ResponsivePadding, ResponsiveScale, ResponsiveSpacing
 
-### Community 57 - "Community 57"
+### Community 58 - "Community 58"
 Cohesion: 0.5
 Nodes (8): connectivityChecker, create, debugGetCreateSourceHash, overrideWithValue, runBuild, syncEngine, _, _
-
-### Community 58 - "Community 58"
-Cohesion: 0.43
-Nodes (6): build, DateRangePicker, _formatDate, GestureDetector, SizedBox, Theme
 
 ### Community 59 - "Community 59"
 Cohesion: 0.43
@@ -373,59 +373,59 @@ Nodes (6): build, GestureDetector, _PageButton, PaginationBar, Row, SizedBox
 
 ### Community 60 - "Community 60"
 Cohesion: 0.43
-Nodes (6): build, Container, Function, GestureDetector, PillOption, PillToggle
+Nodes (6): build, DateRangePicker, _formatDate, GestureDetector, SizedBox, Theme
 
 ### Community 61 - "Community 61"
-Cohesion: 0.57
-Nodes (7): _, build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _
+Cohesion: 0.43
+Nodes (6): build, Container, Function, GestureDetector, PillOption, PillToggle
 
 ### Community 62 - "Community 62"
 Cohesion: 0.57
-Nodes (7): build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _, _
+Nodes (7): _, build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _
 
 ### Community 63 - "Community 63"
 Cohesion: 0.57
-Nodes (7): create, debugGetCreateSourceHash, hasCompletedOnboarding, overrideWithValue, runBuild, _, _
+Nodes (7): build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _, _
 
 ### Community 64 - "Community 64"
 Cohesion: 0.57
-Nodes (7): build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _, _
+Nodes (7): create, debugGetCreateSourceHash, hasCompletedOnboarding, overrideWithValue, runBuild, _, _
 
 ### Community 65 - "Community 65"
-Cohesion: 0.48
-Nodes (5): build, Function, GestureDetector, MultiSelectChip, Wrap
+Cohesion: 0.57
+Nodes (7): build, create, debugGetCreateSourceHash, overrideWithValue, runBuild, _, _
 
 ### Community 66 - "Community 66"
 Cohesion: 0.48
-Nodes (5): build, ChartContainer, Container, SizedBox, ../section_label.dart
+Nodes (5): build, Function, GestureDetector, MultiSelectChip, Wrap
 
 ### Community 67 - "Community 67"
+Cohesion: 0.48
+Nodes (5): build, ChartContainer, Container, SizedBox, ../section_label.dart
+
+### Community 68 - "Community 68"
 Cohesion: 0.47
 Nodes (4): wWinMain(), CreateAndAttachConsole(), GetCommandLineArguments(), Utf8FromUtf16()
 
-### Community 68 - "Community 68"
+### Community 69 - "Community 69"
 Cohesion: 0.33
 Nodes (3): RegisterGeneratedPlugins(), NSWindow, MainFlutterWindow
 
-### Community 69 - "Community 69"
+### Community 70 - "Community 70"
 Cohesion: 0.53
 Nodes (5): ../../data/datasources/user_remote_data_source_impl.dart, AuthFailure, DatabaseFailure, UserRemoteDataSourceImpl, user_remote_data_source.dart
 
-### Community 71 - "Community 71"
+### Community 72 - "Community 72"
 Cohesion: 0.6
 Nodes (3): NoParams, UseCase, result.dart
-
-### Community 72 - "Community 72"
-Cohesion: 0.8
-Nodes (5): create, debugGetCreateSourceHash, runBuild, _, _
 
 ### Community 73 - "Community 73"
 Cohesion: 0.8
 Nodes (5): create, debugGetCreateSourceHash, runBuild, _, _
 
 ### Community 74 - "Community 74"
-Cohesion: 0.6
-Nodes (3): build, FormFieldLabel, Padding
+Cohesion: 0.8
+Nodes (5): create, debugGetCreateSourceHash, runBuild, _, _
 
 ### Community 75 - "Community 75"
 Cohesion: 0.6
@@ -433,11 +433,11 @@ Nodes (3): AppTextFormField, build, TextFormField
 
 ### Community 76 - "Community 76"
 Cohesion: 0.6
-Nodes (3): build, Container, PricingRow
+Nodes (3): build, Padding, SectionLabel
 
 ### Community 77 - "Community 77"
 Cohesion: 0.6
-Nodes (3): build, Padding, SectionLabel
+Nodes (3): build, Container, PricingRow
 
 ## Knowledge Gaps
 - **42 isolated node(s):** `FlutterSceneDelegate`, `-registerWithRegistry`, `FlutterAppDelegate`, `FlutterImplicitEngineDelegate`, `Intercept NOTIFY_DEBUGGER_ABOUT_RX_PAGES and touch the pages.` (+37 more)
@@ -447,11 +447,11 @@ Nodes (3): build, Padding, SectionLabel
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `package:flutter/material.dart` connect `Community 52` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 11`, `Community 12`, `Community 15`, `Community 18`, `Community 19`, `Community 24`, `Community 28`, `Community 29`, `Community 31`, `Community 34`, `Community 35`, `Community 36`, `Community 42`, `Community 47`, `Community 51`, `Community 53`, `Community 58`, `Community 59`, `Community 60`, `Community 65`, `Community 66`, `Community 74`, `Community 75`, `Community 76`, `Community 77`?**
+- **Why does `package:flutter/material.dart` connect `Community 31` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 5`, `Community 6`, `Community 7`, `Community 8`, `Community 11`, `Community 12`, `Community 15`, `Community 18`, `Community 22`, `Community 23`, `Community 27`, `Community 28`, `Community 30`, `Community 34`, `Community 35`, `Community 37`, `Community 43`, `Community 48`, `Community 53`, `Community 54`, `Community 59`, `Community 60`, `Community 61`, `Community 66`, `Community 67`, `Community 75`, `Community 76`, `Community 77`?**
   _High betweenness centrality (0.270) - this node is a cross-community bridge._
-- **Why does `package:flutter_riverpod/flutter_riverpod.dart` connect `Community 18` to `Community 1`, `Community 3`, `Community 36`, `Community 4`, `Community 6`, `Community 7`, `Community 8`, `Community 37`, `Community 11`, `Community 15`, `Community 31`?**
+- **Why does `package:flutter_riverpod/flutter_riverpod.dart` connect `Community 23` to `Community 1`, `Community 3`, `Community 4`, `Community 37`, `Community 6`, `Community 7`, `Community 8`, `Community 36`, `Community 11`, `Community 15`, `Community 49`, `Community 30`?**
   _High betweenness centrality (0.055) - this node is a cross-community bridge._
-- **Why does `../presentation/providers/di_providers.dart` connect `Community 10` to `Community 32`, `Community 0`, `Community 2`, `Community 36`, `Community 69`, `Community 40`, `Community 16`, `Community 22`, `Community 25`, `Community 27`?**
+- **Why does `../presentation/providers/di_providers.dart` connect `Community 10` to `Community 0`, `Community 33`, `Community 2`, `Community 37`, `Community 38`, `Community 70`, `Community 40`, `Community 16`, `Community 24`, `Community 26`?**
   _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **What connects `FlutterSceneDelegate`, `-registerWithRegistry`, `FlutterAppDelegate` to the rest of the system?**
   _42 weakly-connected nodes found - possible documentation gaps or missing edges._
