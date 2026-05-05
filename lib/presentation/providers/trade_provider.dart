@@ -1,9 +1,11 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../domain/entities/closed_position.dart';
 import '../../domain/entities/open_position.dart';
 import '../../domain/entities/trade_filter.dart';
 import '../../domain/enums/close_reason.dart';
+import '../../domain/usecases/add_trade.dart';
+import '../../domain/usecases/update_trade.dart';
+import '../../domain/usecases/delete_trade.dart';
 import 'di_providers.dart';
 import 'auth_provider.dart';
 
@@ -29,8 +31,7 @@ class TradeList extends _$TradeList {
 
   /// Get the current authenticated user ID.
   String? get _currentUserId {
-    final user = Supabase.instance.client.auth.currentUser;
-    return user?.id;
+    return ref.watch(supabaseAuthStateProvider)?.id;
   }
 }
 
@@ -88,8 +89,7 @@ class OpenPositions extends _$OpenPositions {
 
   /// Get the current authenticated user ID.
   String? get _currentUserId {
-    final user = Supabase.instance.client.auth.currentUser;
-    return user?.id;
+    return ref.watch(supabaseAuthStateProvider)?.id;
   }
 }
 
@@ -109,8 +109,8 @@ Future<OpenPosition?> openPositionById(Ref ref, {required String id}) async {
 @riverpod
 Future<void> Function(ClosedPosition) addClosedPosition(Ref ref) {
   return (position) async {
-    final repo = ref.read(tradeCommandRepositoryProvider);
-    final result = await repo.addClosedPosition(position);
+    final useCase = ref.read(addTradeUseCaseProvider);
+    final result = await useCase(AddTradeParams(position: position));
 
     if (result.isSuccess) {
       ref.invalidate(tradeListProvider);
@@ -124,8 +124,8 @@ Future<void> Function(ClosedPosition) addClosedPosition(Ref ref) {
 @riverpod
 Future<void> Function(ClosedPosition) updateClosedPosition(Ref ref) {
   return (position) async {
-    final repo = ref.read(tradeCommandRepositoryProvider);
-    final result = await repo.updateClosedPosition(position);
+    final useCase = ref.read(updateTradeUseCaseProvider);
+    final result = await useCase(UpdateTradeParams(position: position));
 
     if (result.isSuccess) {
       ref.invalidate(tradeListProvider);
@@ -139,8 +139,8 @@ Future<void> Function(ClosedPosition) updateClosedPosition(Ref ref) {
 @riverpod
 Future<void> Function(String) deleteClosedPosition(Ref ref) {
   return (id) async {
-    final repo = ref.read(tradeCommandRepositoryProvider);
-    final result = await repo.deleteClosedPosition(id);
+    final useCase = ref.read(deleteTradeUseCaseProvider);
+    final result = await useCase(DeleteTradeParams(id: id));
 
     if (result.isSuccess) {
       ref.invalidate(tradeListProvider);

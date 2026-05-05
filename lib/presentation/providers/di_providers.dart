@@ -22,6 +22,17 @@ import '../../data/repositories/trade_export_repository_impl.dart';
 import '../../data/repositories/trade_import_repository_impl.dart';
 import '../../data/repositories/trade_query_repository_impl.dart';
 import '../../data/repositories/user_profile_repository_impl.dart';
+import '../../domain/usecases/add_trade.dart';
+import '../../domain/usecases/update_trade.dart';
+import '../../domain/usecases/delete_trade.dart';
+import '../../domain/usecases/get_trade_analytics.dart';
+import '../../domain/usecases/import_trades.dart';
+import '../../domain/usecases/export_trades.dart';
+import '../../domain/usecases/sign_in.dart';
+import '../../domain/usecases/sign_out.dart';
+import '../../domain/usecases/sign_up.dart';
+import '../../domain/usecases/update_profile.dart';
+import '../../domain/usecases/get_recommendations.dart';
 
 // Re-export sync providers for easy access
 export 'sync_provider.dart';
@@ -123,4 +134,73 @@ AuthRepository authRepository(Ref ref) {
 UserProfileRepository userProfileRepository(Ref ref) {
   final remoteDataSource = ref.watch(userRemoteDataSourceProvider);
   return UserProfileRepositoryImpl(remoteDataSource);
+}
+
+// ============================================================================
+// Use Cases
+// ============================================================================
+
+// Command use cases
+
+@riverpod
+AddTradeUseCase addTradeUseCase(Ref ref) {
+  return AddTradeUseCase(ref.watch(tradeCommandRepositoryProvider));
+}
+
+@riverpod
+UpdateTradeUseCase updateTradeUseCase(Ref ref) {
+  return UpdateTradeUseCase(ref.watch(tradeCommandRepositoryProvider));
+}
+
+@riverpod
+DeleteTradeUseCase deleteTradeUseCase(Ref ref) {
+  return DeleteTradeUseCase(ref.watch(tradeCommandRepositoryProvider));
+}
+
+// Query use cases
+
+@riverpod
+GetTradeAnalyticsUseCase getTradeAnalyticsUseCase(Ref ref) {
+  return GetTradeAnalyticsUseCase(ref.watch(tradeQueryRepositoryProvider));
+}
+
+@riverpod
+GetRecommendationsUseCase getRecommendationsUseCase(Ref ref) {
+  return GetRecommendationsUseCase(ref.watch(tradeQueryRepositoryProvider));
+}
+
+// Import/Export use cases
+
+@riverpod
+ImportTradesUseCase importTradesUseCase(Ref ref) {
+  return ImportTradesUseCase(ref.watch(tradeImportRepositoryProvider));
+}
+
+@riverpod
+ExportTradesUseCase exportTradesUseCase(Ref ref) {
+  return ExportTradesUseCase(ref.watch(tradeExportRepositoryProvider));
+}
+
+// Auth use cases
+
+@riverpod
+SignInUseCase signInUseCase(Ref ref) {
+  return SignInUseCase(ref.watch(authRepositoryProvider));
+}
+
+@riverpod
+SignOutUseCase signOutUseCase(Ref ref) {
+  return SignOutUseCase(ref.watch(authRepositoryProvider));
+}
+
+@riverpod
+SignUpUseCase signUpUseCase(Ref ref) {
+  return SignUpUseCase(ref.watch(authRepositoryProvider));
+}
+
+// Profile use case
+
+@riverpod
+UpdateProfileUseCase updateProfileUseCase(Ref ref) {
+  return UpdateProfileUseCase(ref.watch(userProfileRepositoryProvider));
 }
