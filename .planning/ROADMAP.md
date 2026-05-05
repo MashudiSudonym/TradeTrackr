@@ -43,10 +43,11 @@ Plans:
   2. User can close an open position by entering close price, time, and reason, and the position atomically moves to closed trades (survives app crashes)
   3. User sees updated open/closed position counts on the dashboard after closing a position
   4. Close position operation uses Drift transaction wrapping — no data loss if app crashes between delete and insert
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md — Atomic close transaction (fix Pitfall 1 data integrity bug)
+- [ ] 02-02-PLAN.md — Open Positions page, close flow UI, dashboard count refresh
 
 ### Phase 3: Analytics Pipeline & Dashboard
 **Goal**: Users see accurate, real-time analytics from their actual trade data with working filters and charts
