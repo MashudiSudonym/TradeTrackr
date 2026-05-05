@@ -57,3 +57,7 @@ app.*.map.json
 
 # Coverage
 coverage/
+
+# CSV data files (keep template assets)
+*.csv
+!assets/csv/

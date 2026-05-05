@@ -1,7 +1,0 @@
-Type,Time,Amount,Status,Payment gateway,Details
-Deposit,"01/01/2026 10:00:00",10000.0,Done,Manual,"Initial deposit"
-Deposit,"15/01/2026 14:30:00",5000.0,Done,Bank Transfer,"Account top-up"
-Withdrawal,"20/01/2026 09:15:00",3000.0,Done,Manual,"Profit withdrawal"
-Withdrawal,"25/01/2026 16:00:00",2000.0,Pending,Bank Transfer,"Pending payout"
-Deposit,"30/01/2026 11:00:00",2500.0,Done,Manual,"Monthly deposit"
-Total,,,19500.0,,,

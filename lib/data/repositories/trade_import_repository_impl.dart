@@ -7,6 +7,8 @@ import '../../domain/enums/close_reason.dart';
 import '../../domain/enums/finance_type.dart';
 import '../../domain/core/result.dart';
 import '../datasources/trade_local_data_source.dart';
+import '../models/trade_position_dto.dart';
+import '../models/finance_record_dto.dart';
 import 'package:csv/csv.dart';
 import 'dart:io';
 import 'package:uuid/uuid.dart';
@@ -318,66 +320,56 @@ class TradeImportRepositoryImpl implements TradeImportRepository {
 
   // ========== Entity to Map Converters ==========
 
-  /// Converts ClosedPosition entity to Map with snake_case keys for database.
+  /// Converts ClosedPosition entity to Map for database via DTO.
   Map<String, dynamic> _closedPositionToMap(ClosedPosition position) {
-    return {
-      'id': position.id,
-      'user_id': position.userId,
-      'symbol': position.symbol,
-      'open_time': position.openTime,
-      'close_time': position.closeTime,
-      'volume': position.volume,
-      'side': position.side.name,
-      'open_price': position.openPrice,
-      'close_price': position.closePrice,
-      'stop_loss': position.stopLoss,
-      'take_profit': position.takeProfit,
-      'swap': position.swap,
-      'commission': position.commission,
-      'profit': position.profit,
-      'reason': position.reason.name,
-      'created_at': position.createdAt,
-      'updated_at': position.updatedAt,
-      'is_synced': position.isSynced,
-    };
+    final dto = ClosedPositionDto.fromEntity(position);
+    return _dtoMapForDrift(
+      dto.toJson(),
+      openTime: position.openTime,
+      closeTime: position.closeTime,
+      createdAt: position.createdAt,
+      updatedAt: position.updatedAt,
+    );
   }
 
-  /// Converts OpenPosition entity to Map with snake_case keys for database.
+  /// Converts OpenPosition entity to Map for database via DTO.
   Map<String, dynamic> _openPositionToMap(OpenPosition position) {
-    return {
-      'id': position.id,
-      'user_id': position.userId,
-      'symbol': position.symbol,
-      'open_time': position.openTime,
-      'volume': position.volume,
-      'side': position.side.name,
-      'open_price': position.openPrice,
-      'current_price': position.currentPrice,
-      'stop_loss': position.stopLoss,
-      'take_profit': position.takeProfit,
-      'swap': position.swap,
-      'commission': position.commission,
-      'profit': position.profit,
-      'created_at': position.createdAt,
-      'updated_at': position.updatedAt,
-      'is_synced': position.isSynced,
-    };
+    final dto = OpenPositionDto.fromEntity(position);
+    return _dtoMapForDrift(
+      dto.toJson(),
+      openTime: position.openTime,
+      createdAt: position.createdAt,
+      updatedAt: position.updatedAt,
+    );
   }
 
-  /// Converts FinanceRecord entity to Map with snake_case keys for database.
+  /// Converts FinanceRecord entity to Map for database via DTO.
   Map<String, dynamic> _financeRecordToMap(FinanceRecord record) {
-    return {
-      'id': record.id,
-      'user_id': record.userId,
-      'type': record.type.name,
-      'time': record.time,
-      'amount': record.amount,
-      'status': record.status,
-      'payment_gateway': record.paymentGateway,
-      'details': record.details,
-      'created_at': record.createdAt,
-      'updated_at': record.updatedAt,
-      'is_synced': record.isSynced,
-    };
+    final dto = FinanceRecordDto.fromEntity(record);
+    return _dtoMapForDrift(
+      dto.toJson(),
+      time: record.time,
+      createdAt: record.createdAt,
+      updatedAt: record.updatedAt,
+    );
+  }
+
+  /// Converts DTO JSON map DateTime string fields to DateTime objects
+  /// for Drift compatibility.
+  Map<String, dynamic> _dtoMapForDrift(
+    Map<String, dynamic> dtoMap, {
+    DateTime? openTime,
+    DateTime? closeTime,
+    DateTime? time,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    final driftMap = Map<String, dynamic>.from(dtoMap);
+    if (openTime != null) driftMap['open_time'] = openTime;
+    if (closeTime != null) driftMap['close_time'] = closeTime;
+    if (time != null) driftMap['time'] = time;
+    if (createdAt != null) driftMap['created_at'] = createdAt;
+    if (updatedAt != null) driftMap['updated_at'] = updatedAt;
+    return driftMap;
   }
 }

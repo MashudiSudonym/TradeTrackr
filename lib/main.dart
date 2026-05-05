@@ -20,7 +20,7 @@ Future<void> main() async {
   await Supabase.initialize(
     url: SupabaseConstants.projectUrl,
     anonKey: SupabaseConstants.anonKey,
-    debug: true, // Enable debug logs for development
+    debug: kDebugMode,
   );
 
   // Initialize workmanager for background sync tasks

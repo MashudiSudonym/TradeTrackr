@@ -2,10 +2,11 @@ import '../../domain/entities/closed_position.dart';
 import '../../domain/entities/open_position.dart';
 import '../../domain/entities/finance_record.dart';
 import '../../domain/enums/close_reason.dart';
-import '../../domain/enums/trade_side.dart';
 import '../../domain/repositories/trade_command_repository.dart';
 import '../datasources/trade_local_data_source.dart';
 import '../../domain/core/result.dart';
+import '../models/trade_position_dto.dart';
+import '../models/finance_record_dto.dart';
 
 /// Implementation of TradeCommandRepository.
 ///
@@ -20,27 +21,14 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     ClosedPosition position,
   ) async {
     try {
-      // Convert entity to map (using DTO in production)
-      final dataMap = {
-        'id': position.id,
-        'user_id': position.userId,
-        'symbol': position.symbol,
-        'open_time': position.openTime,
-        'close_time': position.closeTime,
-        'volume': position.volume,
-        'side': position.side.name,
-        'open_price': position.openPrice,
-        'close_price': position.closePrice,
-        'stop_loss': position.stopLoss,
-        'take_profit': position.takeProfit,
-        'swap': position.swap,
-        'commission': position.commission,
-        'profit': position.profit,
-        'reason': position.reason.name,
-        'created_at': position.createdAt,
-        'updated_at': position.updatedAt,
-        'is_synced': position.isSynced,
-      };
+      final dto = ClosedPositionDto.fromEntity(position);
+      final dataMap = _dtoMapForDrift(
+        dto.toJson(),
+        openTime: position.openTime,
+        closeTime: position.closeTime,
+        createdAt: position.createdAt,
+        updatedAt: position.updatedAt,
+      );
 
       await _localDataSource.insertClosedPosition(dataMap);
       return Result.success(position);
@@ -54,29 +42,22 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     ClosedPosition position,
   ) async {
     try {
-      final dataMap = {
-        'id': position.id,
-        'user_id': position.userId,
-        'symbol': position.symbol,
-        'open_time': position.openTime,
-        'close_time': position.closeTime,
-        'volume': position.volume,
-        'side': position.side.name,
-        'open_price': position.openPrice,
-        'close_price': position.closePrice,
-        'stop_loss': position.stopLoss,
-        'take_profit': position.takeProfit,
-        'swap': position.swap,
-        'commission': position.commission,
-        'profit': position.profit,
-        'reason': position.reason.name,
-        'created_at': position.createdAt,
-        'updated_at': DateTime.now(),
-        'is_synced': false, // Mark for re-sync on update
-      };
+      final now = DateTime.now();
+      final dto = ClosedPositionDto.fromEntity(position.copyWith(
+        updatedAt: now,
+        isSynced: false,
+      ));
+      final dataMap = _dtoMapForDrift(
+        dto.toJson(),
+        openTime: position.openTime,
+        closeTime: position.closeTime,
+        createdAt: position.createdAt,
+        updatedAt: now,
+      );
+      dataMap['is_synced'] = false;
 
       await _localDataSource.updateClosedPosition(dataMap);
-      return Result.success(position.copyWith(updatedAt: DateTime.now()));
+      return Result.success(position.copyWith(updatedAt: now));
     } catch (e) {
       return Result.failure('Failed to update position: $e');
     }
@@ -97,24 +78,13 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     OpenPosition position,
   ) async {
     try {
-      final dataMap = {
-        'id': position.id,
-        'user_id': position.userId,
-        'symbol': position.symbol,
-        'open_time': position.openTime,
-        'volume': position.volume,
-        'side': position.side.name,
-        'open_price': position.openPrice,
-        'current_price': position.currentPrice,
-        'stop_loss': position.stopLoss,
-        'take_profit': position.takeProfit,
-        'swap': position.swap,
-        'commission': position.commission,
-        'profit': position.profit,
-        'created_at': position.createdAt,
-        'updated_at': position.updatedAt,
-        'is_synced': position.isSynced,
-      };
+      final dto = OpenPositionDto.fromEntity(position);
+      final dataMap = _dtoMapForDrift(
+        dto.toJson(),
+        openTime: position.openTime,
+        createdAt: position.createdAt,
+        updatedAt: position.updatedAt,
+      );
 
       await _localDataSource.insertOpenPosition(dataMap);
       return Result.success(position);
@@ -128,27 +98,21 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     OpenPosition position,
   ) async {
     try {
-      final dataMap = {
-        'id': position.id,
-        'user_id': position.userId,
-        'symbol': position.symbol,
-        'open_time': position.openTime,
-        'volume': position.volume,
-        'side': position.side.name,
-        'open_price': position.openPrice,
-        'current_price': position.currentPrice,
-        'stop_loss': position.stopLoss,
-        'take_profit': position.takeProfit,
-        'swap': position.swap,
-        'commission': position.commission,
-        'profit': position.profit,
-        'created_at': position.createdAt,
-        'updated_at': DateTime.now(),
-        'is_synced': false,
-      };
+      final now = DateTime.now();
+      final dto = OpenPositionDto.fromEntity(position.copyWith(
+        updatedAt: now,
+        isSynced: false,
+      ));
+      final dataMap = _dtoMapForDrift(
+        dto.toJson(),
+        openTime: position.openTime,
+        createdAt: position.createdAt,
+        updatedAt: now,
+      );
+      dataMap['is_synced'] = false;
 
       await _localDataSource.updateOpenPosition(dataMap);
-      return Result.success(position.copyWith(updatedAt: DateTime.now()));
+      return Result.success(position.copyWith(updatedAt: now));
     } catch (e) {
       return Result.failure('Failed to update open position: $e');
     }
@@ -178,26 +142,8 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
         return const Result.failure('Open position not found');
       }
 
-      // TODO: Convert map to OpenPosition entity via DTO
-      // For now, create a mock entity
-      final openPosition = OpenPosition(
-        id: openDataMap['id'] as String,
-        userId: openDataMap['user_id'] as String,
-        symbol: openDataMap['symbol'] as String,
-        openTime: openDataMap['open_time'] as DateTime,
-        volume: (openDataMap['volume'] as num).toDouble(),
-        side: openDataMap['side'] == 'BUY' ? TradeSide.buy : TradeSide.sell,
-        openPrice: (openDataMap['open_price'] as num).toDouble(),
-        currentPrice: openDataMap['current_price'] as double?,
-        stopLoss: openDataMap['stop_loss'] as double?,
-        takeProfit: openDataMap['take_profit'] as double?,
-        swap: (openDataMap['swap'] as num?)?.toDouble() ?? 0.0,
-        commission: (openDataMap['commission'] as num?)?.toDouble() ?? 0.0,
-        profit: (openDataMap['profit'] as num).toDouble(),
-        createdAt: openDataMap['created_at'] as DateTime,
-        updatedAt: openDataMap['updated_at'] as DateTime,
-        isSynced: openDataMap['is_synced'] as bool? ?? false,
-      );
+      final openDto = OpenPositionDto.fromJson(openDataMap);
+      final openPosition = openDto.toEntity();
 
       // 2. Calculate profit
       final profit = openPosition.side.calculateProfit(
@@ -230,26 +176,14 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
 
       // 4. Delete open position and insert closed position
       await _localDataSource.deleteOpenPosition(openPositionId);
-      final closedDataMap = {
-        'id': closedPosition.id,
-        'user_id': closedPosition.userId,
-        'symbol': closedPosition.symbol,
-        'open_time': closedPosition.openTime,
-        'close_time': closedPosition.closeTime,
-        'volume': closedPosition.volume,
-        'side': closedPosition.side.name,
-        'open_price': closedPosition.openPrice,
-        'close_price': closedPosition.closePrice,
-        'stop_loss': closedPosition.stopLoss,
-        'take_profit': closedPosition.takeProfit,
-        'swap': closedPosition.swap,
-        'commission': closedPosition.commission,
-        'profit': closedPosition.profit,
-        'reason': closedPosition.reason.name,
-        'created_at': closedPosition.createdAt,
-        'updated_at': closedPosition.updatedAt,
-        'is_synced': closedPosition.isSynced,
-      };
+      final closedDto = ClosedPositionDto.fromEntity(closedPosition);
+      final closedDataMap = _dtoMapForDrift(
+        closedDto.toJson(),
+        openTime: closedPosition.openTime,
+        closeTime: closedPosition.closeTime,
+        createdAt: closedPosition.createdAt,
+        updatedAt: closedPosition.updatedAt,
+      );
       await _localDataSource.insertClosedPosition(closedDataMap);
 
       return Result.success(closedPosition);
@@ -263,24 +197,38 @@ class TradeCommandRepositoryImpl implements TradeCommandRepository {
     FinanceRecord record,
   ) async {
     try {
-      final dataMap = {
-        'id': record.id,
-        'user_id': record.userId,
-        'type': record.type.name,
-        'time': record.time,
-        'amount': record.amount,
-        'status': record.status,
-        'payment_gateway': record.paymentGateway,
-        'details': record.details,
-        'created_at': record.createdAt,
-        'updated_at': record.updatedAt,
-        'is_synced': record.isSynced,
-      };
+      final dto = FinanceRecordDto.fromEntity(record);
+      final dataMap = _dtoMapForDrift(
+        dto.toJson(),
+        time: record.time,
+        createdAt: record.createdAt,
+        updatedAt: record.updatedAt,
+      );
 
       await _localDataSource.insertFinanceRecord(dataMap);
       return Result.success(record);
     } catch (e) {
       return Result.failure('Failed to add finance record: $e');
     }
+  }
+
+  /// Converts DTO JSON map DateTime string fields to DateTime objects
+  /// for Drift compatibility. DTO toJson() produces ISO8601 strings,
+  /// but Drift expects DateTime objects in the map.
+  Map<String, dynamic> _dtoMapForDrift(
+    Map<String, dynamic> dtoMap, {
+    DateTime? openTime,
+    DateTime? closeTime,
+    DateTime? time,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    final driftMap = Map<String, dynamic>.from(dtoMap);
+    if (openTime != null) driftMap['open_time'] = openTime;
+    if (closeTime != null) driftMap['close_time'] = closeTime;
+    if (time != null) driftMap['time'] = time;
+    if (createdAt != null) driftMap['created_at'] = createdAt;
+    if (updatedAt != null) driftMap['updated_at'] = updatedAt;
+    return driftMap;
   }
 }
