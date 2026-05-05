@@ -71,6 +71,110 @@
     "mtime": 1777882343.3393788,
     "hash": "f255bd691f810f69c1cf3ee50c5bb51f"
   },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_view.h": {
+    "mtime": 1777962951.9944277,
+    "hash": "e27fc7ec7888b59ffac04a45e4461699"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_method_channel.h": {
+    "mtime": 1777962951.9954276,
+    "hash": "de7b99c808de5c710ade00638cf7e484"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h": {
+    "mtime": 1777962951.9954276,
+    "hash": "8730d7034562b44bcab7c48c894ba862"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/flutter_linux.h": {
+    "mtime": 1777962952.0034277,
+    "hash": "1dcce1af8eb3052e29d06a756f0535db"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_engine.h": {
+    "mtime": 1777962952.0034277,
+    "hash": "1b028c1fa72fa880b3f8ceb15c1c69df"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_method_codec.h": {
+    "mtime": 1777962952.0044277,
+    "hash": "1593085ded6e4a14d8129a5d9a95edb8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h": {
+    "mtime": 1777962952.0044277,
+    "hash": "cde1b5d81be59769b872be4d62b4bae8"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_texture_registrar.h": {
+    "mtime": 1777962952.0054278,
+    "hash": "455c45888f33294a5054d8adacac5a2e"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h": {
+    "mtime": 1777962952.0054278,
+    "hash": "3d850b5432140f7e565baa806ee1f716"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_application.h": {
+    "mtime": 1777962952.0064278,
+    "hash": "5774eb642609ea54649f5a74272b973f"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_value.h": {
+    "mtime": 1777962952.0064278,
+    "hash": "0fad916a7405474cce0f6d85509a12ac"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_dart_project.h": {
+    "mtime": 1777962952.0074277,
+    "hash": "1ddbe3c8a2821804ced450e37fa9701a"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h": {
+    "mtime": 1777962952.0084279,
+    "hash": "5997440e26e079541337c498925226f1"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_string_codec.h": {
+    "mtime": 1777962952.0084279,
+    "hash": "5edcd4ae8b7d3acb2e56bf8bfad75d4d"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_method_call.h": {
+    "mtime": 1777962952.0084279,
+    "hash": "1187bb4f46363e874137ce4f71356e8b"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h": {
+    "mtime": 1777962952.0094278,
+    "hash": "09d4ac26822e07f1c2f16d89380b40dc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_texture.h": {
+    "mtime": 1777962952.0094278,
+    "hash": "d1894650bbfe9ba65c6f0b195645a9a5"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h": {
+    "mtime": 1777962952.0094278,
+    "hash": "c31254629784a8fd48a5ec671df85e64"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_texture_gl.h": {
+    "mtime": 1777962952.0104277,
+    "hash": "3a535810e25ecd4fd017a2eb197dab30"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h": {
+    "mtime": 1777962952.0104277,
+    "hash": "9093dc992b7f0c62c899bb5ee75437bb"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h": {
+    "mtime": 1777962952.0104277,
+    "hash": "4f7385406239c0eb8b31855e75b9addc"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h": {
+    "mtime": 1777962952.0114279,
+    "hash": "5b259053180f6c3a637a3760f5e78921"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_event_channel.h": {
+    "mtime": 1777962952.0114279,
+    "hash": "f3234aba146e57eced1b9febac78a1ec"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_method_response.h": {
+    "mtime": 1777962952.0114279,
+    "hash": "3373ee1d610372294796ae24f7b10b59"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_message_codec.h": {
+    "mtime": 1777962952.0124278,
+    "hash": "4e0c2c7002baf140a95f0067b781d498"
+  },
+  "/home/masrobot/Projects/TradeTrackr/linux/flutter/ephemeral/flutter_linux/fl_pixel_buffer_texture.h": {
+    "mtime": 1777962952.0124278,
+    "hash": "613a2389f2fda4d844e82e63b690a975"
+  },
   "/home/masrobot/Projects/TradeTrackr/linux/runner/my_application.h": {
     "mtime": 1777882343.3399692,
     "hash": "326a85d68857137fdfe8698a0c071baf"
@@ -128,8 +232,8 @@
     "hash": "97d3a20fd20a063c192e886d1822b4a8"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/main.dart": {
-    "mtime": 1777882343.3214247,
-    "hash": "6501997aaaf66878994ebcb589d8ae38"
+    "mtime": 1777963652.3738139,
+    "hash": "711c041503d1134f713b0e40005e262e"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/app/main_shell.dart": {
     "mtime": 1777882343.3096552,
@@ -144,12 +248,12 @@
     "hash": "4333a554a61ef0ada49ef082a1b95d4a"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/app/app.g.dart": {
-    "mtime": 1777882976.6292741,
+    "mtime": 1777959695.023663,
     "hash": "689e2492b16b51da7f2e73d2386008c1"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/app/router.dart": {
-    "mtime": 1777882343.3096552,
-    "hash": "521c75f07ded6967cf706d3ab5106bfc"
+    "mtime": 1777959493.4561303,
+    "hash": "e116775cbec87ecaa4540ed64d8687fc"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/app/theme/app_theme.dart": {
     "mtime": 1777882343.3104787,
@@ -348,8 +452,8 @@
     "hash": "87e599418304c5e8a424d3452765fd23"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/trade_detail_page.dart": {
-    "mtime": 1777882343.328425,
-    "hash": "94b0b0428bf1f7ec331f4cef78b67ea7"
+    "mtime": 1777959537.7136862,
+    "hash": "32a62d95b635921168a1840b5cd3569c"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/pages.dart": {
     "mtime": 1777882343.3264248,
@@ -360,8 +464,8 @@
     "hash": "bb59774e9613d5580d280dfb70a0b912"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/pages/add_trade_page.dart": {
-    "mtime": 1777882343.3235226,
-    "hash": "663c82e4e8a5a2532177fafa271b22b5"
+    "mtime": 1777959481.1349754,
+    "hash": "5480c9e042330ba9fcb424748fc6575d"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/state/sync_status_state.freezed.dart": {
     "mtime": 1777882976.578927,
@@ -380,16 +484,16 @@
     "hash": "8a40fd50a6f55c98486a346136e7a2c8"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/profile_provider.g.dart": {
-    "mtime": 1777882976.6331894,
+    "mtime": 1777959158.092916,
     "hash": "f191a5c338c8eee2c35b82b5653a5fb7"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/auth_provider.g.dart": {
-    "mtime": 1777882976.6327393,
+    "mtime": 1777959158.0919158,
     "hash": "a161d8cffc4cb6d9fbff7016e9ef1fb2"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/theme_provider.dart": {
-    "mtime": 1777882343.330425,
-    "hash": "7063694940f070b7d54a7ffb3b3a34ef"
+    "mtime": 1777959642.1559987,
+    "hash": "322adc5286e773aa66961d52b06e03f9"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/analytics_provider.g.dart": {
     "mtime": 1777882976.6324892,
@@ -416,24 +520,24 @@
     "hash": "8e53e8a9ddff08d849f853f4024ac733"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/trade_provider.g.dart": {
-    "mtime": 1777882976.6336758,
-    "hash": "87d3e8960b32f0d7cb71dedc125692b1"
+    "mtime": 1777959158.093916,
+    "hash": "4330c8f2867987ff96d173fcf88da4dd"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/trade_provider.dart": {
-    "mtime": 1777882343.330425,
-    "hash": "05ee3d02952d79facdd06ac9d506975c"
+    "mtime": 1777958503.8348238,
+    "hash": "5dd63c0be06a464c1b9ee837e6da2d09"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/import_export_provider.g.dart": {
     "mtime": 1777882976.6330166,
     "hash": "5a07e1b776aa463a223d6086dd655a90"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/di_providers.g.dart": {
-    "mtime": 1777882976.6329103,
-    "hash": "adc72ccb51032744c64734ef69e4ce5b"
+    "mtime": 1777959158.092916,
+    "hash": "2d34acc1f0d7d4237a2b87250318e8a0"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/di_providers.dart": {
-    "mtime": 1777882343.329793,
-    "hash": "7abef4cf4e02f2baed49365866201451"
+    "mtime": 1777958444.6278546,
+    "hash": "0dcd8537bbdcb333bd4d8c69a0fc74ea"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/onboarding_provider.dart": {
     "mtime": 1777882343.329793,
@@ -448,11 +552,11 @@
     "hash": "ac36080ffc2e3d0f7d4d3724da45b95e"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/theme_provider.g.dart": {
-    "mtime": 1777882976.633467,
-    "hash": "e2fb81523ad47a7fb7378411cc29f7bd"
+    "mtime": 1777959695.023663,
+    "hash": "ee6c3682059e1b3aaa8f55b665092423"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/sync_provider.g.dart": {
-    "mtime": 1777882976.633383,
+    "mtime": 1777959158.092916,
     "hash": "55792f755649f9835ffe6dba3e28962e"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/presentation/providers/providers.dart": {
@@ -628,16 +732,16 @@
     "hash": "5f0fc1aacb85d6861b79c4caddc33097"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_import_repository_impl.dart": {
-    "mtime": 1777882343.3164246,
-    "hash": "8933f2571c8a5c6d337bbffdb8b7aee8"
+    "mtime": 1777958887.981338,
+    "hash": "cbb751da36c7f73eafda3764aea185a6"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/auth_repository_impl.dart": {
     "mtime": 1777882343.3154573,
     "hash": "257de188a13d356980dee6e06838cefc"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/trade_command_repository_impl.dart": {
-    "mtime": 1777882343.3160918,
-    "hash": "d0ffac733a515e27ffa0dff3ab3e88ab"
+    "mtime": 1777959034.0832753,
+    "hash": "d62f56f6e88cf206ae8d7d66784a18cb"
   },
   "/home/masrobot/Projects/TradeTrackr/lib/data/repositories/user_profile_repository_impl.dart": {
     "mtime": 1777882343.3164246,
@@ -844,8 +948,8 @@
     "hash": "826c7c8348504c2098aa0476233341fb"
   },
   "/home/masrobot/Projects/TradeTrackr/pubspec.yaml": {
-    "mtime": 1777882343.3484256,
-    "hash": "dff1bcb78a1ea85e82288fefb22f2573"
+    "mtime": 1777960964.7895143,
+    "hash": "4c707702bb818cd3ffaae35ea2e78489"
   },
   "/home/masrobot/Projects/TradeTrackr/AGENTS.md": {
     "mtime": 1777884840.4770067,

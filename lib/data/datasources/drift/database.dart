@@ -10,7 +10,7 @@ part 'database.g.dart';
 @DataClassName('ClosedPositionData')
 class ClosedPositions extends Table {
   TextColumn get id => text()();
-  TextColumn get userId => text().references(Profiles, #id)();
+  TextColumn get userId => text()();
   TextColumn get symbol => text()();
   DateTimeColumn get openTime => dateTime()();
   DateTimeColumn get closeTime => dateTime()();
@@ -38,7 +38,7 @@ class ClosedPositions extends Table {
 @DataClassName('OpenPositionData')
 class OpenPositions extends Table {
   TextColumn get id => text()();
-  TextColumn get userId => text().references(Profiles, #id)();
+  TextColumn get userId => text()();
   TextColumn get symbol => text()();
   DateTimeColumn get openTime => dateTime()();
   RealColumn get volume => real()();
@@ -64,7 +64,7 @@ class OpenPositions extends Table {
 @DataClassName('FinanceRecordData')
 class FinanceRecords extends Table {
   TextColumn get id => text()();
-  TextColumn get userId => text().references(Profiles, #id)();
+  TextColumn get userId => text()();
   TextColumn get type => text()();
   DateTimeColumn get time => dateTime()();
   RealColumn get amount => real()();

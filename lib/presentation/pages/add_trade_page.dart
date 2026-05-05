@@ -658,7 +658,8 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
         );
         Navigator.of(context).pop();
       }
-    } catch (e) {
+    } catch (e, stackTrace) {
+      debugPrint('Error saving position: $e\n$stackTrace');
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
