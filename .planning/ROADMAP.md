@@ -12,7 +12,7 @@ Complete PRD v1 by wiring 50 requirements across 5 phases. This is a brownfield 
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation & Trade Management** - DI registration, package upgrades, theme persistence, trade edit/delete wiring, finance provider
+- [x] **Phase 1: Foundation & Trade Management** - DI registration, package upgrades, theme persistence, trade edit/delete wiring, finance provider ✓
 - [ ] **Phase 2: Open Positions & Close Flow** - Dedicated open positions page, close position sheet, atomic transactions, critical bug fixes
 - [ ] **Phase 3: Analytics Pipeline & Dashboard** - Real analytics data, finance metrics, all 6 charts, dashboard filters, bug fixes
 - [ ] **Phase 4: CSV Import & Export** - File picker, format detection, robust parsing, platform-specific save/share
@@ -31,8 +31,8 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans:** 2 plans
 
 Plans:
-- [ ] 01-01-PLAN.md — DI wiring, serialization cleanup, and codebase housekeeping
-- [ ] 01-02-PLAN.md — Trade edit/delete wiring and theme persistence
+- [x] 01-01-PLAN.md — DI wiring, serialization cleanup, and codebase housekeeping
+- [x] 01-02-PLAN.md — Trade edit/delete wiring and theme persistence
 
 ### Phase 2: Open Positions & Close Flow
 **Goal**: Users can view, manage, and close their open positions without risk of data loss
@@ -94,7 +94,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Trade Management | 0/2 | Planning complete | - |
+| 1. Foundation & Trade Management | 2/2 | ✓ Complete | 2026-05-05 |
 | 2. Open Positions & Close Flow | 0/? | Not started | - |
 | 3. Analytics Pipeline & Dashboard | 0/? | Not started | - |
 | 4. CSV Import & Export | 0/? | Not started | - |
