@@ -212,23 +212,23 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   Map<String, dynamic> _mapClosedPositionToMap(ClosedPositionData row) {
     return {
       'id': row.id,
-      'user_id': row.userId,
+      'userId': row.userId,
       'symbol': row.symbol,
-      'open_time': row.openTime.toIso8601String(),
-      'close_time': row.closeTime.toIso8601String(),
+      'openTime': row.openTime.toIso8601String(),
+      'closeTime': row.closeTime.toIso8601String(),
       'volume': row.volume,
       'side': row.side,
-      'open_price': row.openPrice,
-      'close_price': row.closePrice,
-      'stop_loss': row.stopLoss,
-      'take_profit': row.takeProfit,
+      'openPrice': row.openPrice,
+      'closePrice': row.closePrice,
+      'stopLoss': row.stopLoss,
+      'takeProfit': row.takeProfit,
       'swap': row.swap,
       'commission': row.commission,
       'profit': row.profit,
       'reason': row.reason,
-      'created_at': row.createdAt.toIso8601String(),
-      'updated_at': row.updatedAt.toIso8601String(),
-      'is_synced': row.isSynced,
+      'createdAt': row.createdAt.toIso8601String(),
+      'updatedAt': row.updatedAt.toIso8601String(),
+      'isSynced': row.isSynced,
     };
   }
 
@@ -272,21 +272,21 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   Map<String, dynamic> _mapOpenPositionToMap(OpenPositionData row) {
     return {
       'id': row.id,
-      'user_id': row.userId,
+      'userId': row.userId,
       'symbol': row.symbol,
-      'open_time': row.openTime.toIso8601String(),
+      'openTime': row.openTime.toIso8601String(),
       'volume': row.volume,
       'side': row.side,
-      'open_price': row.openPrice,
-      'current_price': row.currentPrice,
-      'stop_loss': row.stopLoss,
-      'take_profit': row.takeProfit,
+      'openPrice': row.openPrice,
+      'currentPrice': row.currentPrice,
+      'stopLoss': row.stopLoss,
+      'takeProfit': row.takeProfit,
       'swap': row.swap,
       'commission': row.commission,
       'profit': row.profit,
-      'created_at': row.createdAt.toIso8601String(),
-      'updated_at': row.updatedAt.toIso8601String(),
-      'is_synced': row.isSynced,
+      'createdAt': row.createdAt.toIso8601String(),
+      'updatedAt': row.updatedAt.toIso8601String(),
+      'isSynced': row.isSynced,
     };
   }
 
@@ -326,16 +326,16 @@ class TradeLocalDataSourceImpl implements TradeLocalDataSource {
   Map<String, dynamic> _mapFinanceRecordToMap(FinanceRecordData row) {
     return {
       'id': row.id,
-      'user_id': row.userId,
+      'userId': row.userId,
       'type': row.type,
       'time': row.time.toIso8601String(),
       'amount': row.amount,
       'status': row.status,
-      'payment_gateway': row.paymentGateway,
+      'paymentGateway': row.paymentGateway,
       'details': row.details,
-      'created_at': row.createdAt.toIso8601String(),
-      'updated_at': row.updatedAt.toIso8601String(),
-      'is_synced': row.isSynced,
+      'createdAt': row.createdAt.toIso8601String(),
+      'updatedAt': row.updatedAt.toIso8601String(),
+      'isSynced': row.isSynced,
     };
   }
 

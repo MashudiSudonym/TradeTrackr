@@ -53,7 +53,7 @@
       "source_file": "windows/flutter/generated_plugin_registrant.h",
       "source_location": "L1",
       "id": "windows_flutter_generated_plugin_registrant_h",
-      "community": 94,
+      "community": 95,
       "norm_label": "generated_plugin_registrant.h"
     },
     {
@@ -98,7 +98,7 @@
       "source_file": "windows/runner/utils.h",
       "source_location": "L1",
       "id": "windows_runner_utils_h",
-      "community": 95,
+      "community": 96,
       "norm_label": "utils.h"
     },
     {
@@ -143,7 +143,7 @@
       "source_file": "windows/runner/resource.h",
       "source_location": "L1",
       "id": "windows_runner_resource_h",
-      "community": 96,
+      "community": 97,
       "norm_label": "resource.h"
     },
     {
@@ -152,7 +152,7 @@
       "source_file": "windows/runner/win32_window.h",
       "source_location": "L1",
       "id": "windows_runner_win32_window_h",
-      "community": 97,
+      "community": 98,
       "norm_label": "win32_window.h"
     },
     {
@@ -404,7 +404,7 @@
       "source_file": "linux/flutter/generated_plugin_registrant.h",
       "source_location": "L1",
       "id": "linux_flutter_generated_plugin_registrant_h",
-      "community": 98,
+      "community": 99,
       "norm_label": "generated_plugin_registrant.h"
     },
     {
@@ -431,7 +431,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_view.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_view_h",
-      "community": 99,
+      "community": 100,
       "norm_label": "fl_view.h"
     },
     {
@@ -440,7 +440,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_channel.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_method_channel_h",
-      "community": 100,
+      "community": 101,
       "norm_label": "fl_method_channel.h"
     },
     {
@@ -449,7 +449,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_basic_message_channel.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_basic_message_channel_h",
-      "community": 101,
+      "community": 102,
       "norm_label": "fl_basic_message_channel.h"
     },
     {
@@ -458,7 +458,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/flutter_linux.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_flutter_linux_h",
-      "community": 102,
+      "community": 103,
       "norm_label": "flutter_linux.h"
     },
     {
@@ -467,7 +467,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_engine.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_engine_h",
-      "community": 103,
+      "community": 104,
       "norm_label": "fl_engine.h"
     },
     {
@@ -476,7 +476,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_method_codec_h",
-      "community": 83,
+      "community": 84,
       "norm_label": "fl_method_codec.h"
     },
     {
@@ -485,7 +485,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_codec.h",
       "source_location": "L18",
       "id": "flutter_linux_fl_method_codec_g_declare_derivable_type",
-      "community": 83,
+      "community": 84,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -494,7 +494,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_standard_message_codec_h",
-      "community": 84,
+      "community": 85,
       "norm_label": "fl_standard_message_codec.h"
     },
     {
@@ -503,7 +503,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_standard_message_codec.h",
       "source_location": "L16",
       "id": "flutter_linux_fl_standard_message_codec_g_declare_derivable_type",
-      "community": 84,
+      "community": 85,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -512,7 +512,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture_registrar.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_texture_registrar_h",
-      "community": 85,
+      "community": 86,
       "norm_label": "fl_texture_registrar.h"
     },
     {
@@ -521,7 +521,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture_registrar.h",
       "source_location": "L18",
       "id": "flutter_linux_fl_texture_registrar_g_declare_interface",
-      "community": 85,
+      "community": 86,
       "norm_label": "g_declare_interface()"
     },
     {
@@ -530,7 +530,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_plugin_registrar_h",
-      "community": 86,
+      "community": 87,
       "norm_label": "fl_plugin_registrar.h"
     },
     {
@@ -539,7 +539,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_plugin_registrar.h",
       "source_location": "L19",
       "id": "flutter_linux_fl_plugin_registrar_g_declare_interface",
-      "community": 86,
+      "community": 87,
       "norm_label": "g_declare_interface()"
     },
     {
@@ -548,7 +548,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_application.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_application_h",
-      "community": 104,
+      "community": 105,
       "norm_label": "fl_application.h"
     },
     {
@@ -557,7 +557,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_value.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_value_h",
-      "community": 105,
+      "community": 106,
       "norm_label": "fl_value.h"
     },
     {
@@ -566,7 +566,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_dart_project.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_dart_project_h",
-      "community": 106,
+      "community": 107,
       "norm_label": "fl_dart_project.h"
     },
     {
@@ -575,7 +575,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_binary_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_binary_codec_h",
-      "community": 107,
+      "community": 108,
       "norm_label": "fl_binary_codec.h"
     },
     {
@@ -584,7 +584,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_string_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_string_codec_h",
-      "community": 108,
+      "community": 109,
       "norm_label": "fl_string_codec.h"
     },
     {
@@ -593,7 +593,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_call.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_method_call_h",
-      "community": 109,
+      "community": 110,
       "norm_label": "fl_method_call.h"
     },
     {
@@ -602,7 +602,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_standard_method_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_standard_method_codec_h",
-      "community": 110,
+      "community": 111,
       "norm_label": "fl_standard_method_codec.h"
     },
     {
@@ -611,7 +611,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_texture_h",
-      "community": 87,
+      "community": 88,
       "norm_label": "fl_texture.h"
     },
     {
@@ -620,7 +620,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture.h",
       "source_location": "L16",
       "id": "flutter_linux_fl_texture_g_declare_interface",
-      "community": 87,
+      "community": 88,
       "norm_label": "g_declare_interface()"
     },
     {
@@ -629,7 +629,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_json_method_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_json_method_codec_h",
-      "community": 111,
+      "community": 112,
       "norm_label": "fl_json_method_codec.h"
     },
     {
@@ -638,7 +638,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture_gl.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_texture_gl_h",
-      "community": 88,
+      "community": 89,
       "norm_label": "fl_texture_gl.h"
     },
     {
@@ -647,7 +647,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_texture_gl.h",
       "source_location": "L17",
       "id": "flutter_linux_fl_texture_gl_g_declare_derivable_type",
-      "community": 88,
+      "community": 89,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -656,7 +656,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_plugin_registry_h",
-      "community": 89,
+      "community": 90,
       "norm_label": "fl_plugin_registry.h"
     },
     {
@@ -665,7 +665,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_plugin_registry.h",
       "source_location": "L17",
       "id": "flutter_linux_fl_plugin_registry_g_declare_interface",
-      "community": 89,
+      "community": 90,
       "norm_label": "g_declare_interface()"
     },
     {
@@ -674,7 +674,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_json_message_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_json_message_codec_h",
-      "community": 112,
+      "community": 113,
       "norm_label": "fl_json_message_codec.h"
     },
     {
@@ -683,7 +683,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_binary_messenger.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_binary_messenger_h",
-      "community": 113,
+      "community": 114,
       "norm_label": "fl_binary_messenger.h"
     },
     {
@@ -692,7 +692,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_event_channel.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_event_channel_h",
-      "community": 114,
+      "community": 115,
       "norm_label": "fl_event_channel.h"
     },
     {
@@ -701,7 +701,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_response.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_method_response_h",
-      "community": 90,
+      "community": 91,
       "norm_label": "fl_method_response.h"
     },
     {
@@ -710,7 +710,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_method_response.h",
       "source_location": "L41",
       "id": "flutter_linux_fl_method_response_g_declare_derivable_type",
-      "community": 90,
+      "community": 91,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -719,7 +719,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_message_codec.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_message_codec_h",
-      "community": 91,
+      "community": 92,
       "norm_label": "fl_message_codec.h"
     },
     {
@@ -728,7 +728,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_message_codec.h",
       "source_location": "L42",
       "id": "flutter_linux_fl_message_codec_g_declare_derivable_type",
-      "community": 91,
+      "community": 92,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -737,7 +737,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_pixel_buffer_texture.h",
       "source_location": "L1",
       "id": "linux_flutter_ephemeral_flutter_linux_fl_pixel_buffer_texture_h",
-      "community": 92,
+      "community": 93,
       "norm_label": "fl_pixel_buffer_texture.h"
     },
     {
@@ -746,7 +746,7 @@
       "source_file": "linux/flutter/ephemeral/flutter_linux/fl_pixel_buffer_texture.h",
       "source_location": "L16",
       "id": "flutter_linux_fl_pixel_buffer_texture_g_declare_derivable_type",
-      "community": 92,
+      "community": 93,
       "norm_label": "g_declare_derivable_type()"
     },
     {
@@ -755,7 +755,7 @@
       "source_file": "linux/runner/my_application.h",
       "source_location": "L1",
       "id": "linux_runner_my_application_h",
-      "community": 115,
+      "community": 116,
       "norm_label": "my_application.h"
     },
     {
@@ -872,7 +872,7 @@
       "source_file": "ios/Runner/SceneDelegate.swift",
       "source_location": "L1",
       "id": "ios_runner_scenedelegate_swift",
-      "community": 79,
+      "community": 80,
       "norm_label": "scenedelegate.swift"
     },
     {
@@ -881,7 +881,7 @@
       "source_file": "ios/Runner/SceneDelegate.swift",
       "source_location": "L4",
       "id": "runner_scenedelegate_scenedelegate",
-      "community": 79,
+      "community": 80,
       "norm_label": "scenedelegate"
     },
     {
@@ -890,7 +890,7 @@
       "source_file": "ios/Runner/SceneDelegate.swift",
       "source_location": "",
       "id": "flutterscenedelegate",
-      "community": 79,
+      "community": 80,
       "norm_label": "flutterscenedelegate"
     },
     {
@@ -899,7 +899,7 @@
       "source_file": "ios/Runner/Runner-Bridging-Header.h",
       "source_location": "L1",
       "id": "ios_runner_runner_bridging_header_h",
-      "community": 116,
+      "community": 117,
       "norm_label": "runner-bridging-header.h"
     },
     {
@@ -908,7 +908,7 @@
       "source_file": "ios/Runner/GeneratedPluginRegistrant.m",
       "source_location": "L1",
       "id": "ios_runner_generatedpluginregistrant_m",
-      "community": 80,
+      "community": 81,
       "norm_label": "generatedpluginregistrant.m"
     },
     {
@@ -917,7 +917,7 @@
       "source_file": "ios/Runner/GeneratedPluginRegistrant.m",
       "source_location": "L57",
       "id": "runner_generatedpluginregistrant_generatedpluginregistrant",
-      "community": 80,
+      "community": 81,
       "norm_label": "generatedpluginregistrant"
     },
     {
@@ -926,7 +926,7 @@
       "source_file": "ios/Runner/GeneratedPluginRegistrant.m",
       "source_location": "L59",
       "id": "runner_generatedpluginregistrant_generatedpluginregistrant_registerwithregistry",
-      "community": 80,
+      "community": 81,
       "norm_label": "-registerwithregistry"
     },
     {
@@ -935,7 +935,7 @@
       "source_file": "ios/Runner/AppDelegate.swift",
       "source_location": "L1",
       "id": "ios_runner_appdelegate_swift",
-      "community": 47,
+      "community": 46,
       "norm_label": "appdelegate.swift"
     },
     {
@@ -944,7 +944,7 @@
       "source_file": "macos/Runner/AppDelegate.swift",
       "source_location": "L4",
       "id": "runner_appdelegate_appdelegate",
-      "community": 47,
+      "community": 46,
       "norm_label": "appdelegate"
     },
     {
@@ -953,7 +953,7 @@
       "source_file": "macos/Runner/AppDelegate.swift",
       "source_location": "",
       "id": "flutterappdelegate",
-      "community": 47,
+      "community": 46,
       "norm_label": "flutterappdelegate"
     },
     {
@@ -962,7 +962,7 @@
       "source_file": "ios/Runner/AppDelegate.swift",
       "source_location": "",
       "id": "flutterimplicitenginedelegate",
-      "community": 47,
+      "community": 46,
       "norm_label": "flutterimplicitenginedelegate"
     },
     {
@@ -971,7 +971,7 @@
       "source_file": "ios/Runner/AppDelegate.swift",
       "source_location": "L6",
       "id": "runner_appdelegate_appdelegate_application",
-      "community": 47,
+      "community": 46,
       "norm_label": ".application()"
     },
     {
@@ -980,7 +980,7 @@
       "source_file": "ios/Runner/AppDelegate.swift",
       "source_location": "L13",
       "id": "runner_appdelegate_appdelegate_didinitializeimplicitflutterengine",
-      "community": 47,
+      "community": 46,
       "norm_label": ".didinitializeimplicitflutterengine()"
     },
     {
@@ -989,7 +989,7 @@
       "source_file": "ios/Runner/GeneratedPluginRegistrant.h",
       "source_location": "L1",
       "id": "ios_runner_generatedpluginregistrant_h",
-      "community": 117,
+      "community": 118,
       "norm_label": "generatedpluginregistrant.h"
     },
     {
@@ -998,7 +998,7 @@
       "source_file": "ios/Flutter/ephemeral/flutter_lldb_helper.py",
       "source_location": "L1",
       "id": "ios_flutter_ephemeral_flutter_lldb_helper_py",
-      "community": 78,
+      "community": 79,
       "norm_label": "flutter_lldb_helper.py"
     },
     {
@@ -1007,7 +1007,7 @@
       "source_file": "ios/Flutter/ephemeral/flutter_lldb_helper.py",
       "source_location": "L7",
       "id": "ephemeral_flutter_lldb_helper_handle_new_rx_page",
-      "community": 78,
+      "community": 79,
       "norm_label": "handle_new_rx_page()"
     },
     {
@@ -1016,7 +1016,7 @@
       "source_file": "ios/Flutter/ephemeral/flutter_lldb_helper.py",
       "source_location": "L24",
       "id": "ephemeral_flutter_lldb_helper_lldb_init_module",
-      "community": 78,
+      "community": 79,
       "norm_label": "__lldb_init_module()"
     },
     {
@@ -1025,7 +1025,7 @@
       "source_file": "ios/Flutter/ephemeral/flutter_lldb_helper.py",
       "source_location": "L8",
       "id": "ephemeral_flutter_lldb_helper_rationale_8",
-      "community": 78,
+      "community": 79,
       "norm_label": "intercept notify_debugger_about_rx_pages and touch the pages."
     },
     {
@@ -1106,7 +1106,7 @@
       "source_file": "macos/Runner/AppDelegate.swift",
       "source_location": "L1",
       "id": "macos_runner_appdelegate_swift",
-      "community": 47,
+      "community": 46,
       "norm_label": "appdelegate.swift"
     },
     {
@@ -1115,7 +1115,7 @@
       "source_file": "macos/Runner/AppDelegate.swift",
       "source_location": "L6",
       "id": "runner_appdelegate_appdelegate_applicationshouldterminateafterlastwindowclosed",
-      "community": 47,
+      "community": 46,
       "norm_label": ".applicationshouldterminateafterlastwindowclosed()"
     },
     {
@@ -1124,7 +1124,7 @@
       "source_file": "macos/Runner/AppDelegate.swift",
       "source_location": "L10",
       "id": "runner_appdelegate_appdelegate_applicationsupportssecurerestorablestate",
-      "community": 47,
+      "community": 46,
       "norm_label": ".applicationsupportssecurerestorablestate()"
     },
     {
@@ -1214,7 +1214,7 @@
       "source_file": "lib/core/extensions/context_extensions.dart",
       "source_location": null,
       "id": "package_flutter_material_dart",
-      "community": 31,
+      "community": 53,
       "norm_label": "package:flutter/material.dart"
     },
     {
@@ -1250,7 +1250,7 @@
       "source_file": "lib/main.dart",
       "source_location": null,
       "id": "app_app_dart",
-      "community": 37,
+      "community": 35,
       "norm_label": "app/app.dart"
     },
     {
@@ -1268,7 +1268,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "core_logger_app_logger_dart",
-      "community": 36,
+      "community": 37,
       "norm_label": "../../core/logger/app_logger.dart"
     },
     {
@@ -1286,7 +1286,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "lib_app_main_shell_dart",
-      "community": 35,
+      "community": 34,
       "norm_label": "main_shell.dart"
     },
     {
@@ -1295,7 +1295,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_mainshell",
-      "community": 35,
+      "community": 34,
       "norm_label": "mainshell"
     },
     {
@@ -1304,7 +1304,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_glassbottomnav",
-      "community": 35,
+      "community": 34,
       "norm_label": "_glassbottomnav"
     },
     {
@@ -1313,7 +1313,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_navtab",
-      "community": 35,
+      "community": 34,
       "norm_label": "_navtab"
     },
     {
@@ -1322,7 +1322,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_navtabitem",
-      "community": 35,
+      "community": 34,
       "norm_label": "_navtabitem"
     },
     {
@@ -1331,7 +1331,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_handletabtap",
-      "community": 35,
+      "community": 34,
       "norm_label": "_handletabtap"
     },
     {
@@ -1340,7 +1340,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_build",
-      "community": 35,
+      "community": 34,
       "norm_label": "build"
     },
     {
@@ -1349,7 +1349,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_scaffold",
-      "community": 35,
+      "community": 34,
       "norm_label": "scaffold"
     },
     {
@@ -1358,7 +1358,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_cliprect",
-      "community": 35,
+      "community": 34,
       "norm_label": "cliprect"
     },
     {
@@ -1367,7 +1367,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_gesturedetector",
-      "community": 35,
+      "community": 34,
       "norm_label": "gesturedetector"
     },
     {
@@ -1376,7 +1376,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_main_shell_dart_sizedbox",
-      "community": 35,
+      "community": 34,
       "norm_label": "sizedbox"
     },
     {
@@ -1385,7 +1385,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "dart_ui",
-      "community": 43,
+      "community": 42,
       "norm_label": "dart:ui"
     },
     {
@@ -1403,7 +1403,7 @@
       "source_file": "lib/presentation/widgets/onboarding_illustrations.dart",
       "source_location": null,
       "id": "app_theme_app_colors_dart",
-      "community": 31,
+      "community": 53,
       "norm_label": "../../app/theme/app_colors.dart"
     },
     {
@@ -1430,7 +1430,7 @@
       "source_file": "lib/app/main_shell.dart",
       "source_location": null,
       "id": "presentation_widgets_navigation_rail_dart",
-      "community": 43,
+      "community": 42,
       "norm_label": "../presentation/widgets/navigation_rail.dart"
     },
     {
@@ -1439,7 +1439,7 @@
       "source_file": "lib/app/router_refresh_stream.dart",
       "source_location": null,
       "id": "lib_app_router_refresh_stream_dart",
-      "community": 49,
+      "community": 48,
       "norm_label": "router_refresh_stream.dart"
     },
     {
@@ -1448,7 +1448,7 @@
       "source_file": "lib/app/router_refresh_stream.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_router_refresh_stream_dart_authrefreshnotifier",
-      "community": 49,
+      "community": 48,
       "norm_label": "authrefreshnotifier"
     },
     {
@@ -1457,7 +1457,7 @@
       "source_file": "lib/app/router_refresh_stream.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_router_refresh_stream_dart_onboardingrefreshnotifier",
-      "community": 49,
+      "community": 48,
       "norm_label": "onboardingrefreshnotifier"
     },
     {
@@ -1466,7 +1466,7 @@
       "source_file": "lib/app/router.dart",
       "source_location": null,
       "id": "presentation_providers_auth_provider_dart",
-      "community": 39,
+      "community": 38,
       "norm_label": "../presentation/providers/auth_provider.dart"
     },
     {
@@ -1475,7 +1475,7 @@
       "source_file": "lib/app/router.dart",
       "source_location": null,
       "id": "presentation_providers_onboarding_provider_dart",
-      "community": 49,
+      "community": 48,
       "norm_label": "../presentation/providers/onboarding_provider.dart"
     },
     {
@@ -1484,7 +1484,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "lib_app_app_dart",
-      "community": 37,
+      "community": 35,
       "norm_label": "app.dart"
     },
     {
@@ -1493,7 +1493,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_tradetrackrappstate",
-      "community": 37,
+      "community": 35,
       "norm_label": "tradetrackrappstate"
     },
     {
@@ -1502,7 +1502,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_tradetrackrapp",
-      "community": 37,
+      "community": 35,
       "norm_label": "tradetrackrapp"
     },
     {
@@ -1511,7 +1511,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_build",
-      "community": 37,
+      "community": 35,
       "norm_label": "build"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_handleapplifecyclestate",
-      "community": 37,
+      "community": 35,
       "norm_label": "handleapplifecyclestate"
     },
     {
@@ -1529,7 +1529,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_initstate",
-      "community": 37,
+      "community": 35,
       "norm_label": "initstate"
     },
     {
@@ -1538,7 +1538,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_dispose",
-      "community": 37,
+      "community": 35,
       "norm_label": "dispose"
     },
     {
@@ -1547,7 +1547,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_app_dart_didchangeapplifecyclestate",
-      "community": 37,
+      "community": 35,
       "norm_label": "didchangeapplifecyclestate"
     },
     {
@@ -1556,7 +1556,7 @@
       "source_file": "lib/data/datasources/drift/database.dart",
       "source_location": null,
       "id": "package_riverpod_annotation_riverpod_annotation_dart",
-      "community": 38,
+      "community": 36,
       "norm_label": "package:riverpod_annotation/riverpod_annotation.dart"
     },
     {
@@ -1565,7 +1565,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "presentation_providers_theme_provider_dart",
-      "community": 48,
+      "community": 47,
       "norm_label": "../presentation/providers/theme_provider.dart"
     },
     {
@@ -1583,7 +1583,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "router_dart",
-      "community": 37,
+      "community": 35,
       "norm_label": "router.dart"
     },
     {
@@ -1592,7 +1592,7 @@
       "source_file": "lib/app/app.dart",
       "source_location": null,
       "id": "theme_app_theme_dart",
-      "community": 37,
+      "community": 35,
       "norm_label": "theme/app_theme.dart"
     },
     {
@@ -2006,7 +2006,7 @@
       "source_file": "lib/app/theme/app_colors.dart",
       "source_location": null,
       "id": "lib_app_theme_app_colors_dart",
-      "community": 31,
+      "community": 53,
       "norm_label": "app_colors.dart"
     },
     {
@@ -2015,7 +2015,7 @@
       "source_file": "lib/app/theme/app_colors.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_app_theme_app_colors_dart_appcolors",
-      "community": 31,
+      "community": 53,
       "norm_label": "appcolors"
     },
     {
@@ -2024,7 +2024,7 @@
       "source_file": "lib/app/theme/theme.dart",
       "source_location": null,
       "id": "lib_app_theme_theme_dart",
-      "community": 118,
+      "community": 119,
       "norm_label": "theme.dart"
     },
     {
@@ -2069,7 +2069,7 @@
       "source_file": "lib/domain/enums/severity.dart",
       "source_location": null,
       "id": "lib_domain_enums_severity_dart",
-      "community": 119,
+      "community": 120,
       "norm_label": "severity.dart"
     },
     {
@@ -2267,7 +2267,7 @@
       "source_file": "lib/domain/repositories/repositories.dart",
       "source_location": null,
       "id": "lib_domain_repositories_repositories_dart",
-      "community": 120,
+      "community": 121,
       "norm_label": "repositories.dart"
     },
     {
@@ -2582,7 +2582,7 @@
       "source_file": "lib/domain/usecases/usecases.dart",
       "source_location": null,
       "id": "lib_domain_usecases_usecases_dart",
-      "community": 121,
+      "community": 122,
       "norm_label": "usecases.dart"
     },
     {
@@ -2978,7 +2978,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "lib_domain_core_result_freezed_dart",
-      "community": 42,
+      "community": 41,
       "norm_label": "_"
     },
     {
@@ -2987,7 +2987,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_success",
-      "community": 42,
+      "community": 41,
       "norm_label": "success"
     },
     {
@@ -2996,7 +2996,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_class",
-      "community": 42,
+      "community": 41,
       "norm_label": "class"
     },
     {
@@ -3005,7 +3005,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_failure",
-      "community": 42,
+      "community": 41,
       "norm_label": "failure"
     },
     {
@@ -3014,7 +3014,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_identical",
-      "community": 42,
+      "community": 41,
       "norm_label": "identical"
     },
     {
@@ -3023,7 +3023,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_tostring",
-      "community": 42,
+      "community": 41,
       "norm_label": "tostring"
     },
     {
@@ -3032,7 +3032,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_orelse",
-      "community": 42,
+      "community": 41,
       "norm_label": "orelse"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_stateerror",
-      "community": 42,
+      "community": 41,
       "norm_label": "stateerror"
     },
     {
@@ -3050,7 +3050,7 @@
       "source_file": "lib/domain/core/result.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_domain_core_result_freezed_dart_then",
-      "community": 42,
+      "community": 41,
       "norm_label": "_then"
     },
     {
@@ -3626,7 +3626,7 @@
       "source_file": "lib/presentation/providers/recommendation_provider.dart",
       "source_location": null,
       "id": "mock_mock_data_dart",
-      "community": 38,
+      "community": 36,
       "norm_label": "../mock/mock_data.dart"
     },
     {
@@ -5075,7 +5075,7 @@
       "source_file": "lib/presentation/pages/pages.dart",
       "source_location": null,
       "id": "lib_presentation_pages_pages_dart",
-      "community": 122,
+      "community": 123,
       "norm_label": "pages.dart"
     },
     {
@@ -5894,7 +5894,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "lib_presentation_providers_auth_provider_g_dart",
-      "community": 50,
+      "community": 49,
       "norm_label": "_"
     },
     {
@@ -5903,7 +5903,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_debuggetcreatesourcehash",
-      "community": 50,
+      "community": 49,
       "norm_label": "debuggetcreatesourcehash"
     },
     {
@@ -5912,7 +5912,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_create",
-      "community": 50,
+      "community": 49,
       "norm_label": "create"
     },
     {
@@ -5921,7 +5921,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_overridewithvalue",
-      "community": 50,
+      "community": 49,
       "norm_label": "overridewithvalue"
     },
     {
@@ -5930,7 +5930,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_runbuild",
-      "community": 50,
+      "community": 49,
       "norm_label": "runbuild"
     },
     {
@@ -5939,7 +5939,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_supabaseauthstatestream",
-      "community": 50,
+      "community": 49,
       "norm_label": "supabaseauthstatestream"
     },
     {
@@ -5948,7 +5948,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_supabaseauthstate",
-      "community": 50,
+      "community": 49,
       "norm_label": "supabaseauthstate"
     },
     {
@@ -5957,7 +5957,7 @@
       "source_file": "lib/presentation/providers/auth_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_g_dart_authstate",
-      "community": 50,
+      "community": 49,
       "norm_label": "authstate"
     },
     {
@@ -5966,7 +5966,7 @@
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_theme_provider_dart",
-      "community": 48,
+      "community": 47,
       "norm_label": "theme_provider.dart"
     },
     {
@@ -5975,7 +5975,7 @@
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_theme",
-      "community": 48,
+      "community": 47,
       "norm_label": "theme"
     },
     {
@@ -5984,7 +5984,7 @@
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_build",
-      "community": 48,
+      "community": 47,
       "norm_label": "build"
     },
     {
@@ -5993,7 +5993,7 @@
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_settheme",
-      "community": 48,
+      "community": 47,
       "norm_label": "settheme"
     },
     {
@@ -6002,7 +6002,7 @@
       "source_file": "lib/presentation/providers/onboarding_provider.dart",
       "source_location": null,
       "id": "package_shared_preferences_shared_preferences_dart",
-      "community": 49,
+      "community": 48,
       "norm_label": "package:shared_preferences/shared_preferences.dart"
     },
     {
@@ -6011,7 +6011,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "lib_presentation_providers_analytics_provider_g_dart",
-      "community": 51,
+      "community": 50,
       "norm_label": "_"
     },
     {
@@ -6020,7 +6020,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_debuggetcreatesourcehash",
-      "community": 51,
+      "community": 50,
       "norm_label": "debuggetcreatesourcehash"
     },
     {
@@ -6029,7 +6029,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_create",
-      "community": 51,
+      "community": 50,
       "norm_label": "create"
     },
     {
@@ -6038,7 +6038,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_runbuild",
-      "community": 51,
+      "community": 50,
       "norm_label": "runbuild"
     },
     {
@@ -6047,7 +6047,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_formattedwinrate",
-      "community": 51,
+      "community": 50,
       "norm_label": "formattedwinrate"
     },
     {
@@ -6056,7 +6056,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_overridewithvalue",
-      "community": 51,
+      "community": 50,
       "norm_label": "overridewithvalue"
     },
     {
@@ -6065,7 +6065,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_formattedtotalpnl",
-      "community": 51,
+      "community": 50,
       "norm_label": "formattedtotalpnl"
     },
     {
@@ -6074,7 +6074,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.g.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_g_dart_formattedbalance",
-      "community": 51,
+      "community": 50,
       "norm_label": "formattedbalance"
     },
     {
@@ -6083,7 +6083,7 @@
       "source_file": "lib/presentation/providers/profile_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_profile_provider_dart",
-      "community": 39,
+      "community": 38,
       "norm_label": "profile_provider.dart"
     },
     {
@@ -6092,7 +6092,7 @@
       "source_file": "lib/presentation/providers/profile_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_profile_provider_dart_profile",
-      "community": 39,
+      "community": 38,
       "norm_label": "profile"
     },
     {
@@ -6101,7 +6101,7 @@
       "source_file": "lib/presentation/providers/profile_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_profile_provider_dart_exception",
-      "community": 39,
+      "community": 38,
       "norm_label": "exception"
     },
     {
@@ -6119,7 +6119,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "di_providers_dart",
-      "community": 39,
+      "community": 38,
       "norm_label": "di_providers.dart"
     },
     {
@@ -6128,7 +6128,7 @@
       "source_file": "lib/presentation/providers/trade_provider.dart",
       "source_location": null,
       "id": "auth_provider_dart",
-      "community": 39,
+      "community": 38,
       "norm_label": "auth_provider.dart"
     },
     {
@@ -6137,7 +6137,7 @@
       "source_file": "lib/presentation/providers/auth_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_auth_provider_dart",
-      "community": 39,
+      "community": 38,
       "norm_label": "auth_provider.dart"
     },
     {
@@ -6146,7 +6146,7 @@
       "source_file": "lib/presentation/providers/auth_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_dart_auth",
-      "community": 39,
+      "community": 38,
       "norm_label": "auth"
     },
     {
@@ -6155,7 +6155,7 @@
       "source_file": "lib/presentation/providers/auth_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_auth_provider_dart_exception",
-      "community": 39,
+      "community": 38,
       "norm_label": "exception"
     },
     {
@@ -6200,7 +6200,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_analytics_provider_dart",
-      "community": 38,
+      "community": 36,
       "norm_label": "analytics_provider.dart"
     },
     {
@@ -6209,7 +6209,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_dart_analytics",
-      "community": 38,
+      "community": 36,
       "norm_label": "analytics"
     },
     {
@@ -6218,7 +6218,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_dart_formattedwinrate",
-      "community": 38,
+      "community": 36,
       "norm_label": "formattedwinrate"
     },
     {
@@ -6227,7 +6227,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_dart_formattedtotalpnl",
-      "community": 38,
+      "community": 36,
       "norm_label": "formattedtotalpnl"
     },
     {
@@ -6236,7 +6236,7 @@
       "source_file": "lib/presentation/providers/analytics_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_analytics_provider_dart_formattedbalance",
-      "community": 38,
+      "community": 36,
       "norm_label": "formattedbalance"
     },
     {
@@ -7136,7 +7136,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "data_datasources_trade_local_data_source_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "../../data/datasources/trade_local_data_source.dart"
     },
     {
@@ -7154,7 +7154,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "data_datasources_trade_remote_data_source_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "../../data/datasources/trade_remote_data_source.dart"
     },
     {
@@ -7379,7 +7379,7 @@
       "source_file": "lib/presentation/providers/onboarding_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_onboarding_provider_dart",
-      "community": 49,
+      "community": 48,
       "norm_label": "onboarding_provider.dart"
     },
     {
@@ -7388,7 +7388,7 @@
       "source_file": "lib/presentation/providers/onboarding_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_onboarding_provider_dart_onboardingnotifier",
-      "community": 49,
+      "community": 48,
       "norm_label": "onboardingnotifier"
     },
     {
@@ -7397,7 +7397,7 @@
       "source_file": "lib/presentation/providers/onboarding_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_onboarding_provider_dart_hascompletedonboarding",
-      "community": 49,
+      "community": 48,
       "norm_label": "hascompletedonboarding"
     },
     {
@@ -7460,7 +7460,7 @@
       "source_file": "lib/presentation/providers/recommendation_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_recommendation_provider_dart",
-      "community": 38,
+      "community": 36,
       "norm_label": "recommendation_provider.dart"
     },
     {
@@ -7469,7 +7469,7 @@
       "source_file": "lib/presentation/providers/recommendation_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_recommendation_provider_dart_recommendations",
-      "community": 38,
+      "community": 36,
       "norm_label": "recommendations"
     },
     {
@@ -7595,7 +7595,7 @@
       "source_file": "lib/presentation/providers/providers.dart",
       "source_location": null,
       "id": "lib_presentation_providers_providers_dart",
-      "community": 123,
+      "community": 124,
       "norm_label": "providers.dart"
     },
     {
@@ -7604,7 +7604,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "lib_presentation_providers_sync_provider_dart",
-      "community": 32,
+      "community": 31,
       "norm_label": "sync_provider.dart"
     },
     {
@@ -7613,7 +7613,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_synccontroller",
-      "community": 32,
+      "community": 31,
       "norm_label": "synccontroller"
     },
     {
@@ -7622,7 +7622,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_connectivitychecker",
-      "community": 32,
+      "community": 31,
       "norm_label": "connectivitychecker"
     },
     {
@@ -7631,7 +7631,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_syncengine",
-      "community": 32,
+      "community": 31,
       "norm_label": "syncengine"
     },
     {
@@ -7640,7 +7640,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_initializeworkmanager",
-      "community": 32,
+      "community": 31,
       "norm_label": "_initializeworkmanager"
     },
     {
@@ -7649,7 +7649,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_workmanager",
-      "community": 32,
+      "community": 31,
       "norm_label": "workmanager"
     },
     {
@@ -7658,7 +7658,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_listentoconnectivity",
-      "community": 32,
+      "community": 31,
       "norm_label": "_listentoconnectivity"
     },
     {
@@ -7667,7 +7667,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_sync_provider_dart_performperiodicsync",
-      "community": 32,
+      "community": 31,
       "norm_label": "performperiodicsync"
     },
     {
@@ -7676,7 +7676,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "dart_async",
-      "community": 33,
+      "community": 32,
       "norm_label": "dart:async"
     },
     {
@@ -7685,7 +7685,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "core_network_connectivity_checker_dart",
-      "community": 32,
+      "community": 31,
       "norm_label": "../../core/network/connectivity_checker.dart"
     },
     {
@@ -7694,7 +7694,7 @@
       "source_file": "lib/presentation/providers/sync_provider.dart",
       "source_location": null,
       "id": "core_sync_sync_engine_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "../../core/sync/sync_engine.dart"
     },
     {
@@ -7703,7 +7703,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "lib_presentation_mock_chart_mock_data_dart",
-      "community": 52,
+      "community": 51,
       "norm_label": "chart_mock_data.dart"
     },
     {
@@ -7712,7 +7712,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_chartmockdata",
-      "community": 52,
+      "community": 51,
       "norm_label": "chartmockdata"
     },
     {
@@ -7721,7 +7721,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_equitypoint",
-      "community": 52,
+      "community": 51,
       "norm_label": "_equitypoint"
     },
     {
@@ -7730,7 +7730,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_plbucket",
-      "community": 52,
+      "community": 51,
       "norm_label": "_plbucket"
     },
     {
@@ -7739,7 +7739,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_symbolperf",
-      "community": 52,
+      "community": 51,
       "norm_label": "_symbolperf"
     },
     {
@@ -7748,7 +7748,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_reasoncount",
-      "community": 52,
+      "community": 51,
       "norm_label": "_reasoncount"
     },
     {
@@ -7757,7 +7757,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_dayprofit",
-      "community": 52,
+      "community": 51,
       "norm_label": "_dayprofit"
     },
     {
@@ -7766,7 +7766,7 @@
       "source_file": "lib/presentation/mock/chart_mock_data.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_mock_chart_mock_data_dart_sessionprofit",
-      "community": 52,
+      "community": 51,
       "norm_label": "_sessionprofit"
     },
     {
@@ -7982,7 +7982,7 @@
       "source_file": "lib/presentation/widgets/widgets.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_widgets_dart",
-      "community": 124,
+      "community": 125,
       "norm_label": "widgets.dart"
     },
     {
@@ -7991,7 +7991,7 @@
       "source_file": "lib/presentation/widgets/section_label.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_section_label_dart",
-      "community": 76,
+      "community": 77,
       "norm_label": "section_label.dart"
     },
     {
@@ -8000,7 +8000,7 @@
       "source_file": "lib/presentation/widgets/section_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_section_label_dart_sectionlabel",
-      "community": 76,
+      "community": 77,
       "norm_label": "sectionlabel"
     },
     {
@@ -8009,7 +8009,7 @@
       "source_file": "lib/presentation/widgets/section_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_section_label_dart_build",
-      "community": 76,
+      "community": 77,
       "norm_label": "build"
     },
     {
@@ -8018,7 +8018,7 @@
       "source_file": "lib/presentation/widgets/section_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_section_label_dart_padding",
-      "community": 76,
+      "community": 77,
       "norm_label": "padding"
     },
     {
@@ -8171,7 +8171,7 @@
       "source_file": "lib/presentation/widgets/form_field_label.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_form_field_label_dart",
-      "community": 31,
+      "community": 75,
       "norm_label": "form_field_label.dart"
     },
     {
@@ -8180,7 +8180,7 @@
       "source_file": "lib/presentation/widgets/form_field_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_form_field_label_dart_formfieldlabel",
-      "community": 31,
+      "community": 75,
       "norm_label": "formfieldlabel"
     },
     {
@@ -8189,7 +8189,7 @@
       "source_file": "lib/presentation/widgets/form_field_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_form_field_label_dart_build",
-      "community": 31,
+      "community": 75,
       "norm_label": "build"
     },
     {
@@ -8198,7 +8198,7 @@
       "source_file": "lib/presentation/widgets/form_field_label.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_form_field_label_dart_padding",
-      "community": 31,
+      "community": 75,
       "norm_label": "padding"
     },
     {
@@ -8252,7 +8252,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_shimmer_placeholder_dart",
-      "community": 34,
+      "community": 33,
       "norm_label": "shimmer_placeholder.dart"
     },
     {
@@ -8261,7 +8261,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_shimmerplaceholder",
-      "community": 34,
+      "community": 33,
       "norm_label": "shimmerplaceholder"
     },
     {
@@ -8270,7 +8270,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_shimmerplaceholderstate",
-      "community": 34,
+      "community": 33,
       "norm_label": "_shimmerplaceholderstate"
     },
     {
@@ -8279,7 +8279,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_animatedbuilder",
-      "community": 34,
+      "community": 33,
       "norm_label": "animatedbuilder"
     },
     {
@@ -8288,7 +8288,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_shimmeranimatedbuilder",
-      "community": 34,
+      "community": 33,
       "norm_label": "_shimmeranimatedbuilder"
     },
     {
@@ -8297,7 +8297,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_initstate",
-      "community": 34,
+      "community": 33,
       "norm_label": "initstate"
     },
     {
@@ -8306,7 +8306,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_dispose",
-      "community": 34,
+      "community": 33,
       "norm_label": "dispose"
     },
     {
@@ -8315,7 +8315,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_build",
-      "community": 34,
+      "community": 33,
       "norm_label": "build"
     },
     {
@@ -8324,7 +8324,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_shadermask",
-      "community": 34,
+      "community": 33,
       "norm_label": "shadermask"
     },
     {
@@ -8333,7 +8333,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_lineargradient",
-      "community": 34,
+      "community": 33,
       "norm_label": "lineargradient"
     },
     {
@@ -8342,7 +8342,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_function",
-      "community": 34,
+      "community": 33,
       "norm_label": "function"
     },
     {
@@ -8351,7 +8351,7 @@
       "source_file": "lib/presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_shimmer_placeholder_dart_builder",
-      "community": 34,
+      "community": 33,
       "norm_label": "builder"
     },
     {
@@ -8360,7 +8360,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_navigation_rail_dart",
-      "community": 43,
+      "community": 42,
       "norm_label": "navigation_rail.dart"
     },
     {
@@ -8369,7 +8369,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_navigationrailwidget",
-      "community": 43,
+      "community": 42,
       "norm_label": "navigationrailwidget"
     },
     {
@@ -8378,7 +8378,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_railtabitem",
-      "community": 43,
+      "community": 42,
       "norm_label": "_railtabitem"
     },
     {
@@ -8387,7 +8387,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_navtab",
-      "community": 43,
+      "community": 42,
       "norm_label": "_navtab"
     },
     {
@@ -8396,7 +8396,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_build",
-      "community": 43,
+      "community": 42,
       "norm_label": "build"
     },
     {
@@ -8405,7 +8405,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_cliprect",
-      "community": 43,
+      "community": 42,
       "norm_label": "cliprect"
     },
     {
@@ -8414,7 +8414,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_gesturedetector",
-      "community": 43,
+      "community": 42,
       "norm_label": "gesturedetector"
     },
     {
@@ -8423,7 +8423,7 @@
       "source_file": "lib/presentation/widgets/navigation_rail.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_navigation_rail_dart_sizedbox",
-      "community": 43,
+      "community": 42,
       "norm_label": "sizedbox"
     },
     {
@@ -8558,7 +8558,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_multi_select_chip_dart",
-      "community": 66,
+      "community": 67,
       "norm_label": "multi_select_chip.dart"
     },
     {
@@ -8567,7 +8567,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_multi_select_chip_dart_multiselectchip",
-      "community": 66,
+      "community": 67,
       "norm_label": "multiselectchip"
     },
     {
@@ -8576,7 +8576,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_multi_select_chip_dart_function",
-      "community": 66,
+      "community": 67,
       "norm_label": "function"
     },
     {
@@ -8585,7 +8585,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_multi_select_chip_dart_build",
-      "community": 66,
+      "community": 67,
       "norm_label": "build"
     },
     {
@@ -8594,7 +8594,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_multi_select_chip_dart_wrap",
-      "community": 66,
+      "community": 67,
       "norm_label": "wrap"
     },
     {
@@ -8603,7 +8603,7 @@
       "source_file": "lib/presentation/widgets/multi_select_chip.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_multi_select_chip_dart_gesturedetector",
-      "community": 66,
+      "community": 67,
       "norm_label": "gesturedetector"
     },
     {
@@ -8612,7 +8612,7 @@
       "source_file": "lib/presentation/widgets/primary_button.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_primary_button_dart",
-      "community": 31,
+      "community": 53,
       "norm_label": "primary_button.dart"
     },
     {
@@ -8621,7 +8621,7 @@
       "source_file": "lib/presentation/widgets/primary_button.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_primary_button_dart_primarybutton",
-      "community": 31,
+      "community": 53,
       "norm_label": "primarybutton"
     },
     {
@@ -8630,7 +8630,7 @@
       "source_file": "lib/presentation/widgets/primary_button.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_primary_button_dart_build",
-      "community": 31,
+      "community": 53,
       "norm_label": "build"
     },
     {
@@ -8639,7 +8639,7 @@
       "source_file": "lib/presentation/widgets/primary_button.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_primary_button_dart_sizedbox",
-      "community": 31,
+      "community": 53,
       "norm_label": "sizedbox"
     },
     {
@@ -8648,7 +8648,7 @@
       "source_file": "lib/presentation/widgets/pricing_row.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_pricing_row_dart",
-      "community": 77,
+      "community": 78,
       "norm_label": "pricing_row.dart"
     },
     {
@@ -8657,7 +8657,7 @@
       "source_file": "lib/presentation/widgets/pricing_row.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_pricing_row_dart_pricingrow",
-      "community": 77,
+      "community": 78,
       "norm_label": "pricingrow"
     },
     {
@@ -8666,7 +8666,7 @@
       "source_file": "lib/presentation/widgets/pricing_row.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_pricing_row_dart_build",
-      "community": 77,
+      "community": 78,
       "norm_label": "build"
     },
     {
@@ -8675,7 +8675,7 @@
       "source_file": "lib/presentation/widgets/pricing_row.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_pricing_row_dart_container",
-      "community": 77,
+      "community": 78,
       "norm_label": "container"
     },
     {
@@ -8999,7 +8999,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_filter_bar_dart",
-      "community": 53,
+      "community": 52,
       "norm_label": "filter_bar.dart"
     },
     {
@@ -9008,7 +9008,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_filterbar",
-      "community": 53,
+      "community": 52,
       "norm_label": "filterbar"
     },
     {
@@ -9017,7 +9017,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_filterbarstate",
-      "community": 53,
+      "community": 52,
       "norm_label": "_filterbarstate"
     },
     {
@@ -9026,7 +9026,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_dispose",
-      "community": 53,
+      "community": 52,
       "norm_label": "dispose"
     },
     {
@@ -9035,7 +9035,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_build",
-      "community": 53,
+      "community": 52,
       "norm_label": "build"
     },
     {
@@ -9044,7 +9044,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_row",
-      "community": 53,
+      "community": 52,
       "norm_label": "row"
     },
     {
@@ -9053,7 +9053,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_sizedbox",
-      "community": 53,
+      "community": 52,
       "norm_label": "sizedbox"
     },
     {
@@ -9062,7 +9062,7 @@
       "source_file": "lib/presentation/widgets/filter_bar.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_filter_bar_dart_padding",
-      "community": 53,
+      "community": 52,
       "norm_label": "padding"
     },
     {
@@ -9539,7 +9539,7 @@
       "source_file": "lib/presentation/widgets/app_text_form_field.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_app_text_form_field_dart",
-      "community": 75,
+      "community": 76,
       "norm_label": "app_text_form_field.dart"
     },
     {
@@ -9548,7 +9548,7 @@
       "source_file": "lib/presentation/widgets/app_text_form_field.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_app_text_form_field_dart_apptextformfield",
-      "community": 75,
+      "community": 76,
       "norm_label": "apptextformfield"
     },
     {
@@ -9557,7 +9557,7 @@
       "source_file": "lib/presentation/widgets/app_text_form_field.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_app_text_form_field_dart_build",
-      "community": 75,
+      "community": 76,
       "norm_label": "build"
     },
     {
@@ -9566,7 +9566,7 @@
       "source_file": "lib/presentation/widgets/app_text_form_field.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_app_text_form_field_dart_textformfield",
-      "community": 75,
+      "community": 76,
       "norm_label": "textformfield"
     },
     {
@@ -9872,7 +9872,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_charts_chart_container_dart",
-      "community": 67,
+      "community": 66,
       "norm_label": "chart_container.dart"
     },
     {
@@ -9881,7 +9881,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_charts_chart_container_dart_chartcontainer",
-      "community": 67,
+      "community": 66,
       "norm_label": "chartcontainer"
     },
     {
@@ -9890,7 +9890,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_charts_chart_container_dart_build",
-      "community": 67,
+      "community": 66,
       "norm_label": "build"
     },
     {
@@ -9899,7 +9899,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_charts_chart_container_dart_container",
-      "community": 67,
+      "community": 66,
       "norm_label": "container"
     },
     {
@@ -9908,7 +9908,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_widgets_charts_chart_container_dart_sizedbox",
-      "community": 67,
+      "community": 66,
       "norm_label": "sizedbox"
     },
     {
@@ -9917,7 +9917,7 @@
       "source_file": "lib/presentation/widgets/charts/chart_container.dart",
       "source_location": null,
       "id": "section_label_dart",
-      "community": 67,
+      "community": 66,
       "norm_label": "../section_label.dart"
     },
     {
@@ -10466,7 +10466,7 @@
       "source_file": "lib/presentation/widgets/responsive/responsive.dart",
       "source_location": null,
       "id": "lib_presentation_widgets_responsive_responsive_dart",
-      "community": 125,
+      "community": 126,
       "norm_label": "responsive.dart"
     },
     {
@@ -10772,7 +10772,7 @@
       "source_file": "lib/data/datasources/auth_remote_data_source_impl.dart",
       "source_location": null,
       "id": "core_errors_failures_dart",
-      "community": 41,
+      "community": 39,
       "norm_label": "../../core/errors/failures.dart"
     },
     {
@@ -10853,7 +10853,7 @@
       "source_file": "lib/data/datasources/trade_remote_data_source.dart",
       "source_location": null,
       "id": "lib_data_datasources_trade_remote_data_source_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "trade_remote_data_source.dart"
     },
     {
@@ -10862,7 +10862,7 @@
       "source_file": "lib/data/datasources/trade_remote_data_source.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_datasources_trade_remote_data_source_dart_traderemotedatasource",
-      "community": 33,
+      "community": 32,
       "norm_label": "traderemotedatasource"
     },
     {
@@ -11006,7 +11006,7 @@
       "source_file": "lib/data/datasources/trade_local_data_source.dart",
       "source_location": null,
       "id": "lib_data_datasources_trade_local_data_source_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "trade_local_data_source.dart"
     },
     {
@@ -11015,7 +11015,7 @@
       "source_file": "lib/data/datasources/trade_local_data_source.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_datasources_trade_local_data_source_dart_tradelocaldatasource",
-      "community": 33,
+      "community": 32,
       "norm_label": "tradelocaldatasource"
     },
     {
@@ -11573,7 +11573,7 @@
       "source_file": "lib/data/models/trade_position_dto.g.dart",
       "source_location": null,
       "id": "lib_data_models_trade_position_dto_g_dart",
-      "community": 126,
+      "community": 127,
       "norm_label": "trade_position_dto.g.dart"
     },
     {
@@ -11618,7 +11618,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "lib_data_models_trade_position_dto_freezed_dart",
-      "community": 44,
+      "community": 43,
       "norm_label": "_"
     },
     {
@@ -11627,7 +11627,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_class",
-      "community": 44,
+      "community": 43,
       "norm_label": "class"
     },
     {
@@ -11636,7 +11636,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_closedpositiondto",
-      "community": 44,
+      "community": 43,
       "norm_label": "_closedpositiondto"
     },
     {
@@ -11645,7 +11645,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_openpositiondto",
-      "community": 44,
+      "community": 43,
       "norm_label": "_openpositiondto"
     },
     {
@@ -11654,7 +11654,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_identical",
-      "community": 44,
+      "community": 43,
       "norm_label": "identical"
     },
     {
@@ -11663,7 +11663,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_tostring",
-      "community": 44,
+      "community": 43,
       "norm_label": "tostring"
     },
     {
@@ -11672,7 +11672,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_then",
-      "community": 44,
+      "community": 43,
       "norm_label": "_then"
     },
     {
@@ -11681,7 +11681,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_orelse",
-      "community": 44,
+      "community": 43,
       "norm_label": "orelse"
     },
     {
@@ -11690,7 +11690,7 @@
       "source_file": "lib/data/models/trade_position_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_trade_position_dto_freezed_dart_stateerror",
-      "community": 44,
+      "community": 43,
       "norm_label": "stateerror"
     },
     {
@@ -11699,7 +11699,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "lib_data_models_import_result_dto_freezed_dart",
-      "community": 45,
+      "community": 44,
       "norm_label": "_"
     },
     {
@@ -11708,7 +11708,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_class",
-      "community": 45,
+      "community": 44,
       "norm_label": "class"
     },
     {
@@ -11717,7 +11717,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_importresultdto",
-      "community": 45,
+      "community": 44,
       "norm_label": "_importresultdto"
     },
     {
@@ -11726,7 +11726,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_identical",
-      "community": 45,
+      "community": 44,
       "norm_label": "identical"
     },
     {
@@ -11735,7 +11735,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_tostring",
-      "community": 45,
+      "community": 44,
       "norm_label": "tostring"
     },
     {
@@ -11744,7 +11744,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_then",
-      "community": 45,
+      "community": 44,
       "norm_label": "_then"
     },
     {
@@ -11753,7 +11753,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_orelse",
-      "community": 45,
+      "community": 44,
       "norm_label": "orelse"
     },
     {
@@ -11762,7 +11762,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_stateerror",
-      "community": 45,
+      "community": 44,
       "norm_label": "stateerror"
     },
     {
@@ -11771,7 +11771,7 @@
       "source_file": "lib/data/models/import_result_dto.freezed.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_data_models_import_result_dto_freezed_dart_equalunmodifiablelistview",
-      "community": 45,
+      "community": 44,
       "norm_label": "equalunmodifiablelistview"
     },
     {
@@ -11780,7 +11780,7 @@
       "source_file": "lib/data/models/finance_record_dto.g.dart",
       "source_location": null,
       "id": "lib_data_models_finance_record_dto_g_dart",
-      "community": 127,
+      "community": 128,
       "norm_label": "finance_record_dto.g.dart"
     },
     {
@@ -11789,7 +11789,7 @@
       "source_file": "lib/data/models/user_dto.g.dart",
       "source_location": null,
       "id": "lib_data_models_user_dto_g_dart",
-      "community": 128,
+      "community": 129,
       "norm_label": "user_dto.g.dart"
     },
     {
@@ -11798,7 +11798,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "lib_core_logger_app_logger_dart",
-      "community": 36,
+      "community": 37,
       "norm_label": "app_logger.dart"
     },
     {
@@ -11807,7 +11807,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_setloglevel",
-      "community": 36,
+      "community": 37,
       "norm_label": "setloglevel"
     },
     {
@@ -11816,7 +11816,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_logfailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "logfailure"
     },
     {
@@ -11825,7 +11825,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_databasefailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "databasefailure"
     },
     {
@@ -11834,7 +11834,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_authfailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "authfailure"
     },
     {
@@ -11843,7 +11843,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_networkfailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "networkfailure"
     },
     {
@@ -11852,7 +11852,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_syncfailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "syncfailure"
     },
     {
@@ -11861,7 +11861,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_validationfailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "validationfailure"
     },
     {
@@ -11870,7 +11870,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_logger_app_logger_dart_csvparsefailure",
-      "community": 36,
+      "community": 37,
       "norm_label": "csvparsefailure"
     },
     {
@@ -11879,7 +11879,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "package_logger_logger_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "package:logger/logger.dart"
     },
     {
@@ -11888,7 +11888,7 @@
       "source_file": "lib/core/logger/app_logger.dart",
       "source_location": null,
       "id": "errors_failures_dart",
-      "community": 36,
+      "community": 37,
       "norm_label": "../errors/failures.dart"
     },
     {
@@ -11924,7 +11924,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "lib_core_sync_sync_engine_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "sync_engine.dart"
     },
     {
@@ -11933,7 +11933,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_sync_sync_engine_dart_syncengine",
-      "community": 33,
+      "community": 32,
       "norm_label": "syncengine"
     },
     {
@@ -11942,7 +11942,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_sync_sync_engine_dart_dispose",
-      "community": 33,
+      "community": 32,
       "norm_label": "dispose"
     },
     {
@@ -11951,7 +11951,7 @@
       "source_file": "lib/core/sync/sync_engine.dart",
       "source_location": null,
       "id": "network_connectivity_checker_dart",
-      "community": 33,
+      "community": 32,
       "norm_label": "../network/connectivity_checker.dart"
     },
     {
@@ -12023,7 +12023,7 @@
       "source_file": "lib/core/network/connectivity_checker.dart",
       "source_location": null,
       "id": "lib_core_network_connectivity_checker_dart",
-      "community": 32,
+      "community": 31,
       "norm_label": "connectivity_checker.dart"
     },
     {
@@ -12032,7 +12032,7 @@
       "source_file": "lib/core/network/connectivity_checker.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_network_connectivity_checker_dart_connectivitychecker",
-      "community": 32,
+      "community": 31,
       "norm_label": "connectivitychecker"
     },
     {
@@ -12041,7 +12041,7 @@
       "source_file": "lib/core/network/connectivity_checker.dart",
       "source_location": null,
       "id": "package_connectivity_plus_connectivity_plus_dart",
-      "community": 32,
+      "community": 31,
       "norm_label": "package:connectivity_plus/connectivity_plus.dart"
     },
     {
@@ -12149,7 +12149,7 @@
       "source_file": "lib/core/constants/app_constants.dart",
       "source_location": null,
       "id": "lib_core_constants_app_constants_dart",
-      "community": 81,
+      "community": 82,
       "norm_label": "app_constants.dart"
     },
     {
@@ -12158,7 +12158,7 @@
       "source_file": "lib/core/constants/app_constants.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_constants_app_constants_dart_appconstants",
-      "community": 81,
+      "community": 82,
       "norm_label": "appconstants"
     },
     {
@@ -12167,7 +12167,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "lib_core_utils_string_utils_dart",
-      "community": 46,
+      "community": 45,
       "norm_label": "string_utils.dart"
     },
     {
@@ -12176,7 +12176,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_stringutils",
-      "community": 46,
+      "community": 45,
       "norm_label": "stringutils"
     },
     {
@@ -12185,7 +12185,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_isnullorempty",
-      "community": 46,
+      "community": 45,
       "norm_label": "isnullorempty"
     },
     {
@@ -12194,7 +12194,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_isnotempty",
-      "community": 46,
+      "community": 45,
       "norm_label": "isnotempty"
     },
     {
@@ -12203,7 +12203,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_isblank",
-      "community": 46,
+      "community": 45,
       "norm_label": "isblank"
     },
     {
@@ -12212,7 +12212,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_capitalize",
-      "community": 46,
+      "community": 45,
       "norm_label": "capitalize"
     },
     {
@@ -12221,7 +12221,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_truncate",
-      "community": 46,
+      "community": 45,
       "norm_label": "truncate"
     },
     {
@@ -12230,7 +12230,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_formatnumber",
-      "community": 46,
+      "community": 45,
       "norm_label": "formatnumber"
     },
     {
@@ -12239,7 +12239,7 @@
       "source_file": "lib/core/utils/string_utils.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_utils_string_utils_dart_formatpercentage",
-      "community": 46,
+      "community": 45,
       "norm_label": "formatpercentage"
     },
     {
@@ -12365,7 +12365,7 @@
       "source_file": "lib/core/utils/utils.dart",
       "source_location": null,
       "id": "lib_core_utils_utils_dart",
-      "community": 129,
+      "community": 130,
       "norm_label": "utils.dart"
     },
     {
@@ -12374,7 +12374,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "lib_core_errors_failures_dart",
-      "community": 41,
+      "community": 39,
       "norm_label": "failures.dart"
     },
     {
@@ -12383,7 +12383,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_failure",
-      "community": 41,
+      "community": 39,
       "norm_label": "failure"
     },
     {
@@ -12392,7 +12392,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_databasefailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "databasefailure"
     },
     {
@@ -12401,7 +12401,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_validationfailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "validationfailure"
     },
     {
@@ -12410,7 +12410,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_networkfailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "networkfailure"
     },
     {
@@ -12419,7 +12419,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_syncfailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "syncfailure"
     },
     {
@@ -12428,7 +12428,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_csvparsefailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "csvparsefailure"
     },
     {
@@ -12437,7 +12437,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_authfailure",
-      "community": 41,
+      "community": 39,
       "norm_label": "authfailure"
     },
     {
@@ -12446,7 +12446,7 @@
       "source_file": "lib/core/errors/failures.dart",
       "source_location": null,
       "id": "home_masrobot_projects_tradetrackr_lib_core_errors_failures_dart_tostring",
-      "community": 41,
+      "community": 39,
       "norm_label": "tostring"
     },
     {
@@ -12455,7 +12455,7 @@
       "source_file": "android/settings.gradle.kts",
       "source_location": "L1",
       "id": "android_settings_gradle_kts",
-      "community": 130,
+      "community": 131,
       "norm_label": "settings.gradle.kts"
     },
     {
@@ -12464,7 +12464,7 @@
       "source_file": "android/build.gradle.kts",
       "source_location": "L1",
       "id": "android_build_gradle_kts",
-      "community": 131,
+      "community": 132,
       "norm_label": "build.gradle.kts"
     },
     {
@@ -12473,7 +12473,7 @@
       "source_file": "android/app/build.gradle.kts",
       "source_location": "L1",
       "id": "android_app_build_gradle_kts",
-      "community": 132,
+      "community": 133,
       "norm_label": "build.gradle.kts"
     },
     {
@@ -12482,7 +12482,7 @@
       "source_file": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
       "source_location": "L1",
       "id": "android_app_src_main_java_io_flutter_plugins_generatedpluginregistrant_java",
-      "community": 82,
+      "community": 83,
       "norm_label": "generatedpluginregistrant.java"
     },
     {
@@ -12491,7 +12491,7 @@
       "source_file": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
       "source_location": "L14",
       "id": "plugins_generatedpluginregistrant_generatedpluginregistrant",
-      "community": 82,
+      "community": 83,
       "norm_label": "generatedpluginregistrant"
     },
     {
@@ -12500,7 +12500,7 @@
       "source_file": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
       "source_location": "L17",
       "id": "plugins_generatedpluginregistrant_generatedpluginregistrant_registerwith",
-      "community": 82,
+      "community": 83,
       "norm_label": ".registerwith()"
     },
     {
@@ -12509,7 +12509,7 @@
       "source_file": "android/app/src/main/kotlin/com/tradetrackr/tradetrackr/MainActivity.kt",
       "source_location": "L1",
       "id": "android_app_src_main_kotlin_com_tradetrackr_tradetrackr_mainactivity_kt",
-      "community": 93,
+      "community": 94,
       "norm_label": "mainactivity.kt"
     },
     {
@@ -12518,7 +12518,7 @@
       "source_file": "android/app/src/main/kotlin/com/tradetrackr/tradetrackr/MainActivity.kt",
       "source_location": "L5",
       "id": "tradetrackr_mainactivity_mainactivity",
-      "community": 93,
+      "community": 94,
       "norm_label": "mainactivity"
     },
     {
@@ -12553,7 +12553,7 @@
       "file_type": "code",
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
-      "community": 48,
+      "community": 47,
       "norm_label": "toggletheme",
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_toggletheme"
     },
@@ -12562,7 +12562,7 @@
       "file_type": "code",
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
-      "community": 48,
+      "community": 47,
       "norm_label": "setlight",
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_setlight"
     },
@@ -12571,7 +12571,7 @@
       "file_type": "code",
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
-      "community": 48,
+      "community": 47,
       "norm_label": "setdark",
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_setdark"
     },
@@ -12580,7 +12580,7 @@
       "file_type": "code",
       "source_file": "lib/presentation/providers/theme_provider.dart",
       "source_location": null,
-      "community": 48,
+      "community": 47,
       "norm_label": "setsystem",
       "id": "home_masrobot_projects_tradetrackr_lib_presentation_providers_theme_provider_dart_setsystem"
     },
@@ -12598,7 +12598,7 @@
       "file_type": "code",
       "source_file": "app/main_shell.dart",
       "source_location": null,
-      "community": 35,
+      "community": 34,
       "norm_label": "main_shell.dart",
       "id": "app_main_shell_dart"
     },
@@ -12607,7 +12607,7 @@
       "file_type": "code",
       "source_file": "app/router_refresh_stream.dart",
       "source_location": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "router_refresh_stream.dart",
       "id": "app_router_refresh_stream_dart"
     },
@@ -12661,7 +12661,7 @@
       "file_type": "code",
       "source_file": "app/theme/theme.dart",
       "source_location": null,
-      "community": 133,
+      "community": 134,
       "norm_label": "theme.dart",
       "id": "app_theme_theme_dart"
     },
@@ -12670,7 +12670,7 @@
       "file_type": "code",
       "source_file": "domain/repositories/repositories.dart",
       "source_location": null,
-      "community": 134,
+      "community": 135,
       "norm_label": "repositories.dart",
       "id": "domain_repositories_repositories_dart"
     },
@@ -12679,7 +12679,7 @@
       "file_type": "code",
       "source_file": "domain/usecases/usecases.dart",
       "source_location": null,
-      "community": 135,
+      "community": 136,
       "norm_label": "usecases.dart",
       "id": "domain_usecases_usecases_dart"
     },
@@ -12697,7 +12697,7 @@
       "file_type": "code",
       "source_file": "domain/core/result.freezed.dart",
       "source_location": null,
-      "community": 42,
+      "community": 41,
       "norm_label": "_",
       "id": "domain_core_result_freezed_dart"
     },
@@ -12877,7 +12877,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/auth_provider.g.dart",
       "source_location": null,
-      "community": 50,
+      "community": 49,
       "norm_label": "_",
       "id": "presentation_providers_auth_provider_g_dart"
     },
@@ -12886,7 +12886,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/analytics_provider.g.dart",
       "source_location": null,
-      "community": 51,
+      "community": 50,
       "norm_label": "_",
       "id": "presentation_providers_analytics_provider_g_dart"
     },
@@ -12895,7 +12895,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/profile_provider.dart",
       "source_location": null,
-      "community": 39,
+      "community": 38,
       "norm_label": "profile_provider.dart",
       "id": "presentation_providers_profile_provider_dart"
     },
@@ -12913,7 +12913,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/analytics_provider.dart",
       "source_location": null,
-      "community": 38,
+      "community": 36,
       "norm_label": "analytics_provider.dart",
       "id": "presentation_providers_analytics_provider_dart"
     },
@@ -12976,7 +12976,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/recommendation_provider.dart",
       "source_location": null,
-      "community": 38,
+      "community": 36,
       "norm_label": "recommendation_provider.dart",
       "id": "presentation_providers_recommendation_provider_dart"
     },
@@ -13003,7 +13003,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/providers.dart",
       "source_location": null,
-      "community": 136,
+      "community": 137,
       "norm_label": "providers.dart",
       "id": "presentation_providers_providers_dart"
     },
@@ -13012,7 +13012,7 @@
       "file_type": "code",
       "source_file": "presentation/providers/sync_provider.dart",
       "source_location": null,
-      "community": 32,
+      "community": 31,
       "norm_label": "sync_provider.dart",
       "id": "presentation_providers_sync_provider_dart"
     },
@@ -13021,7 +13021,7 @@
       "file_type": "code",
       "source_file": "presentation/mock/chart_mock_data.dart",
       "source_location": null,
-      "community": 52,
+      "community": 51,
       "norm_label": "chart_mock_data.dart",
       "id": "presentation_mock_chart_mock_data_dart"
     },
@@ -13048,7 +13048,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/widgets.dart",
       "source_location": null,
-      "community": 137,
+      "community": 138,
       "norm_label": "widgets.dart",
       "id": "presentation_widgets_widgets_dart"
     },
@@ -13057,7 +13057,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/section_label.dart",
       "source_location": null,
-      "community": 76,
+      "community": 77,
       "norm_label": "section_label.dart",
       "id": "presentation_widgets_section_label_dart"
     },
@@ -13075,7 +13075,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/form_field_label.dart",
       "source_location": null,
-      "community": 31,
+      "community": 75,
       "norm_label": "form_field_label.dart",
       "id": "presentation_widgets_form_field_label_dart"
     },
@@ -13093,7 +13093,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/shimmer_placeholder.dart",
       "source_location": null,
-      "community": 34,
+      "community": 33,
       "norm_label": "shimmer_placeholder.dart",
       "id": "presentation_widgets_shimmer_placeholder_dart"
     },
@@ -13111,7 +13111,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/multi_select_chip.dart",
       "source_location": null,
-      "community": 66,
+      "community": 67,
       "norm_label": "multi_select_chip.dart",
       "id": "presentation_widgets_multi_select_chip_dart"
     },
@@ -13120,7 +13120,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/primary_button.dart",
       "source_location": null,
-      "community": 31,
+      "community": 53,
       "norm_label": "primary_button.dart",
       "id": "presentation_widgets_primary_button_dart"
     },
@@ -13129,7 +13129,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/pricing_row.dart",
       "source_location": null,
-      "community": 77,
+      "community": 78,
       "norm_label": "pricing_row.dart",
       "id": "presentation_widgets_pricing_row_dart"
     },
@@ -13192,7 +13192,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/filter_bar.dart",
       "source_location": null,
-      "community": 53,
+      "community": 52,
       "norm_label": "filter_bar.dart",
       "id": "presentation_widgets_filter_bar_dart"
     },
@@ -13246,7 +13246,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/app_text_form_field.dart",
       "source_location": null,
-      "community": 75,
+      "community": 76,
       "norm_label": "app_text_form_field.dart",
       "id": "presentation_widgets_app_text_form_field_dart"
     },
@@ -13291,7 +13291,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/charts/chart_container.dart",
       "source_location": null,
-      "community": 67,
+      "community": 66,
       "norm_label": "chart_container.dart",
       "id": "presentation_widgets_charts_chart_container_dart"
     },
@@ -13363,7 +13363,7 @@
       "file_type": "code",
       "source_file": "presentation/widgets/responsive/responsive.dart",
       "source_location": null,
-      "community": 138,
+      "community": 139,
       "norm_label": "responsive.dart",
       "id": "presentation_widgets_responsive_responsive_dart"
     },
@@ -13426,7 +13426,7 @@
       "file_type": "code",
       "source_file": "data/models/trade_position_dto.g.dart",
       "source_location": null,
-      "community": 139,
+      "community": 140,
       "norm_label": "trade_position_dto.g.dart",
       "id": "data_models_trade_position_dto_g_dart"
     },
@@ -13444,7 +13444,7 @@
       "file_type": "code",
       "source_file": "data/models/trade_position_dto.freezed.dart",
       "source_location": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "_",
       "id": "data_models_trade_position_dto_freezed_dart"
     },
@@ -13453,7 +13453,7 @@
       "file_type": "code",
       "source_file": "data/models/import_result_dto.freezed.dart",
       "source_location": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "_",
       "id": "data_models_import_result_dto_freezed_dart"
     },
@@ -13462,7 +13462,7 @@
       "file_type": "code",
       "source_file": "data/models/finance_record_dto.g.dart",
       "source_location": null,
-      "community": 140,
+      "community": 141,
       "norm_label": "finance_record_dto.g.dart",
       "id": "data_models_finance_record_dto_g_dart"
     },
@@ -13471,7 +13471,7 @@
       "file_type": "code",
       "source_file": "data/models/user_dto.g.dart",
       "source_location": null,
-      "community": 141,
+      "community": 142,
       "norm_label": "user_dto.g.dart",
       "id": "data_models_user_dto_g_dart"
     },
@@ -13489,7 +13489,7 @@
       "file_type": "code",
       "source_file": "core/constants/app_constants.dart",
       "source_location": null,
-      "community": 81,
+      "community": 82,
       "norm_label": "app_constants.dart",
       "id": "core_constants_app_constants_dart"
     },
@@ -13498,7 +13498,7 @@
       "file_type": "code",
       "source_file": "core/utils/string_utils.dart",
       "source_location": null,
-      "community": 46,
+      "community": 45,
       "norm_label": "string_utils.dart",
       "id": "core_utils_string_utils_dart"
     },
@@ -13516,7 +13516,7 @@
       "file_type": "code",
       "source_file": "core/utils/utils.dart",
       "source_location": null,
-      "community": 142,
+      "community": 143,
       "norm_label": "utils.dart",
       "id": "core_utils_utils_dart"
     },
@@ -44870,5 +44870,5 @@
       "source_file": "CLAUDE.md"
     }
   ],
-  "built_at_commit": "e00768ce3b88cdc42e83b6c1c18a59571828b80e"
+  "built_at_commit": "6f25492e414847158c78485ea0348bf807517694"
 }

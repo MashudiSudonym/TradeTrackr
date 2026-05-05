@@ -3,15 +3,15 @@ status: testing
 phase: 01-foundation-trade-management
 source: 01-01-SUMMARY.md, 01-02-SUMMARY.md
 started: 2026-05-05T06:00:00Z
-updated: 2026-05-05T06:40:00Z
+updated: 2026-05-05T06:50:00Z
 ---
 
 ## Current Test
 
-number: 2
-name: Add a Closed Position
+number: 3
+name: View Trade Detail
 expected: |
-  Navigate to Add Trade page. Fill in trade details (symbol, side, entry/exit price, dates, etc.) and submit. The trade appears in the trade list on the dashboard.
+  Tap on a trade in the list. The trade detail page opens showing all trade fields (symbol, side, prices, pips, profit, close reason, dates).
 awaiting: user response
 
 ## Tests
@@ -22,7 +22,7 @@ result: pass
 
 ### 2. Add a Closed Position
 expected: Navigate to Add Trade page. Fill in trade details (symbol, side, entry/exit price, dates, etc.) and submit. The trade appears in the trade list on the dashboard.
-result: [pending]
+result: pass
 
 ### 3. View Trade Detail
 expected: Tap on a trade in the list. The trade detail page opens showing all trade fields (symbol, side, prices, pips, profit, close reason, dates).
@@ -59,9 +59,9 @@ result: [pending]
 ## Summary
 
 total: 10
-passed: 1
+passed: 2
 issues: 0
-pending: 9
+pending: 8
 skipped: 0
 
 ## Gaps

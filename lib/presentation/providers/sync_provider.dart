@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io' show Platform;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -57,6 +58,8 @@ class SyncController extends _$SyncController {
 
   /// Initialize workmanager and register periodic sync task.
   Future<void> _initializeWorkmanager() async {
+    if (!Platform.isAndroid && !Platform.isIOS) return;
+
     try {
       // Register periodic sync task (Android minimum: 15 minutes)
       await Workmanager().registerPeriodicTask(
