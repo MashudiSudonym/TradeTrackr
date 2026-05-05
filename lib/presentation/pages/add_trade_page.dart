@@ -12,13 +12,17 @@ import '../../app/theme/app_colors.dart';
 import '../widgets/responsive/responsive.dart';
 import '../providers/auth_provider.dart';
 import '../providers/di_providers.dart';
+import '../providers/trade_provider.dart';
 
-/// Add Trade page — form for creating a new trade position.
+/// Add/Edit Trade page — form for creating or editing a trade position.
 ///
+/// When [tradeId] is provided, the form operates in edit mode, pre-populating
+/// fields from the existing position. Otherwise, it creates a new trade.
 /// Supports Closed and Open position types with toggle.
-/// Form validation on all required fields.
 class AddTradePage extends ConsumerStatefulWidget {
-  const AddTradePage({super.key});
+  final String? tradeId;
+
+  const AddTradePage({super.key, this.tradeId});
 
   @override
   ConsumerState<AddTradePage> createState() => _AddTradePageState();
@@ -41,6 +45,10 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
   DateTime _openTime = DateTime.now();
   DateTime _closeTime = DateTime.now();
 
+  bool _dataLoaded = false;
+
+  bool get _isEditMode => widget.tradeId != null;
+
   @override
   void dispose() {
     _symbolController.dispose();
@@ -60,6 +68,30 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
     final cs = theme.colorScheme;
     final spacing = context.responsiveSpacing();
 
+    if (_isEditMode && !_dataLoaded) {
+      final tradeAsync = ref.watch(tradeByIdProvider(id: widget.tradeId!));
+      tradeAsync.whenData((trade) {
+        if (trade != null && !_dataLoaded) {
+          _dataLoaded = true;
+          _symbolController.text = trade.symbol;
+          _volumeController.text = trade.volume.toString();
+          _openPriceController.text = trade.openPrice.toString();
+          _closePriceController.text = trade.closePrice.toString();
+          _stopLossController.text = trade.stopLoss?.toString() ?? '';
+          _takeProfitController.text = trade.takeProfit?.toString() ?? '';
+          _swapController.text = trade.swap == 0.0 ? '' : trade.swap.toString();
+          _commissionController.text = trade.commission == 0.0 ? '' : trade.commission.toString();
+          setState(() {
+            _side = trade.side;
+            _reason = trade.reason;
+            _openTime = trade.openTime;
+            _closeTime = trade.closeTime;
+            _isClosed = true;
+          });
+        }
+      });
+    }
+
     return Scaffold(
       backgroundColor: cs.surface,
       appBar: AppBar(
@@ -69,7 +101,7 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
           icon: Icon(Icons.close, color: cs.onSurface),
         ),
         title: Text(
-          'Add Trade',
+          _isEditMode ? 'Edit Trade' : 'Add Trade',
           style: GoogleFonts.manrope(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -367,7 +399,7 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
                     ),
                     child: Center(
                       child: Text(
-                        'Save Trade',
+                        _isEditMode ? 'Update' : 'Save Trade',
                         style: GoogleFonts.inter(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -524,28 +556,22 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
   Future<void> _handleSave() async {
     if (!_formKey.currentState!.validate()) return;
 
-    // Get current user
     final user = ref.read(authStateProvider);
     if (user == null) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('You must be logged in to add trades')),
+          const SnackBar(content: Text('You must be logged in to save trades')),
         );
       }
       return;
     }
 
     final userId = user.id;
-    const uuid = Uuid();
-    final now = DateTime.now();
 
     try {
-      final repo = ref.read(tradeCommandRepositoryProvider);
-
       if (_isClosed) {
-        // Create ClosedPosition
         final position = ClosedPosition(
-          id: uuid.v4(),
+          id: _isEditMode ? widget.tradeId! : const Uuid().v4(),
           userId: userId,
           symbol: _symbolController.text.toUpperCase(),
           openTime: _openTime,
@@ -572,26 +598,29 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
             double.parse(_volumeController.text),
           ),
           reason: _reason,
-          createdAt: now,
-          updatedAt: now,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
           isSynced: false,
         );
 
-        final result = await repo.addClosedPosition(position);
-        if (result.isFailure && mounted) {
-          throw Exception(result.error);
+        if (_isEditMode) {
+          final updateFn = ref.read(updateClosedPositionProvider);
+          await updateFn(position);
+        } else {
+          final addFn = ref.read(addClosedPositionProvider);
+          await addFn(position);
         }
       } else {
-        // Create OpenPosition
+        final repo = ref.read(tradeCommandRepositoryProvider);
         final position = OpenPosition(
-          id: uuid.v4(),
+          id: const Uuid().v4(),
           userId: userId,
           symbol: _symbolController.text.toUpperCase(),
           openTime: _openTime,
           volume: double.parse(_volumeController.text),
           side: _side,
           openPrice: double.parse(_openPriceController.text),
-          currentPrice: null, // Will be set by market data
+          currentPrice: null,
           stopLoss: _stopLossController.text.isEmpty
               ? null
               : double.tryParse(_stopLossController.text),
@@ -604,9 +633,9 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
           commission: _commissionController.text.isEmpty
               ? 0.0
               : double.parse(_commissionController.text),
-          profit: 0.0, // No floating P/L at creation
-          createdAt: now,
-          updatedAt: now,
+          profit: 0.0,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
           isSynced: false,
         );
 
@@ -620,7 +649,9 @@ class _AddTradePageState extends ConsumerState<AddTradePage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              '${_isClosed ? 'Closed' : 'Open'} position saved (${_symbolController.text} ${_side.name})',
+              _isEditMode
+                  ? 'Trade updated (${_symbolController.text} ${_side.name})'
+                  : '${_isClosed ? 'Closed' : 'Open'} position saved (${_symbolController.text} ${_side.name})',
             ),
             backgroundColor: Theme.of(context).colorScheme.tertiary,
           ),

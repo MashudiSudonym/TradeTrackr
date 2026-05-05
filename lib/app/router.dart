@@ -125,6 +125,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
                     builder: (context, state) => const AddTradePage(),
                   ),
                   GoRoute(
+                    path: ':id/edit',
+                    parentNavigatorKey: _rootNavigatorKey,
+                    builder: (context, state) {
+                      final tradeId = state.pathParameters['id']!;
+                      return AddTradePage(tradeId: tradeId);
+                    },
+                  ),
+                  GoRoute(
                     path: ':id',
                     parentNavigatorKey: _rootNavigatorKey,
                     builder: (context, state) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../domain/entities/closed_position.dart';
 import '../providers/trade_provider.dart';
@@ -81,7 +82,7 @@ class TradeDetailPage extends ConsumerWidget {
                 const SizedBox(height: 32),
 
                 // ── Actions ────────────────────────────────
-                _ActionButtons(cs: cs),
+                _ActionButtons(trade: trade),
               ],
             ),
           );
@@ -440,20 +441,21 @@ class _PricingRow extends StatelessWidget {
 // Action Buttons
 // ───────────────────────────────────────────────────────────────
 
-class _ActionButtons extends StatelessWidget {
-  final ColorScheme cs;
+class _ActionButtons extends ConsumerWidget {
+  final ClosedPosition trade;
 
-  const _ActionButtons({required this.cs});
+  const _ActionButtons({required this.trade});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cs = Theme.of(context).colorScheme;
+
     return Row(
       children: [
-        // Edit button
         Expanded(
           child: GestureDetector(
             onTap: () {
-              // TODO: Navigate to edit page
+              context.push('/trades/${trade.id}/edit');
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -475,11 +477,36 @@ class _ActionButtons extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 12),
-        // Delete button
         Expanded(
           child: GestureDetector(
             onTap: () {
-              // TODO: Show delete confirmation
+              showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: const Text('Delete Trade'),
+                  content: Text(
+                    'Are you sure you want to delete ${trade.symbol} trade?',
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text('Delete'),
+                    ),
+                  ],
+                ),
+              ).then((confirmed) async {
+                if (confirmed == true) {
+                  final deleteFn = ref.read(deleteClosedPositionProvider);
+                  await deleteFn(trade.id);
+                  if (context.mounted) {
+                    Navigator.of(context).pop();
+                  }
+                }
+              });
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 14),
