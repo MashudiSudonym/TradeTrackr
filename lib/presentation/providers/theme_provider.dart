@@ -1,25 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_provider.g.dart';
 
+const _themeKey = 'theme_mode';
+
 /// Manages the app theme mode (light/dark/system).
 ///
-/// Persisted choice stored locally (TODO: add shared_preferences persistence).
+/// Persisted via shared_preferences so preference survives app restart.
 @Riverpod(keepAlive: true)
 class Theme extends _$Theme {
   @override
-  ThemeMode build() => ThemeMode.system;
-
-  void setTheme(ThemeMode mode) => state = mode;
-
-  void toggleTheme() {
-    state = state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+  ThemeMode build() {
+    _loadSavedTheme();
+    return ThemeMode.system;
   }
 
-  void setLight() => state = ThemeMode.light;
+  Future<void> _loadSavedTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getString(_themeKey);
+    if (saved != null) {
+      final mode = ThemeMode.values.firstWhere(
+        (m) => m.name == saved,
+        orElse: () => ThemeMode.system,
+      );
+      state = mode;
+    }
+  }
 
-  void setDark() => state = ThemeMode.dark;
+  Future<void> setTheme(ThemeMode mode) async {
+    state = mode;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_themeKey, mode.name);
+  }
 
-  void setSystem() => state = ThemeMode.system;
+  Future<void> toggleTheme() async {
+    final newMode = state == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    await setTheme(newMode);
+  }
+
+  Future<void> setLight() async => setTheme(ThemeMode.light);
+  Future<void> setDark() async => setTheme(ThemeMode.dark);
+  Future<void> setSystem() async => setTheme(ThemeMode.system);
 }
